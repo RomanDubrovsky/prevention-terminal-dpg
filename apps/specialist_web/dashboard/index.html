@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rollup — app.prevention.school</title>
+  <meta name="app-api-base" content="__API_BASE__">
+  <link rel="stylesheet" href="/styles/app.css">
+</head>
+<body class="sw-body">
+  <header class="sw-header">
+    <div class="sw-brand"><span class="sw-brand-mark">P</span><div><div class="sw-brand-title">Rollup</div><div class="sw-brand-sub">Federation dashboard</div></div></div>
+    <nav class="sw-nav"><a href="/" class="sw-nav-link">Рабочее место</a></nav>
+  </header>
+  <main class="sw-main" style="max-width:720px;margin:0 auto;padding:24px">
+    <h1>Дашборд руководителя</h1>
+    <form id="rollup-form" style="display:flex;gap:8px;margin:16px 0">
+      <input type="text" id="terminal-user-id" placeholder="terminal_user_id" style="flex:1;padding:10px" required />
+      <button type="submit" class="sw-btn sw-btn--primary">Загрузить</button>
+    </form>
+    <p id="rollup-status" class="sw-muted"></p>
+    <dl id="rollup-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px"></dl>
+  </main>
+  <script src="/rollup.js"></script>
+</body>
+</html>

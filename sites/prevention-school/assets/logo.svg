@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="teen-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d9488"/>
+      <stop offset="50%" stop-color="#14b8a6"/>
+      <stop offset="100%" stop-color="#2dd4bf"/>
+    </linearGradient>
+    <filter id="soft-shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#0f766e" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#soft-shadow)">
+    <!-- Friendly Chat & Care Bubble Body -->
+    <path d="M 256 96 C 158.8 96 80 174.8 80 272 C 80 323.2 101.8 369.4 136.8 401.8 L 118 456 L 176.4 440.6 C 200.8 452 227.8 458 256 458 C 353.2 458 432 379.2 432 282 C 432 184.8 353.2 96 256 96 Z" 
+          fill="none" 
+          stroke="url(#teen-gradient)" 
+          stroke-width="28" 
+          stroke-linecap="round" 
+          stroke-linejoin="round"/>
+
+    <!-- Three Caring Dots inside Bubble -->
+    <circle cx="196" cy="272" r="16" fill="url(#teen-gradient)"/>
+    <circle cx="256" cy="272" r="16" fill="url(#teen-gradient)"/>
+    <circle cx="316" cy="272" r="16" fill="url(#teen-gradient)"/>
+
+    <!-- Sparkle Star (Psychological Care & Hope) at Top Right -->
+    <path d="M 384 104 C 384 140 396 152 432 152 C 396 152 384 164 384 200 C 384 164 372 152 336 152 C 372 152 384 140 384 104 Z" 
+          fill="#2dd4bf"/>
+  </g>
+</svg>

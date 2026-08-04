@@ -1,0 +1,787 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/favicon.png">
+  <title>Научная база — Prevention Intelligence Engine (PIE)</title>
+  <meta name="description" content="Наука платформы Prevention AI: таксономия PIE, исполняемые протоколы, кейс-спринты, пользовательские оценки результатов и непрерывный статистический цикл обратной связи, превращающий полевую практику в эмпирические стандарты.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght=400;550;650;760;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <style>
+    .tech-matrix {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin: 32px 0;
+    }
+    .matrix-axis {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 24px;
+    }
+    .matrix-axis h3 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.1rem;
+      color: #38bdf8;
+      margin-top: 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 12px;
+    }
+    .matrix-axis ul {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 0 0;
+    }
+    .matrix-axis li {
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    .matrix-axis strong {
+      color: #fff;
+    }
+    .code-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      background: rgba(255,255,255,0.1);
+      padding: 2px 6px;
+      border-radius: 4px;
+      float: right;
+      color: #8be9fd;
+    }
+    .step-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 20px;
+    }
+    .badge-loop {
+      background: rgba(45, 212, 191, 0.1);
+      color: #2dd4bf;
+      margin-bottom: 12px;
+    }
+    .step-label {
+      color: #2dd4bf;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .step-card p {
+      font-size: 14px;
+      margin: 0;
+      line-height: 1.5;
+    }
+    .triad-loop-steps {
+      margin-top: 32px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .triad-loop-steps h3 {
+      margin: 0 0 8px;
+      font-size: 1.1rem;
+    }
+    .triad-loop-steps .loop-intro {
+      margin: 0 0 20px;
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 720px;
+    }
+    .factory-pipeline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin-top: 28px;
+    }
+    .factory-pipeline .step-card {
+      position: relative;
+    }
+    .factory-pipeline .step-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: #2dd4bf;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      display: block;
+    }
+    .factory-bridge {
+      margin-top: 24px;
+      padding: 20px 24px;
+      border-radius: 8px;
+      border: 1px dashed rgba(45, 212, 191, 0.35);
+      background: rgba(45, 212, 191, 0.04);
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--text);
+      max-width: 880px;
+    }
+    .factory-bridge strong {
+      color: var(--text);
+    }
+    .hierarchy-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin: 32px 0;
+      max-width: 900px;
+    }
+    .hierarchy-layer {
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.01);
+      transition: border-color 0.2s, background-color 0.2s;
+    }
+    .hierarchy-layer:hover {
+      border-color: #38bdf8;
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .layer-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: #38bdf8;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      display: block;
+      letter-spacing: 0.05em;
+    }
+    .hierarchy-layer h3 {
+      margin: 0 0 6px 0;
+      font-size: 1.15rem;
+    }
+    .hierarchy-layer p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .hierarchy-layer .example-box {
+      margin-top: 12px;
+      padding: 12px 16px;
+      background: rgba(56, 189, 248, 0.03);
+      border-left: 3px solid #38bdf8;
+      border-radius: 0 6px 6px 0;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+    .hierarchy-layer .example-box strong {
+      color: #38bdf8;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    
+    /* Mermaid Graph Styles */
+    .prompt-tree-container {
+      margin-top: 32px;
+      padding: 32px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius, 16px);
+      box-shadow: var(--shadow);
+      overflow-x: auto;
+      text-align: center;
+    }
+    .mermaid {
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Prompt Matrix Styles */
+    .prompt-legend-matrix {
+      margin-top: 24px;
+    }
+    .legend-row {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.9rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .legend-color {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+    .matrix-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 768px) {
+      .matrix-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .matrix-column {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius, 16px);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+    .matrix-col-title {
+      font-size: 1.15rem;
+      color: var(--text);
+      font-weight: 700;
+      margin-top: 0;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+    .frontend-col {
+      border-top: 4px solid #0ea5e9;
+    }
+    .backend-col {
+      border-top: 4px solid #10b981;
+    }
+    .matrix-card {
+      margin-bottom: 16px;
+      padding: 16px;
+      background: var(--surface-soft);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+    .matrix-card:last-child {
+      margin-bottom: 0;
+    }
+    .matrix-card h4 {
+      margin: 8px 0 4px 0;
+      font-size: 1rem;
+      color: var(--text);
+      font-weight: 700;
+    }
+    .matrix-card p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .matrix-tag {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-weight: 700;
+      display: inline-block;
+    }
+    
+    /* Contrast-safe badge tag colors for light & dark themes */
+    .tag-architect { background: rgba(14, 165, 233, 0.15); color: #0284c7; }
+    .tag-expert { background: rgba(139, 92, 246, 0.15); color: #7c3aed; }
+    .tag-copilot { background: rgba(245, 158, 11, 0.15); color: #d97706; }
+    .tag-smartfill { background: rgba(236, 72, 153, 0.15); color: #db2777; }
+    
+    .tag-intake { background: rgba(16, 185, 129, 0.15); color: #059669; }
+    .tag-diagnostic { background: rgba(20, 184, 166, 0.15); color: #0d9488; }
+    .tag-companion { background: rgba(99, 102, 241, 0.15); color: #4f46e5; }
+    .tag-axioms { background: rgba(239, 68, 68, 0.15); color: #dc2626; }
+
+    html[data-theme="dark"] .tag-architect { color: #38bdf8; }
+    html[data-theme="dark"] .tag-expert { color: #a78bfa; }
+    html[data-theme="dark"] .tag-copilot { color: #fbbf24; }
+    html[data-theme="dark"] .tag-smartfill { color: #f472b6; }
+    html[data-theme="dark"] .tag-intake { color: #34d399; }
+    html[data-theme="dark"] .tag-diagnostic { color: #2dd4bf; }
+    html[data-theme="dark"] .tag-companion { color: #818cf8; }
+    html[data-theme="dark"] .tag-axioms { color: #f87171; }
+  </style>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    mermaid.initialize({ 
+      startOnLoad: true, 
+      theme: isDark ? 'dark' : 'default'
+    });
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <header class="site-header">
+      <a class="brand" href="/ru/"><span class="brand-mark">П</span><span>Профилактика-AI</span></a>
+      <nav class="nav" aria-label="Основная навигация">
+        <a href="/ru/science/" class="nav-active" aria-current="page">Наука</a>
+        <a href="/ru/academy/">Академия</a>
+        <a href="/ru/help-for-teacher/">Педагогам</a>
+        <a href="/ru/workspace/">Психологам и специалистам</a>
+        <a href="/ru/teenology/">Родителям и подросткам</a>
+        <a href="../../science/" class="lang-toggle" aria-label="Switch to English">English</a>
+        <button type="button" class="theme-toggle" id="theme-toggle">Dark</button>
+      </nav>
+    </header>
+
+   <main>
+      <section class="hero-layer">
+        <div class="grid-2">
+          <div>
+            <span class="badge info">Открытый код</span>
+            <h1>Наука профилактики: Архитектура PIE</h1>
+            <p class="lead">Платформа работает как непрерывный цикл эмпирических исследований. Она трансформирует сырые полевые сигналы в стандартизированные, структурированные данные, объединяя трехосевую таксономию профилактики и доказательную базу знаний (Knowledge Base) с активным аналитическим контуром, созданным для программной валидации и проектирования будущих стандартов психологической помощи с использованием ИИ.</p>
+            <p class="text-muted" style="margin-top: 12px;">Работает на базе <strong>Prevention Intelligence Engine (PIE)</strong> — детерминированной онтологии, которая удерживает генеративный ИИ в рамках научно обоснованной профилактики, не допуская неконтролируемых клинических советов.</p>
+            <div class="actions">
+              <a class="btn btn-primary" href="/whitepaper/" target="_blank" rel="noopener">Читать полный манифест (PDF)</a>
+            </div>
+          </div>
+          <div class="architecture-preview">
+            <div class="tech-badge-cloud science-cloud">
+              <span>Статистический цикл обратной связи</span>
+              <span>Генерация доказательств</span>
+              <span>Трехосевая таксономия</span>
+              <span>Неклинические границы</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="taxonomy-deepdive">
+        <div class="section-head">
+          <span class="eyebrow">Основной механизм маппинга</span>
+          <h2>Многомерная матрица профилактики</h2>
+          <p>Движок PIE не допускает неконтролируемого семантического дрейфа. Каждый входящий токен естественного языка программно поглощается, векторизуется и принудительно отображается на строгую 5-мерную матрицу состояний, скомпилированную непосредственно из нашей кодовой базы (основанной на стандартах профилактики ВОЗ).</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <header>
+              <strong>X_STAGE_VALUES</strong>
+              <h3>Ось X: Стадии процесса</h3>
+            </header>
+            <p>Определяет точную операционную фазу цикла вмешательства:</p>
+            <ul>
+              <li><code>X1_Problem</code> — Острая идентификация напряжения</li>
+              <li><code>X2_Diag</code> — Неклинический профилактический скрининг / структурированный чекап</li>
+              <li><code>X3_Goal</code> — Установка ограниченных вех деэскалации</li>
+              <li><code>X4_Action</code> — Развертывание протоколов микродействий</li>
+              <li><code>X5_Eval</code> — Автоматизированная рефлексия и отслеживание результатов</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <header>
+              <strong>Y_LEVEL_VALUES</strong>
+              <h3>Ось Y: Уровни тяжести</h3>
+            </header>
+            <p>Устанавливает периметр безопасности и определяет пороги маршрутизации:</p>
+            <ul>
+              <li><code>Y1_Normal</code> — Стандартный возрастной кризис</li>
+              <li><code>Y2_Risk</code> — Накопление субклинических факторов риска</li>
+              <li><code>Y3_Problem</code> — Проявленный поведенческий или коммуникативный кризис</li>
+              <li><code>Y4_Crisis_Clinical</code> — Жесткая граница для горячей маршрутизации к специалисту</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <header>
+              <strong>M_MODALITY_VALUES</strong>
+              <h3>Ось M: Системные модальности</h3>
+            </header>
+            <p>Категоризирует физиологическое или экологическое происхождение вектора стресса:</p>
+            <ul>
+              <li><code>M1_Biology</code> — Возрастные и нейроразвивающие сдвиги</li>
+              <li><code>M2_Psychophysiology</code> — Соматические маркеры и реакции на стресс</li>
+              <li><code>M3_Cognition</code> — Внутренние поведенческие циклы, убеждения и сценарии</li>
+              <li><code>M4_Social</code> — Динамика микросистемы (семья и сверстники)</li>
+              <li><code>M5_Environment</code> — Макропространства (институциональные и цифровые контексты)</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="grid-2" style="margin-top: 24px;">
+          <div class="spec-box">
+            <div class="spec-item">
+              <strong>Роли исполнителя (Целевой интерфейс)</strong>
+              <p>Динамическая фильтрация контекста в зависимости от сертифицированного интерфейса пользователя: <code>Психолог</code> (методологические журналы), <code>Учитель</code> (динамика класса) или <code>Администратор</code> (макроотчеты).</p>
+            </div>
+          </div>
+
+          <div class="spec-box">
+            <div class="spec-item">
+              <strong>Организационный масштаб (Целевой радиус)</strong>
+              <p>Определяет целевой размер социологической системы для цикла данных: <code>Индивид</code> → <code>Семья</code> → <code>Группа</code> → <code>Сообщество</code> → <code>Общество</code>.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="spec-box" style="margin-top: 32px;">
+          <div class="spec-item">
+            <h3>Унифицированные метаданные паспорта таксономии</h3>
+            <p>Чтобы обеспечить полную семантическую непрерывность между потребительскими приложениями Уровня 1 и пространствами специалистов Уровня 2, каждая рабочая сессия генерирует изолированный криптографический паспорт без PII (персональных данных). Этот паспорт отслеживает <code>BEHAVIOR_DELTA</code> (движение от базовой аномалии к целевой деэскалации) и оценивает непрерывность контекста в долгосрочных журналах, не раскрывая личных историй.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="prompt-architecture" style="margin-top: 64px;">
+        <div class="section-head">
+          <span class="eyebrow">Когнитивное ядро (Cognitive Core)</span>
+          <h2>Архитектура системных промптов</h2>
+          <p>Мы используем полностью прозрачную, высокодетерминированную иерархию промптов. Она устанавливает неклинические границы, изолирует чувствительную диагностику и безопасно направляет LLM по валидированным протоколам. Вся эта структура открыта для совместного управления и постоянного научного обзора.</p>
+        </div>
+        <div class="prompt-tree-container">
+          <div class="mermaid">
+graph TD
+    A[Главный системный промпт <br> Prevention.AI / Teenology] --> B(Фронтенд: Терминал специалиста)
+    A --> C(Бэкенд: Клиентские приложения и Ядро)
+
+    %% Ветвь фронтенда
+    B --> B1(Архитектор документов)
+    B --> B2(Методологический эксперт)
+    B --> B3(Второй пилот / Copilot)
+    B --> B4(Умное заполнение)
+    
+    B1 --> B1a[ИПР / ПМПк / Групповые планы / Безопасность]
+    B2 --> B2a[ФАП / Профили / Аудит программ]
+    B3 --> B3a[Быстрый ИИ-синтез]
+    B3 --> B3b[Анализ ролей и рисков]
+    B4 --> B4a[Структурирование DAP сессий]
+
+    %% Ветвь бэкенда
+    C --> C1(Прием клиентов и Маршрутизация)
+    C --> C2(Диагностический модуль)
+    C --> C3(Консультативные компаньоны)
+    
+    C1 --> C1a[Перехваты при приеме <br> Моральная паника, Усыновление]
+    C1 --> C1b[Маппинг таксономии <br> Жесткие шлюзы провайдеров]
+    
+    C2 --> C2a[Диагностические аксиомы <br> Защита PII]
+    C2 --> C2b[Глубокое погружение <br> Генерация промежуточных инсайтов]
+    C2 --> C2c[Сводка приема <br> Синтез данных]
+    
+    C3 --> C3a[Навигатор для родителей]
+    C3 --> C3b[Компаньон IDA <br> Мост отношений]
+    C3 --> C3c[Компаньон для педагогов]
+
+    classDef core fill:#1e293b,stroke:#475569,stroke-width:2px,color:#fff;
+    classDef frontend fill:#0ea5e9,stroke:#0284c7,stroke-width:2px,color:#fff;
+    classDef backend fill:#10b981,stroke:#059669,stroke-width:2px,color:#fff;
+    classDef leaf fill:#0f172a,stroke:#334155,stroke-width:1px,color:#cbd5e1;
+    
+    class A core;
+    class B,B1,B2,B3,B4 frontend;
+    class C,C1,C2,C3 backend;
+    class B1a,B2a,B3a,B3b,B4a,C1a,C1b,C2a,C2b,C2c,C3a,C3b,C3c leaf;
+          </div>
+        </div>
+
+        <div class="prompt-legend-matrix">
+          <div class="legend-row">
+            <span class="legend-item"><span class="legend-color" style="background:#0ea5e9"></span> Фронтенд (Терминал)</span>
+            <span class="legend-item"><span class="legend-color" style="background:#10b981"></span> Бэкенд (Ядро / Core)</span>
+            <span class="legend-item"><span class="legend-color" style="background:#0f172a; border: 1px solid #334155;"></span> Исполняемые промпты</span>
+          </div>
+
+          <div class="matrix-grid">
+            <div class="matrix-column frontend-col">
+              <h3 class="matrix-col-title">Промпты фронтенд-терминала</h3>
+              
+              <div class="matrix-card">
+                <span class="matrix-tag tag-architect">Архитектор документов</span>
+                <h4>ИПР / ПМПк / Планы</h4>
+                <p>Генерирует сложные индивидуальные программы реабилитации (ИПР) или образовательные маршруты (ИОМ), групповые планы и отчеты по случаям из сырых метаданных консультаций.</p>
+              </div>
+
+              <div class="matrix-card">
+                <span class="matrix-tag tag-expert">Методологический эксперт</span>
+                <h4>ФАП и Профили</h4>
+                <p>Составляет функциональный анализ поведения (ФАП) и психологические профили, сопоставляя поведение учащегося с триггерами A-B-C.</p>
+              </div>
+
+              <div class="matrix-card">
+                <span class="matrix-tag tag-copilot">Case Copilot</span>
+                <h4>Быстрый синтез и анализ рисков</h4>
+                <p>По запросу анализирует роли (жертва, агрессор, наблюдатель) и вычисляет скрытые социальные и деструктивные риски.</p>
+              </div>
+
+              <div class="matrix-card">
+                <span class="matrix-tag tag-smartfill">Умное заполнение</span>
+                <h4>Структурирование DAP сессий</h4>
+                <p>Автоматически трансформирует неструктурированную голосовую диктовку в строгие поля данных, оценки и плана (DAP) для профессиональных журналов.</p>
+              </div>
+            </div>
+
+            <div class="matrix-column backend-col">
+              <h3 class="matrix-col-title">Промпты бэкенд-ядра</h3>
+              
+              <div class="matrix-card">
+                <span class="matrix-tag tag-intake">Прием и Маршрутизация</span>
+                <h4>Перехваты и маршрутизация провайдеров</h4>
+                <p>Безопасно обрабатывает острые сценарии приема (например, паника при усыновлении) и сопоставляет разговорную таксономию с психологическими профилями провайдеров.</p>
+              </div>
+
+              <div class="matrix-card">
+                <span class="matrix-tag tag-diagnostic">Диагностический модуль</span>
+                <h4>Глубокое погружение и Сводка приема</h4>
+                <p>Постобработка результатов тестов для генерации одного эмпатичного вопроса «глубокого погружения» и синтеза сводок доказательств с удаленными PII.</p>
+              </div>
+
+              <div class="matrix-card">
+                <span class="matrix-tag tag-companion">Компаньоны</span>
+                <h4>Навигаторы для родителей и IDA</h4>
+                <p>Управляет логикой поддержки отношений (семья или пара). Обеспечивает абсолютный нейтралитет, защиту конфиденциальности и отводит угрозы безопасности от ИИ.</p>
+              </div>
+              
+              <div class="matrix-card">
+                <span class="matrix-tag tag-axioms">Ядро безопасности</span>
+                <h4>Диагностические аксиомы</h4>
+                <p>Абсолютный незыблемый базис: запрещает клинические диагнозы, морализаторство и предписывает маршрутизацию на 112 при вводе данных, угрожающих жизни.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="science-triad">
+        <div class="section-head">
+          <span class="eyebrow">Операционная триада</span>
+          <h2>Таксономия, знания и генерация доказательств</h2>
+          <p>Три взаимосвязанных уровня превращают повседневную профилактическую работу в стандарты, которые отрасль может проверять — это не статичная экспертная система, перенесенная на LLM.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <h3>Таксономия профилактики</h3>
+            <p>Общий детерминированный язык факторов риска, защитных факторов и результатов на семейном, специализированном и административном уровнях. Он удерживает ИИ в рамках валидированных поведенческих стандартов.</p>
+          </article>
+
+          <article class="card">
+            <h3>База знаний (Knowledge Base)</h3>
+            <p>Научно обоснованное руководство, привязанное к конкретным профилактическим ситуациям в реальном времени — матрица внедряется в среду выполнения ИИ, а не остается оторванной от контекста литературой.</p>
+          </article>
+
+          <article class="card">
+            <span class="badge badge-loop">Архитектура замкнутого цикла</span>
+            <h3>Движок генерации доказательств</h3>
+            <p>Третий уровень замыкает дизайн: анонимизированные полевые сигналы предназначены для уточнения того, что платформа будет развертывать дальше — обновления протоколов на основе доказательств, а не разовые руководства (подлежит оценке на пилотных проектах).</p>
+          </article>
+        </div>
+
+        <div class="triad-loop-steps" id="feedback-loop-steps">
+          <h3>Как спроектирован замкнутый цикл</h3>
+          <p class="loop-intro">Описанный выше движок — это не отдельный продукт, а целевой конвейер, связывающий координаты таксономии с измеримыми обновлениями протоколов по мере развития пилотных проектов.</p>
+          <div class="grid-3">
+            <div class="step-card">
+              <strong class="step-label">1. Граничная категоризация</strong>
+              <p>Журналы Teenology и сводки приема специалистов токенизируются и сопоставляются с координатами таксономии на уровне PWA, при этом персональные данные (PII) удаляются на границе.</p>
+            </div>
+            <div class="step-card">
+              <strong class="step-label">2. Агрегированная оценка</strong>
+              <p>Анонимизированная телеметрия направляется в изолированный исследовательский контур BigQuery для кластеризации рисков и анализа трендов общественного здравоохранения (когда это включено в пилотных проектах).</p>
+            </div>
+            <div class="step-card">
+              <strong class="step-label">3. Оптимизация протоколов</strong>
+              <p>Проверенные статистические дельты корректируют границы промптов, RAG-инъекции и маршрутизацию — кодифицируя бенчмарки для психологической поддержки с использованием ИИ.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="knowledge-hierarchy">
+        <div class="section-head">
+          <span class="eyebrow">Архитектура базы знаний</span>
+          <h2>Стек RAG, промптов и протоколов</h2>
+          <p class="lead">Для обеспечения абсолютной безопасности и предотвращения галлюцинаций ИИ не работает на сырых неструктурированных рассуждениях. Он ограничен тремя слоями ограничений и структурированных ссылок, продемонстрированных на примере Teenology.</p>
+        </div>
+
+        <div class="hierarchy-stack">
+          <!-- Уровень 1: Ограничения промптов -->
+          <article class="hierarchy-layer">
+            <span class="layer-title">Уровень 1 · Системный промпт (Детерминированный периметр)</span>
+            <h3>Детерминированные ограничения ролей</h3>
+            <p>Базовый набор инструкций постоянно определяет границы ИИ, тон и операционные лимиты. Например, в Teenology промпт строго определяет ассистента как поддерживающего компаньона, запрещая клиническую диагностику, психоанализ или назначение медицинских протоколов.</p>
+            <div class="example-box">
+              <strong>Пример ограничения промпта:</strong> "Вы поддерживающий, неклинический компаньон для общения с семьями. Не диагностируйте психические расстройства. Не проводите терапию. При возникновении клинических рисков немедленно активируйте протокол перенаправления в целях безопасности."
+            </div>
+          </article>
+
+          <!-- Уровень 2: RAG Контекст -->
+          <article class="hierarchy-layer">
+            <span class="layer-title">Уровень 2 · Семантический RAG-поиск (Динамический контекст)</span>
+            <h3>Инъекция знаний в реальном времени</h3>
+            <p>Когда пользователь говорит, его запрос конвертируется в вектор эмбеддингов для поиска в изолированной базе данных <code>knowledge_base_v3</code>. Найденная методологическая карточка динамически внедряется как <code>[МЕТОДИЧЕСКИЙ КОНТЕКСТ]</code> в промпт. Это предоставляет специфическую психологическую методологию, полностью предотвращая галлюцинации и сохраняя эфимерность транскрипта чата.</p>
+            <div class="example-box">
+              <strong>Пример маппинга RAG:</strong> Пользователь говорит: <em>"Мой подросток заперся в своей комнате и не хочет со мной разговаривать."</em><br>
+              &rarr; RAG извлекает карточку <code>kb_node: teen-isolation-room</code>.<br>
+              &rarr; Внедренный контекст: <strong>"Руководство: Признайте потребность в личном пространстве. Избегайте криков и попыток выломать дверь. Предложите написать простую, не угрожающую записку, чтобы восстановить мост с низким уровнем трения."</strong>
+            </div>
+          </article>
+
+          <!-- Уровень 3: Исполняемые протоколы -->
+          <article class="hierarchy-layer">
+            <span class="layer-title">Уровень 3 · Исполняемые протоколы (Кейс-спринт)</span>
+            <h3>Структурированная маршрутизация кейсов</h3>
+            <p>Каждый разговор управляется конечным автоматом микроинтервенций (<code>public.protocols</code>). ИИ проводится через дискретные стадии: выявление проблемы, активная деэскалация, структурирование микродействий и отслеживание результатов пользователя. Протокол заставляет модель следовать сценарию и фокусироваться на специфическом пути прогресса пользователя.</p>
+            <div class="example-box">
+              <strong>Пример протокола спринта:</strong> 
+              <code>X1_Problem</code> (Идентификация напряжения) &rarr; 
+              <code>X2_Diag</code> (Нормативный чекап) &rarr; 
+              <code>X3_Goal</code> (Установка границы общения) &rarr; 
+              <code>X4_Action</code> (Попытка с запиской) &rarr; 
+              <code>X5_Eval</code> (Оценка результата пользователем).
+            </div>
+          </article>
+        </div>
+      </section>
+
+
+
+        <!-- Раздел с визуализацией 3D Топологического Графа -->
+        <div class="spec-box Highlight" style="margin-top: 40px; padding: 32px; border-radius: 16px; border: 1px solid var(--line); background: var(--surface-soft);">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; align-items: center;">
+            <div>
+              <span class="academy-badge" style="background: var(--violet-soft); color: var(--violet); padding: 4px 10px; border-radius: 99px; font-size: 0.75rem; font-weight: bold;">Топологический атлас</span>
+              <h3 style="margin-top: 12px; font-size: 1.3rem;">Семантический 3D-граф Академии Профилактики</h3>
+              <p style="font-size: 0.92rem; line-height: 1.6; color: var(--muted); margin-top: 8px;">
+                Вместо того чтобы рассматривать узлы как простые ссылки, система отображает связи как семантическую галактику из <strong>438 структурных узлов и более 1800 направленных связей</strong>. Эта топологическая структура служит каталогом безопасных путей, направляя специалиста по возрастным, клиническим и профилактическим трекам.
+              </p>
+              <div style="margin-top: 16px;">
+                <a class="btn btn-primary" href="/academy/" style="font-size: 0.85rem; padding: 8px 18px;">Запустить интерактивный 3D-граф</a>
+              </div>
+            </div>
+            <div style="border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: #0f172a; box-shadow: 0 12px 32px rgba(0,0,0,0.15);">
+              <img src="../../assets/img/screen-academy-ru.jpg" alt="Визуализация 3D топологического графа знаний" style="width: 100%; display: block; filter: saturate(1.15);" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="evidence-factory">
+        <div class="section-head">
+          <span class="eyebrow">Фабрика выполнения (Runtime factory)</span>
+          <h2>Фабрика доказательств: классификатор → протоколы → спринты → результат</h2>
+          <p>В дополнение к макроисследовательскому контуру, Teenology уже использует замкнутый операционный цикл в каждой платной сессии. Сырой чат никогда не сохраняется как доказательство; фабрика выдает структурированные ключи, ID протоколов, метаданные спринтов и оценки пользователей, которые могут быть агрегированы для определения эффективности протоколов.</p>
+        </div>
+
+        <div class="factory-pipeline">
+          <div class="step-card">
+            <span class="step-num">Шаг 1 · Классификация</span>
+            <strong class="step-label">Автоматический классификатор проблем</strong>
+            <p>Каждая реплика пользователя привязывается к координатам таксономии: <code>problem_key</code>, <code>category_key</code>, степень тяжести (ось <code>Y</code>), подсказки модальности (ось <code>M</code>) и направление профилактики (<code>prevention_link</code>). Неизвестные темы отправляются на ревью без сохранения текста сообщений.</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">Шаг 2 · Протоколирование</span>
+            <strong class="step-label">Выбор исполняемого протокола</strong>
+            <p>Движок выбирает ограниченные микроинтервенции из каталога <code>public.protocols</code> для текущей стадии (<code>X1</code>–<code>X5</code>). Руководства внедряются в среду выполнения ИИ; ID примененных протоколов логируются на каждом шаге ассистента.</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">Шаг 3 · Спринт</span>
+            <strong class="step-label">Цикл кейс-спринта</strong>
+            <p>Диалог организуется как короткие кейс-спринты: выявление напряжения → проработка фокусной проблемы → сдерживание эскалации → оценка → решение о следующем шаге. Каждый спринт несет в себе <code>sprint_id</code>, фокусный узел и стадию <code>x_stage</code>, так что один и тот же язык таксономии охватывает все реплики и сессии.</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">Шаг 4 · Оценка</span>
+            <strong class="step-label">Карточка результатов пользователя</strong>
+            <p>Когда спринт закрывается, пользователь оценивает цикл: помогло / частично / не помогло / стало хуже, плюс опциональные научные шкалы (ясность, облегчение, уверенность в следующем шаге, альянс, статус микродействия). Результаты привязываются к <code>applied_protocol_ids</code> и фокусной таксономии, измеряя то, что сработало, не сохраняя нарративы.</p>
+          </div>
+        </div>
+
+        <p class="factory-bridge"><strong>От телеметрии к доказательствам:</strong> Вместо сбора сырых личных чатов платформа фиксирует только анонимизированные сигналы событий (такие как классифицированные категории проблем, шаги протоколов и оцененные пользователем результаты спринтов). Эти объединенные данные генерируют статистические карты в реальном времени, показывая, какой протокол профилактики работает лучше всего для конкретной проблемы. <strong>Такой подход автоматически создает всеобъемлющий, высокодостоверный статистический пул для лиц, принимающих решения в сфере общественного здравоохранения — то, чего никогда не смогут достичь традиционные бумажные системы отчетности.</strong></p>
+
+        <div class="actions" style="margin-top: 24px;">
+          <a class="btn btn-ghost" href="../teenology/">Посмотреть в Teenology</a>
+        </div>
+      </section>
+
+      <section id="ai-diagnostics-roadmap">
+        <div class="section-head">
+          <span class="eyebrow">Будущее диагностики</span>
+          <h2>Дорожная карта ИИ-управляемого CAT и Shadow Scoring</h2>
+          <p class="lead">Платформа выходит за рамки классических статичных опросников. Анализируя естественный разговор, мы создаем непрерывный фоновый диагностический цикл, который оценивает факторы риска, не нарушая терапевтического потока.</p>
+        </div>
+
+        <div class="grid-3">
+          <div class="step-card">
+            <span class="step-num">Фаза 1 · Прием</span>
+            <strong class="step-label">Подборщик тегов таксономии</strong>
+            <p>Немедленное инициирование диалога через динамическое тегирование, заменяющее статичные формы на картирование структурных тем (например, REL_FAM, DEV_EMO) в реальном времени.</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">Фаза 2 · Банки тестов</span>
+            <strong class="step-label">Архитектура пулов вопросов</strong>
+            <p>Декомпозиция валидированных психометрических шкал (депрессия, тревожность, ПТСР) на атомарные элементы, обогащенные весами IRT (теории моделирования параметров заданий), системными промптами LLM и контекстными барьерами.</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">Фаза 3 · Анализ</span>
+            <strong class="step-label">Теневой скоринг (Shadow Scoring)</strong>
+            <p>Фоновый модуль ИИ, который парсит свободный текст и автоматически сопоставляет нарративы клиента с диагностическими шкалами без явных вопросов, управляемый строгой фильтрацией контекста.</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">Фаза 4 · Динамическое тестирование</span>
+            <strong class="step-label">ИИ-управляемый CAT</strong>
+            <p>Компьютеризированное адаптивное тестирование, при котором LLM органично вплетает следующий наиболее статистически ценный вопрос из банка тестов в естественный ход разговора.</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">Фаза 5 · Интерфейс специалиста</span>
+            <strong class="step-label">Диагностический рентген</strong>
+            <p>Интерактивный дашборд для специалистов, отображающий вероятности скрининга (но не клинические диагнозы) и анонимизированные разговорные доказательства, плюс конструктор тестов для исследователей.</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">Фаза 6 · Валидация</span>
+            <strong class="step-label">Научная калибровка</strong>
+            <p>Сбор анонимизированной статистики для сравнения теневого скоринга ИИ с традиционными формами, калибровка весов IRT для постоянного повышения точности оценки.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="research-loop">
+        <div class="grid-2">
+          <div>
+            <span class="eyebrow">Макроаналитика</span>
+            <h2>Анонимизированная агрегированная аналитика (дизайн)</h2>
+            <p>Локальное логирование на стороне клиента (IndexedDB) и удаление PII на границе — это дизайнерские решения, благодаря которым индивидуальные взаимодействия могут стать структурированными исследовательскими сигналами, а не просто пассивными диаграммами, и стать входами для описанного выше цикла доказательств.</p>
+            <p>Целевая архитектура направляет поведенческие типологии и матрицы векторов рисков в хранилища аналитики (например, BigQuery), чтобы учреждения <em>могли</em> отслеживать паттерны регионального стресса на агрегированном уровне. Этот уровень управления еще не работает в национальном масштабе; институциональные пилотные проекты направлены на сквозную проверку конвейера в локализованных контекстах.</p>
+          </div>
+          
+          <div class="spec-box Cloud-Integration">
+            <div class="spec-item">
+              <strong>Векторный онтологический поиск</strong>
+              <p>Мы используем высокопроизводительные векторные базы данных (Azure AI Search / Vertex AI Vector Search) для выполнения детерминированного сопоставления между вводом на естественном языке и нашими фиксированными онтологиями профилактики, заставляя модель следовать сценарию.</p>
+            </div>
+            <div class="spec-item">
+              <strong>Развязанная граничная изоляция</strong>
+              <p>Архитектура обработки использует облачные рабочие узлы без состояния, чтобы гарантировать, что сырой анализ текста остается эфемерным и полностью отделенным от слоев хранения, питающих базы данных макроисследований.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta-band cta-band-quote" style="margin-top: 64px;">
+        <p class="large-quote">"Конечная цель платформы Prevention AI — не автоматизация человеческой эмпатии, а создание устойчивой, масштабируемой цифровой инфраструктуры, в которой эмпирическая наука, передовая профилактическая практика и региональное управление наконец будут работать в едином цикле обратной связи по данным в реальном времени. Превращая повседневную полевую активность в структурированный, проверяемый источник доказательств, мы не просто применяем существующие протоколы — мы утверждаем будущие стандарты психологической помощи с использованием ИИ."</p>
+        <p class="author-signature">— Роман Дубровский, PhD, основатель платформы</p>
+        <div class="actions actions-center" style="margin-top: 32px;">
+          <a class="btn btn-primary" href="../#governance">Перейти к передаче управления</a>
+          <a class="btn btn-ghost" href="/whitepaper/" target="_blank" rel="noopener">Полный манифест (PDF-ready)</a>
+        </div>
+      </section>
+
+         </main>
+	
+    <footer class="footer">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <strong>Профилактика-AI</strong><br>Открытая инфраструктура электронных рабочих мест.
+          <p class="footer-contact">
+            <a href="mailto:admin@prevention.school">admin@prevention.school</a><span class="footer-contact-sep" aria-hidden="true">·</span><a href="https://t.me/RomanDubrovsky" target="_blank" rel="noopener noreferrer">Telegram</a>
+          </p>
+        </div>
+        <nav class="footer-links" aria-label="Подвал">
+          <a href="/ru/science/">Наука</a>
+          <a href="/ru/academy/">Академия</a>
+          <a href="/ru/help-for-teacher/">Педагогам</a>
+          <a href="/ru/workspace/">Психологам и специалистам</a>
+          <a href="/ru/teenology/">Родителям и подросткам</a>
+        </nav>
+      </div>
+    </footer>
+  </div>
+  <script src="../../assets/theme.js" defer></script>
+</body>
+</html>

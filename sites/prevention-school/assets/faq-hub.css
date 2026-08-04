@@ -1,0 +1,232 @@
+/* Content Hub FAQ — prevention.school */
+
+.faq-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0 0 20px;
+}
+.faq-breadcrumb a { color: var(--muted); font-weight: 650; }
+.faq-breadcrumb a:hover { color: var(--accent); }
+.faq-breadcrumb-sep { opacity: 0.45; }
+
+.faq-hero { padding: 48px 0 28px; max-width: 820px; }
+.faq-hero h1 { margin: 0 0 12px; font-size: clamp(1.9rem, 4vw, 2.8rem); letter-spacing: -0.03em; }
+.faq-hero .lead { margin: 0; color: var(--muted); font-size: 1.05rem; }
+
+.faq-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin: 28px 0 20px;
+  padding: 16px 18px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.faq-search {
+  flex: 1 1 220px;
+  min-width: 0;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+}
+.faq-locale-toggle {
+  display: inline-flex;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.faq-locale-toggle button {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 14px;
+  cursor: pointer;
+}
+.faq-locale-toggle button[aria-pressed="true"] {
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+}
+.faq-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+.faq-chip {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--muted);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.faq-chip[aria-pressed="true"] {
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--line));
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+}
+
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 48px;
+}
+.faq-card-link {
+  display: block;
+  height: 100%;
+  padding: 20px 22px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text);
+  text-decoration: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.faq-card-link:hover {
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--line));
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  color: var(--text);
+}
+.faq-card-link h2 {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+}
+.faq-card-link p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.faq-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+.faq-tag {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: var(--surface-soft);
+  color: var(--muted);
+}
+
+.faq-article { padding: 40px 0 56px; max-width: 760px; }
+.faq-article h1 { margin: 0 0 18px; font-size: clamp(1.75rem, 3.5vw, 2.5rem); letter-spacing: -0.03em; }
+.faq-lead {
+  font-size: 1.12rem;
+  line-height: 1.6;
+  color: var(--text);
+  font-weight: 550;
+  margin: 0 0 24px;
+  padding: 18px 20px;
+  border-radius: var(--radius);
+  background: var(--accent-soft);
+  border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+}
+.faq-body p { margin: 0 0 14px; }
+.faq-body ul, .faq-body ol { margin: 0 0 16px; padding-left: 1.2rem; }
+.faq-body li { margin-bottom: 6px; }
+
+.faq-table-wrap {
+  overflow-x: auto;
+  margin: 0 0 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+}
+.faq-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  line-height: 1.45;
+}
+.faq-table th,
+.faq-table td {
+  padding: 12px 14px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--line);
+}
+.faq-table th {
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  font-weight: 750;
+  font-size: 13px;
+}
+.faq-table tr:last-child td { border-bottom: 0; }
+.faq-table td:first-child { color: var(--muted); width: 42%; }
+.faq-table td:last-child { color: var(--text); }
+
+.faq-callout {
+  margin: 24px 0;
+  padding: 18px 20px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+.faq-callout h2 {
+  margin: 0 0 10px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+.faq-callout--say { border-color: color-mix(in srgb, var(--accent) 30%, var(--line)); }
+.faq-callout--avoid { border-color: color-mix(in srgb, var(--warning) 35%, var(--line)); }
+
+.faq-related { margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--line); }
+.faq-related h2 { margin: 0 0 16px; font-size: 1.15rem; }
+.faq-related-list { display: grid; gap: 10px; }
+.faq-related-list a {
+  display: block;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  font-weight: 650;
+  color: var(--text);
+}
+.faq-related-list a:hover { border-color: color-mix(in srgb, var(--accent) 35%, var(--line)); text-decoration: none; }
+
+.faq-cta-band {
+  margin: 36px 0 0;
+  padding: 24px;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, var(--accent-soft), var(--surface));
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, var(--line));
+}
+.faq-cta-band p { margin: 0 0 14px; color: var(--muted); }
+.faq-disclaimer {
+  margin-top: 32px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+.faq-empty {
+  padding: 32px;
+  text-align: center;
+  color: var(--muted);
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+}
+
+.faq-hidden { display: none !important; }

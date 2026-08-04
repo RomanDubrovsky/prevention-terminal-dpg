@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ИРПП · Помощь и поддержка (Тестовый режим)</title>
+  <style>
+    :root {
+      --ip-bg: #F6F1EA;
+      --ip-bg-card: #FFFFFF;
+      --ip-bg-soft: #FBF8F3;
+      --ip-bg-tint: #EFE9E0;
+      --ip-text: #1B2430;
+      --ip-text-muted: #5C6573;
+      --ip-text-quiet: #8A8F99;
+      --ip-border: #E5DFD3;
+      --ip-border-strong: #D7CFBE;
+      --ip-accent: #2E6F6A;
+      --ip-accent-dark: #234F4B;
+      --ip-accent-soft: #DCEAE7;
+      --ip-accent-ring: rgba(46, 111, 106, 0.18);
+      --ip-warm: #D78C6B;
+      --ip-warm-soft: #F6E2D3;
+      --ip-danger: #B0413E;
+      --ip-shadow-sm: 0 1px 2px rgba(27, 36, 48, 0.04), 0 1px 1px rgba(27, 36, 48, 0.03);
+      --ip-shadow-md: 0 12px 28px rgba(27, 36, 48, 0.08), 0 2px 6px rgba(27, 36, 48, 0.04);
+      --ip-shadow-lg: 0 24px 60px rgba(27, 36, 48, 0.12), 0 4px 12px rgba(27, 36, 48, 0.05);
+      --ip-radius-sm: 10px;
+      --ip-radius-md: 14px;
+      --ip-radius-lg: 22px;
+      --ip-radius-pill: 999px;
+      --ip-font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Roboto, "Apple Color Emoji", Arial, sans-serif;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --ip-bg: #14181F;
+        --ip-bg-card: #1B2028;
+        --ip-bg-soft: #1F252E;
+        --ip-bg-tint: #232934;
+        --ip-text: #ECEEF2;
+        --ip-text-muted: #A7AEBB;
+        --ip-text-quiet: #7B8493;
+        --ip-border: #2B313C;
+        --ip-border-strong: #394050;
+        --ip-accent: #6FB3AE;
+        --ip-accent-dark: #4F938E;
+        --ip-accent-soft: rgba(111, 179, 174, 0.16);
+        --ip-accent-ring: rgba(111, 179, 174, 0.32);
+        --ip-warm: #E6A082;
+        --ip-warm-soft: rgba(230, 160, 130, 0.16);
+        --ip-danger: #E36464;
+        --ip-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+        --ip-shadow-md: 0 12px 28px rgba(0, 0, 0, 0.4);
+        --ip-shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.55);
+      }
+    }
+
+    .ip-root {
+      font-family: var(--ip-font);
+      color: var(--ip-text);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      background: var(--ip-bg);
+      padding: clamp(20px, 4vw, 56px) clamp(12px, 4vw, 32px);
+      display: flex;
+      justify-content: center;
+      box-sizing: border-box;
+    }
+    .ip-root *,
+    .ip-root *::before,
+    .ip-root *::after { box-sizing: border-box; }
+    .ip-root :focus-visible {
+      outline: 2px solid var(--ip-accent);
+      outline-offset: 2px;
+      border-radius: 8px;
+    }
+    .ip-shell {
+      width: 100%;
+      max-width: 880px;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(18px, 3vw, 28px);
+    }
+
+    /* ─── Hero ──────────────────────────────────────────── */
+    .ip-hero {
+      position: relative;
+      border-radius: var(--ip-radius-lg);
+      padding: clamp(28px, 5vw, 44px) clamp(24px, 4.5vw, 44px);
+      background:
+        radial-gradient(120% 90% at 100% 0%, var(--ip-accent-soft) 0%, transparent 55%),
+        radial-gradient(80% 70% at 0% 100%, var(--ip-warm-soft) 0%, transparent 60%),
+        var(--ip-bg-card);
+      border: 1px solid var(--ip-border);
+      box-shadow: var(--ip-shadow-md);
+      overflow: hidden;
+    }
+    .ip-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ip-accent-dark);
+      background: var(--ip-accent-soft);
+      border-radius: var(--ip-radius-pill);
+      padding: 6px 12px;
+      margin-bottom: 18px;
+    }
+    .ip-eyebrow svg { width: 14px; height: 14px; }
+    .ip-h1 {
+      font-size: clamp(24px, 3.4vw, 34px);
+      font-weight: 600;
+      line-height: 1.18;
+      letter-spacing: -0.01em;
+      margin: 0 0 14px;
+      max-width: 26ch;
+    }
+    .ip-lead {
+      font-size: clamp(15px, 1.8vw, 17px);
+      color: var(--ip-text-muted);
+      line-height: 1.6;
+      margin: 0 0 22px;
+      max-width: 56ch;
+    }
+    .ip-trust {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+    .ip-trust-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 12px 14px;
+      background: var(--ip-bg-soft);
+      border: 1px solid var(--ip-border);
+      border-radius: var(--ip-radius-md);
+    }
+    .ip-trust-icon {
+      flex: 0 0 28px;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: var(--ip-accent-soft);
+      color: var(--ip-accent-dark);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ip-trust-icon svg { width: 16px; height: 16px; }
+    .ip-trust-text strong {
+      display: block;
+      font-size: 13.5px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+    .ip-trust-text span {
+      font-size: 12.5px;
+      color: var(--ip-text-muted);
+      line-height: 1.45;
+    }
+
+    /* ─── Card (intro / chat / request draft) ────────────── */
+    .ip-card {
+      background: var(--ip-bg-card);
+      border: 1px solid var(--ip-border);
+      border-radius: var(--ip-radius-lg);
+      box-shadow: var(--ip-shadow-md);
+      overflow: hidden;
+    }
+    .ip-card-pad { padding: clamp(22px, 3.5vw, 32px); }
+
+    .ip-section-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0 0 6px;
+    }
+    .ip-section-sub {
+      font-size: 14px;
+      color: var(--ip-text-muted);
+      line-height: 1.55;
+      margin: 0 0 20px;
+    }
+
+    /* ─── Form ──────────────────────────────────────────── */
+    .ip-form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .ip-field { display: flex; flex-direction: column; gap: 6px; }
+    .ip-label {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ip-text-muted);
+    }
+    .ip-input,
+    .ip-textarea {
+      width: 100%;
+      border: 1.5px solid var(--ip-border-strong);
+      border-radius: var(--ip-radius-md);
+      padding: 12px 14px;
+      font-size: 15px;
+      background: var(--ip-bg-card);
+      color: var(--ip-text);
+      font-family: inherit;
+      line-height: 1.4;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .ip-textarea { resize: vertical; min-height: 140px; }
+    .ip-input::placeholder,
+    .ip-textarea::placeholder { color: var(--ip-text-quiet); }
+    .ip-input:hover,
+    .ip-textarea:hover { border-color: var(--ip-accent); }
+    .ip-input:focus,
+    .ip-textarea:focus {
+      border-color: var(--ip-accent);
+      box-shadow: 0 0 0 4px var(--ip-accent-ring);
+      outline: none;
+    }
+
+    .ip-consents { display: flex; flex-direction: column; gap: 10px; margin: 8px 0 22px; }
+    .ip-consent {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: var(--ip-text-muted);
+      padding: 12px 14px;
+      background: var(--ip-bg-soft);
+      border: 1px solid var(--ip-border);
+      border-radius: var(--ip-radius-md);
+      cursor: pointer;
+      transition: border-color 0.15s ease, background 0.15s ease;
+    }
+    .ip-consent:hover { border-color: var(--ip-border-strong); }
+    .ip-consent input[type="checkbox"] {
+      flex: 0 0 18px;
+      width: 18px;
+      height: 18px;
+      margin: 2px 0 0;
+      accent-color: var(--ip-accent);
+      cursor: pointer;
+    }
+    .ip-consent a { color: var(--ip-accent-dark); text-decoration: underline; text-underline-offset: 2px; }
+
+    /* ─── Buttons ───────────────────────────────────────── */
+    .ip-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 0;
+      border-radius: var(--ip-radius-md);
+      padding: 14px 22px;
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1;
+      cursor: pointer;
+      font-family: inherit;
+      text-decoration: none;
+      transition: transform 0.05s ease, background 0.15s ease, box-shadow 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+      user-select: none;
+    }
+    .ip-btn:active { transform: translateY(1px); }
+    .ip-btn[disabled] { opacity: 0.55; cursor: not-allowed; }
+    .ip-btn-primary {
+      background: var(--ip-accent);
+      color: #fff;
+      box-shadow: 0 1px 2px rgba(27, 36, 48, 0.08), 0 4px 12px rgba(46, 111, 106, 0.22);
+    }
+    .ip-btn-primary:hover { background: var(--ip-accent-dark); }
+    .ip-btn-ghost {
+      background: transparent;
+      color: var(--ip-accent-dark);
+      border: 1.5px solid var(--ip-border-strong);
+    }
+    .ip-btn-ghost:hover { border-color: var(--ip-accent); color: var(--ip-accent-dark); background: var(--ip-accent-soft); }
+    .ip-btn-block { width: 100%; }
+    .ip-btn-sm { padding: 10px 14px; font-size: 13.5px; border-radius: 10px; }
+
+    .ip-foot-note {
+      text-align: center;
+      margin-top: 14px;
+      font-size: 12.5px;
+      color: var(--ip-text-muted);
+    }
+    .ip-error {
+      font-size: 13.5px;
+      color: var(--ip-danger);
+      margin-top: 10px;
+      text-align: center;
+    }
+    .ip-hidden { display: none !important; }
+
+    /* ─── Chat ──────────────────────────────────────────── */
+    .ip-chat { display: flex; flex-direction: column; min-height: 0; }
+    .ip-chat-head {
+      padding: 16px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 1px solid var(--ip-border);
+      background: var(--ip-bg-soft);
+    }
+    .ip-chat-who {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+    .ip-chat-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--ip-accent) 0%, var(--ip-accent-dark) 100%);
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 38px;
+    }
+    .ip-chat-avatar svg { width: 20px; height: 20px; }
+    .ip-chat-name {
+      font-size: 14.5px;
+      font-weight: 600;
+      line-height: 1.25;
+      margin: 0;
+    }
+    .ip-chat-status {
+      font-size: 12px;
+      color: var(--ip-text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin: 2px 0 0;
+    }
+    .ip-chat-status::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #4ABE6C;
+      display: inline-block;
+    }
+
+    .ip-feed {
+      flex: 1 1 auto;
+      overflow-y: auto;
+      padding: 22px clamp(16px, 3vw, 26px);
+      background: var(--ip-bg-soft);
+      height: 480px;
+      scroll-behavior: smooth;
+    }
+    .ip-msg-row { display: flex; margin-bottom: 14px; }
+    .ip-msg-row-user { justify-content: flex-end; }
+    .ip-msg-row-bot { justify-content: flex-start; }
+    .ip-msg {
+      max-width: 86%;
+      padding: 12px 14px;
+      border-radius: 16px;
+      font-size: 14.5px;
+      line-height: 1.55;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      box-shadow: var(--ip-shadow-sm);
+    }
+    .ip-msg-user {
+      background: var(--ip-accent);
+      color: #fff;
+      border-bottom-right-radius: 6px;
+    }
+    .ip-msg-bot {
+      background: var(--ip-bg-card);
+      color: var(--ip-text);
+      border: 1px solid var(--ip-border);
+      border-bottom-left-radius: 6px;
+    }
+    .ip-msg-meta {
+      font-size: 11px;
+      color: var(--ip-text-quiet);
+      margin-top: 4px;
+    }
+
+    /* ─── Chat Buttons ──────────────────────────────────── */
+    .ip-msg-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .ip-msg-btn {
+      background: var(--ip-bg-card);
+      border: 1.5px solid var(--ip-accent);
+      color: var(--ip-accent-dark);
+      padding: 8px 14px;
+      border-radius: var(--ip-radius-sm);
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .ip-msg-btn:hover {
+      background: var(--ip-accent-soft);
+      transform: translateY(-1px);
+    }
+
+    .ip-typing { display: inline-flex; gap: 4px; align-items: center; padding: 2px 0; }
+    .ip-typing span {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--ip-text-quiet);
+      animation: ip-bounce 1.2s infinite ease-in-out;
+    }
+    .ip-typing span:nth-child(2) { animation-delay: 0.15s; }
+    .ip-typing span:nth-child(3) { animation-delay: 0.3s; }
+    @keyframes ip-bounce {
+      0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+      30% { transform: translateY(-5px); opacity: 1; }
+    }
+
+    .ip-composer {
+      padding: 14px clamp(14px, 3vw, 22px);
+      border-top: 1px solid var(--ip-border);
+      background: var(--ip-bg-card);
+      display: flex;
+      gap: 10px;
+      align-items: flex-end;
+    }
+    .ip-composer textarea {
+      flex: 1 1 auto;
+      resize: none;
+      min-height: 48px;
+      max-height: 160px;
+      padding: 13px 14px;
+      border: 1.5px solid var(--ip-border-strong);
+      border-radius: 14px;
+      font-size: 14.5px;
+      line-height: 1.45;
+      background: var(--ip-bg-soft);
+      color: var(--ip-text);
+      font-family: inherit;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+    .ip-composer textarea:focus {
+      outline: none;
+      border-color: var(--ip-accent);
+      background: var(--ip-bg-card);
+      box-shadow: 0 0 0 4px var(--ip-accent-ring);
+    }
+    .ip-send {
+      flex: 0 0 48px;
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      border: 0;
+      background: var(--ip-accent);
+      color: #fff;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s ease, transform 0.05s ease;
+    }
+    .ip-send:hover { background: var(--ip-accent-dark); }
+    .ip-send:active { transform: translateY(1px); }
+    .ip-send[disabled] { opacity: 0.55; cursor: not-allowed; }
+    .ip-send svg { width: 18px; height: 18px; }
+
+    .ip-foot {
+      padding: 10px 22px 14px;
+      font-size: 12px;
+      color: var(--ip-text-muted);
+      text-align: center;
+      border-top: 1px solid var(--ip-border);
+      background: var(--ip-bg-card);
+    }
+
+    .ip-chat-cta {
+      margin: 0 22px 14px;
+      padding: 14px;
+      border: 1px solid var(--ip-border);
+      border-radius: var(--ip-radius-md);
+      background: var(--ip-bg-soft);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .ip-chat-cta-text {
+      min-width: 220px;
+      flex: 1 1 260px;
+    }
+    .ip-chat-cta-text strong {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 3px;
+    }
+    .ip-chat-cta-text span {
+      display: block;
+      font-size: 12.5px;
+      color: var(--ip-text-muted);
+      line-height: 1.45;
+    }
+
+    /* ─── Request draft ─────────────────────────────────── */
+    .ip-request {
+      text-align: center;
+      padding: clamp(28px, 4vw, 40px);
+    }
+    .ip-request-icon {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto 16px;
+      border-radius: 18px;
+      background: var(--ip-warm-soft);
+      color: var(--ip-warm);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ip-request-icon svg { width: 26px; height: 26px; }
+    .ip-request h3 {
+      margin: 0 0 10px;
+      font-size: clamp(20px, 2.6vw, 24px);
+      font-weight: 600;
+    }
+    .ip-request p {
+      color: var(--ip-text-muted);
+      font-size: 15px;
+      line-height: 1.6;
+      max-width: 52ch;
+      margin: 0 auto 24px;
+    }
+    .ip-request-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+      text-align: left;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .ip-option {
+      background: var(--ip-bg-card);
+      border: 1px solid var(--ip-border);
+      border-radius: var(--ip-radius-md);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .ip-option:hover { border-color: var(--ip-accent); transform: translateY(-2px); box-shadow: var(--ip-shadow-md); }
+    .ip-option-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--ip-accent-soft);
+      color: var(--ip-accent-dark);
+    }
+    .ip-option-icon svg { width: 18px; height: 18px; }
+    .ip-option h4 { margin: 0 0 4px; font-size: 16px; font-weight: 600; }
+    .ip-option p { margin: 0; font-size: 13.5px; color: var(--ip-text-muted); line-height: 1.5; }
+
+    .ip-draft {
+      margin-top: 24px;
+      padding: 20px;
+      background: var(--ip-bg-soft);
+      border: 1px solid var(--ip-border);
+      border-radius: var(--ip-radius-md);
+      text-align: left;
+    }
+    .ip-draft h4 {
+      margin: 0 0 8px;
+      font-size: 14.5px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .ip-draft-edit-tag {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--ip-accent-dark);
+      background: var(--ip-accent-soft);
+      padding: 3px 9px;
+      border-radius: var(--ip-radius-pill);
+      margin-left: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .ip-draft-edit-tag svg { width: 11px; height: 11px; }
+    .ip-draft-hint {
+      font-size: 13px;
+      color: var(--ip-text-muted);
+      line-height: 1.55;
+      margin: 0 0 12px;
+    }
+    .ip-draft-hint b { color: var(--ip-text); font-weight: 600; }
+    .ip-textarea-edit {
+      min-height: 200px;
+      cursor: text;
+      background:
+        linear-gradient(to right, var(--ip-accent) 3px, transparent 3px),
+        var(--ip-bg-card);
+      padding-left: 18px;
+    }
+    .ip-draft-actions { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+    .ip-draft-actions .ip-btn { flex: 1 1 200px; }
+    .ip-toast {
+      position: fixed;
+      left: 50%;
+      bottom: 28px;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--ip-text);
+      color: #fff;
+      padding: 12px 18px;
+      border-radius: var(--ip-radius-pill);
+      font-size: 13.5px;
+      box-shadow: var(--ip-shadow-lg);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      z-index: 9999;
+    }
+    .ip-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* ─── Footer ────────────────────────────────────────── */
+    .ip-footer {
+      font-size: 12.5px;
+      color: var(--ip-text-muted);
+      text-align: center;
+      line-height: 1.6;
+    }
+    .ip-footer a { color: var(--ip-text-muted); text-decoration: underline; text-underline-offset: 2px; }
+    .ip-footer a:hover { color: var(--ip-accent-dark); }
+
+    @media (max-width: 640px) {
+      .ip-root { padding: 12px; }
+      .ip-feed { height: 60vh; min-height: 380px; }
+      .ip-chat-head { padding: 14px 16px; }
+      .ip-composer { padding: 12px 14px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="ip-root">
+    <div class="ip-shell">
+
+      <!-- ─── Hero ──────────────────────────────────── -->
+      <header class="ip-hero">
+        <span class="ip-eyebrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 21s-7-4.5-7-10a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 5.5-7 10-7 10z"/>
+          </svg>
+          ИРПП · Помощь и поддержка
+        </span>
+        <h1 class="ip-h1">Быстрый опрос для подбора психолога</h1>
+        <p class="ip-lead">
+          Ответьте на несколько простых вопросов (в основном кликами по кнопкам). Это поможет быстро определить ваш запрос и сразу передать его специалисту.
+        </p>
+        <div class="ip-trust">
+          <div class="ip-trust-item">
+            <span class="ip-trust-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 22s8-4 8-12V5l-8-3-8 3v5c0 8 8 12 8 12z"/>
+              </svg>
+            </span>
+            <span class="ip-trust-text">
+              <strong>Конфиденциально</strong>
+              <span>Сообщения передаются ИИ-сервису для ответа, но не сохраняются на нашем сервере.</span>
+            </span>
+          </div>
+          <div class="ip-trust-item">
+            <span class="ip-trust-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              </svg>
+            </span>
+            <span class="ip-trust-text">
+              <strong>В 4 клика</strong>
+              <span>Новый режим экспресс-опроса сокращает ввод текста до минимума.</span>
+            </span>
+          </div>
+        </div>
+      </header>
+
+      <!-- ─── Intro card ───────────────────────────── -->
+      <section class="ip-card" id="ip-screen-intro">
+        <div class="ip-card-pad">
+          <h2 class="ip-section-title">Перед началом</h2>
+          <p class="ip-section-sub">
+            Бот <strong>не заменяет</strong> работу живого специалиста. Просим
+            <strong>не указывать в сообщениях избыточные персональные данные</strong>.
+          </p>
+
+          <form id="ip-intro-form" novalidate>
+            <div class="ip-form-grid">
+              <div class="ip-field">
+                <label class="ip-label" for="ip-name">Как к вам обращаться</label>
+                <input class="ip-input" id="ip-name" name="name" type="text" autocomplete="given-name" required maxlength="60" placeholder="Например, Ольга" />
+              </div>
+              <div class="ip-field">
+                <label class="ip-label" for="ip-email">Email</label>
+                <input class="ip-input" id="ip-email" name="email" type="email" autocomplete="email" required maxlength="120" placeholder="name@example.com" />
+              </div>
+            </div>
+
+            <div class="ip-consents">
+              <label class="ip-consent">
+                <input type="checkbox" id="ip-consent-policy" required />
+                <span>
+                  Согласен(на) с
+                  <a href="https://irpp-edu.ru/personaldata" target="_blank" rel="noopener">политикой обработки персональных данных</a>.
+                </span>
+              </label>
+              <label class="ip-consent">
+                <input type="checkbox" id="ip-consent-pdn" required />
+                <span>
+                  Даю
+                  <a href="https://irpp-edu.ru/consent_to_the_processing_of_personal_data" target="_blank" rel="noopener">согласие на обработку персональных данных</a>
+                  в объёме, необходимом для оказания помощи.
+                </span>
+              </label>
+            </div>
+
+            <button type="submit" class="ip-btn ip-btn-primary ip-btn-block" id="ip-intro-submit">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:18px;height:18px;">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              </svg>
+              Начать опрос
+            </button>
+
+            <p class="ip-foot-note">Бот помогает сформулировать запрос. Запись к специалисту доступна в любой момент.</p>
+            <p class="ip-error ip-hidden" id="ip-intro-error" role="alert"></p>
+          </form>
+        </div>
+      </section>
+
+      <!-- ─── Chat card ────────────────────────────── -->
+      <section class="ip-card ip-chat ip-hidden" id="ip-screen-chat" hidden aria-hidden="true">
+        <div class="ip-chat-head">
+          <div class="ip-chat-who">
+            <span class="ip-chat-avatar" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              </svg>
+            </span>
+            <div>
+              <p class="ip-chat-name">Помощник ИРПП</p>
+              <p class="ip-chat-status">Экспресс-подбор психолога</p>
+            </div>
+          </div>
+          <a class="ip-btn ip-btn-ghost ip-btn-sm" href="https://irpp-edu.ru/consultants" target="_blank" rel="noopener">
+            К специалистам
+          </a>
+        </div>
+
+        <div class="ip-feed" id="ip-feed" aria-live="polite"></div>
+
+        <div class="ip-composer">
+          <textarea id="ip-input" placeholder="Нажмите на кнопку или введите ответ..." rows="1" maxlength="4000"></textarea>
+          <button type="button" id="ip-send" class="ip-send" aria-label="Отправить">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="22" y1="2" x2="11" y2="13"/>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            </svg>
+          </button>
+        </div>
+        <div class="ip-chat-cta ip-hidden" id="ip-specialist-cta">
+          <div class="ip-chat-cta-text">
+            <strong>Можно подготовить запрос к специалисту</strong>
+            <span id="ip-specialist-cta-note">Если хотите, добавьте последние уточнения — затем сформируем черновик для формы записи.</span>
+          </div>
+          <button type="button" class="ip-btn ip-btn-primary ip-btn-sm" id="ip-chat-specialist-draft">
+            Оформить заявку
+          </button>
+        </div>
+        <div class="ip-foot" id="ip-foot">Бот — вспомогательный инструмент для подготовки запроса.</div>
+      </section>
+
+      <!-- ─── Request draft card ───────────────────── -->
+      <section class="ip-card ip-hidden" id="ip-screen-request" hidden aria-hidden="true">
+        <div class="ip-request">
+          <span class="ip-request-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </span>
+          <h3>Подготовить запрос к специалисту</h3>
+          <p id="ip-request-message">Сформирован краткий черновик вашего запроса для администратора.</p>
+
+          <div class="ip-request-options">
+            <a class="ip-option" id="ip-request-consultants" href="https://irpp-edu.ru/consultants" target="_blank" rel="noopener">
+              <span class="ip-option-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 8v8M8 12h8"/>
+                </svg>
+              </span>
+              <div>
+                <h4>Выбрать специалиста</h4>
+                <p>Перейти к списку консультантов Института и форме записи.</p>
+              </div>
+              <span class="ip-btn ip-btn-primary ip-btn-sm" style="align-self:flex-start;">К специалистам</span>
+            </a>
+            <button type="button" class="ip-option" id="ip-request-specialist">
+              <span class="ip-option-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+              </span>
+              <div>
+                <h4>Запись к специалисту</h4>
+                <p>Подготовим на основе беседы краткий запрос — приложите его к форме записи.</p>
+              </div>
+              <span class="ip-btn ip-btn-ghost ip-btn-sm" id="ip-request-specialist-cta" style="align-self:flex-start;">Подготовить запрос</span>
+            </button>
+          </div>
+
+          <div class="ip-draft ip-hidden" id="ip-draft">
+            <h4>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:16px;height:16px;color:var(--ip-accent-dark);">
+                <path d="M12 20h9"/>
+                <path d="M16.5 3.5a2.12 2.12 0 1 1 3 3L7 19l-4 1 1-4z"/>
+              </svg>
+              Черновик запроса
+              <span class="ip-draft-edit-tag">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 20h9"/>
+                  <path d="M16.5 3.5a2.12 2.12 0 1 1 3 3L7 19l-4 1 1-4z"/>
+                </svg>
+                можно редактировать
+              </span>
+            </h4>
+            <p class="ip-draft-hint">
+              Сформирован на основе вашей беседы. Когда будете готовы — нажмите «Скопировать и перейти к записи»: текст автоматически окажется в буфере обмена.
+            </p>
+            <textarea class="ip-textarea ip-textarea-edit" id="ip-draft-text" rows="10" aria-label="Черновик запроса к специалисту, можно редактировать"></textarea>
+            <div class="ip-draft-actions">
+              <button type="button" class="ip-btn ip-btn-ghost ip-btn-sm" id="ip-draft-copy">
+                Скопировать текст
+              </button>
+              <button type="button" class="ip-btn ip-btn-primary ip-btn-sm" id="ip-draft-go" data-consultants-url="https://irpp-edu.ru/consultants">
+                Скопировать и перейти к записи
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="ip-footer">
+        Сервис не оказывает экстренную помощь. При угрозе жизни и здоровью обращайтесь в экстренные службы.<br>
+        <a href="https://irpp-edu.ru/personaldata" target="_blank" rel="noopener">Политика обработки ПДн</a>
+        &nbsp;·&nbsp;
+        <a href="https://irpp-edu.ru/consent_to_the_processing_of_personal_data" target="_blank" rel="noopener">Согласие на обработку ПДн</a>
+      </footer>
+
+      <div class="ip-toast" id="ip-toast" role="status" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var API_BASE = "__API_BASE__";
+      if (API_BASE.indexOf("__API") === 0) {
+        API_BASE = "https://api.teenology.care";
+      }
+      var STORAGE_KEY = "irpp_psyhelp_v2";
+      var SESSION_LIMIT_CHARS = 8000;
+
+      function $(id) { return document.getElementById(id); }
+
+      function loadSession() {
+        try { return JSON.parse(sessionStorage.getItem(STORAGE_KEY) || "{}"); } catch (e) { return {}; }
+      }
+      function saveSession(s) {
+        try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(s)); } catch (e) {}
+      }
+
+      var MAX_TURNS_AFTER_SPECIALIST_CTA = 10;
+
+      var state = Object.assign(
+        {
+          name: "",
+          email: "",
+          started: false,
+          messages: [],
+          subscriptionActive: false,
+          specialistCtaVisible: false,
+          userTurnsAfterSpecialistCta: 0,
+          conversationClosed: false
+        },
+        loadSession()
+      );
+
+      function showScreen(name) {
+        var setVisible = function (id, visible) {
+          var el = $(id);
+          if (!el) return;
+          el.classList.toggle("ip-hidden", !visible);
+          el.hidden = !visible;
+          el.setAttribute("aria-hidden", visible ? "false" : "true");
+          if ("inert" in el) el.inert = !visible;
+        };
+        setVisible("ip-screen-intro", name === "intro");
+        setVisible("ip-screen-chat", name === "chat");
+        setVisible("ip-screen-request", name === "request");
+      }
+
+      function escapeHtml(s) {
+        return String(s).replace(/[&<>"']/g, function (m) {
+          return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m];
+        });
+      }
+
+      function formatTime(ts) {
+        try {
+          var d = new Date(ts);
+          var hh = String(d.getHours()).padStart(2, "0");
+          var mm = String(d.getMinutes()).padStart(2, "0");
+          return hh + ":" + mm;
+        } catch (e) { return ""; }
+      }
+
+      function renderFeed() {
+        var feed = $("ip-feed");
+        feed.innerHTML = state.messages.map(function (m, idx) {
+          var isUser = m.role === "user";
+          var bubbleCls = isUser ? "ip-msg ip-msg-user" : "ip-msg ip-msg-bot";
+          var rowCls = isUser ? "ip-msg-row ip-msg-row-user" : "ip-msg-row ip-msg-row-bot";
+          
+          var text = m.text;
+          var btnHtml = "";
+          
+          if (!isUser) {
+            var btns = [];
+            text = text.replace(/\[([^\]]+)\]/g, function (match, p1) {
+              btns.push(p1.trim());
+              return "";
+            });
+            text = text.replace(/\n{2,}/g, "\n\n").trim();
+            
+            if (idx === state.messages.length - 1 && btns.length > 0) {
+              btnHtml = '<div class="ip-msg-buttons">' + btns.map(function (b) {
+                return '<button type="button" class="ip-msg-btn" data-val="' + escapeHtml(b) + '">' + escapeHtml(b) + '</button>';
+              }).join("") + '</div>';
+            }
+          }
+          
+          var time = m.at ? '<div class="ip-msg-meta" style="text-align:' + (isUser ? "right" : "left") + ';">' + formatTime(m.at) + "</div>" : "";
+          return '<div class="' + rowCls + '"><div><div class="' + bubbleCls + '">' + escapeHtml(text) + "</div>" + btnHtml + time + "</div></div>";
+        }).join("");
+        feed.scrollTop = feed.scrollHeight;
+      }
+
+      function renderMeter() {
+        var foot = $("ip-foot");
+        if (state.subscriptionActive) {
+          foot.textContent = "Бот — вспомогательный инструмент, при сложных запросах рекомендуем консультацию.";
+        } else if (state.conversationClosed) {
+          foot.textContent = "Диалог свернут. Подготовьте запрос к специалисту или перейдите к консультантам.";
+        } else if (state.specialistCtaVisible) {
+          var left = Math.max(0, MAX_TURNS_AFTER_SPECIALIST_CTA - (state.userTurnsAfterSpecialistCta || 0));
+          foot.textContent = left > 0
+            ? "Можно добавить уточнения перед обращением к специалисту. Осталось уточнений: " + left + "."
+            : "Дальше лучше свернуть диалог и подготовить запрос к специалисту.";
+        } else {
+          foot.textContent = "Бот помогает структурировать запрос и подготовиться к консультации.";
+        }
+        renderSpecialistCta();
+      }
+
+      function renderSpecialistCta() {
+        var box = $("ip-specialist-cta");
+        if (!box) return;
+        box.classList.toggle("ip-hidden", !state.specialistCtaVisible);
+        var note = $("ip-specialist-cta-note");
+        if (note && state.specialistCtaVisible) {
+          var left = Math.max(0, MAX_TURNS_AFTER_SPECIALIST_CTA - (state.userTurnsAfterSpecialistCta || 0));
+          note.textContent = state.conversationClosed
+            ? "Диалог уже лучше свернуть. Сформируйте черновик и при необходимости допишите детали прямо в нём."
+            : "Если хотите, добавьте последние уточнения. Осталось уточнений до сворачивания: " + left + ".";
+        }
+        if ($("ip-input")) $("ip-input").disabled = Boolean(state.conversationClosed || sending);
+        if ($("ip-send")) $("ip-send").disabled = Boolean(state.conversationClosed || sending);
+      }
+
+      function addMessage(role, text) {
+        state.messages.push({ role: role, text: text, at: Date.now() });
+        saveSession(state);
+        renderFeed();
+      }
+
+      function buildSessionText() {
+        var lines = state.messages.map(function (m) {
+          return (m.role === "user" ? "Клиент: " : "Бот: ") + m.text;
+        });
+        var text = lines.join("\n\n");
+        if (text.length > SESSION_LIMIT_CHARS) text = text.slice(-SESSION_LIMIT_CHARS);
+        return text;
+      }
+
+      var toastTimer = null;
+      function toast(text) {
+        var t = $("ip-toast");
+        t.textContent = String(text || "");
+        t.classList.add("show");
+        if (toastTimer) clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () { t.classList.remove("show"); }, 2200);
+      }
+
+      function buildHistoryForBackend() {
+        var hist = [];
+        var src = state.messages.slice(-20);
+        for (var i = 0; i < src.length; i++) {
+          var m = src[i];
+          if (!m || !m.text || !m.role) continue;
+          if (m.role !== "user" && m.role !== "bot") continue;
+          hist.push({ role: m.role === "user" ? "user" : "model", text: String(m.text) });
+        }
+        return hist;
+      }
+
+      var sending = false;
+      function setSending(flag) {
+        sending = flag;
+        $("ip-send").disabled = Boolean(flag || state.conversationClosed);
+        $("ip-input").disabled = Boolean(flag || state.conversationClosed);
+      }
+
+      function appendTyping() {
+        var feed = $("ip-feed");
+        var id = "ip-typing-" + Date.now();
+        feed.insertAdjacentHTML(
+          "beforeend",
+          '<div class="ip-msg-row ip-msg-row-bot" id="' + id + '"><div class="ip-msg ip-msg-bot"><span class="ip-typing"><span></span><span></span><span></span></span></div></div>'
+        );
+        feed.scrollTop = feed.scrollHeight;
+        return id;
+      }
+
+      function appendSystemNotice(text) {
+        var feed = $("ip-feed");
+        var id = "ip-notice-" + Date.now() + "-" + Math.random().toString(36).slice(2, 6);
+        var safe = escapeHtml(String(text || ""));
+        feed.insertAdjacentHTML(
+          "beforeend",
+          '<div class="ip-msg-row ip-msg-row-bot" id="' + id + '"><div><div class="ip-msg ip-msg-bot" style="background:var(--ip-warm-soft);color:var(--ip-text-muted);border-color:var(--ip-warm);font-size:13.5px;">' + safe + "</div></div></div>"
+        );
+        feed.scrollTop = feed.scrollHeight;
+        return id;
+      }
+
+      function removeNotice(id) {
+        if (!id) return;
+        var el = document.getElementById(id);
+        if (el) el.remove();
+      }
+
+      async function handleSend() {
+        if (sending) return;
+        if (state.conversationClosed) {
+          appendSystemNotice("Диалог уже свернут. Подготовьте запрос к специалисту.");
+          return;
+        }
+        var input = $("ip-input");
+        var text = String(input.value || "").trim();
+        if (!text) return;
+        if (text.length > 4000) text = text.slice(0, 4000);
+        input.value = "";
+        input.style.height = "auto";
+
+        addMessage("user", text);
+        if (state.specialistCtaVisible) {
+          state.userTurnsAfterSpecialistCta = Math.min(
+            MAX_TURNS_AFTER_SPECIALIST_CTA,
+            Number(state.userTurnsAfterSpecialistCta || 0) + 1
+          );
+          saveSession(state);
+          renderMeter();
+        }
+        var typingId = appendTyping();
+        setSending(true);
+
+        var result = await _sendOnce(text, buildHistoryForBackend());
+        var typingEl = document.getElementById(typingId);
+        if (typingEl) typingEl.remove();
+        setSending(false);
+
+        if (result.networkError) {
+          appendSystemNotice("Не удалось связаться с сервером. Попробуйте отправить сообщение ещё раз.");
+          return;
+        }
+        if (result.status === 429) {
+          appendSystemNotice(result.detail || "Сейчас идёт пик обращений. Подождите 1-2 минуты.");
+          return;
+        }
+        if (!result.ok || !(result.reply || result.text)) {
+          appendSystemNotice("Ошибка формирования ответа. Попробуйте ещё раз.");
+          return;
+        }
+        var reply = String(result.reply || result.text || "").trim();
+        addMessage("bot", reply);
+        if (result.show_specialist_request_cta && !state.specialistCtaVisible) {
+          state.specialistCtaVisible = true;
+          state.userTurnsAfterSpecialistCta = 0;
+        }
+        if (result.conversation_closed) {
+          state.conversationClosed = true;
+          state.specialistCtaVisible = true;
+        }
+        if (result.subscription_active) state.subscriptionActive = true;
+        saveSession(state);
+        renderMeter();
+      }
+
+      async function generateDraft() {
+        var cta = $("ip-chat-specialist-draft") || $("ip-request-specialist-cta");
+        var prev = cta ? cta.textContent : "";
+        if (cta) {
+          cta.disabled = true;
+          cta.textContent = "Готовлю…";
+        }
+        try {
+          var resp = await fetch(API_BASE + "/api/irpp/specialist-request-draft", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ session_text: buildSessionText(), locale: "ru" })
+          });
+          var data = {};
+          try { data = await resp.json(); } catch (e) {}
+          if (resp.ok && data.ok && data.specialist_request_text) {
+            showScreen("request");
+            $("ip-draft-text").value = data.specialist_request_text;
+            $("ip-draft").classList.remove("ip-hidden");
+            if (data.consultants_url) $("ip-draft-go").setAttribute("data-consultants-url", data.consultants_url);
+            $("ip-draft").scrollIntoView({ behavior: "smooth", block: "center" });
+            setTimeout(function () { $("ip-draft-text").focus(); }, 350);
+          } else {
+            toast("Не удалось сформировать черновик. Опишите запрос своими словами в форме.");
+          }
+        } catch (e) {
+          toast("Не удалось связаться с сервером.");
+        } finally {
+          if (cta) {
+            cta.disabled = false;
+            cta.textContent = prev;
+          }
+        }
+      }
+
+      function copyText(text) {
+        if (navigator.clipboard && window.isSecureContext) {
+          return navigator.clipboard.writeText(text).then(function () { return true; }, function () { return false; });
+        }
+        try {
+          var ta = document.createElement("textarea");
+          ta.value = text;
+          ta.style.position = "fixed";
+          ta.style.opacity = "0";
+          document.body.appendChild(ta);
+          ta.select();
+          var ok = document.execCommand("copy");
+          document.body.removeChild(ta);
+          return Promise.resolve(ok);
+        } catch (e) { return Promise.resolve(false); }
+      }
+
+      function copyDraft() {
+        var text = String($("ip-draft-text").value || "");
+        if (!text) { toast("Черновик ещё пустой"); return; }
+        copyText(text).then(function (ok) {
+          toast(ok ? "Текст скопирован" : "Не удалось скопировать — выделите вручную и нажмите Ctrl + C");
+        });
+      }
+
+      function copyAndGo() {
+        var btn = $("ip-draft-go");
+        var url = btn.getAttribute("data-consultants-url") || "https://irpp-edu.ru/consultants";
+        var text = String($("ip-draft-text").value || "");
+        if (!text) {
+          window.open(url, "_blank", "noopener");
+          return;
+        }
+        var prev = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = "Копирую…";
+        copyText(text).then(function (ok) {
+          btn.disabled = false;
+          btn.textContent = prev;
+          window.open(url, "_blank", "noopener");
+          if (ok) {
+            toast("Текст скопирован. Откройте форму записи и вставьте его (Ctrl + V).");
+          } else {
+            toast("Не удалось скопировать автоматически.");
+          }
+        });
+      }
+
+      function emailValid(s) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(s || "").trim());
+      }
+
+      function bind() {
+        $("ip-intro-form").addEventListener("submit", function (e) {
+          e.preventDefault();
+          var err = $("ip-intro-error");
+          err.classList.add("ip-hidden");
+          var name = String($("ip-name").value || "").trim();
+          var email = String($("ip-email").value || "").trim().toLowerCase();
+          var ok1 = $("ip-consent-policy").checked;
+          var ok2 = $("ip-consent-pdn").checked;
+          if (!name) { err.textContent = "Укажите, как к вам обращаться."; err.classList.remove("ip-hidden"); return; }
+          if (!emailValid(email)) { err.textContent = "Укажите корректный email."; err.classList.remove("ip-hidden"); return; }
+          if (!ok1 || !ok2) { err.textContent = "Для продолжения примите политику и согласие на обработку данных."; err.classList.remove("ip-hidden"); return; }
+          state.name = name.slice(0, 60);
+          state.email = email.slice(0, 120);
+          state.started = true;
+          saveSession(state);
+          showScreen("chat");
+          renderMeter();
+          if (state.messages.length === 0) {
+            addMessage(
+              "bot",
+              "Здравствуйте, " + state.name + ". Для кого вы ищете специалиста и какой возраст?\n\n[Для себя] [Для пары] [Для ребенка/подростка]"
+            );
+          }
+          setTimeout(function () { $("ip-input").focus(); }, 60);
+        });
+
+        var inp = $("ip-input");
+        inp.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); handleSend(); }
+        });
+        inp.addEventListener("input", function () {
+          inp.style.height = "auto";
+          inp.style.height = Math.min(160, inp.scrollHeight) + "px";
+        });
+        $("ip-send").addEventListener("click", handleSend);
+        $("ip-chat-specialist-draft").addEventListener("click", function (e) {
+          e.preventDefault();
+          generateDraft();
+        });
+        $("ip-request-specialist").addEventListener("click", function (e) {
+          e.preventDefault();
+          generateDraft();
+        });
+        $("ip-draft-copy").addEventListener("click", copyDraft);
+        $("ip-draft-go").addEventListener("click", copyAndGo);
+
+        // Слушатель кликов по кнопкам ответов внутри чата
+        $("ip-feed").addEventListener("click", function (e) {
+          var btn = e.target.closest(".ip-msg-btn");
+          if (!btn || sending || state.conversationClosed) return;
+          var val = btn.getAttribute("data-val");
+          if (!val) return;
+          $("ip-input").value = val;
+          handleSend();
+        });
+      }
+
+      function init() {
+        bind();
+        if (state.started && state.email) {
+          showScreen("chat");
+          renderFeed();
+          renderMeter();
+        } else {
+          showScreen("intro");
+        }
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", init);
+      } else {
+        init();
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+# Legacy consumer content moved to product domains
+/teenology/parents/faq/*  https://teenology.care/parents/faq/:splat  301
+/teenology/*              https://teenology.care/:splat  301
+/ida/*                    https://ida-ai.chat/:splat  301
+/centers                  https://ida-ai.chat/  301
+/centers/*                https://ida-ai.chat/:splat  301
+/ru/centers               https://ida-ai.chat/  301
+/unicef-letter            /partnership-proposal  301
+/unicef-letter.html       /partnership-proposal  301
+
+# Legacy terminal redirect to workspace
+/ru/terminal                 /ru/workspace/  301
+/ru/terminal/*               /ru/workspace/:splat  301
+
+# Founder page redirects
+/ru/founder                  /ru/founder/  301
+/ru/fouder                   /ru/founder/  301
+/ru/fouder/                  /ru/founder/  301
+/founder                     /ru/founder/  301
+/founder/                    /ru/founder/  301
+/fouder                      /ru/founder/  301
+/fouder/                     /ru/founder/  301

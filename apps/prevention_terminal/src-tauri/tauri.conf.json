@@ -1,0 +1,42 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Prevention Terminal",
+  "version": "0.0.1",
+  "identifier": "school.prevention.terminal",
+  "build": {
+    "frontendDist": "../dist",
+    "devUrl": "http://localhost:1420",
+    "beforeDevCommand": "npm run dev",
+    "beforeBuildCommand": "npm run build"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "Терминал Специалиста — Профилактика.АИ",
+        "width": 1180,
+        "height": 760,
+        "minWidth": 920,
+        "minHeight": 600,
+        "resizable": true,
+        "fullscreen": false
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self' tauri:; img-src 'self' data: blob: tauri: https://*.tile.openstreetmap.org; style-src 'self' 'unsafe-inline' tauri:; connect-src 'self' tauri: https://prevention.school https://*.prevention.school https://nominatim.openstreetmap.org https://photon.komoot.io https://api.prevention.school https://api.teenology.care"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "category": "Education",
+    "shortDescription": "Локальный органайзер психолога и ИИ-Архитектор",
+    "longDescription": "Десктоп-приложение для специалистов школы (психологи, соц. педагоги). Локальная зашифрованная БД (SQLite + SQLCipher), генерация документов офлайн, опциональный ИИ-Архитектор через изолированный Cloudflare Worker."
+  }
+}

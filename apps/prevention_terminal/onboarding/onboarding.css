@@ -1,0 +1,36 @@
+:root {
+    --ob-accent: #0f766e;
+    --ob-muted: #64748b;
+    --ob-border: #e2e8f0;
+    --ob-bg: #f8fafc;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Inter, system-ui, sans-serif; background: var(--ob-bg); color: #0f172a; }
+.ob { max-width: 640px; margin: 0 auto; padding: 24px 16px 80px; }
+.ob__badge { font-size: 12px; font-weight: 700; color: var(--ob-accent); margin: 0 0 8px; }
+.ob__head h1 { margin: 0 0 4px; font-size: 1.5rem; }
+.ob__step { color: var(--ob-muted); font-size: 13px; margin: 0 0 20px; }
+.ob__pane h2 { margin: 0 0 8px; font-size: 1.15rem; }
+.ob__hint { color: var(--ob-muted); font-size: 14px; line-height: 1.45; margin: 0 0 16px; }
+.ob__hidden { display: none !important; }
+.ob__choices { display: flex; flex-direction: column; gap: 10px; }
+.ob__card { display: block; border: 1px solid var(--ob-border); border-radius: 12px; padding: 14px; background: #fff; cursor: pointer; }
+.ob__card:has(input:checked) { border-color: var(--ob-accent); box-shadow: 0 0 0 1px var(--ob-accent); }
+.ob__card strong { display: block; margin-bottom: 4px; }
+.ob__card span { font-size: 13px; color: var(--ob-muted); }
+.ob__card input { margin-right: 8px; }
+.ob__form label { display: flex; flex-direction: column; gap: 4px; margin-bottom: 12px; font-size: 13px; color: var(--ob-muted); }
+.ob__form input, .ob__form select { font: inherit; padding: 8px 10px; border: 1px solid var(--ob-border); border-radius: 8px; }
+.ob__codes label { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; font-size: 13px; }
+.ob__codes input { font: inherit; padding: 8px; border: 1px solid var(--ob-border); border-radius: 8px; }
+.ob__copy { align-self: flex-start; font-size: 12px; padding: 4px 10px; cursor: pointer; }
+.ob__modules { display: flex; flex-direction: column; gap: 12px; }
+.ob__mod { background: #fff; border: 1px solid var(--ob-border); border-radius: 12px; padding: 12px; }
+.ob__mod label { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; }
+.ob__mod-desc { font-size: 13px; color: var(--ob-muted); margin: 6px 0 0 26px; line-height: 1.4; }
+.ob__mod-tag { font-size: 11px; color: #b45309; margin-left: 6px; }
+.ob__summary { background: #fff; border: 1px solid var(--ob-border); padding: 12px; border-radius: 8px; font-size: 12px; overflow: auto; }
+.ob__nav { position: fixed; bottom: 0; left: 0; right: 0; display: flex; gap: 10px; justify-content: center; padding: 12px; background: rgba(248,250,252,.95); border-top: 1px solid var(--ob-border); }
+.ob__btn { padding: 10px 20px; border-radius: 10px; border: none; background: var(--ob-accent); color: #fff; font-weight: 600; cursor: pointer; }
+.ob__btn--ghost { background: #fff; color: #0f172a; border: 1px solid var(--ob-border); }
+.ob__btn:disabled { opacity: 0.5; cursor: wait; }

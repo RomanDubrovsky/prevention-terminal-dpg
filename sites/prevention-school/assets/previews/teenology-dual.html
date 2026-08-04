@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Teenology PWA — preview</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Inter, system-ui, sans-serif; background: #172033; display: flex; justify-content: center; gap: 20px; padding: 24px; flex-wrap: wrap; }
+    .phone { width: 280px; border-radius: 28px; padding: 12px; border: 1px solid #334155; background: #0f172a; }
+    .screen { background: #fff; border-radius: 20px; padding: 16px; min-height: 480px; color: #1f2933; font-size: 12px; display: flex; flex-direction: column; gap: 10px; }
+    .label { font-size: 10px; color: #7b8794; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+    .tier { font-weight: 900; font-size: 13px; color: #0f766e; }
+    .pulse { font-size: 28px; font-weight: 900; color: #0f766e; }
+    .bar { height: 8px; background: #d9e0d8; border-radius: 99px; overflow: hidden; }
+    .bar span { display: block; height: 100%; width: 62%; background: #0f766e; }
+    .bubble { background: #e6f7f4; color: #0b5f59; padding: 11px; border-radius: 14px; }
+    .muted { background: #f0f4f2; color: #405160; padding: 10px; border-radius: 12px; }
+    .offline { margin-top: auto; display: flex; align-items: center; gap: 8px; font-size: 11px; color: #0b5f59; background: #dff5f0; padding: 8px 10px; border-radius: 10px; }
+    .lock { background: #fff7ed; color: #b45309; padding: 10px; border-radius: 12px; font-size: 11px; }
+  </style>
+</head>
+<body>
+  <div class="phone">
+    <div class="screen">
+      <div class="label">Teenology · Free</div>
+      <div class="tier">Relationship Pulse</div>
+      <div class="pulse">62%</div>
+      <div class="bar"><span></span></div>
+      <div class="bubble">Today’s micro-action: one short supportive phrase, not a big talk.</div>
+      <div class="muted">Mediation protocol · media de-escalation card</div>
+      <div class="offline">🛡 Data saved locally in browser · Offline mode</div>
+    </div>
+  </div>
+  <div class="phone">
+    <div class="screen">
+      <div class="label">Teenology · Family+</div>
+      <div class="tier">Pulse + 14-day trend</div>
+      <div class="pulse">62% <span style="font-size:14px;color:#16a34a">↑ steady</span></div>
+      <div class="bar"><span></span></div>
+      <div class="bubble">Family Bridge: shared check-in scheduled · evening window</div>
+      <div class="muted">Diary sync · specialist handoff summary (no PII export)</div>
+      <div class="offline">🛡 Encrypted local log · Subscriber insights</div>
+    </div>
+  </div>
+</body>
+</html>

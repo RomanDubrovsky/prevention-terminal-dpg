@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <title>AI Assistant for Teachers — Free</title>
+  <meta name="description" content="Free digital assistant for classroom and subject teachers: complex classroom situations, plain language, no registration.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;550;650;760;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/site.css">
+  <style>
+    .educator-chat {
+      display: grid;
+      gap: 12px;
+      background: var(--surface-1, #fff);
+      border: 1px solid var(--border, #e2e8f0);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 8px 32px rgba(15, 23, 42, 0.06);
+    }
+    .educator-chat-messages {
+      min-height: 280px;
+      max-height: 420px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 8px 4px;
+    }
+    .educator-chat-msg {
+      max-width: 92%;
+      padding: 10px 14px;
+      border-radius: 14px;
+      font-size: 15px;
+      line-height: 1.45;
+      white-space: pre-wrap;
+    }
+    .educator-chat-msg--user {
+      align-self: flex-end;
+      background: #0f766e;
+      color: #ecfdf5;
+    }
+    .educator-chat-msg--ai {
+      align-self: flex-start;
+      background: var(--surface-2, #f1f5f9);
+      color: var(--text, #0f172a);
+    }
+    .educator-chat-form {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .educator-chat-form input[type="text"] {
+      flex: 1 1 220px;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border, #cbd5e1);
+      font: inherit;
+    }
+    .educator-chat-form button {
+      padding: 12px 18px;
+      border-radius: 10px;
+      border: none;
+      background: #0f766e;
+      color: #fff;
+      font-weight: 650;
+      cursor: pointer;
+    }
+    .educator-chat-quota {
+      font-size: 13px;
+      color: var(--muted, #64748b);
+    }
+    .educator-chat-hp { position: absolute; left: -9999px; opacity: 0; }
+    .upsell-grid { margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="site-header">
+      <a class="brand" href="../"><span class="brand-mark">P</span><span>Teacher Assistant</span></a>
+      <nav class="nav" aria-label="Main Navigation">
+        <a href="../terminal/">Terminal</a>
+        <a href="../science/">Science</a>
+        <a href="../teenology/">Teenology</a>
+        <a href="../academy/">Academy</a>
+        <a href="./" class="nav-active" aria-current="page">For Teachers</a>
+        <a href="https://ida-ai.chat/" target="_blank" rel="noopener">Psychological Centers</a>
+        <a href="../ru/help-for-teacher/" class="lang-toggle" style="font-weight: 600; text-decoration: none; padding: 4px 8px; border-radius: 4px; background: var(--surface-soft); color: var(--text);">RU</a>
+        <button type="button" class="theme-toggle" id="theme-toggle">Dark</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <span class="eyebrow">Free · no registration · for schools</span>
+          <h1>AI Assistant for Teachers — analyzing complex classroom situations</h1>
+          <p class="lead">
+            A tool for classroom and subject teachers: conflicts, motivation, behavior,
+            interacting with parents.
+            <strong>On the site — chat consultant.</strong> Full workspace with group lesson plans —
+            <a href="../terminal/">Prevention Terminal for Teachers</a>.
+          </p>
+          <p style="margin-top:12px">
+            <a class="btn btn-primary" href="../terminal/">Open Workspace</a>
+          </p>
+          <ul class="muted" style="margin: 0; padding-left: 1.2rem;">
+            <li>Does not replace a psychologist and does not diagnose</li>
+            <li>We do not save names — describe anonymously</li>
+            <li>Lesson plans on the site are just highlights; full versions in the terminal</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="educator-chat-root" class="educator-chat" data-locale="en" aria-label="Chat with assistant">
+        <div id="educator-chat-messages" class="educator-chat-messages" role="log" aria-live="polite"></div>
+        <p id="educator-chat-quota" class="educator-chat-quota"></p>
+        <form id="educator-chat-form" class="educator-chat-form">
+          <label class="educator-chat-hp" for="educator-chat-hp">Do not fill</label>
+          <input type="text" id="educator-chat-hp" name="company" tabindex="-1" autocomplete="off">
+          <input type="text" id="educator-chat-input" placeholder="E.g.: A 7th grade student constantly disrupts the lesson…" maxlength="4000" required>
+          <button type="submit">Send</button>
+        </form>
+        <p class="muted" style="font-size: 12px; margin: 0;">
+          If there is a threat to life or violence — contact emergency services. This is not an emergency service.
+        </p>
+      </section>
+
+      <section class="upsell-grid">
+        <div class="section-head">
+          <h2>What else is in the Prevention ecosystem</h2>
+          <p class="muted">Show it to your colleagues — school psychologist, administration, parents.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <span class="tag">Psychologist</span>
+            <h3><a href="../terminal/">Prevention Terminal</a></h3>
+            <p>Journal, individual development plans, AI without daily limits, DOCX, local-first. Teacher lite is a free preset.</p>
+            <a class="btn btn-primary" href="../terminal/">Download Terminal</a>
+          </article>
+          <article class="card">
+            <span class="tag">Administration</span>
+            <h3>Aggregates Dashboard</h3>
+            <p>School summary without kids' names: risks, dynamics, federation invite codes.</p>
+            <a class="btn" href="https://prevention.school/dashboard/" target="_blank" rel="noopener">Open Dashboard</a>
+          </article>
+          <article class="card">
+            <span class="tag">Families</span>
+            <h3><a href="../teenology/">Teenology</a></h3>
+            <p>PWA for parents and teenagers: mutual trust, check-up, Family Bridge. Can be recommended to families.</p>
+            <a class="btn" href="../teenology/">About Teenology</a>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <p class="muted">Version <code>__BUILD_VERSION__</code></p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p><a href="../">← Back to home</a></p>
+    </footer>
+  </div>
+
+  <script>window.PN_EDUCATOR_API_BASE = "__API_BASE__";</script>
+  <script src="../assets/educator-chat.js" defer data-api-base="__API_BASE__"></script>
+  <script src="../assets/theme.js"></script>
+</body>
+</html>
