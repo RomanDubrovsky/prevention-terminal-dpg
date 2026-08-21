@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; frame-src 'self' blob: data: https://prevention.school https://*.prevention.school https://ida-psy.pro https://*.ida-psy.pro https://teenology.care https://*.teenology.care; img-src 'self' data: blob: https://*.tile.openstreetmap.org; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; connect-src 'self' https: https://prevention.school https://*.prevention.school https://static.cloudflareinsights.com https://api.prevention.school https://api.teenology.care https://teenology.care https://ru.prevention.school https://nominatim.openstreetmap.org https://photon.komoot.io https://*.supabase.co"
+    />
+    <title>Prevention Terminal — staging (без пароля)</title>
+    <script>
+      (function() {
+        window.addEventListener('error', function(e) {
+          if (e.target && (e.target.tagName === 'SCRIPT' || e.target.tagName === 'LINK')) {
+            var src = e.target.src || e.target.href || '';
+            if (src.indexOf('/assets/') !== -1) {
+              if (!sessionStorage.getItem('asset_reload_forced')) {
+                sessionStorage.setItem('asset_reload_forced', '1');
+                window.location.reload();
+              }
+            }
+          }
+        }, true);
+      })();
+    </script>
+  </head>
+  <body>
+    <style>html,body{margin:0;padding:0;min-height:100%}#root{min-height:100%;display:flex;flex-direction:column}</style>
+    <div id="root" style="min-height:100%"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <title>Health Psychology Academy | Prevention-AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/site.css">
+  
+  <style>
+    :root {
+      --hero-bg: radial-gradient(circle at top right, rgba(99, 102, 241, 0.06), transparent 60%), 
+                 radial-gradient(circle at bottom left, rgba(16, 185, 129, 0.05), transparent 60%);
+    }
+
+    html[data-theme="dark"] {
+      --hero-bg: radial-gradient(circle at top right, rgba(30, 27, 75, 0.4), transparent 50%), 
+                 radial-gradient(circle at bottom left, rgba(79, 70, 229, 0.1), transparent 50%);
+    }
+
+    body {
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Inter', sans-serif;
+    }
+
+    .landing-hero {
+      padding: 100px 24px;
+      text-align: center;
+      background: var(--hero-bg);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .landing-hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url('data:image/svg+xml;utf8,<svg width="40" height="40" xmlns="http://www.w3.org/2000/svg"><circle cx="2" cy="2" r="2" fill="rgba(99,102,241,0.04)"/></svg>');
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 6px 14px;
+      background: rgba(79, 70, 229, 0.1);
+      color: #6366f1;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      border: 1px solid rgba(79, 70, 229, 0.25);
+    }
+
+    html[data-theme="dark"] .hero-badge {
+      background: rgba(79, 70, 229, 0.15);
+      color: #818cf8;
+      border-color: rgba(79, 70, 229, 0.3);
+    }
+
+    .landing-hero h1 {
+      font-size: 56px;
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      background: linear-gradient(135deg, #0f172a 0%, #4338ca 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      letter-spacing: -1.5px;
+    }
+
+    html[data-theme="dark"] .landing-hero h1 {
+      background: linear-gradient(to right, #ffffff, #a5b4fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .landing-hero p {
+      font-size: 22px;
+      color: var(--muted);
+      max-width: 700px;
+      margin: 0 auto 40px;
+      line-height: 1.5;
+    }
+
+    .philosophy-section {
+      max-width: 1000px;
+      margin: 80px auto;
+      padding: 0 24px;
+    }
+
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .philosophy-content h2 {
+      font-size: 36px;
+      font-weight: 800;
+      margin-bottom: 24px;
+      letter-spacing: -1px;
+      color: var(--text-color);
+    }
+
+    .philosophy-content p {
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .philosophy-highlight {
+      background: rgba(99, 102, 241, 0.05);
+      border-left: 4px solid #6366f1;
+      padding: 24px;
+      border-radius: 0 12px 12px 0;
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--text-color);
+      line-height: 1.5;
+    }
+
+    html[data-theme="dark"] .philosophy-highlight {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .modules-section {
+      max-width: 1200px;
+      margin: 0 auto 100px;
+      padding: 0 24px;
+    }
+
+    .modules-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .modules-header h2 {
+      font-size: 40px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: var(--text-color);
+    }
+
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .module-card {
+      background: var(--surface, #ffffff);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    }
+
+    .module-card:hover {
+      transform: translateY(-6px);
+      border-color: #6366f1;
+      box-shadow: 0 20px 40px rgba(99, 102, 241, 0.12);
+    }
+
+    html[data-theme="dark"] .module-card:hover {
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    }
+
+    .module-icon {
+      width: 60px;
+      height: 60px;
+      background: rgba(99, 102, 241, 0.1);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin-bottom: 24px;
+      border: 1px solid rgba(99, 102, 241, 0.2);
+    }
+
+    .module-card h3 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text-color);
+    }
+
+    .module-card p {
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 32px;
+      flex-grow: 1;
+    }
+
+    .module-btn {
+      display: inline-flex;
+      align-items: center;
+      font-weight: 650;
+      color: #6366f1;
+      transition: gap 0.2s;
+      gap: 4px;
+    }
+
+    .module-card:hover .module-btn {
+      gap: 8px;
+      color: #4f46e5;
+    }
+
+    html[data-theme="dark"] .module-btn {
+      color: #818cf8;
+    }
+    html[data-theme="dark"] .module-card:hover .module-btn {
+      color: #a5b4fc;
+    }
+
+    @media (max-width: 900px) {
+      .philosophy-grid {
+        grid-template-columns: 1fr;
+      }
+      .modules-grid {
+        grid-template-columns: 1fr;
+      }
+      .landing-hero h1 {
+        font-size: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="site-header">
+      <a class="brand" href="/"><span class="brand-mark">P</span><span>Prevention-AI</span></a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="/science/">Science</a>
+        <a href="/academy/" class="nav-active" aria-current="page">Academy</a>
+        <a href="/government/">Government</a>
+        <a href="/workspace/">Workspace</a>
+        <a href="/help-for-teacher/">For Teachers</a>
+        <a href="/teenology/">Teenology</a>
+      </nav>
+      <div class="nav-controls">
+        <a href="https://web.prevention.school/" class="nav-cta" target="_blank" rel="noopener">Web Terminal</a>
+        <a href="/ru/academy/" class="lang-toggle" aria-label="Switch to Russian" style="font-weight: 600; text-decoration: none; padding: 4px 8px; border-radius: 4px; background: var(--surface-soft); color: var(--text);">RU</a>
+        <button type="button" class="theme-toggle" id="theme-toggle">Dark</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="landing-hero">
+        <div class="hero-badge">Educational Hub</div>
+        <h1>Health Psychology Academy</h1>
+        <p>
+          AI training for psychology to eliminate paperwork forever. We teach you not just to press buttons, but to understand the logic behind the algorithms.
+        </p>
+        <div style="display: flex; gap: 16px; justify-content: center;">
+          <a href="#modules" class="btn btn-primary" style="padding: 14px 28px; font-size: 16px;">Start Learning</a>
+        </div>
+      </section>
+
+      <section class="philosophy-section">
+        <div class="philosophy-grid">
+          <div class="philosophy-content">
+            <h2>Meaningful AI Utilization</h2>
+            <p>
+              Typical professional development courses often provide dry theory that doesn't help in real school practice. We offer a different approach.
+            </p>
+            <p>
+              Our Academy is designed to teach you how to delegate paperwork to artificial intelligence, relying on the evidence base of health psychology. You will learn to manage the Terminal platform, saving hours of your time every day.
+            </p>
+          </div>
+          <div class="philosophy-highlight">
+            «AI will write a perfect Case Summary / Behavioral Report for you in 2 minutes, but you always provide the strategy, empathy, and final decision. We teach you to manage technology, not depend on it.»
+          </div>
+        </div>
+      </section>
+
+      <section class="modules-section" id="modules">
+        <div class="modules-header">
+          <h2>Curriculum Structure</h2>
+          <p style="color: var(--muted); font-size: 18px;">Key Academy Modules</p>
+        </div>
+        
+        <div class="modules-grid" style="grid-template-columns: 1fr; max-width: 700px; margin: 0 auto;">
+          
+          <a href="/academy/graph/" class="module-card" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.04) 0%, rgba(16, 185, 129, 0.08) 100%); border-color: rgba(99, 102, 241, 0.25); max-width: 700px; margin: 0 auto;">
+            <div class="module-icon" style="background: linear-gradient(135deg, #6366f1, #10b981); color: white;">🪐</div>
+            <h3>3D-Graph and AI-Professor</h3>
+            <p>
+              Interactive ontology of prevention. Explore the connections between theories and immediately solidify your knowledge on case studies with the built-in AI-supervisor.
+            </p>
+            <span class="module-btn" style="color: #6366f1;">Open Knowledge Base <span>→</span></span>
+          </a>
+
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      const storageKey = 'pap-site2-theme';
+      const root = document.documentElement;
+      const btn = document.getElementById('theme-toggle');
+
+      function applyTheme(theme) {
+        root.setAttribute('data-theme', theme);
+        if (btn) {
+          const isDark = (theme === 'dark');
+          btn.textContent = isDark ? 'Light' : 'Dark';
+          btn.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+        }
+      }
+
+      function savedTheme() {
+        try {
+          return localStorage.getItem(storageKey);
+        } catch (e) {
+          return null;
+        }
+      }
+
+      function persistTheme(theme) {
+        try {
+          localStorage.setItem(storageKey, theme);
+        } catch (e) {}
+      }
+
+      // Default to light theme if no theme previously chosen
+      const initialTheme = savedTheme() === 'dark' ? 'dark' : 'light';
+      applyTheme(initialTheme);
+
+      if (btn) {
+        btn.addEventListener('click', function () {
+          const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+          applyTheme(next);
+          persistTheme(next);
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

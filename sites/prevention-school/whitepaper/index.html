@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/favicon.png">
+  <title>Methodological manifesto — Prevention.AI</title>
+  <meta name="description" content="Prevention Intelligence Engine (PIE): evidence-informed AI architecture for preventive psychology. Author: Roman Dubrovsky, PhD.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #fafaf9;
+      --ink: #1c1917;
+      --muted: #57534e;
+      --rule: #d6d3d1;
+      --accent: #0f766e;
+      --accent-hover: #115e59;
+      --mono: "IBM Plex Mono", ui-monospace, monospace;
+      --serif: "IBM Plex Serif", Georgia, "Times New Roman", serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: 1.0625rem;
+      line-height: 1.72;
+      color: var(--ink);
+      background: var(--paper);
+    }
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 20px;
+      background: rgba(250, 250, 249, 0.92);
+      border-bottom: 1px solid var(--rule);
+      backdrop-filter: blur(8px);
+    }
+    .toolbar-brand {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .btn-pdf {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      color: #fff;
+      background: var(--accent);
+      transition: background 0.15s;
+    }
+    .btn-pdf:hover { background: var(--accent-hover); }
+    .btn-pdf:disabled { opacity: 0.65; cursor: wait; }
+    .btn-pdf svg { width: 18px; height: 18px; flex-shrink: 0; }
+    #whitepaper-doc {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+    .doc-meta {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+    h1 {
+      font-size: clamp(1.65rem, 4vw, 2rem);
+      font-weight: 600;
+      line-height: 1.25;
+      margin: 0 0 12px;
+      letter-spacing: -0.02em;
+    }
+    .subtitle {
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin: 0 0 28px;
+      line-height: 1.5;
+    }
+    .byline {
+      margin: 0 0 32px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--rule);
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+    .byline strong { color: var(--ink); font-weight: 600; }
+    h2 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 40px 0 14px;
+      padding-top: 8px;
+      letter-spacing: -0.01em;
+    }
+    h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 24px 0 10px;
+    }
+    p { margin: 0 0 1rem; text-align: justify; hyphens: auto; }
+    .abstract {
+      margin: 0 0 32px;
+      padding: 20px 22px;
+      border-left: 3px solid var(--accent);
+      background: #f5f5f4;
+      font-size: 0.98rem;
+    }
+    .abstract-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    ul, ol { margin: 0 0 1rem; padding-left: 1.35rem; }
+    li { margin-bottom: 0.5rem; }
+    code, .mono {
+      font-family: var(--mono);
+      font-size: 0.88em;
+      font-weight: 500;
+      color: var(--ink);
+    }
+    .axis-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.25rem;
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .axis-list li {
+      margin: 0;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--rule);
+      font-size: 0.98rem;
+    }
+    .axis-list li:last-child { border-bottom: none; }
+    .axis-list .axis-key {
+      display: block;
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .footer-nav {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--rule);
+      font-family: system-ui, sans-serif;
+      font-size: 14px;
+    }
+    .footer-nav a { color: var(--accent); text-decoration: none; }
+    .footer-nav a:hover { text-decoration: underline; }
+    .copyright {
+      margin-top: 16px;
+      font-size: 12px;
+      color: var(--muted);
+      font-family: var(--mono);
+    }
+    @media print {
+      .toolbar { display: none !important; }
+      body { background: #fff; }
+      #whitepaper-doc { max-width: none; padding: 0; }
+      p { text-align: left; hyphens: none; }
+      h2 { page-break-after: avoid; }
+      .axis-list { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <header class="toolbar" aria-label="Document actions">
+    <span class="toolbar-brand">Prevention.school · Whitepaper</span>
+    <button type="button" class="btn-pdf" id="btn-download-pdf" aria-label="Download PDF">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      Download methodological whitepaper (PDF)
+    </button>
+  </header>
+
+  <article id="whitepaper-doc">
+    <p class="doc-meta">Prevention.AI · Methodological manifesto · 2026</p>
+
+    <h1>Prevention.AI: Methodological Manifesto</h1>
+    <p class="subtitle">Architecture of Prevention Intelligence for governing generative AI models</p>
+
+    <div class="byline">
+      <p><strong>Author:</strong> Roman Dubrovsky, PhD</p>
+      <p>Practicing psychologist, behavioral researcher, sole architect and developer of the Prevention.AI ecosystem</p>
+    </div>
+
+    <div class="abstract">
+      <p class="abstract-label">Abstract</p>
+      <p>This manifesto describes the Prevention Intelligence Engine (PIE)—an expert layer designed to bound and steer large language models (LLMs) within evidence-informed health psychology and behavioral epidemiology. Unlike standard AI systems built on open-ended chat or flat keyword search, Prevention.AI uses a deterministic constraint layer driven by a four-dimensional ontology matrix (classification engine) and a set of systemic behavioral axioms. The system aims to automate excess routine and design work for prevention professionals, keep interventions methodologically safe, and provide shared infrastructure for science, practice, and governance.</p>
+    </div>
+
+    <h2>1. Introduction: overcoming methodological chaos</h2>
+    <p>Applied health psychology and adolescent risk prevention have historically grown as a patchwork of heterogeneous theories and disconnected empirical studies. Front-line professionals—school psychologists, social workers, program coordinators—face that chaos daily while carrying exhausting reporting burdens.</p>
+    <p>Prevention.AI is built as a solo-founder system from scientific “passports” through production code, keeping methodology and engineering aligned. Its backbone is Evidence-Based Prevention Science, digitized as a stepwise algorithm: from a short consultation to a regional program, every effective prevention activity follows the same traceable path in software.</p>
+
+    <h2>2. Knowledge deconstruction pipeline and the 4D taxonomy matrix</h2>
+    <p>The platform avoids unstructured “PDF dumps.” Verified sources, guides, and programs are atomized into methodological atoms—minimal units of practice (micro-interventions, techniques, phrasing bridges, levers, and guardrails). Each atom receives a digital passport.</p>
+    <p>The classifier (ontology module) maps every user request and knowledge atom across four independent axes:</p>
+
+    <ul class="axis-list">
+      <li>
+        <span class="axis-key">X-Stage · Work phase</span>
+        Prevention phase (Problem → Assessment → Goals → Action → Outcome). The system tracks the support trajectory and blocks action steps until goals are verified.
+      </li>
+      <li>
+        <span class="axis-key">Y-Level · Risk and tension</span>
+        Clinical threshold ladder (Normative → At Risk → Subclinical → Crisis / Clinical). The tool separates normative developmental stress from emerging deviance patterns.
+      </li>
+      <li>
+        <span class="axis-key">M-Modality · Modality</span>
+        Biopsychosocial vector (<code>M1_Biology</code> → <code>M2_Psychophysiology</code> → <code>M3_Cognition</code> → <code>M4_Social</code> → <code>M5_Environment</code>) to locate the core problem and aim interventions.
+      </li>
+      <li>
+        <span class="axis-key">Org-Scale · System scale</span>
+        Intervention level (<code>Individual</code> → <code>Family</code> → <code>Group</code> → <code>Community</code> → <code>Society</code>).
+      </li>
+    </ul>
+
+    <p>Passports also encode the professional role (Psychologist, Teacher, Administrator). Contraindications (e.g., “not applicable during acute family conflict”) hard-block atom retrieval.</p>
+
+    <h2>3. Hardware layer of systemic axioms</h2>
+    <p>Situation analysis runs through fixed laws from systemic family psychology and behavioral epidemiology:</p>
+
+    <h3>Circular causality</h3>
+    <p>The engine blocks linear blame assignment (e.g., parent–teen fights) and redirects dialogue to self-sustaining interaction loops inside the family system.</p>
+
+    <h3>Systemic hysteresis</h3>
+    <p>Each user turn is filtered through accumulated history (prior conflicts, family context), weighting the “charge” of destructive reactions.</p>
+
+    <h3>The funnel effect</h3>
+    <p>When stress or burnout narrows behavioral choice, generation collapses to stabilizing micro-steps (“quiet mode” and a single point of support).</p>
+
+    <h2>4. Dual-stream semantic RAG and procedural answer compilation</h2>
+    <p>Incoming text is embedded so latent meaning is detected—for example, parental shame after yelling or a teen’s depressive drift without explicit keywords.</p>
+    <p>Two parallel atom streams are retrieved:</p>
+    <ul>
+      <li><strong>Stream A (Frame):</strong> methodological rules, ethical limits, hypotheses, and constraints;</li>
+      <li><strong>Stream B (Procedure):</strong> practical techniques, exercises, nonviolent-communication patterns, and phrasing templates.</li>
+    </ul>
+    <p>The language model does not quote sources; it compiles under Stream A a 3–6 step intervention plan from Stream B atoms, tuned to child age, constraints, and the parent’s or specialist’s current resource level.</p>
+
+    <h2>5. Hierarchical safety override (Safety Loop)</h2>
+    <p>Safety overrides all dialog paths. Markers of critical risk (self-harm, violence, imminent danger to a child) halt standard generation and switch to a crisis protocol—stabilization guidance and routing to live emergency services—for both the user and the deploying organization.</p>
+
+    <h2>Conclusion: infrastructure for shared understanding</h2>
+    <p>Prevention.AI respects front-line professional labor. Rigorous evidence discipline and architecture can turn generative AI from an unpredictable chat partner into a bounded, high-precision applied tool.</p>
+    <p>The platform aims to connect researchers, field practitioners, and public institutions around one prevention infrastructure for the well-being of growing generations.</p>
+
+    <footer class="footer-nav">
+      <a href="../">Home</a>
+      &nbsp;·&nbsp;
+      <a href="../teenology/">Teenology</a>
+      &nbsp;·&nbsp;
+      <a href="../science/">Science</a>
+      &nbsp;·&nbsp;
+      <a href="../#founder">Founder</a>
+      &nbsp;·&nbsp;
+      <a href="https://teenology.care">Open Teenology</a>
+      <p class="copyright" style="margin-top: 14px;">
+        <a href="mailto:admin@prevention.school">admin@prevention.school</a>
+        &nbsp;·&nbsp;
+        <a href="https://t.me/RomanDubrovsky" target="_blank" rel="noopener noreferrer">Telegram</a>
+      </p>
+      <p class="copyright">© Roman Dubrovsky. Published for prior art and professional use. All rights reserved.</p>
+    </footer>
+  </article>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.2/html2pdf.bundle.min.js" integrity="sha512-YcsIPGwhjNWHbdjQ/YCv7E+CTbLWTLgqfPP6P6+Q8vPtdUOYS1v48aSrA0xfuMolD1fC0Tjf8siYI4iAe3Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    (function () {
+      var btn = document.getElementById('btn-download-pdf');
+      var doc = document.getElementById('whitepaper-doc');
+      if (!btn || !doc || typeof html2pdf === 'undefined') return;
+
+      btn.addEventListener('click', function () {
+        btn.disabled = true;
+        var label = btn.innerHTML;
+        btn.textContent = 'Building PDF…';
+
+        html2pdf()
+          .set({
+            margin: [14, 16, 14, 16],
+            filename: 'Prevention-AI-Methodological-Manifesto.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2, useCORS: true, letterRendering: true },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+            pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+          })
+          .from(doc)
+          .save()
+          .then(function () {
+            btn.disabled = false;
+            btn.innerHTML = label;
+          })
+          .catch(function () {
+            btn.disabled = false;
+            btn.innerHTML = label;
+            window.print();
+          });
+      });
+    })();
+  </script>
+</body>
+</html>

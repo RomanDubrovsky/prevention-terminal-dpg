@@ -1,0 +1,5 @@
+# Hold mode: all paths show the paused notice
+/dashboard/*     /index.html  200
+/appointment/*    /index.html  200
+/terms.html       /index.html  200
+/privacy.html     /index.html  200
