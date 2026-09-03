@@ -1,0 +1,1277 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/favicon.png">
+  <title>Prevention-AI Terminal — AI-spaces for Public Health</title>
+  <meta name="description" content="Secure AI-powered workspace for school psychologists and social workers. Includes AI Academy for professional development and ethical AI implementation.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;550;650;760;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/site.css">
+  <style>
+    
+    /* 2D Schema styling */
+    .ida-schema-grid {
+      display: grid;
+      grid-template-columns: 1fr 50px 1fr 50px 1fr;
+      align-items: center;
+      margin: 40px auto;
+      max-width: 1200px;
+      gap: 12px;
+    }
+    .schema-column {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .schema-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 20px;
+      position: relative;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      text-align: left;
+    }
+    .schema-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--violet);
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.08);
+    }
+    .schema-card strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 6px;
+      color: var(--text-color);
+    }
+    .schema-card p {
+      margin: 0 0 12px;
+      font-size: 0.85rem;
+      line-height: 1.45;
+      color: var(--muted);
+    }
+    .schema-arrow {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--violet);
+    }
+    .schema-core {
+      background: rgba(109, 91, 208, 0.04);
+      border: 1px dashed rgba(109, 91, 208, 0.4);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      position: relative;
+    }
+    .schema-core strong {
+      display: block;
+      color: var(--violet);
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+    }
+    .schema-core p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+    @media (max-width: 992px) {
+      .ida-schema-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .schema-arrow svg {
+        transform: rotate(90deg);
+      }
+      .schema-arrow {
+        margin: 8px 0;
+      }
+    }
+
+    .ida-hero-brand {
+      font-size: clamp(2.6rem, 6vw, 4.2rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      margin: 10px 0 12px;
+    }
+    .ida-hero-brand span { color: var(--violet); }
+
+    .ida-flow-grid {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 36px minmax(0, 1.15fr);
+      grid-template-rows: auto auto auto auto auto auto auto auto auto;
+      gap: 10px 12px;
+      align-items: stretch;
+    }
+    .ida-flow-head {
+      margin: 0;
+      font-size: 1.05rem;
+      padding: 8px 12px;
+      border-radius: 10px;
+      border-bottom: none;
+      font-weight: 760;
+    }
+    .ida-flow-head--site {
+      grid-column: 1;
+      grid-row: 1;
+      color: #5b4bb8;
+      background: color-mix(in srgb, var(--violet) 14%, var(--surface));
+    }
+    .ida-flow-head--team {
+      grid-column: 3;
+      grid-row: 1;
+      color: #0f766e;
+      background: color-mix(in srgb, #0f766e 12%, var(--surface));
+    }
+    .ida-flow-spacer { grid-column: 2; }
+
+    .ida-scheme-node {
+      margin: 0;
+      padding: 12px 14px;
+      border-left: 3px solid var(--violet);
+      background: color-mix(in srgb, var(--surface-soft) 70%, transparent);
+      border-radius: 0 10px 10px 0;
+    }
+    .ida-scheme-node--client {
+      border-left-color: #6d5bd0;
+      background: color-mix(in srgb, var(--violet) 11%, var(--surface));
+    }
+    .ida-scheme-node--ai {
+      border-left-color: #7c3aed;
+      background: color-mix(in srgb, #7c3aed 16%, var(--surface));
+    }
+    .ida-scheme-node--catalog {
+      border-left-color: var(--accent);
+      background: color-mix(in srgb, var(--accent) 12%, var(--surface));
+    }
+    .ida-scheme-node--crm {
+      border-left-color: #c2410c;
+      background: color-mix(in srgb, #c2410c 10%, var(--surface));
+    }
+    .ida-scheme-node--roster {
+      border-left-color: var(--accent);
+      background: color-mix(in srgb, var(--accent) 10%, var(--surface));
+    }
+    .ida-scheme-node--mgmt {
+      border-left-color: #0f766e;
+      background: color-mix(in srgb, #0f766e 11%, var(--surface));
+    }
+    .ida-scheme-node--mgmt-up {
+      border-left-color: #134e4a;
+      background: color-mix(in srgb, #134e4a 10%, var(--surface));
+    }
+    .ida-scheme-node--psych {
+      border-left-color: var(--violet);
+      background: color-mix(in srgb, var(--violet) 14%, var(--surface));
+    }
+    .ida-scheme-node strong { display: block; margin-bottom: 4px; }
+    .ida-scheme-node p { margin: 0; color: var(--muted); font-size: 0.92rem; }
+    .ida-scheme-peek {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 10px;
+      padding: 6px 10px;
+      border: 1px solid color-mix(in srgb, var(--violet) 35%, var(--line));
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--violet) 8%, var(--surface));
+      color: #5b4bb8;
+      font-size: 0.82rem;
+      font-weight: 650;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .ida-scheme-peek:hover {
+      background: color-mix(in srgb, var(--violet) 14%, var(--surface));
+    }
+    .ida-scheme-node--mgmt .ida-scheme-peek,
+    .ida-scheme-node--mgmt-up .ida-scheme-peek {
+      border-color: color-mix(in srgb, #0f766e 40%, var(--line));
+      background: color-mix(in srgb, #0f766e 10%, var(--surface));
+      color: #0f766e;
+    }
+    .ida-scheme-node--catalog .ida-scheme-peek,
+    .ida-scheme-node--roster .ida-scheme-peek,
+    .ida-scheme-node--crm .ida-scheme-peek {
+      border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+      background: color-mix(in srgb, var(--accent) 12%, var(--surface));
+      color: #0f766e;
+    }
+
+    .ida-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(15, 23, 42, 0.55);
+    }
+    .ida-lightbox[hidden] { display: none !important; }
+    .ida-lightbox.is-open { display: flex; }
+    .ida-lightbox-dialog {
+      width: min(1500px, 98vw);
+      max-height: 98vh;
+      overflow: auto;
+      background: var(--surface);
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      box-shadow: 0 24px 64px rgba(15, 23, 42, 0.28);
+      padding: 12px;
+    }
+    .ida-lightbox-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+    .ida-lightbox-head h3 { margin: 0; font-size: 1.15rem; }
+    .ida-lightbox-close {
+      border: 0;
+      background: transparent;
+      font-size: 1.5rem;
+      line-height: 1;
+      cursor: pointer;
+      color: var(--muted);
+      padding: 0 4px;
+    }
+    .ida-lightbox-main {
+      margin: 0;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+      background: #f4f6f5;
+    }
+    .ida-lightbox-main img {
+      display: block;
+      width: 100%;
+      max-height: 84vh;
+      object-fit: contain;
+      background: #f4f6f5;
+    }
+    .ida-lightbox-main figcaption {
+      padding: 10px 12px;
+      font-size: 0.9rem;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      background: var(--surface);
+    }
+    .ida-lightbox-thumbs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .ida-lightbox-thumbs button {
+      margin: 0;
+      padding: 0;
+      border: 2px solid transparent;
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      background: #f4f6f5;
+      width: 104px;
+    }
+    .ida-lightbox-thumbs button[aria-current="true"] {
+      border-color: var(--violet);
+    }
+    .ida-lightbox-thumbs img {
+      display: block;
+      width: 100%;
+      height: 68px;
+      object-fit: cover;
+      object-position: top left;
+    }
+    .ida-lightbox-demo {
+      margin: 12px 0 0;
+      font-size: 0.9rem;
+    }
+    .ida-lightbox-demo a { color: var(--violet); font-weight: 650; }
+
+    .ida-flow-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+    .ida-flow-arrow--site { color: #6d5bd0; }
+    .ida-flow-arrow--mgmt { color: #0f766e; }
+    .ida-flow-arrow--bridge { color: #7c3aed; }
+    .ida-flow-arrow--roster { color: var(--accent); }
+    .ida-flow-arrow--h { align-self: center; }
+    .ida-flow-combo {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 8px;
+      align-items: stretch;
+    }
+    .ida-flow-combo .ida-flow-arrow { padding: 0 2px; color: #c2410c; }
+    .ida-scheme-note {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .ida-flow-cta {
+      margin-top: 28px;
+      padding: 22px 24px;
+      border: 1px solid color-mix(in srgb, var(--violet) 28%, var(--line));
+      border-radius: 16px;
+      background:
+        linear-gradient(165deg, color-mix(in srgb, var(--violet) 10%, var(--surface)), var(--surface) 70%);
+    }
+    .ida-flow-cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .ida-flow-cta-lead {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 42rem;
+    }
+    .ida-cta-fine {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 0.88rem;
+      max-width: 42rem;
+      line-height: 1.45;
+    }
+    .ida-value-cta {
+      margin-top: 20px;
+    }
+    .ida-flow-steps {
+      margin: 18px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      counter-reset: flow-step;
+    }
+    .ida-flow-steps li {
+      position: relative;
+      padding: 12px 14px 12px 48px;
+      border-radius: 12px;
+      background: color-mix(in srgb, var(--surface) 88%, transparent);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.94rem;
+      line-height: 1.45;
+      counter-increment: flow-step;
+    }
+    .ida-flow-steps li::before {
+      content: counter(flow-step);
+      position: absolute;
+      left: 12px;
+      top: 12px;
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      font-size: 0.82rem;
+      font-weight: 760;
+      color: #fff;
+      background: var(--violet);
+    }
+    .ida-flow-steps strong {
+      display: block;
+      color: var(--text);
+      margin-bottom: 2px;
+      font-weight: 650;
+    }
+
+    @media (max-width: 860px) {
+      .ida-flow-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: none;
+      }
+      .ida-flow-head--site,
+      .ida-flow-head--team,
+      .ida-flow-lead,
+      .ida-flow-ai,
+      .ida-flow-mgmt-up,
+      .ida-flow-mgmt,
+      .ida-flow-psych,
+      .ida-flow-pages,
+      .ida-flow-roster,
+      .ida-flow-arrow-lead,
+      .ida-flow-arrow-ai,
+      .ida-flow-arrow-mgmt1,
+      .ida-flow-arrow-mgmt2,
+      .ida-flow-arrow-roster {
+        grid-column: 1 !important;
+        grid-row: auto !important;
+      }
+      .ida-flow-arrow--h { transform: rotate(90deg); }
+    }
+
+    .ida-value {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 28px;
+    }
+    @media (max-width: 720px) {
+      .ida-value { grid-template-columns: 1fr; }
+    }
+    .ida-value-card {
+      border-radius: calc(var(--radius) + 2px);
+      padding: 28px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+    }
+    .ida-value-card--free {
+      border-left: 3px solid var(--accent);
+    }
+    .ida-value-card--paid {
+      border-left: 3px solid var(--violet);
+    }
+    .ida-value-label {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .ida-value-card--free .ida-value-label { color: var(--accent); }
+    .ida-value-card--paid .ida-value-label { color: var(--violet); }
+    .ida-value-card h3 { margin: 0 0 8px; font-size: 1.35rem; }
+    .ida-value-card .hook { margin: 0 0 18px; color: var(--muted); }
+    .ida-value-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+    .ida-value-list li {
+      position: relative;
+      padding-left: 1.5rem;
+      font-size: 14px;
+      color: var(--text);
+    }
+    .ida-value-list li::before {
+      content: "\2713";
+      position: absolute;
+      left: 0;
+      font-weight: 900;
+    }
+    .ida-value-card--free .ida-value-list li::before { color: var(--accent); }
+    .ida-value-card--paid .ida-value-list li::before { color: var(--violet); }
+    .ida-value-science {
+      margin: 14px 0 0;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+    .ida-value-science a {
+      color: var(--violet);
+      font-weight: 650;
+    }
+    .ida-price-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .ida-price-chip {
+      background: var(--surface-soft);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px 16px;
+      font-size: 14px;
+    }
+    .ida-price-chip strong { display: block; font-size: 1.1rem; }
+    .ida-price-chip span { color: var(--muted); font-size: 12px; }
+    .ida-value-fine {
+      margin: 14px 0 0;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .ida-model-block--wide { grid-column: 1 / -1; }
+
+    .ida-privacy {
+      margin-top: 8px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 22px 24px;
+      background: var(--surface);
+    }
+    .ida-privacy-split {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 22px 28px;
+      align-items: start;
+    }
+    @media (max-width: 860px) {
+      .ida-privacy-split { grid-template-columns: 1fr; }
+    }
+    .ida-privacy-copy > p { color: var(--muted); margin: 0 0 14px; }
+    .ida-privacy-copy ul { margin: 0; padding-left: 1.15rem; color: var(--muted); }
+    .ida-privacy-copy li { margin-bottom: 0.5rem; }
+
+    .ida-registry-gallery {
+      display: grid;
+      gap: 10px;
+    }
+    .ida-registry-gallery-main {
+      margin: 0;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+      background: color-mix(in srgb, var(--surface-soft) 80%, transparent);
+    }
+    .ida-registry-gallery-main img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 360px;
+      object-fit: cover;
+      object-position: top left;
+      background: #f4f6f5;
+    }
+    .ida-registry-gallery-main figcaption {
+      padding: 10px 12px;
+      font-size: 0.88rem;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+    }
+    .ida-registry-gallery-thumbs {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .ida-registry-gallery-thumbs button {
+      margin: 0;
+      padding: 0;
+      border: 2px solid transparent;
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      background: #f4f6f5;
+      transition: border-color 0.15s ease, transform 0.15s ease;
+    }
+    .ida-registry-gallery-thumbs button:hover { transform: translateY(-1px); }
+    .ida-registry-gallery-thumbs button[aria-current="true"] {
+      border-color: var(--violet);
+    }
+    .ida-registry-gallery-thumbs img {
+      display: block;
+      width: 100%;
+      height: 72px;
+      object-fit: cover;
+      object-position: top left;
+    }
+
+    .ida-privacy details {
+      margin-top: 16px;
+      border-top: 1px solid var(--line);
+      padding-top: 14px;
+    }
+    .ida-privacy summary {
+      cursor: pointer;
+      font-weight: 650;
+      color: var(--text);
+      list-style: none;
+    }
+    .ida-privacy summary::-webkit-details-marker { display: none; }
+    .ida-privacy summary::before {
+      content: "\25B8 ";
+      color: var(--violet);
+    }
+    .ida-privacy details[open] summary::before { content: "\25BE "; }
+    .ida-privacy details .ida-privacy-deep {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .ida-privacy details h4 {
+      margin: 14px 0 6px;
+      font-size: 1rem;
+      color: var(--text);
+    }
+    
+    /* FAQ Accordion */
+    .faq-accordion {
+      max-width: 800px;
+      margin: 40px auto 0;
+      text-align: left;
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--line);
+      padding: 20px 0;
+    }
+    .faq-item summary {
+      font-weight: 760;
+      font-size: 1.1rem;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+      color: var(--text);
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: "+";
+      font-size: 1.4rem;
+      font-weight: 400;
+      transition: transform 0.2s;
+      color: var(--muted);
+    }
+    .faq-item[open] summary {
+      color: var(--accent);
+    }
+    .faq-item[open] summary::after {
+      content: "\2212"; /* minus sign */
+      color: var(--accent);
+    }
+    .faq-content {
+      margin-top: 12px;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+    .faq-content p {
+      margin: 0 0 12px;
+    }
+    .faq-content p:last-child {
+      margin-bottom: 0;
+    }
+  
+    
+    /* Extra academy styling */
+    .academy-badge {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #38bdf8;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="site-header">
+      <a class="brand" href="/"><span class="brand-mark">P</span><span>Prevention-AI</span></a>
+      <nav class="nav" aria-label="Navigation">
+        <a href="/science/">Science</a>
+        <a href="/academy/">Academy</a>
+        <a href="/government/">Government & Municipalities</a>
+        <a href="/workspace/" class="nav-active" aria-current="page">Organizations</a>
+        <a href="/help-for-teacher/">Teachers</a>
+        <a href="/teenology/">Parents & Teens</a>
+      </nav>
+      <div class="nav-controls">
+        <a href="https://web.prevention.school/" class="nav-cta" target="_blank" rel="noopener">Web Terminal</a>
+        <a href="/ru/workspace/" class="lang-toggle" style="font-weight:600; text-decoration:none; color:var(--text); margin-right:8px;">RU</a>
+        <button type="button" class="theme-toggle" id="theme-toggle">Dark</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero-layer" style="margin-top: 18px;">
+        <div>
+          <span class="badge" style="background: rgba(109, 91, 208, 0.15); color: var(--violet);">Free for schools</span>
+          <p class="ida-hero-brand">Smart digital workspace for <span>psychologists</span></p>
+          <h1 style="max-width: 800px; margin: 0 auto;">Eliminate 80% of paperwork. Provide transparent statistics to the administration. Protect students' data 100%.</h1>
+          <p class="lead">
+            The Prevention-AI Terminal is an isolated digital environment designed specifically for educational institutions and youth policy organizations. The psychologist gets a convenient CRM and an AI assistant for complex cases, while the principal gains control over school safety without access to the students' personal secrets.
+          </p>
+          <ul style="margin: 24px auto; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 0.95rem; text-align: left; max-width: 800px;">
+            <li style="display: flex; gap: 10px; align-items: flex-start;"><span style="color: #10b981; font-weight: bold;">✓</span> <span><strong>Implementation in 1 day:</strong> requires no server installation or IT admin involvement.</span></li>
+            <li style="display: flex; gap: 10px; align-items: flex-start;"><span style="color: #10b981; font-weight: bold;">✓</span> <span><strong>HIPAA & GDPR Compliance:</strong> 100% adherence to professional confidentiality thanks to the Local Vault architecture.</span></li>
+            <li style="display: flex; gap: 10px; align-items: flex-start;"><span style="color: #10b981; font-weight: bold;">✓</span> <span><strong>Perfect reports:</strong> the system automatically generates flawless documents for any bureaucratic audits.</span></li>
+            <li style="display: flex; gap: 10px; align-items: flex-start;"><span style="color: #10b981; font-weight: bold;">✓</span> <span><strong>Elimination of routine:</strong> writing an assessment used to take 40 minutes, now — 2 minutes with the Terminal.</span></li>
+          </ul>
+          <div class="actions" style="margin-top: 22px;">
+            <a class="btn btn-primary" href="#download">Install digital workspaces</a>
+            <a class="btn btn-ghost" href="https://prevention.school/terminal/staging/?demo=school&edition=en">Demo for psychologist</a>
+            <a class="btn btn-ghost" href="https://prevention.school/terminal/staging/?demo=manager&edition=en">Demo for principal</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="for-whom" style="margin-top: 40px; margin-bottom: 40px; padding: 2rem 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+        <div class="section-head" style="margin-bottom: 30px; text-align: center;">
+          <span class="eyebrow">Real Value</span>
+          <h2>How the Terminal transforms school workflow</h2>
+          <p>Tools that solve everyday problems, rather than creating new ones.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1100px; margin: 0 auto; padding: 0 16px;">
+          <!-- For Principal -->
+          <article class="ida-value-card" style="border: 1px solid var(--line); border-radius: 12px; padding: 1.5rem; background: var(--surface);">
+            <div style="font-size: 0.85rem; font-weight: bold; text-transform: uppercase; color: #0f766e; margin-bottom: 0.8rem;">For the School Principal</div>
+            <h3 style="margin-top: 0; font-size: 1.25rem;">Control and Emergency Prevention</h3>
+            <ul style="padding-left: 1.2rem; margin: 1rem 0; font-size: 0.9rem; line-height: 1.6; display: flex; flex-direction: column; gap: 0.5rem;">
+              <li><strong>Transparent analytics:</strong> A dashboard with a risk map of the school. Shows how many children need attention, how many consultations were held, and which classes have issues.</li>
+              <li><strong>Legal compliance:</strong> The principal sees overall statistics and trends (bullying, anxiety) <em>without access</em> to personal data, preserving the psychologist's professional secrecy.</li>
+              <li><strong>Instant reports:</strong> With a click, the system generates ready-made statistics for the Board or Department of Education.</li>
+              <li><strong>Risk preemption:</strong> The system helps identify hidden threats in time to prevent tragedies in the school.</li>
+            </ul>
+          </article>
+
+          <!-- For Psychologist -->
+          <article class="ida-value-card" style="border: 1px solid var(--line); border-radius: 12px; padding: 1.5rem; background: var(--surface);">
+            <div style="font-size: 0.85rem; font-weight: bold; text-transform: uppercase; color: var(--violet); margin-bottom: 0.8rem;">For the Psychologist and Social Worker</div>
+            <h3 style="margin-top: 0; font-size: 1.25rem;">The End of Paperwork Routine</h3>
+            <ul style="padding-left: 1.2rem; margin: 1rem 0; font-size: 0.9rem; line-height: 1.6; display: flex; flex-direction: column; gap: 0.5rem;">
+              <li><strong>Generation of any documents (in DOCX):</strong> AI turns your short notes into ready <i>psycho-pedagogical assessments</i>, <i>consultation protocols</i>, and <i>individual work plans</i>.</li>
+              <li><strong>Expertise and help in complex cases:</strong> Algorithms conduct Functional Behavioral Assessments (FBA), help identify hidden markers of destructive behavior, and suggest step-by-step de-escalation strategies.</li>
+              <li><strong>Single window for requests:</strong> All requests from teachers and students arrive in a structured feed. The logbook of work types is filled out automatically.</li>
+              <li><strong>Absolute confidentiality:</strong> Personal records are stored exclusively on your work computer; no one can access them via the internet.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="map" style="background: var(--surface-soft); padding: 60px 0; border-top: 1px solid var(--line);">
+        <div class="section-head">
+          <span class="eyebrow">Tools</span>
+          <h2>Core System Capabilities</h2>
+          <p>Everything you need is gathered in one simple interface.</p>
+        </div>
+
+        <style>
+          .tools-section { margin-bottom: 48px; }
+          .tools-group-title { font-size: 1.3rem; margin-bottom: 20px; padding-bottom: 8px; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 8px; font-weight: 760; }
+          .tools-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+          .tool-card { display: flex; flex-direction: column; background: color-mix(in srgb, var(--surface) 50%, var(--surface-soft)); border: 1px solid var(--line); padding: 18px; border-radius: 12px; transition: transform 0.2s, box-shadow 0.2s; border-left: 4px solid var(--violet); }
+          .tool-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); border-left-color: currentColor; }
+          .tool-card h4 { margin: 0 0 8px; font-size: 1.05rem; }
+          .tool-card p { margin: 0; font-size: 0.9rem; color: var(--muted); line-height: 1.5; flex-grow: 1; }
+          
+          .group-crm .tools-group-title { color: #0284c7; }
+          .group-crm .tool-card { border-left-color: #0ea5e9; }
+          .group-expert .tools-group-title { color: #d97706; }
+          .group-expert .tool-card { border-left-color: #f59e0b; }
+          .group-arch .tools-group-title { color: #db2777; }
+          .group-arch .tool-card { border-left-color: #ec4899; }
+          .group-report .tools-group-title { color: #059669; }
+          .group-report .tool-card { border-left-color: #10b981; }
+
+          html[data-theme="dark"] .group-crm .tools-group-title { color: #38bdf8; }
+          html[data-theme="dark"] .group-expert .tools-group-title { color: #fbbf24; }
+          html[data-theme="dark"] .group-arch .tools-group-title { color: #f472b6; }
+          html[data-theme="dark"] .group-report .tools-group-title { color: #34d399; }
+        </style>
+        
+        <div style="max-width: 1000px; margin: 0 auto 40px; padding: 0 16px;">
+          
+          <!-- CRM -->
+          <div class="tools-section group-crm">
+            <h3 class="tools-group-title">Digital Workspace (CRM)</h3>
+            <div class="tools-cards">
+              <div class="tool-card">
+                <h4>Request Feed</h4>
+                <p>A single window for receiving confidential requests from the website by students, parents, and teachers.</p>
+              </div>
+              <div class="tool-card">
+                <h4>Consultation Registry</h4>
+                <p>Automatically generated logbook accounting for different types of work.</p>
+              </div>
+              <div class="tool-card">
+                <h4>Calendar and Scheduling</h4>
+                <p>Planning the specialist's workload and maintaining student profiles.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Expertise -->
+          <div class="tools-section group-expert">
+            <h3 class="tools-group-title">AI Expertise for Complex Cases</h3>
+            <div class="tools-cards">
+              <div class="tool-card">
+                <h4>Functional Behavioral Assessment (FBA)</h4>
+                <p>Identifying triggers and hidden functions of a student's challenging behavior.</p>
+              </div>
+              <div class="tool-card">
+                <h4>Psychological Profiling</h4>
+                <p>Profiling strengths, risk zones, and developmental traits of the student.</p>
+              </div>
+              <div class="tool-card">
+                <h4>Behavioral Intervention Plan</h4>
+                <p>Selection of de-escalation strategies, conflict prevention, and crisis protocols.</p>
+              </div>
+              <div class="tool-card">
+                <h4>Participant Role Analysis</h4>
+                <p>Identifying hidden risks in group conflicts and bullying situations.</p>
+              </div>
+              <div class="tool-card">
+                <h4>Situation Synthesis</h4>
+                <p>Deep analysis of complex cases highlighting priority areas of work.</p>
+              </div>
+              <div class="tool-card">
+                <h4>Methodological Audit</h4>
+                <p>Checking the school's prevention programs for safety and compliance with standards.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Architect -->
+          <div class="tools-section group-arch">
+            <h3 class="tools-group-title">Official Document Generator (Architect)</h3>
+            <div class="tools-cards">
+              <div class="tool-card">
+                <h4>Individual Consultations</h4>
+                <p>Psychological support plans and final reports on work with the student.</p>
+              </div>
+              <div class="tool-card">
+                <h4>Individual Route (IEP)</h4>
+                <p>Plans for individual preventive work and reports on route implementation.</p>
+              </div>
+              <div class="tool-card">
+                <h4>Group Sessions</h4>
+                <p>Group session plans with an exercise constructor and reports on their execution.</p>
+              </div>
+              <div class="tool-card">
+                <h4>Safe Environment Programs</h4>
+                <p>Targeted prevention program plans and analytical reports on their implementation results.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reports -->
+          <div class="tools-section group-report">
+            <h3 class="tools-group-title">Reports and Analytics</h3>
+            <div class="tools-cards">
+              <div class="tool-card">
+                <h4>Summary for the Principal</h4>
+                <p>Statistics on request categories and psychological climate trends (without names).</p>
+              </div>
+              <div class="tool-card">
+                <h4>Specialist Workload</h4>
+                <p>Transparent analytics of working hours, active cases, and implemented IEPs.</p>
+              </div>
+              <div class="tool-card">
+                <h4>Risk Monitoring</h4>
+                <p>Tracking sessions with elevated risk signs for timely response.</p>
+              </div>
+              <div class="tool-card">
+                <h4>Quality Assessment</h4>
+                <p>Control over compliance with methodological standards and counseling protocols.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Specialist Routine Automation -->
+          <div class="tools-section group-routine" style="margin-top: 36px; margin-bottom: 0;">
+            <h3 class="tools-group-title" style="color: #7c3aed;">Specialist Routine Automation</h3>
+            <div class="tools-cards">
+              <div class="tool-card" style="border-left-color: #7c3aed;">
+                <h4>🎙 Voice Dictation (Speech-to-Text)</h4>
+                <p>Dictate session notes right after a meeting. Automatic protocol field formatting via client-side Web Speech STT and AI summary.</p>
+              </div>
+              <div class="tool-card" style="border-left-color: #7c3aed;">
+                <h4>🤖 AI Prep Briefings</h4>
+                <p>Get a concise 5-bullet summary of key context, dynamics, and previous homework 30 seconds before entering a meeting.</p>
+              </div>
+              <div class="tool-card" style="border-left-color: #7c3aed;">
+                <h4>📸 Archive Digitization (OCR Import)</h4>
+                <p>Quickly convert handwritten notes and paper files into a digital chronological timeline using multimodal OCR.</p>
+              </div>
+              <div class="tool-card" style="border-left-color: #7c3aed;">
+                <h4>📅 Zero-OAuth Calendar Sync (.ICS)</h4>
+                <p>One-click calendar sync to Outlook, Apple, or Google Calendar without sharing account tokens or API permissions.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <section id="privacy">
+        <div class="section-head">
+          <span class="eyebrow">Security and Law</span>
+          <h2>Absolute Data Protection for Children</h2>
+          <p>
+            No data leaks. We guarantee compliance with HIPAA, GDPR, and strict patient privacy regulations thanks to our "Local Vault" architecture.
+          </p>
+        </div>
+
+        <div class="ida-privacy">
+          <div class="ida-privacy-split">
+            <div class="ida-privacy-copy">
+              <p>
+                <strong>The Terminal operates without transmitting names to the internet.</strong>
+              </p>
+              <ul>
+                <li><strong>Everything is stored on your PC:</strong> Names, contacts, and personal student cards are encrypted and physically remain only on the psychologist's work computer.</li>
+                <li><strong>Anonymization before AI:</strong> If a psychologist asks the AI assistant for advice, all names and recognizable details are automatically erased before analysis.</li>
+                <li><strong>The principal sees numbers, not secrets:</strong> Management receives statistics like "15 anxiety cases in Class 8B" but doesn't see exactly who reached out.</li>
+                <li><strong>Works without internet:</strong> Logbooks and cards are always accessible, even if the school network goes down.</li>
+              </ul>
+            </div>
+
+            <div class="ida-registry-gallery" data-registry-gallery>
+              <figure class="ida-registry-gallery-main">
+                <img
+                  src="../assets/img/registry/registry-names.png"
+                  alt="Student registry with personal data"
+                  width="700"
+                  height="520"
+                  data-gallery-main
+                >
+                <figcaption data-gallery-cap>Personal data is restricted exclusively to the specialist's local device</figcaption>
+              </figure>
+              <div class="ida-registry-gallery-thumbs" role="tablist" aria-label="Registry screenshots">
+                <button
+                  type="button"
+                  role="tab"
+                  aria-current="true"
+                  data-src="../assets/img/registry/registry-names.png"
+                  data-alt="Student registry with personal data"
+                  data-cap="Personal data is restricted exclusively to the specialist's local device"
+                >
+                  <img src="../assets/img/registry/registry-names.png" alt="" width="200" height="72" loading="lazy">
+                </button>
+                <button
+                  type="button"
+                  role="tab"
+                  data-src="../assets/img/registry/registry-card.png"
+                  data-alt="Filled patient card"
+                  data-cap="Patient Profile: Contact and demographic information"
+                >
+                  <img src="../assets/img/registry/registry-card.png" alt="" width="200" height="72" loading="lazy">
+                </button>
+                <button
+                  type="button"
+                  role="tab"
+                  data-src="../assets/img/registry/registry-vault.png"
+                  data-alt="Encrypted backup"
+                  data-cap="Encrypted archive and local backup"
+                >
+                  <img src="../assets/img/registry/registry-vault.png" alt="" width="200" height="72" loading="lazy">
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="academy" style="margin-top: 80px;">
+        <div class="section-head">
+          <span class="academy-badge" style="color: #38bdf8; font-weight: 800; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 12px; display: inline-block;">Professional Development</span>
+          <h2>AI Academy: Learning on the Job</h2>
+          <p class="lead">
+            The specialist does not need to spend weeks on courses. Necessary knowledge appears exactly when it is needed in practice.
+          </p>
+        </div>
+        <div class="grid-2">
+          <article class="card">
+            <h3>Real-time Prompts</h3>
+            <p>Right while filling out a case card, the AI supervisor can gently highlight red flags (e.g., signs of hidden depression) and suggest reading a short educational card on the topic from our knowledge base.</p>
+          </article>
+          <article class="card">
+            <h3>3D Prevention Atlas</h3>
+            <p>A free open 3D space collecting modern evidence-based protocols for working with adolescents. Study methodologies in a visual, interactive format.</p>
+            <div style="margin-top: 14px;">
+              <a class="btn btn-ghost" href="/academy/" style="font-size: 0.85rem; padding: 8px 16px;">Open 3D AI Academy</a>
+            </div>
+          </article>
+        </div>
+        <div class="screen-viewport screen-viewport--academy" style="margin-top: 32px; max-width: 1000px; margin-left: auto; margin-right: auto;">
+          <img class="screen-shot" src="../assets/img/screen-academy-ru.jpg" alt="3D AI Academy and AI Professor Interface" loading="lazy" decoding="async" />
+        </div>
+      </section>
+
+      <section id="download" style="margin-top: 60px; margin-bottom: 40px;">
+        <div style="text-align: center; margin-bottom: 36px;">
+          <span style="display: inline-block; padding: 4px 14px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #0f766e; background: color-mix(in srgb, #0f766e 12%, var(--surface)); border: 1px solid color-mix(in srgb, #0f766e 30%, transparent); margin-bottom: 12px;">Deploy Digital Workspace</span>
+          <h2 style="margin: 0 0 10px; font-size: 2rem; font-weight: 800; color: var(--text-color);">Where to start</h2>
+          <p style="margin: 0 auto; max-width: 520px; font-size: 1rem; color: var(--muted); line-height: 1.6;">Try the demo for your role, launch the web version, or install the full version on your PC</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; max-width: 920px; margin: 0 auto 12px;">
+
+          <!-- Step 1: Demo -->
+          <div style="background: var(--surface); border-radius: 16px; padding: 24px; border: 1px solid var(--line); box-shadow: 0 2px 12px rgba(15,23,42,0.06); display: flex; flex-direction: column;">
+            <span style="display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; color: #065f46; background: #ecfdf5; border: 1px solid #a7f3d0; margin-bottom: 10px; align-self: flex-start;">1 · Explore</span>
+            <h3 style="margin: 0 0 6px; font-size: 1.05rem; font-weight: 700; color: var(--text-color);">Demo without registration</h3>
+            <p style="margin: 0 0 16px; font-size: 0.85rem; color: var(--muted); line-height: 1.5;">Realistic data — try any workspace in seconds.</p>
+            <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px;">
+              <a href="https://prevention.school/terminal/staging/?demo=school&edition=en" style="display: block; padding: 10px 14px; border-radius: 9px; border: 1.5px solid #d1fae5; background: #f0fdf4; text-decoration: none;">
+                <div style="font-weight: 700; font-size: 0.85rem; color: var(--text-color);">School Psychologist Workspace</div>
+                <div style="font-size: 0.78rem; color: var(--muted); margin-top: 2px;">Cases, logs, AI assistant</div>
+              </a>
+              <a href="https://prevention.school/terminal/staging/?demo=manager&edition=en" style="display: block; padding: 10px 14px; border-radius: 9px; border: 1.5px solid #bfdbfe; background: #eff6ff; text-decoration: none;">
+                <div style="font-weight: 700; font-size: 0.85rem; color: var(--text-color);">School Principal Workspace</div>
+                <div style="font-size: 0.78rem; color: var(--muted); margin-top: 2px;">Institution management and analytics</div>
+              </a>
+              <a href="https://prevention.school/terminal/staging/?demo=authority&edition=en" style="display: block; padding: 10px 14px; border-radius: 9px; border: 1.5px solid #e9d5ff; background: #fdf4ff; text-decoration: none;">
+                <div style="font-weight: 700; font-size: 0.85rem; color: var(--text-color);">Territorial Department Workspace</div>
+                <div style="font-size: 0.78rem; color: var(--muted); margin-top: 2px;">Macro-summary and territorial metrics</div>
+              </a>
+            </div>
+            <a href="https://prevention.school/workspace/" style="display: block; margin-top: auto; padding: 12px; border-radius: 9px; background: #065f46; color: #fff; text-decoration: none; text-align: center; font-weight: 700; font-size: 0.88rem;">Explore →</a>
+          </div>
+
+          <!-- Step 2: Web version -->
+          <div style="background: var(--surface); border-radius: 16px; padding: 24px; border: 1px solid var(--line); box-shadow: 0 2px 12px rgba(15,23,42,0.06); display: flex; flex-direction: column;">
+            <span style="display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; color: #1e40af; background: #eff6ff; border: 1px solid #bfdbfe; margin-bottom: 10px; align-self: flex-start;">2 · Start</span>
+            <h3 style="margin: 0 0 6px; font-size: 1.05rem; font-weight: 700; color: var(--text-color);">Web Terminal</h3>
+            <p style="margin: 0 0 12px; font-size: 0.85rem; color: var(--muted); line-height: 1.5;">No installation, right in the browser. Data in a secure cloud.</p>
+            <ul style="margin: 0 0 10px; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px;">
+              <li style="display: flex; gap: 8px; font-size: 0.82rem; color: var(--text-secondary);"><span style="color: #1d4ed8; font-weight: 700;">✓</span> Maintaining logs and student registry</li>
+              <li style="display: flex; gap: 8px; font-size: 0.82rem; color: var(--text-secondary);"><span style="color: #1d4ed8; font-weight: 700;">✓</span> Team access for the entire service</li>
+              <li style="display: flex; gap: 8px; font-size: 0.82rem; color: var(--text-secondary);"><span style="color: #1d4ed8; font-weight: 700;">✓</span> Document management and reporting</li>
+            </ul>
+            <p style="margin: 0 0 14px; font-size: 0.78rem; color: var(--muted);">⚠ No offline mode or local encryption</p>
+            <a href="https://web.prevention.school/" style="display: block; margin-top: auto; padding: 12px; border-radius: 9px; background: #1d4ed8; color: #fff; text-decoration: none; text-align: center; font-weight: 700; font-size: 0.88rem;">Register →</a>
+          </div>
+
+          <!-- Step 3: Desktop -->
+          <div style="background: var(--surface); border-radius: 16px; padding: 24px; border: 2px solid #0f766e; box-shadow: 0 2px 16px rgba(15,118,110,0.10); position: relative;">
+            <div style="position: absolute; top: -12px; left: 20px; background: #0f766e; color: #fff; padding: 3px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.04em;">RECOMMENDED</div>
+            <span style="display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; color: #065f46; background: #ecfdf5; border: 1px solid #6ee7b7; margin-bottom: 10px; margin-top: 8px;">3 · Install</span>
+            <h3 style="margin: 0 0 6px; font-size: 1.05rem; font-weight: 700; color: var(--text-color);">Full Terminal (PC)</h3>
+            <p style="margin: 0 0 12px; font-size: 0.85rem; color: var(--muted); line-height: 1.5;">Installs on a PC. Student data is stored locally.</p>
+            <ul style="margin: 0 0 16px; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px;">
+              <li style="display: flex; gap: 8px; font-size: 0.82rem; color: var(--text-secondary);"><span style="color: #0f766e; font-weight: 700;">✓</span> Everything from web version +</li>
+              <li style="display: flex; gap: 8px; font-size: 0.82rem; color: var(--text-secondary);"><span style="color: #0f766e; font-weight: 700;">✓</span> Local encryption of student data</li>
+              <li style="display: flex; gap: 8px; font-size: 0.82rem; color: var(--text-secondary);"><span style="color: #0f766e; font-weight: 700;">✓</span> Statistical reporting forms and IEPs</li>
+            </ul>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <a href="https://prevention.school/dist/Prevention_Terminal_2026.8_x64-setup.exe" style="display: block; padding: 12px; border-radius: 9px; background: #0f766e; color: #fff; text-decoration: none; text-align: center; font-weight: 700; font-size: 0.88rem;">⬇ Download for Windows (.exe)</a>
+              <a href="https://prevention.school/dist/Prevention_Terminal_2026.8_x64_en-US.msi" style="display: block; padding: 10px; border-radius: 9px; border: 1px solid var(--line); background: var(--surface); text-decoration: none; text-align: center; font-weight: 600; font-size: 0.82rem; color: var(--muted);">MSI Package (.msi)</a>
+            </div>
+            <p style="margin: 12px 0 0; font-size: 0.76rem; color: var(--muted); line-height: 1.4; text-align: center;">💡 The application is unified for all roles: you select your work mode (psychologist, principal, or administration) upon launch.</p>
+          </div>
+        </div>
+
+        <!-- Step 4: Login strip -->
+        <div style="max-width: 920px; margin: 0 auto; background: var(--surface); border-radius: 14px; padding: 18px 24px; border: 1px solid var(--line); display: flex; align-items: center; flex-wrap: wrap; gap: 12px;">
+          <span style="display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; color: #374151; background: #f9fafb; border: 1px solid #d1d5db;">4 · Log in</span>
+          <span style="font-size: 0.85rem; color: var(--muted); flex: 1;">Is the Terminal already set up on this device?</span>
+          <a href="https://web.prevention.school/" style="padding: 10px 20px; border-radius: 8px; background: #374151; color: #fff; text-decoration: none; font-weight: 700; font-size: 0.85rem; white-space: nowrap;">Log into Terminal →</a>
+        </div>
+      </section>
+
+    </main>
+
+    <div class="ida-lightbox" id="ida-flow-lightbox" hidden>
+      <div class="ida-lightbox-dialog" role="dialog" aria-modal="true" aria-labelledby="ida-flow-lightbox-title">
+        <div class="ida-lightbox-head">
+          <h3 id="ida-flow-lightbox-title">Preview</h3>
+          <button type="button" class="ida-lightbox-close" data-lightbox-close aria-label="Close">×</button>
+        </div>
+        <div class="ida-lightbox-body">
+          <img data-lightbox-img src="" alt="" />
+          <p data-lightbox-cap></p>
+          <div data-lightbox-thumbs class="ida-lightbox-thumbs"></div>
+        </div>
+        <div class="ida-lightbox-foot" data-lightbox-demo hidden></div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <strong>Prevention Platform</strong><br>AI infrastructure for prevention for younger generations.
+          <p class="footer-contact">
+            <a href="mailto:admin@prevention-ai.ru">admin@prevention-ai.ru</a><span class="footer-contact-sep" aria-hidden="true">·</span><a href="https://t.me/RomanDubrovsky" target="_blank" rel="noopener noreferrer">Telegram</a>
+          </p>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/science/">Science</a>
+          <a href="/academy/">Academy</a>
+          <a href="/government/">Government & Municipalities</a>
+          <a href="/workspace/">Organizations</a>
+          <a href="/help-for-teacher/">Teachers</a>
+          <a href="/teenology/">Parents & Teens</a>
+        </nav>
+      </div>
+    </footer>
+
+  <script src="../assets/theme.js" defer></script>
+  <script>
+    
+    (function () {
+      var root = document.querySelector("[data-registry-gallery]");
+      if (root) {
+        var main = root.querySelector("[data-gallery-main]");
+        var cap = root.querySelector("[data-gallery-cap]");
+        var thumbs = root.querySelectorAll(".ida-registry-gallery-thumbs button");
+        thumbs.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            var src = btn.getAttribute("data-src");
+            var alt = btn.getAttribute("data-alt") || "";
+            var caption = btn.getAttribute("data-cap") || "";
+            if (main && src) {
+              main.setAttribute("src", src);
+              main.setAttribute("alt", alt);
+            }
+            if (cap) cap.textContent = caption;
+            thumbs.forEach(function (t) {
+              t.setAttribute("aria-current", t === btn ? "true" : "false");
+            });
+          });
+        });
+      }
+
+      var galleries = {
+        "mgmt-up": {
+          title: "Macro-level Administration",
+          demo: { href: "https://prevention.school/terminal/staging/?demo=authority&edition=en", label: "View Territorial Dashboard Demo" },
+          slides: [
+            { src: "../assets/img/flow/mgmt-up.png", cap: "Regional load distribution and metrics — without patient personal data" }
+          ]
+        },
+        manager: {
+          title: "Institutional Administrator",
+          demo: { href: "https://prevention.school/terminal/staging/?demo=manager&edition=en", label: "View Principal Demo" },
+          slides: [
+            { src: "../assets/img/flow/manager-dash.png", cap: "Patient funnel analytics and specialist workload management" }
+          ]
+        },
+        architect: {
+          title: "Document Architect",
+          demo: { href: "https://prevention.school/terminal/staging/?demo=school&edition=en", label: "View Specialist Demo" },
+          slides: [
+            { src: "../assets/img/flow/psych-cases.png", cap: "Generation of structured plans and reports" }
+          ]
+        },
+        expert: {
+          title: "Methodological Expert",
+          demo: { href: "https://prevention.school/terminal/staging/?demo=school&edition=en", label: "View Specialist Demo" },
+          slides: [
+            { src: "../assets/img/flow/psych-dash.png", cap: "Functional behavioral assessment and triggers" }
+          ]
+        },
+        copilot: {
+          title: "AI Supervisor",
+          demo: { href: "https://prevention.school/terminal/staging/?demo=school&edition=en", label: "View Specialist Demo" },
+          slides: [
+            { src: "../assets/img/flow/psych-consult.png", cap: "Quick synthesis and analysis of hidden risks" }
+          ]
+        },
+        psych: {
+          title: "Smart Structuring",
+          demo: { href: "https://prevention.school/terminal/staging/?demo=school&edition=en", label: "View Specialist Demo" },
+          slides: [
+            { src: "../assets/img/flow/psych-consult.png", cap: "Consultations: Minimizing anamnesis collection and strict field filling" }
+          ]
+        },
+        ai: {
+          title: "Primary Triage Interface",
+          demo: null,
+          slides: [
+            { src: "../assets/img/flow/ai-intake.png", cap: "AI interaction: Primary screening → specialist selection → booking" },
+            { src: "../assets/img/screen-teenology-en.jpg", cap: "Teenology Interface: Engaging teens without stigmatization" }
+          ]
+        },
+        referrals: {
+          title: "Educator Portal",
+          demo: null,
+          slides: [
+            { src: "../assets/img/flow/lead-inbox.png", cap: "Simplified request channel for educators" }
+          ]
+        },
+        crm: {
+          title: "Scheduling CRM",
+          demo: { href: "https://prevention.school/terminal/staging/?demo=manager&edition=en", label: "View schedule in administrator demo" },
+          slides: [
+            { src: "../assets/img/flow/booking.png", cap: "Displaying availability and automatic request routing" }
+          ]
+        }
+      };
+
+      var box = document.getElementById("ida-flow-lightbox");
+      if (!box) return;
+      var titleEl = document.getElementById("ida-flow-lightbox-title");
+      var imgEl = box.querySelector("[data-lightbox-img]");
+      var capEl = box.querySelector("[data-lightbox-cap]");
+      var thumbsEl = box.querySelector("[data-lightbox-thumbs]");
+      var demoEl = box.querySelector("[data-lightbox-demo]");
+      var lastFocus = null;
+
+      function showSlide(slides, index) {
+        var slide = slides[index];
+        if (!slide) return;
+        imgEl.setAttribute("src", slide.src);
+        imgEl.setAttribute("alt", slide.cap || "");
+        capEl.textContent = slide.cap || "";
+        Array.prototype.forEach.call(thumbsEl.querySelectorAll("button"), function (btn, i) {
+          btn.setAttribute("aria-current", i === index ? "true" : "false");
+        });
+      }
+
+      function openGallery(key) {
+        var data = galleries[key];
+        if (!data) return;
+        lastFocus = document.activeElement;
+        titleEl.textContent = data.title;
+        thumbsEl.innerHTML = "";
+        data.slides.forEach(function (slide, i) {
+          var btn = document.createElement("button");
+          btn.type = "button";
+          btn.setAttribute("aria-label", "Slide " + (i + 1));
+          var thumb = document.createElement("img");
+          thumb.src = slide.src;
+          thumb.alt = "";
+          thumb.loading = "lazy";
+          btn.appendChild(thumb);
+          btn.addEventListener("click", function () {
+            showSlide(data.slides, i);
+          });
+          thumbsEl.appendChild(btn);
+        });
+        showSlide(data.slides, 0);
+        if (data.demo) {
+          demoEl.hidden = false;
+          demoEl.innerHTML =
+            'Demo: <a href="' + data.demo.href + '">' + data.demo.label + "</a>";
+        } else {
+          demoEl.hidden = true;
+          demoEl.innerHTML = "";
+        }
+        box.hidden = false;
+        box.classList.add("is-open");
+        box.querySelector("[data-lightbox-close]").focus();
+      }
+
+      function closeGallery() {
+        box.classList.remove("is-open");
+        box.hidden = true;
+        if (lastFocus && lastFocus.focus) lastFocus.focus();
+      }
+
+      document.querySelectorAll("[data-flow-gallery]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          openGallery(btn.getAttribute("data-flow-gallery"));
+        });
+      });
+      box.querySelectorAll("[data-lightbox-close]").forEach(function (btn) {
+        btn.addEventListener("click", closeGallery);
+      });
+      box.addEventListener("click", function (e) {
+        if (e.target === box) closeGallery();
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && box.classList.contains("is-open")) closeGallery();
+      });
+    })();
+  
+  </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="app-api-base" content="https://api.prevention.school">
+    <meta name="sw-app-version" content="__SW_APP_VERSION__">
+    <title>Prevention.AI — рабочее место специалиста</title>
+    <link rel="stylesheet" href="/styles/app.css">
+</head>
+<body class="sw-body">
+    <header class="sw-header">
+        <div class="sw-brand">
+            <span class="sw-brand-mark">P</span>
+            <div>
+                <div class="sw-brand-title">Prevention.AI</div>
+                <div class="sw-brand-sub">Рабочее место школьного психолога</div>
+            </div>
+        </div>
+        <nav class="sw-nav">
+            <a href="https://prevention.school/" class="sw-nav-link">О платформе</a>
+            <a href="/dashboard/" class="sw-nav-link">Rollup</a>
+            <a href="/appointment/" class="sw-nav-link">Запись клиента</a>
+        </nav>
+    </header>
+
+    <main class="sw-main">
+        <section data-sw-screen="onboarding" class="sw-panel sw-onboard">
+            <h1>ИИ-помощник для безопасной среды и профилактики</h1>
+            <p class="sw-lead">Краткие консультации, разбор материалов и черновики документов — в одном веб-интерфейсе. Сервис для специалистов, работающих с подростками и молодёжью.</p>
+            <ul class="sw-features">
+                <li><strong>Просто спросить</strong> — ответы по теории и практике без лишней бюрократии.</li>
+                <li><strong>Методическая экспертиза</strong> — структурированный разбор ситуаций.</li>
+                <li><strong>Черновики</strong> — опора в оформлении планов и отчётной документации.</li>
+            </ul>
+            <label class="sw-check"><input type="checkbox" id="sw-accept-terms"> Я принимаю <a href="/terms.html" target="_blank" rel="noopener">условия сервиса</a></label>
+            <label class="sw-check"><input type="checkbox" id="sw-accept-privacy"> Я принимаю <a href="/privacy.html" target="_blank" rel="noopener">политику конфиденциальности</a></label>
+            <label class="sw-check"><input type="checkbox" id="sw-skip-onboard"> В следующий раз открывать рабочую область сразу</label>
+            <p class="sw-disclaimer">Это не экстренная помощь и не замена очному специалисту. При угрозе жизни — 112.</p>
+            <button type="button" id="sw-onboard-continue" class="sw-btn sw-btn--primary" disabled>Продолжить</button>
+        </section>
+
+        <section data-sw-screen="workspace" class="sw-panel sw-workspace hidden">
+            <div class="sw-workspace-grid">
+                <aside class="sw-sidebar">
+                    <h2>Быстрый старт</h2>
+                    <button type="button" class="sw-chip" data-sw-quick="Как мягко начать разговор с подростком, который закрылся?">Разговор с закрытым подростком</button>
+                    <button type="button" class="sw-chip" data-sw-quick="Нужен план профилактической беседы в классе после конфликта.">План беседы в классе</button>
+                    <button type="button" class="sw-chip" data-sw-quick="Помоги сформулировать письмо родителям без обвинений.">Письмо родителям</button>
+                </aside>
+                <div class="sw-chat">
+                    <div id="sw-chat-messages" class="sw-chat-messages" aria-live="polite"></div>
+                    <div id="sw-typing" class="sw-typing hidden">Помощник печатает…</div>
+                    <form id="sw-chat-form" class="sw-chat-form">
+                        <textarea id="sw-chat-input" rows="2" placeholder="Опишите ситуацию или задайте вопрос…" maxlength="4000"></textarea>
+                        <button type="submit" id="sw-send-btn" class="sw-btn sw-btn--primary">Отправить</button>
+                    </form>
+                    <div id="sw-specialist-cta" class="sw-specialist-cta hidden">
+                        <p>Если нужна живая консультация, можно подготовить черновик обращения к специалисту.</p>
+                        <button type="button" id="sw-draft-btn" class="sw-btn sw-btn--secondary">Черновик запроса специалисту</button>
+                        <pre id="sw-draft-output" class="sw-draft-output hidden"></pre>
+                        <a id="sw-consultants-link" class="sw-link" href="https://irpp-edu.ru/consultants" target="_blank" rel="noopener">Каталог консультантов ИРПП</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="/common.js"></script>
+    <script src="/workspace.js"></script>
+</body>
+</html>

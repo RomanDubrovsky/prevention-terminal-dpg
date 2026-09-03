@@ -1,0 +1,50 @@
+{
+  "name": "prevention-terminal",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "description": "Терминал Специалиста — десктоп-приложение для психологов и соц. педагогов. Tauri 2 + React + TS. SQLite (SQLCipher) локальная БД. Stateless headless API на стороне сервера.",
+  "scripts": {
+    "sync:manifest": "node ../../scripts/sync-terminal-manifest.mjs",
+    "predev": "npm run sync:manifest",
+    "prebuild": "npm run sync:manifest",
+    "dev": "vite",
+    "dev:ru": "powershell -NoProfile -Command \"$env:VITE_TERMINAL_EDITION='ru'; npm run dev\"",
+    "dev:ida-ru": "powershell -NoProfile -Command \"$env:VITE_TERMINAL_EDITION='ru'; $env:VITE_TERMINAL_PRODUCT='ida'; npm run dev\"",
+    "dev:ida-web": "powershell -NoProfile -Command \"$env:VITE_TERMINAL_PRODUCT='ida'; $env:VITE_IDA_AUTH_MODE='supabase'; npm run dev\"",
+    "build": "vite build",
+    "build:ru": "powershell -NoProfile -Command \"$env:VITE_TERMINAL_EDITION='ru'; npm run build\"",
+    "build:staging": "vite build --outDir dist-staging",
+    "build:ida-web": "powershell -NoProfile -Command \"$env:VITE_TERMINAL_PRODUCT='ida'; $env:VITE_IDA_AUTH_MODE='supabase'; tsc --noEmit; vite build --outDir dist-ida-web\"",
+    "preview": "vite preview --port 5173",
+    "test": "node --experimental-strip-types --test src/lib/sanitizer.test.ts src/lib/case.test.ts src/lib/case_expert_store.test.ts src/lib/worklog.test.ts src/lib/progress_note.test.ts src/lib/consultation_session.test.ts src/lib/expert_bridge.test.ts src/lib/session_records.test.ts src/lib/installation_meta.test.ts src/lib/geo_location.test.ts src/lib/docx_export.test.ts src/lib/architect_client.test.ts src/lib/architect_picker.test.ts src/lib/update_notifier.test.ts src/lib/taxonomy.test.ts src/lib/terminal_config.test.ts src/lib/onboarding_entry.test.ts src/lib/workspace_nav.test.ts src/lib/site_portal.test.ts src/lib/site_pages.test.ts src/lib/site_embed_public.test.ts src/lib/leads_csv_export.test.ts src/lib/manager_dashboard.test.ts src/lib/terminal_billing_client.test.ts src/lib/program_plan_rows.test.ts src/lib/prevention_link.test.ts src/lib/prevention_work_types.test.ts src/lib/session_tagging.test.ts src/lib/session_tagging_profiles.test.ts src/lib/intervention_techniques.test.ts src/lib/school_psychologist_forms.test.ts src/lib/work_entries.test.ts src/lib/registry_profile.test.ts src/lib/registry_spreadsheet.test.ts src/lib/workspace_list_sort.test.ts src/lib/research_contribution.test.ts",
+    "tauri": "tauri",
+    "tauri:dev": "tauri dev",
+    "tauri:build": "tauri build"
+  },
+  "engines": {
+    "node": ">=22.6"
+  },
+  "dependencies": {
+    "@mlc-ai/web-llm": "^0.2.84",
+    "@tauri-apps/api": "^2.0.0",
+    "@tauri-apps/plugin-dialog": "^2.0.0",
+    "@tauri-apps/plugin-fs": "^2.0.0",
+    "@tauri-apps/plugin-http": "^2.0.0",
+    "@tauri-apps/plugin-shell": "^2.0.0",
+    "@types/leaflet": "^1.9.21",
+    "@xenova/transformers": "^2.17.2",
+    "docx": "^8.5.0",
+    "leaflet": "^1.9.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.0.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "typescript": "^5.5.3",
+    "vite": "^5.4.0"
+  }
+}

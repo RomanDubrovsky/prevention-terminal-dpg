@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../../favicon.ico" sizes="any">
+  <title>ИИ-помощник для педагогов — бесплатно</title>
+  <script>
+    window.addEventListener('error', function(e) {
+      try {
+        var base = window.PN_EDUCATOR_API_BASE || "https://api.prevention.school";
+        if (base === "__API_BASE__") base = "https://api.prevention.school";
+        fetch(base + '/api/telemetry/client-error', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ message: e.message, source: e.filename, lineno: e.lineno, url: window.location.href, stack: e.error ? e.error.stack : '' })
+        }).catch(function(){});
+      } catch(err) {}
+    });
+    window.addEventListener('unhandledrejection', function(e) {
+      if (e.reason && (e.reason.name === 'AbortError' || String(e.reason).indexOf('AbortError') !== -1)) return;
+      try {
+        var base = window.PN_EDUCATOR_API_BASE || "https://api.prevention.school";
+        if (base === "__API_BASE__") base = "https://api.prevention.school";
+        fetch(base + '/api/telemetry/client-error', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ message: e.reason ? e.reason.toString() : 'Unhandled Rejection', source: 'promise', url: window.location.href })
+        }).catch(function(){});
+      } catch(err) {}
+    });
+  </script>
+  <meta name="description" content="Бесплатный цифровой помощник для классных и предметных руководителей: сложные ситуации в классе, понятный язык, без регистрации.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;550;650;760;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <style>
+    .educator-chat {
+      display: grid;
+      gap: 12px;
+      background: var(--surface-1, #fff);
+      border: 1px solid var(--border, #e2e8f0);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 8px 32px rgba(15, 23, 42, 0.06);
+    }
+    .educator-chat-messages {
+      min-height: 280px;
+      max-height: 420px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 8px 4px;
+    }
+    .educator-chat-msg {
+      max-width: 92%;
+      padding: 10px 14px;
+      border-radius: 14px;
+      font-size: 15px;
+      line-height: 1.45;
+      white-space: pre-wrap;
+    }
+    .educator-chat-msg--user {
+      align-self: flex-end;
+      background: #0f766e;
+      color: #ecfdf5;
+    }
+    .educator-chat-msg--ai {
+      align-self: flex-start;
+      background: var(--surface-2, #f1f5f9);
+      color: var(--text, #0f172a);
+    }
+    .educator-chat-form {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .educator-chat-form input[type="text"] {
+      flex: 1 1 220px;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border, #cbd5e1);
+      font: inherit;
+    }
+    .educator-chat-form button {
+      padding: 12px 18px;
+      border-radius: 10px;
+      border: none;
+      background: #0f766e;
+      color: #fff;
+      font-weight: 650;
+      cursor: pointer;
+    }
+    .educator-chat-quota {
+      font-size: 13px;
+      color: var(--muted, #64748b);
+    }
+    .educator-chat-hp { position: absolute; left: -9999px; opacity: 0; }
+    .upsell-grid { margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="site-header">
+      <a class="brand" href="/ru/"><span class="brand-mark">П</span><span>Профилактика-AI</span></a>
+      <nav class="nav" aria-label="Навигация">
+        <a href="/ru/science/">Наука</a>
+        <a href="/ru/academy/">Академия</a>
+        <a href="/ru/government/">Органам власти и МСУ</a>
+        <a href="/ru/workspace/">Организациям</a>
+        <a href="/ru/help-for-teacher/" class="nav-active" aria-current="page">Педагогам</a>
+        <a href="/ru/teenology/">Родителям и подросткам</a>
+      </nav>
+      <div class="nav-controls">
+        <a href="https://web.prevention.school/" class="nav-cta" target="_blank" rel="noopener">Веб-терминал</a>
+        <a href="/help-for-teacher/" class="lang-toggle" style="font-weight: 600; text-decoration: none; padding: 4px 8px; border-radius: 4px; background: var(--surface-soft); color: var(--text);">EN</a>
+        <button type="button" class="theme-toggle" id="theme-toggle">Dark</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <span class="eyebrow">Бесплатно · без регистрации · для школ</span>
+          <h1>ИИ-помощник для педагогов — разбор сложных ситуаций в классе</h1>
+          <p class="lead">
+            Инструмент для классных и предметных руководителей: конфликты, мотивация, поведение,
+            взаимодействие с родителями.
+            <strong>На сайте — два режима:</strong> обсудить ситуацию в классе и составить план группового занятия по ЗОЖ.
+          </p>
+          <ul class="muted" style="margin: 0; padding-left: 1.2rem;">
+            <li>Не заменяет психолога и не ставит диагнозы</li>
+            <li>Не сохраняем ФИО — описывайте обезличенно</li>
+            <li>Планы занятий на сайте — текстом; DOCX и сохранение — в терминале</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="educator-chat-root" class="educator-chat" data-locale="ru" data-terminal-url="../../terminal/staging/?entry=educator" aria-label="Чат с помощником">
+        <div id="educator-chat-messages" class="educator-chat-messages" role="log" aria-live="polite"></div>
+        <p id="educator-chat-quota" class="educator-chat-quota"></p>
+        <form id="educator-chat-form" class="educator-chat-form">
+          <label class="educator-chat-hp" for="educator-chat-hp">Не заполняйте</label>
+          <input type="text" id="educator-chat-hp" name="company" tabindex="-1" autocomplete="off">
+          <input type="text" id="educator-chat-input" placeholder="Например: ученик 7 класса постоянно срывает урок…" maxlength="4000" required>
+          <button type="submit" id="educator-chat-send">Отправить</button>
+        </form>
+        <p class="muted" style="font-size: 12px; margin: 0;">
+          При угрозе жизни или насилию — 112 и детский телефон доверия 8-800-2000-122. Это не экстренная служба.
+        </p>
+      </section>
+
+      <div style="margin-top: 24px; text-align: center; background: rgba(15, 118, 110, 0.05); border: 1px solid rgba(15, 118, 110, 0.2); border-radius: 12px; padding: 24px;">
+        <h3 style="margin: 0 0 12px; font-size: 1.1rem; color: var(--text);">Нужна помощь специалиста?</h3>
+        <p style="margin: 0 0 16px; font-size: 0.95rem; color: var(--muted);">Если ситуация требует вмешательства школьного психолога, вы можете передать информацию о кейсе напрямую в его электронный кабинет.</p>
+        <button onclick="alert('К сожалению, мы пока не видим вашу организацию в системе. Передайте вашему школьному психологу ссылку на подключение электронного кабинета: https://prevention.school/ru/workspace/');" style="padding: 12px 24px; border-radius: 8px; border: none; background: #0f766e; color: #fff; font-weight: 600; cursor: pointer; font-family: inherit;">Передать кейс школьному психологу</button>
+      </div>
+
+      <section class="upsell-grid">
+        <div class="section-head">
+          <h2>Что ещё есть в экосистеме «Профилактика»</h2>
+          <p class="muted">Покажите коллегам — школьный психолог, руководство школы, родители.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <span class="tag">Психолог</span>
+            <h3><a href="/ru/workspace/">Рабочее место психолога</a></h3>
+            <p>Журнал консультаций, индивидуальные профилактические маршруты (ИПР), составление заключений и автоматическая отчётность.</p>
+            <a class="btn btn-primary" href="/ru/workspace/">Подробнее о рабочем месте</a>
+          </article>
+          <article class="card">
+            <span class="tag">Руководство</span>
+            <h3><a href="/ru/workspace/">Панели управления организаций</a></h3>
+            <p>Обезличенная сводка по психологическому климату и профилактической работе в школе: риски, динамика и охват без доступа к персональным данным детей.</p>
+            <a class="btn" href="/ru/workspace/">Для руководителей</a>
+          </article>
+          <article class="card">
+            <span class="tag">Семьи</span>
+            <h3><a href="/ru/teenology/">Teenology</a></h3>
+            <p>Приложение для родителей и подростков: разбор сложных ситуаций в семье, психологический check-up и режим «Семейный мост» для доверительного диалога.</p>
+            <a class="btn" href="/ru/teenology/">О приложении</a>
+          </article>
+        </div>
+      </section>
+      <section>
+        <p class="muted">Версия <code>__BUILD_VERSION__</code></p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <strong>Профилактика-AI</strong><br>Открытая инфраструктура электронных рабочих мест.
+          <p class="footer-contact">
+            <a href="mailto:admin@prevention-ai.ru">admin@prevention-ai.ru</a><span class="footer-contact-sep" aria-hidden="true">·</span><a href="https://t.me/RomanDubrovsky" target="_blank" rel="noopener noreferrer">Telegram</a><span class="footer-contact-sep" aria-hidden="true">·</span><a href="https://www.linkedin.com/in/romandubrovsky/" target="_blank" rel="noopener">LinkedIn</a>
+          </p>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/ru/science/">Наука</a>
+          <a href="/ru/academy/">Академия</a>
+          <a href="/ru/government/">Органам власти и МСУ</a>
+          <a href="/ru/workspace/">Организациям</a>
+          <a href="/ru/help-for-teacher/">Педагогам</a>
+          <a href="/ru/teenology/">Родителям и подросткам</a>
+        </nav>
+      </div>
+    </footer>
+  </div>
+
+  <script>window.PN_EDUCATOR_API_BASE = "__API_BASE__";</script>
+  <script src="../../assets/educator-chat.js" defer data-api-base="__API_BASE__"></script>
+  <script src="../../assets/theme.js"></script>
+</body>
+</html>

@@ -1,0 +1,724 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/favicon.png">
+  <title>Scientific Base — Prevention Intelligence Engine (PIE)</title>
+  <meta name="description" content="The science behind the Prevention AI platform: PIE taxonomy, executable protocols, case sprints, user outcome evaluations, and a continuous statistical feedback loop transforming field practice into empirical standards.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght=400;550;650;760;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/site.css">
+  <style>
+    .tech-matrix {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin: 32px 0;
+    }
+    .matrix-axis {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 24px;
+    }
+    .matrix-axis h3 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.1rem;
+      color: #38bdf8;
+      margin-top: 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 12px;
+    }
+    .matrix-axis ul {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 0 0;
+    }
+    .matrix-axis li {
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    .matrix-axis strong {
+      color: #fff;
+    }
+    .code-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      background: rgba(255,255,255,0.1);
+      padding: 2px 6px;
+      border-radius: 4px;
+      float: right;
+      color: #8be9fd;
+    }
+    .step-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 20px;
+    }
+    .badge-loop {
+      background: rgba(45, 212, 191, 0.1);
+      color: #2dd4bf;
+      margin-bottom: 12px;
+    }
+    .step-label {
+      color: #2dd4bf;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .step-card p {
+      font-size: 14px;
+      margin: 0;
+      line-height: 1.5;
+    }
+    .triad-loop-steps {
+      margin-top: 32px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .triad-loop-steps h3 {
+      margin: 0 0 8px;
+      font-size: 1.1rem;
+    }
+    .triad-loop-steps .loop-intro {
+      margin: 0 0 20px;
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 720px;
+    }
+    .factory-pipeline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin-top: 28px;
+    }
+    .factory-pipeline .step-card {
+      position: relative;
+    }
+    .factory-pipeline .step-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: #2dd4bf;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      display: block;
+    }
+    .factory-bridge {
+      margin-top: 24px;
+      padding: 20px 24px;
+      border-radius: 8px;
+      border: 1px dashed rgba(45, 212, 191, 0.35);
+      background: rgba(45, 212, 191, 0.04);
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--text);
+      max-width: 880px;
+    }
+    .factory-bridge strong {
+      color: var(--text);
+    }
+    .hierarchy-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin: 32px 0;
+      max-width: 900px;
+    }
+    .hierarchy-layer {
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.01);
+      transition: border-color 0.2s, background-color 0.2s;
+    }
+    .hierarchy-layer:hover {
+      border-color: #38bdf8;
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .layer-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: #38bdf8;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      display: block;
+      letter-spacing: 0.05em;
+    }
+    .hierarchy-layer h3 {
+      margin: 0 0 6px 0;
+      font-size: 1.15rem;
+    }
+    .hierarchy-layer p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .hierarchy-layer .example-box {
+      margin-top: 12px;
+      padding: 12px 16px;
+      background: rgba(56, 189, 248, 0.03);
+      border-left: 3px solid #38bdf8;
+      border-radius: 0 6px 6px 0;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+    .hierarchy-layer .example-box strong {
+      color: #38bdf8;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    
+    /* Mermaid Graph Styles */
+    .prompt-tree-container {
+      margin-top: 32px;
+      padding: 32px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius, 16px);
+      box-shadow: var(--shadow);
+      overflow-x: auto;
+      text-align: center;
+    }
+    .mermaid {
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Prompt Matrix Styles */
+    .prompt-legend-matrix {
+      margin-top: 24px;
+    }
+    .legend-row {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.9rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .legend-color {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+    .matrix-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 768px) {
+      .matrix-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .matrix-column {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius, 16px);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+    .matrix-col-title {
+      font-size: 1.15rem;
+      color: var(--text);
+      font-weight: 700;
+      margin-top: 0;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+    .frontend-col {
+      border-top: 4px solid #0ea5e9;
+    }
+    .backend-col {
+      border-top: 4px solid #10b981;
+    }
+    .matrix-card {
+      margin-bottom: 16px;
+      padding: 16px;
+      background: var(--surface-soft);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+    .matrix-card:last-child {
+      margin-bottom: 0;
+    }
+    .matrix-card h4 {
+      margin: 8px 0 4px 0;
+      font-size: 1rem;
+      color: var(--text);
+      font-weight: 700;
+    }
+    .matrix-card p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .matrix-tag {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-weight: 700;
+      display: inline-block;
+    }
+    
+    /* Contrast-safe badge tag colors for light & dark themes */
+    .tag-architect { background: rgba(14, 165, 233, 0.15); color: #0284c7; }
+    .tag-expert { background: rgba(139, 92, 246, 0.15); color: #7c3aed; }
+    .tag-copilot { background: rgba(245, 158, 11, 0.15); color: #d97706; }
+    .tag-smartfill { background: rgba(236, 72, 153, 0.15); color: #db2777; }
+    
+    .tag-intake { background: rgba(16, 185, 129, 0.15); color: #059669; }
+    .tag-diagnostic { background: rgba(20, 184, 166, 0.15); color: #0d9488; }
+    .tag-companion { background: rgba(99, 102, 241, 0.15); color: #4f46e5; }
+    .tag-axioms { background: rgba(239, 68, 68, 0.15); color: #dc2626; }
+
+    html[data-theme="dark"] .tag-architect { color: #38bdf8; }
+    html[data-theme="dark"] .tag-expert { color: #a78bfa; }
+    html[data-theme="dark"] .tag-copilot { color: #fbbf24; }
+    html[data-theme="dark"] .tag-smartfill { color: #f472b6; }
+    html[data-theme="dark"] .tag-intake { color: #34d399; }
+    html[data-theme="dark"] .tag-diagnostic { color: #2dd4bf; }
+    html[data-theme="dark"] .tag-companion { color: #818cf8; }
+    html[data-theme="dark"] .tag-axioms { color: #f87171; }
+  </style>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    mermaid.initialize({ 
+      startOnLoad: true, 
+      theme: isDark ? 'dark' : 'default'
+    });
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <header class="site-header">
+      <a class="brand" href="/"><span class="brand-mark">P</span><span>Prevention-AI</span></a>
+      <nav class="nav" aria-label="Navigation">
+        <a href="/science/" class="nav-active" aria-current="page">Science</a>
+        <a href="/academy/">Academy</a>
+        <a href="/government/">Government & Municipalities</a>
+        <a href="/workspace/">Organizations</a>
+        <a href="/help-for-teacher/">Teachers</a>
+        <a href="/teenology/">Parents & Teens</a>
+      </nav>
+      <div class="nav-controls">
+        <a href="https://web.prevention.school/" class="nav-cta" target="_blank" rel="noopener">Web Terminal</a>
+        <a href="/ru/science/" class="lang-toggle" aria-label="Switch to Russian" style="font-weight: 600; text-decoration: none; padding: 4px 8px; border-radius: 4px; background: var(--surface-soft); color: var(--text);">RU</a>
+        <button type="button" class="theme-toggle" id="theme-toggle">Dark</button>
+      </div>
+    </header>
+
+   <main>
+      <section class="hero-layer">
+        <div class="grid-2">
+          <div>
+            <h1>Prevention Architecture</h1>
+            <p class="lead">The platform operates as a continuous empirical research cycle. It helps psychologists transform their observations into structured data, combining classical methods of evidence-based psychology with the analytical capabilities of AI to design modern care standards.</p>
+            <p class="text-muted" style="margin-top: 12px;">Powered by the <strong>Prevention Intelligence Engine (PIE)</strong> — a constraint system that keeps generative AI within scientifically validated psychological boundaries, guaranteeing its safety and strict adherence to professional protocols.</p>
+            <div class="actions">
+              <a class="btn btn-primary" href="/whitepaper/" target="_blank" rel="noopener">Read Full Manifesto (PDF)</a>
+            </div>
+          </div>
+          <div class="architecture-preview">
+            <div class="tech-badge-cloud science-cloud">
+              <span>Statistical Feedback Loop</span>
+              <span>Evidence Generation</span>
+              <span>Tri-axial Taxonomy</span>
+              <span>Non-clinical Boundaries</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ethics and Safety -->
+      <section id="ai-safety" style="margin-top: 40px; padding: 32px; background: rgba(45, 212, 191, 0.05); border: 1px solid rgba(45, 212, 191, 0.2); border-radius: 12px;">
+        <div class="section-head" style="margin-bottom: 0;">
+          <span class="eyebrow" style="color: #2dd4bf;">AI Safety</span>
+          <h2>Ethics and Safety</h2>
+          <p style="margin-bottom: 0;">Prevention-AI is designed on a <strong>Copilot</strong> principle. Artificial intelligence never makes diagnoses, never makes decisions for the specialist, and does not replace a human. It serves as an expert assistant, relying on strict methodological frameworks embedded in the database: <strong>WHO guidelines</strong>, <strong>Functional Behavioral Assessment (FBA)</strong> protocols, and <strong>Cognitive Behavioral Therapy (CBT)</strong> approaches.</p>
+        </div>
+      </section>
+
+      <section id="taxonomy-deepdive" style="margin-top: 64px;">
+        <div class="section-head">
+          <span class="eyebrow">Core Mechanism</span>
+          <h2>Multidimensional Prevention Matrix</h2>
+          <p>The system does not allow "free fantasizing" by algorithms. Any specialist request is processed through a strict state matrix, guaranteeing the validity of recommendations.</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <header>
+              <strong>X_STAGE_VALUES</strong>
+              <h3>X-Axis: Process Stages</h3>
+            </header>
+            <p>Determines the exact operational phase of the intervention cycle:</p>
+            <ul>
+              <li><code>X1_Problem</code> — Acute tension identification</li>
+              <li><code>X2_Diag</code> — Non-clinical preventive screening / structured checkup</li>
+              <li><code>X3_Goal</code> — Setting limited de-escalation milestones</li>
+              <li><code>X4_Action</code> — Deployment of micro-action protocols</li>
+              <li><code>X5_Eval</code> — Automated reflection and outcome tracking</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <header>
+              <strong>Y_LEVEL_VALUES</strong>
+              <h3>Y-Axis: Severity Levels</h3>
+            </header>
+            <p>Establishes the safety perimeter and determines routing thresholds:</p>
+            <ul>
+              <li><code>Y1_Normal</code> — Standard age-related crisis</li>
+              <li><code>Y2_Risk</code> — Accumulation of subclinical risk factors</li>
+              <li><code>Y3_Problem</code> — Manifested behavioral or communicative crisis</li>
+              <li><code>Y4_Crisis_Clinical</code> — Hard boundary for warm routing to a specialist</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <header>
+              <strong>M_MODALITY_VALUES</strong>
+              <h3>M-Axis: System Modalities</h3>
+            </header>
+            <p>Categorizes the physiological or ecological origin of the stress vector:</p>
+            <ul>
+              <li><code>M1_Biology</code> — Age-related and neurodevelopmental shifts</li>
+              <li><code>M2_Psychophysiology</code> — Somatic markers and stress responses</li>
+              <li><code>M3_Cognition</code> — Internal behavioral cycles, beliefs, and scripts</li>
+              <li><code>M4_Social</code> — Microsystem dynamics (family and peers)</li>
+              <li><code>M5_Environment</code> — Macrospaces (institutional and digital contexts)</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="grid-2" style="margin-top: 24px;">
+          <div class="spec-box">
+            <div class="spec-item">
+              <strong>Actor Roles (Target Interface)</strong>
+              <p>Dynamic context filtering based on the certified user interface: <code>Psychologist</code> (methodological journals), <code>Teacher</code> (classroom dynamics), or <code>Administrator</code> (macro reports).</p>
+            </div>
+          </div>
+
+          <div class="spec-box">
+            <div class="spec-item">
+              <strong>Organizational Scale (Target Radius)</strong>
+              <p>Determines the target sociological system size for the data cycle: <code>Individual</code> → <code>Family</code> → <code>Group</code> → <code>Community</code> → <code>Society</code>.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="spec-box" style="margin-top: 32px;">
+          <div class="spec-item">
+            <h3>Unified Taxonomy Passport Metadata</h3>
+            <p>To ensure full semantic continuity between Tier 1 consumer apps and Tier 2 specialist spaces, each session generates an isolated, PII-free cryptographic passport. This passport tracks behavioral change dynamics (movement from baseline anomaly to target de-escalation) and evaluates context continuity in longitudinal logs, without revealing personal stories.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3D Topological Graph Visualization Section -->
+      <div class="spec-box Highlight" style="margin-top: 40px; padding: 32px; border-radius: 16px; border: 1px solid var(--line); background: var(--surface-soft);">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; align-items: center;">
+          <div>
+            <span class="academy-badge" style="background: var(--violet-soft); color: var(--violet); padding: 4px 10px; border-radius: 99px; font-size: 0.75rem; font-weight: bold;">Topological Atlas</span>
+            <h3 style="margin-top: 12px; font-size: 1.3rem;">Semantic 3D Graph of the Prevention Academy</h3>
+            <p style="font-size: 0.92rem; line-height: 1.6; color: var(--muted); margin-top: 8px;">
+              Instead of treating nodes as simple links, the system maps connections as a semantic galaxy of <strong>438 structural nodes and over 1,800 directed edges</strong>. This topological structure serves as a catalog of safe pathways, guiding the specialist along developmental, clinical, and preventive tracks.
+            </p>
+            <div style="margin-top: 16px;">
+              <a class="btn btn-primary" href="/academy/" style="font-size: 0.85rem; padding: 8px 18px;">Launch Interactive 3D Graph</a>
+            </div>
+          </div>
+          <div style="border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: #0f172a; box-shadow: 0 12px 32px rgba(0,0,0,0.15);">
+            <img src="../assets/img/screen-academy-ru.jpg" alt="3D topological knowledge graph visualization" style="width: 100%; display: block; filter: saturate(1.15);" />
+          </div>
+        </div>
+      </div>
+
+      <section id="prompt-architecture" style="margin-top: 64px;">
+        <div class="section-head">
+          <span class="eyebrow">Cognitive Core</span>
+          <h2>System Prompt Architecture</h2>
+          <p>We utilize a fully transparent, highly deterministic prompt hierarchy. It establishes non-clinical boundaries, isolates sensitive diagnostics, and safely guides the LLM along validated protocols. This entire structure is open for collaborative governance and ongoing scientific review.</p>
+        </div>
+        <div class="prompt-tree-container">
+          <div class="mermaid">
+graph TD
+    A[Main System Prompt <br> Prevention-AI] --> B(Frontend: Specialist Terminal)
+    A --> C(Backend: Client Apps & Core)
+
+    %% Frontend Branch
+    B --> B1(Document Architect)
+    B --> B2(Methodological Expert)
+    B --> B3(Co-pilot / Copilot)
+    B --> B4(Smart Fill)
+    
+    B1 --> B1a[IEP / Multidisciplinary Teams / Group Plans / Safety]
+    B2 --> B2a[FBA / Profiles / Program Audits]
+    B3 --> B3a[Fast AI Synthesis]
+    B3 --> B3b[Role and Risk Analysis]
+    B4 --> B4a[DAP Session Structuring]
+
+    %% Backend Branch
+    C --> C1(Client Intake and Routing)
+    C --> C2(Diagnostic Module)
+    C --> C3(Consultative Companions)
+    
+    C1 --> C1a[Intake Intercepts <br> Moral Panic, Adoption]
+    C1 --> C1b[Taxonomy Mapping <br> Hard Provider Gateways]
+    
+    C2 --> C2a[Diagnostic Axioms <br> PII Protection]
+    C2 --> C2b[Deep Dive <br> Intermediate Finding Generation]
+    C2 --> C2c[Intake Summary <br> Data Synthesis]
+    
+    C3 --> C3a[Navigator for Parents]
+    C3 --> C3b[Relationship Bridge]
+    C3 --> C3c[Companion for Educators]
+    C3 --> C3d[Family Bridge <br> Shuttle Mediation]
+    C3 --> C3e[Sprint Planning <br> Multi-Problem Sprint]
+    C3 --> C3f[Dynamic Accompaniment <br> Discover/Summarize/Mobilize]
+
+    classDef core fill:#1e293b,stroke:#475569,stroke-width:2px,color:#fff;
+    classDef frontend fill:#0ea5e9,stroke:#0284c7,stroke-width:2px,color:#fff;
+    classDef backend fill:#10b981,stroke:#059669,stroke-width:2px,color:#fff;
+    classDef leaf fill:#0f172a,stroke:#334155,stroke-width:1px,color:#cbd5e1;
+    
+    class A core;
+    class B,B1,B2,B3,B4 frontend;
+    class C,C1,C2,C3 backend;
+    class B1a,B2a,B3a,B3b,B4a,C1a,C1b,C2a,C2b,C2c,C3a,C3b,C3c,C3d,C3e,C3f leaf;
+          </div>
+        </div>
+
+        <div class="prompt-legend-matrix">
+          <div class="legend-row">
+            <span class="legend-item"><span class="legend-color" style="background:#0ea5e9"></span> Frontend (Terminal)</span>
+            <span class="legend-item"><span class="legend-color" style="background:#10b981"></span> Backend (Core)</span>
+            <span class="legend-item"><span class="legend-color" style="background:#0f172a; border: 1px solid #334155;"></span> Executable Prompts</span>
+          </div>
+
+          <div class="matrix-grid">
+            <div class="matrix-column frontend-col">
+              <h3 class="matrix-col-title">Frontend Terminal Prompts</h3>
+              
+              <div class="matrix-card">
+                <span class="matrix-tag tag-architect">Document Architect</span>
+                <h4>Plans & Reports: Individual Consultations, IEP, Group Work, Safe Environment</h4>
+                <p>Generates all main types of psychologist documents from raw data, structures according to methodology, provides recommendations, and formats into a print-ready document.</p>
+              </div>
+
+              <div class="matrix-card">
+                <span class="matrix-tag tag-expert">Methodological Expert</span>
+                <h4>FBA & Profiles</h4>
+                <p>Compiles Functional Behavioral Assessment (FBA) and psychological profiles, mapping student behavior to A-B-C triggers.</p>
+              </div>
+
+              <div class="matrix-card">
+                <span class="matrix-tag tag-copilot">Case Copilot</span>
+                <h4>Case Copilot</h4>
+                <p>Analyzes roles and calculates hidden social and destructive risks.</p>
+              </div>
+
+              <div class="matrix-card">
+                <span class="matrix-tag tag-smartfill">Smart Fill</span>
+                <h4>DAP Session Structuring</h4>
+                <p>Automatically transforms unstructured voice dictation into strict Data, Assessment, and Plan (DAP) fields for professional journals.</p>
+              </div>
+            </div>
+
+            <div class="matrix-column backend-col">
+              <h3 class="matrix-col-title">Backend Core Prompts</h3>
+              
+              <div class="matrix-card">
+                <span class="matrix-tag tag-intake">Intake and Routing</span>
+                <h4>Intercepts & Provider Routing</h4>
+                <p>Safely handles acute intake scenarios (e.g., adoption panic) and maps conversational taxonomy to provider psychological profiles.</p>
+              </div>
+
+              <div class="matrix-card">
+                <span class="matrix-tag tag-diagnostic">Diagnostic Module</span>
+                <h4>Deep Dive & Intake Summary</h4>
+                <p>Post-processing of test results to generate a single empathetic "deep dive" question and synthesize PII-stripped evidence summaries.</p>
+              </div>
+
+              <div class="matrix-card">
+                <span class="matrix-tag tag-companion">Companions</span>
+                <h4>Parent Navigator & Relationship Bridge</h4>
+                <p>Manages relationship support logic (family or couple). Ensures absolute neutrality, privacy protection, and deflects security threats away from the AI.</p>
+              </div>
+
+              <div class="matrix-card">
+                <span class="matrix-tag tag-companion">Shuttle Mediation (Family Bridge)</span>
+                <h4>Translating Positions & NVC</h4>
+                <p>Translates party positions through the lens of Nonviolent Communication (NVC), helping the parent see the teen's hidden needs, and the teen understand the adult's anxiety without disclosing private chat details.</p>
+              </div>
+
+              <div class="matrix-card">
+                <span class="matrix-tag tag-intake">Sprint Planning</span>
+                <h4>Multi-problem Deconstruction & Sprints</h4>
+                <p>Decomposes dense incoming messages with multiple complaints into 2–4 independent themes. Identifies priority sprint focus and formulates one micro-action step for the next 24 hours.</p>
+              </div>
+
+              <div class="matrix-card">
+                <span class="matrix-tag tag-diagnostic">Dynamic Accompaniment</span>
+                <h4>Dialogue Phase Management</h4>
+                <p>Tracks therapeutic contact depth and switches response logic (Discover → Summarize → Mobilize), separating facts from parental interpretations and offering ready-made letter/request templates.</p>
+              </div>
+              
+              <div class="matrix-card">
+                <span class="matrix-tag tag-axioms">Security Core</span>
+                <h4>Diagnostic Axioms</h4>
+                <p>Absolute unshakable baseline: prohibits clinical diagnoses, moralizing, and mandates routing to emergency services (e.g., 911) when life-threatening data is inputted.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="evidence-factory">
+        <div class="section-head">
+          <span class="eyebrow">Runtime Factory</span>
+          <h2>Evidence Factory: Classifier → Protocols → Sprints → Outcome</h2>
+          <p>In addition to the macro-research loop, Prevention-AI already utilizes a closed operational cycle in every paid session. Raw chat is never saved as evidence; the factory outputs structured keys, protocol IDs, sprint metadata, and user ratings that can be aggregated to determine protocol efficacy.</p>
+        </div>
+
+        <div class="factory-pipeline">
+          <div class="step-card">
+            <span class="step-num">Step 1 · Classification</span>
+            <strong class="step-label">Automatic Problem Classifier</strong>
+            <p>Each user utterance is bound to taxonomy coordinates: problem code, category code, severity (Y-axis), modality cues (M-axis), and prevention vector. Unknown themes are flagged for review without saving message text.</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">Step 2 · Protocoling</span>
+            <strong class="step-label">Executable Protocol Selection</strong>
+            <p>The engine selects bounded micro-interventions from the protocol catalog for the current stage (X1–X5). Guidelines are injected into the AI runtime; applied protocols are logged at every assistant step.</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">Step 3 · Sprint</span>
+            <strong class="step-label">Case Sprint Cycle</strong>
+            <p>Dialogue is organized as short case sprints: tension identification → focal problem exploration → escalation containment → evaluation → next step decision. Each sprint contains a unique ID, focus node, and session stage, so the same taxonomy language covers all utterances and sessions.</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">Step 4 · Evaluation</span>
+            <strong class="step-label">User Outcomes Scorecard</strong>
+            <p>When a sprint closes, the user evaluates the cycle: helped / partially / didn't help / got worse, plus optional scientific scales (clarity, relief, confidence in next step, alliance, micro-action status). Outcomes are linked to applied protocols and focal taxonomy, measuring what worked without retaining narratives.</p>
+          </div>
+        </div>
+
+        <p class="factory-bridge"><strong>From Telemetry to Evidence:</strong> Instead of collecting raw personal chats, the platform captures only anonymized event signals (such as classified problem categories, protocol steps, and user-rated sprint outcomes). These aggregated data points generate real-time statistical maps, showing which prevention protocol works best for a specific problem. <strong>This approach automatically builds a comprehensive, high-fidelity statistical pool for public health decision-makers — something traditional paper reporting systems could never achieve.</strong></p>
+
+        <div class="actions" style="margin-top: 24px;">
+          <a class="btn btn-ghost" href="../teenology/">View in Prevention-AI</a>
+        </div>
+      </section>
+
+      <section id="ai-diagnostics-roadmap">
+        <div class="section-head">
+          <span class="eyebrow">The Future of Diagnostics</span>
+          <h2>AI-Driven CAT and Shadow Scoring Roadmap</h2>
+          <p class="lead">The platform moves beyond classical static questionnaires. By analyzing natural conversation, we create a continuous background diagnostic loop that evaluates risk factors without disrupting the therapeutic flow.</p>
+        </div>
+
+        <div class="grid-3">
+          <div class="step-card">
+            <span class="step-num">Phase 1 · Intake</span>
+            <strong class="step-label">Taxonomy Tag Picker</strong>
+            <p>Immediate dialogue initiation via dynamic tagging, replacing static forms with real-time mapping of structural themes (e.g., REL_FAM, DEV_EMO).</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">Phase 2 · Test Banks</span>
+            <strong class="step-label">Question Pool Architecture</strong>
+            <p>Decomposition of validated psychometric scales (depression, anxiety, PTSD) into atomic elements, enriched with IRT (Item Response Theory) weights, LLM system prompts, and contextual guardrails.</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">Phase 3 · Analysis</span>
+            <strong class="step-label">Shadow Scoring</strong>
+            <p>A background AI module that parses free text and automatically maps client narratives against diagnostic scales without explicit questions, governed by strict context filtering.</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">Phase 4 · Dynamic Testing</span>
+            <strong class="step-label">AI-Driven CAT</strong>
+            <p>Computerized Adaptive Testing where the LLM organically weaves the next most statistically valuable question from the test bank into the natural flow of conversation.</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">Phase 5 · Specialist Interface</span>
+            <strong class="step-label">Diagnostic X-Ray</strong>
+            <p>An interactive dashboard for specialists displaying screening probabilities (but not clinical diagnoses) and anonymized conversational evidence, plus a test builder for researchers.</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">Phase 6 · Validation</span>
+            <strong class="step-label">Scientific Calibration</strong>
+            <p>Collection of anonymized statistics to compare AI shadow scoring against traditional forms, calibrating IRT weights for continuous accuracy improvement.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="research-loop">
+        <div class="grid-2">
+          <div>
+            <span class="eyebrow">Macro-Analytics</span>
+            <h2>Anonymized Aggregated Analytics (Design)</h2>
+            <p>Local client-side logging (IndexedDB) and edge PII stripping are design choices ensuring individual interactions can become structured research signals rather than just passive charts, feeding into the evidence cycle described above.</p>
+            <p>The target architecture pushes behavioral typologies and risk vector matrices into analytics warehouses (e.g., BigQuery) so institutions <em>can</em> track regional stress patterns at an aggregate level. This governance layer is not yet operating at a national scale; institutional pilots aim to validate the pipeline end-to-end in localized contexts.</p>
+          </div>
+          
+          <div class="spec-box Cloud-Integration">
+            <div class="spec-item">
+              <strong>Vector Ontological Search</strong>
+              <p>We leverage high-performance vector databases (Azure AI Search / Vertex AI Vector Search) to perform deterministic matching between natural language input and our fixed prevention ontologies, forcing the model to stay on script.</p>
+            </div>
+            <div class="spec-item">
+              <strong>Decoupled Edge Isolation</strong>
+              <p>Local PII (names, specific locations) never reaches the LLM cloud API. The edge application strips identifiers before generating embeddings, guaranteeing HIPAA and GDPR compliance for any subsequent macro-analysis.</p>
+            </div>
+          </div>
+        </div>
+
+        <p class="loop-intro" style="margin-top: 32px; font-weight: 500; font-size: 1.05rem;">
+          "This is how empirical science, cutting-edge preventive practice, and regional governance will finally operate in a single, real-time data feedback loop. By turning everyday field activity into a structured, verifiable source of evidence, we aren't just applying existing protocols — we are establishing the future standards of AI-assisted psychological care."
+        </p>
+        <p class="author-signature">— Roman Dubrovsky, PhD, Platform Founder</p>
+
+      </section>
+
+    </main>
+	
+    <footer class="footer">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <strong>Prevention-AI</strong><br>Open infrastructure for digital workspaces.
+          <p class="footer-contact">
+            <a href="mailto:admin@prevention-ai.ru">admin@prevention-ai.ru</a><span class="footer-contact-sep" aria-hidden="true">·</span><a href="https://t.me/RomanDubrovsky" target="_blank" rel="noopener noreferrer">Telegram</a>
+          </p>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/science/">Science</a>
+          <a href="/academy/">Academy</a>
+          <a href="/government/">Government & Municipalities</a>
+          <a href="/workspace/">Organizations</a>
+          <a href="/help-for-teacher/">Teachers</a>
+          <a href="/teenology/">Parents & Teens</a>
+        </nav>
+      </div>
+    </footer>
+  </div>
+  <script src="../assets/theme.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+/** @deprecated Import from progress_note.ts */
+export {
+  DAP_NOTE_FORMAT,
+  BIRP_NOTE_FORMAT,
+  EMPTY_DAP_NOTE,
+  GIRP_NOTE_FORMAT,
+  hasDapContent,
+  hasProgressNoteContent,
+  parseWorkLogNote,
+  serializeProgressNote,
+  serializeWorkLogNote,
+  type ParsedWorkLogNote,
+  type UnifiedProgressNote,
+  type ProgressNoteContent,
+  type NoteTemplatePreset,
+  MODALITY_LABELS,
+  RISK_LEVEL_LABELS,
+  RISK_LEVELS,
+  SESSION_MODALITIES,
+  type RiskLevel,
+  type SessionModality,
+} from "./progress_note.ts";

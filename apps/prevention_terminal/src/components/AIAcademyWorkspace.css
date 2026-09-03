@@ -1,0 +1,942 @@
+.ai-academy-workspace {
+  --bg-body: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-card-alt: #f1f5f9;
+  --bg-hover: #e2e8f0;
+  --border-color: #e2e8f0;
+  --border-color-light: #f1f5f9;
+  --text-main: #0f172a;
+  --muted-foreground: #64748b;
+  --primary: #0f766e;
+  --primary-light: rgba(15, 118, 110, 0.08);
+  --primary-border: rgba(15, 118, 110, 0.25);
+  --primary-rgb: 15, 118, 110;
+  --foreground: #0f172a;
+  --card: #ffffff;
+  --card-alt: #f8fafc;
+  --border: #e2e8f0;
+  --success: #10b981;
+  --success-light: rgba(16, 185, 129, 0.1);
+  --accent: #8b5cf6;
+  --accent-light: rgba(139, 92, 246, 0.08);
+  
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  background-color: var(--bg-body);
+  color: var(--text-main);
+  overflow: hidden;
+  box-sizing: border-box;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* =========================================================================
+   1. MAP MODE (Course Lobby / Roadmap & 3D Graph)
+   ========================================================================= */
+.academy-map-view {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  background: var(--bg-body);
+}
+
+.map-view-header {
+  padding: 16px 24px;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  z-index: 20;
+}
+
+.map-view-hero {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.map-view-hero h1 {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--foreground);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.map-view-hero p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--muted-foreground);
+}
+
+.map-controls-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.map-tab-switcher {
+  display: flex;
+  background: var(--bg-card-alt);
+  padding: 3px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.map-tab-btn {
+  padding: 6px 14px;
+  border: none;
+  background: transparent;
+  color: var(--muted-foreground);
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.map-tab-btn.active {
+  background: var(--bg-card);
+  color: var(--primary);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.map-continue-hero-btn {
+  padding: 8px 18px;
+  background: linear-gradient(135deg, #0f766e 0%, #0d9488 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(15, 118, 110, 0.25);
+  transition: all 0.2s ease;
+}
+
+.map-continue-hero-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(15, 118, 110, 0.35);
+}
+
+/* Roadmap Grid */
+.roadmap-content-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+}
+
+.roadmap-module-container {
+  max-width: 1100px;
+  margin: 0 auto 36px auto;
+}
+
+.roadmap-module-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--primary);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--primary-light);
+}
+
+.roadmap-nodes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+}
+
+.roadmap-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  position: relative;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+.roadmap-card:hover:not(.locked) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  border-color: var(--primary);
+}
+
+.roadmap-card.completed {
+  border-color: rgba(16, 185, 129, 0.35);
+  background: linear-gradient(180deg, #ffffff 0%, rgba(16, 185, 129, 0.03) 100%);
+}
+
+.roadmap-card.current {
+  border-color: var(--primary);
+  background: linear-gradient(180deg, #ffffff 0%, rgba(15, 118, 110, 0.04) 100%);
+  box-shadow: 0 0 0 2px rgba(15, 118, 110, 0.15), 0 6px 16px rgba(15, 118, 110, 0.08);
+}
+
+.roadmap-card.locked {
+  opacity: 0.55;
+  background: var(--bg-card-alt);
+  cursor: not-allowed;
+  border-style: dashed;
+}
+
+.roadmap-card-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.roadmap-card-badge-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  background: var(--bg-card-alt);
+  color: var(--muted-foreground);
+  border: 1px solid var(--border-color);
+}
+
+.roadmap-card.completed .roadmap-card-badge-icon {
+  background: var(--success);
+  color: #ffffff;
+  border-color: var(--success);
+}
+
+.roadmap-card.current .roadmap-card-badge-icon {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+  animation: pulseBadge 2s infinite;
+}
+
+@keyframes pulseBadge {
+  0% { box-shadow: 0 0 0 0 rgba(15, 118, 110, 0.5); }
+  70% { box-shadow: 0 0 0 8px rgba(15, 118, 110, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(15, 118, 110, 0); }
+}
+
+.roadmap-card-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.roadmap-card-title {
+  margin: 0 0 4px 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--foreground);
+  line-height: 1.35;
+}
+
+.roadmap-card-desc {
+  font-size: 0.8rem;
+  color: var(--muted-foreground);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.roadmap-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border-color);
+  padding-top: 10px;
+  margin-top: 4px;
+}
+
+.roadmap-status-tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.status-completed {
+  background: rgba(16, 185, 129, 0.1);
+  color: #059669;
+}
+
+.status-current {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+.status-locked {
+  background: var(--bg-card-alt);
+  color: var(--muted-foreground);
+}
+
+/* 3D Graph Container in Map Mode */
+.roadmap-3d-wrapper {
+  flex: 1;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* =========================================================================
+   2. FOCUS MODE (Two-zone Guided Tunnel: Card + AI Validator)
+   ========================================================================= */
+.academy-focus-view {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--bg-body);
+  position: relative;
+}
+
+/* Focus Top Navigation Bar */
+.focus-top-bar {
+  padding: 10px 20px;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  z-index: 30;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.focus-nav-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.focus-back-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: var(--bg-card-alt);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.focus-back-btn:hover {
+  background: var(--bg-hover);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.focus-lecture-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.focus-lecture-title {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+.focus-lecture-subtitle {
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+
+/* Focus Progress Meter */
+.focus-progress-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 220px;
+}
+
+.focus-progress-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.focus-progress-bar-track {
+  width: 100%;
+  height: 6px;
+  background: var(--border-color);
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+}
+
+.focus-progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #10b981 0%, #0f766e 100%);
+  border-radius: 3px;
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Focus Two Columns Grid */
+.focus-two-columns {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Left Column: Source of Truth (Thesis Card) */
+.focus-source-col {
+  flex: 1;
+  min-width: 0;
+  overflow-y: auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: var(--bg-body);
+  border-right: 1px solid var(--border-color);
+}
+
+.focus-thesis-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  position: relative;
+}
+
+.focus-thesis-card.validated-card {
+  border-color: rgba(16, 185, 129, 0.4);
+  box-shadow: 0 6px 24px rgba(16, 185, 129, 0.08);
+}
+
+.thesis-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px dashed var(--border-color);
+  padding-bottom: 16px;
+  margin-bottom: 18px;
+}
+
+.thesis-card-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.thesis-step-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--primary);
+  letter-spacing: 0.05em;
+}
+
+.thesis-card-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--foreground);
+  line-height: 1.35;
+}
+
+.thesis-audio-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: var(--primary-light);
+  color: var(--primary);
+  border: 1px solid var(--primary-border);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.thesis-audio-btn:hover {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+.thesis-content-body {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-main);
+  margin-bottom: 20px;
+}
+
+/* Reflection / Verification Question Box */
+.thesis-reflection-box {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.06) 0%, rgba(59, 130, 246, 0.04) 100%);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-left: 4px solid var(--accent);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-top: 20px;
+}
+
+.reflection-box-title {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0 0 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.reflection-box-text {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--foreground);
+  line-height: 1.5;
+}
+
+/* Full notes accordion inside source col */
+.focus-full-notes-accordion {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.focus-full-notes-summary {
+  padding: 14px 18px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--muted-foreground);
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-card-alt);
+}
+
+.focus-full-notes-summary:hover {
+  color: var(--foreground);
+}
+
+.focus-full-notes-body {
+  padding: 20px;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+/* Right Column: AI Professor Validator */
+.focus-chat-col {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  position: relative;
+  overflow: hidden;
+}
+
+.focus-chat-header {
+  padding: 12px 20px;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+.focus-chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.chat-bubble {
+  max-width: 85%;
+  padding: 12px 18px;
+  border-radius: 14px;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.chat-bubble.professor {
+  align-self: flex-start;
+  background: var(--bg-card-alt);
+  border: 1px solid var(--border-color);
+  border-bottom-left-radius: 4px;
+  color: var(--foreground);
+}
+
+.chat-bubble.user {
+  align-self: flex-end;
+  background: var(--primary);
+  color: #ffffff;
+  border-bottom-right-radius: 4px;
+  box-shadow: 0 2px 8px rgba(15, 118, 110, 0.2);
+}
+
+.chat-bubble.system {
+  align-self: center;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  color: #059669;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 20px;
+  padding: 6px 16px;
+}
+
+/* Suggestions Chips */
+.focus-suggestions-bar {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 8px 16px;
+  background: var(--bg-card-alt);
+  border-top: 1px solid var(--border-color);
+  scrollbar-width: none;
+}
+
+.focus-suggestions-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.focus-chip-btn {
+  white-space: nowrap;
+  padding: 5px 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.focus-chip-btn:hover {
+  background: var(--primary-light);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* Chat Input Bar */
+.focus-input-bar {
+  padding: 12px 16px;
+  background: var(--bg-card);
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.focus-input-bar input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 0.92rem;
+  background: var(--bg-card-alt);
+  color: var(--foreground);
+}
+
+.focus-input-bar input:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: var(--bg-card);
+  box-shadow: 0 0 0 2px rgba(15, 118, 110, 0.15);
+}
+
+.focus-input-bar input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* =========================================================================
+   3. DOMINATING PRIMARY CTA (The Next Step Gatekeeper)
+   ========================================================================= */
+.focus-bottom-action-zone {
+  padding: 12px 16px;
+  background: var(--bg-card);
+  border-top: 1px solid var(--border-color);
+}
+
+.cta-dominant-btn {
+  width: 100%;
+  padding: 14px 20px;
+  border-radius: 12px;
+  border: none;
+  font-size: 1.05rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cta-dominant-btn.passed {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
+  animation: ctaPulsing 2s infinite;
+}
+
+.cta-dominant-btn.passed:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(16, 185, 129, 0.5);
+}
+
+@keyframes ctaPulsing {
+  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6), 0 6px 20px rgba(16, 185, 129, 0.35); }
+  70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0), 0 8px 24px rgba(16, 185, 129, 0.45); }
+  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0), 0 6px 20px rgba(16, 185, 129, 0.35); }
+}
+
+.cta-dominant-hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: var(--bg-card-alt);
+  color: var(--muted-foreground);
+  font-size: 0.82rem;
+  font-weight: 600;
+  border: 1px dashed var(--border-color);
+}
+
+/* =========================================================================
+   4. MICRO-REWARD FLOATING ANIMATION
+   ========================================================================= */
+@keyframes floatUpReward {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.85);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(0) scale(1.1);
+  }
+  40% {
+    transform: translateY(-4px) scale(1);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(-16px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-36px) scale(0.9);
+  }
+}
+
+.micro-reward-floating {
+  position: absolute;
+  top: 76px;
+  right: 28px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  padding: 10px 18px;
+  border-radius: 30px;
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4), 0 0 0 2px rgba(255, 255, 255, 0.4);
+  font-weight: 800;
+  font-size: 0.95rem;
+  animation: floatUpReward 2.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  pointer-events: none;
+}
+
+/* =========================================================================
+   5. GUIDED ONBOARDING SPOTLIGHT
+   ========================================================================= */
+.guided-onboarding-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(5px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: fadeIn 0.3s ease;
+}
+
+.onboarding-modal-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  max-width: 520px;
+  width: 100%;
+  padding: 32px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.25);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.onboarding-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: var(--primary-light);
+  color: var(--primary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
+.onboarding-modal-card h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--foreground);
+}
+
+.onboarding-modal-card p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+}
+
+.onboarding-step-highlight {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  background: var(--bg-card-alt);
+  border: 2px solid var(--primary);
+  box-shadow: 0 0 0 4px var(--primary-light);
+}
+
+.onboarding-step-num {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+.onboarding-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.onboarding-start-btn {
+  flex: 1;
+  padding: 12px 20px;
+  border-radius: 10px;
+  background: var(--primary);
+  color: #ffffff;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.onboarding-start-btn:hover {
+  background: #0d655e;
+}
+
+.onboarding-skip-btn {
+  padding: 12px 18px;
+  border-radius: 10px;
+  background: var(--bg-card-alt);
+  color: var(--muted-foreground);
+  border: 1px solid var(--border-color);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (max-width: 900px) {
+  .focus-two-columns {
+    flex-direction: column;
+    overflow-y: auto;
+  }
+  .focus-source-col {
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    flex: none;
+  }
+  .focus-chat-col {
+    flex: none;
+    min-height: 480px;
+  }
+}
+

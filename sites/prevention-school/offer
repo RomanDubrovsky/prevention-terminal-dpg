@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/favicon.png">
+  <title>APAC Tech Transfer & Licensing Proposal — Prevention AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;550;650;760;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/site.css">
+  <style>
+    .draft-container {
+      max-width: 800px;
+      margin: 60px auto;
+      padding: 40px;
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+    }
+    .draft-container h1 {
+      font-size: 24px;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--line);
+    }
+    .draft-container h2 {
+      font-size: 18px;
+      margin-top: 32px;
+      margin-bottom: 16px;
+      color: var(--text-main);
+    }
+    .draft-container p {
+      margin-bottom: 16px;
+    }
+    .draft-container ul {
+      margin-bottom: 24px;
+      padding-left: 20px;
+    }
+    .draft-container li {
+      margin-bottom: 8px;
+    }
+    .draft-container .meta {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 32px;
+      font-weight: 550;
+    }
+    .draft-container .highlight {
+      background-color: #f4f4f5;
+      padding: 16px;
+      border-left: 4px solid #000;
+      margin-bottom: 24px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <main>
+      <div class="draft-container">
+        <div class="meta">Status: Active Proposal / Tech Transfer Deal Room (Confidential)</div>
+        <h1>Subject: Tech Transfer Opportunity: Exclusive APAC Licensing for Zero-Cloud EdTech AI Ecosystem</h1>
+        
+        <p>Dear Partners,</p>
+        
+        <p>I am reaching out to explore a commercial technology transfer partnership for the APAC region. I am Dr. Roman Dubrovsky, a public health expert with 25+ years of experience[cite: 1, 2], and the sole architect of <strong>Prevention-AI</strong>—a complete, AI-native Mental Health and Psychosocial Support (MHPSS) ecosystem for educational and government institutions[cite: 1, 2].</p>
+
+        <div class="highlight">
+          <p><strong>Immediate Context:</strong> Our core open-source infrastructure is currently undergoing final official certification by the United Nations <strong>Digital Public Goods Alliance (Application ID: GID0093834)</strong>. However, the proprietary "Cognitive Core" of the system is closed. I am looking to exclusively license this commercial IP to a major Asian EdTech or B2G integrator before the global DPG rollout.</p>
+        </div>
+
+        <h2>A Turnkey, 4-Tier Public Health Infrastructure</h2>
+        <p>We are not offering a single isolated application. We provide a scalable ecosystem designed to eliminate the epidemiological data gap[cite: 1, 2]:</p>
+        <ul>
+          <li><strong>Layer 1: Teenology</strong> — A mutual-trust mobile application for parents and teenagers focused on prevention[cite: 1].</li>
+          <li><strong>Layer 2: Specialist Workspaces</strong> — AI-assisted offline CRM terminals for school psychologists[cite: 1].</li>
+          <li><strong>Layer 3: IDA Kit</strong> — An intelligent software suite tailored for commercial psychological centers[cite: 1].</li>
+          <li><strong>Layer 4: Territorial Dashboards</strong> — Macro-analytics and risk heatmaps for school directors and regional ministries[cite: 1].</li>
+        </ul>
+
+        <h2>Why this is a Perfect Asset for the Chinese Market (PIPL Compliant)</h2>
+        <p>The system was architected to bypass the traditional bottlenecks of cloud-based AI in highly regulated regions:</p>
+        <ul>
+          <li><strong>Strict Data Sovereignty:</strong> The platform operates on a Zero-Cloud, airgapped infrastructure[cite: 1]. All patient identifiers and clinical notes reside exclusively within the physical operational perimeter, encrypted via local SQLCipher[cite: 1].</li>
+          <li><strong>LLM-Agnostic "Cognitive Core":</strong> The AI operates within deterministic boundaries and a strict clinical taxonomy[cite: 1]. Our proprietary system of prompts and RAG architecture can easily connect to locally approved Chinese LLMs (e.g., Qwen, DeepSeek), bypassing censorship and regulatory friction.</li>
+          <li><strong>Shadow Scoring Diagnostics:</strong> The AI analyzes natural free-flowing speech and programmatically maps it onto strict clinical metrics[cite: 1, 2], automating Form 5 and FBA/BIP reports without relying on static, easily manipulated questionnaires.</li>
+        </ul>
+
+        <h2>The Deal Structure (Success-Fee Model)</h2>
+        <p>I am seeking a reliable Tech Transfer Broker to facilitate this B2B/B2G deal. The target contract for the acquiring integrator consists of two components:</p>
+        <ul>
+          <li><strong>Upfront Exclusive License:</strong> Full transfer of the closed Cognitive Core (prompt hierarchy, AI protocols, and structured knowledge base) for commercial deployment in the APAC region.</li>
+          <li><strong>Multi-Year Retainer:</strong> A long-term consulting contract where I serve as the technical "Core Maintainer"[cite: 1] to adapt the clinical algorithms to local cultural and educational standards over the next 1–3 years.</li>
+        </ul>
+        <p><em>*The facilitating brokerage agency will receive a commission from both the upfront license and the ongoing retainer.</em></p>
+
+        <h2>Review the Architecture</h2>
+        <p>To evaluate the scientific and technological foundation of the platform, please review the following materials:</p>
+        <ul>
+          <li>The Science of Prevention (PIE Architecture): <a href="https://prevention.school/science/" target="_blank">prevention.school/science/</a></li>
+          <li>The Core Platform & Workspaces: <a href="https://prevention.school/prevention-ai/" target="_blank">prevention.school/prevention-ai/</a></li>
+        </ul>
+
+        <p>If you have corporate clients or government integrators in your portfolio looking for a ready-to-deploy, regulatory-compliant EdTech infrastructure, I am available for a brief introductory call (supported by an interpreter to ensure smooth technical communication).</p>
+
+        <p>Best regards,</p>
+
+        <p><strong>Roman Dubrovsky, PhD</strong><br>
+        Lead Architect, Prevention-AI Platform<br>
+        Email: <a href="mailto:Roman.Dubrovsky@gmail.com">Roman.Dubrovsky@gmail.com</a><br>
+        LinkedIn: <a href="https://www.linkedin.com/in/romandubrovsky/" target="_blank" rel="noopener">linkedin.com/in/romandubrovsky</a><br>
+        Telegram: <a href="https://t.me/RomanDubrovsky" target="_blank" rel="noopener">@RomanDubrovsky</a></p>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

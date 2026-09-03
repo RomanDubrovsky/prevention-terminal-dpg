@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/favicon.png">
+  <title>Методологический манифест — Профилактика-AI</title>
+  <meta name="description" content="Prevention Intelligence Engine (PIE): доказательная ИИ-архитектура для профилактической психологии. Автор: Дубровский Р.Г., к.с.н.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/site.css">
+  <style>
+    :root {
+      --paper: #fafaf9;
+      --ink: #1c1917;
+      --muted: #57534e;
+      --rule: #d6d3d1;
+      --doc-accent: #0f766e;
+      --doc-accent-hover: #115e59;
+      --mono: "IBM Plex Mono", ui-monospace, monospace;
+      --serif: "IBM Plex Serif", Georgia, "Times New Roman", serif;
+    }
+    body {
+      background: var(--paper);
+    }
+    .doc-toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 24px;
+      background: rgba(250, 250, 249, 0.92);
+      border-bottom: 1px solid var(--rule);
+      backdrop-filter: blur(8px);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .btn-pdf {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: Inter, system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 9px 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      color: #fff;
+      background: var(--doc-accent);
+      transition: background 0.15s;
+      text-decoration: none;
+    }
+    .btn-pdf:hover { background: var(--doc-accent-hover); }
+    .btn-pdf:disabled { opacity: 0.65; cursor: wait; }
+    .btn-pdf svg { width: 16px; height: 16px; flex-shrink: 0; }
+    #manifesto-doc {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: 56px 24px 100px;
+      font-family: var(--serif);
+      font-size: 1.0625rem;
+      line-height: 1.75;
+      color: var(--ink);
+    }
+    .doc-meta {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+    #manifesto-doc h1 {
+      font-size: clamp(1.65rem, 4vw, 2.1rem);
+      font-weight: 600;
+      line-height: 1.22;
+      margin: 0 0 12px;
+      letter-spacing: -0.02em;
+      font-family: var(--serif);
+      color: var(--ink);
+    }
+    .subtitle {
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin: 0 0 28px;
+      line-height: 1.5;
+      font-family: var(--serif);
+    }
+    .byline {
+      margin: 0 0 32px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--rule);
+      font-size: 0.95rem;
+      color: var(--muted);
+      font-family: var(--serif);
+    }
+    .byline strong { color: var(--ink); font-weight: 600; }
+    .abstract {
+      margin: 0 0 32px;
+      padding: 20px 22px;
+      border-left: 3px solid var(--doc-accent);
+      background: #f5f5f4;
+      font-size: 0.98rem;
+    }
+    .abstract-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--doc-accent);
+      margin-bottom: 10px;
+    }
+    #manifesto-doc h2 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 44px 0 14px;
+      padding-top: 8px;
+      letter-spacing: -0.01em;
+      font-family: var(--serif);
+      color: var(--ink);
+    }
+    #manifesto-doc h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 24px 0 10px;
+      font-family: var(--serif);
+      color: var(--ink);
+    }
+    #manifesto-doc p {
+      margin: 0 0 1rem;
+      text-align: justify;
+      hyphens: auto;
+    }
+    #manifesto-doc ul, #manifesto-doc ol {
+      margin: 0 0 1rem;
+      padding-left: 1.35rem;
+    }
+    #manifesto-doc li { margin-bottom: 0.5rem; }
+    code, .mono {
+      font-family: var(--mono);
+      font-size: 0.88em;
+      font-weight: 500;
+      color: var(--ink);
+    }
+    .axis-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.25rem;
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .axis-list li {
+      margin: 0;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--rule);
+      font-size: 0.98rem;
+    }
+    .axis-list li:last-child { border-bottom: none; }
+    .axis-list .axis-key {
+      display: block;
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--doc-accent);
+      margin-bottom: 4px;
+    }
+    .product-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0 0 1.25rem;
+      font-size: 0.9rem;
+      font-family: Inter, system-ui, sans-serif;
+    }
+    .product-table th {
+      text-align: left;
+      padding: 8px 12px;
+      border-bottom: 2px solid var(--rule);
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .product-table td {
+      padding: 9px 12px;
+      border-bottom: 1px solid var(--rule);
+      vertical-align: top;
+    }
+    .product-table tr:last-child td { border-bottom: none; }
+    .milestone-box {
+      margin: 0 0 1.25rem;
+      padding: 18px 20px;
+      border: 1px solid #a7f3d0;
+      border-radius: 6px;
+      background: #f0fdf4;
+      font-size: 0.95rem;
+    }
+    .milestone-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #065f46;
+      margin-bottom: 8px;
+    }
+    .footer-nav {
+      margin-top: 56px;
+      padding-top: 24px;
+      border-top: 1px solid var(--rule);
+      font-family: Inter, system-ui, sans-serif;
+      font-size: 14px;
+    }
+    .footer-nav a { color: var(--doc-accent); text-decoration: none; }
+    .footer-nav a:hover { text-decoration: underline; }
+    .copyright {
+      margin-top: 14px;
+      font-size: 12px;
+      color: var(--muted);
+      font-family: var(--mono);
+    }
+    @media print {
+      .site-header, .doc-toolbar { display: none !important; }
+      body { background: #fff; }
+      #manifesto-doc { max-width: none; padding: 0; }
+      #manifesto-doc p { text-align: left; hyphens: none; }
+      #manifesto-doc h2 { page-break-after: avoid; }
+      .axis-list { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="site-header">
+      <a class="brand" href="/ru/"><span class="brand-mark">П</span><span>Профилактика-AI</span></a>
+      <nav class="nav" aria-label="Навигация">
+        <a href="/ru/science/">Наука</a>
+        <a href="/ru/academy/">Академия</a>
+        <a href="/ru/government/">Органам власти и МСУ</a>
+        <a href="/ru/workspace/">Организациям</a>
+        <a href="/ru/help-for-teacher/">Педагогам</a>
+        <a href="/ru/teenology/">Родителям и подросткам</a>
+      </nav>
+      <div class="nav-controls">
+        <a href="https://web.prevention.school/" class="nav-cta" target="_blank" rel="noopener">Веб-терминал</a>
+        <a href="/whitepaper/" class="lang-toggle" aria-label="Switch to English" style="font-weight: 600; text-decoration: none; padding: 4px 8px; border-radius: 4px; background: var(--surface-soft); color: var(--text);">EN</a>
+        <button type="button" class="theme-toggle" id="theme-toggle">Темная</button>
+      </div>
+    </header>
+
+    <div class="doc-toolbar">
+      <span>Профилактика.school · Методологический манифест · 2026</span>
+      <button type="button" class="btn-pdf" id="btn-download-pdf" aria-label="Скачать PDF">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        Скачать PDF
+      </button>
+    </div>
+
+    <article id="manifesto-doc">
+      <p class="doc-meta">Профилактика-AI · Методологический манифест · 2026</p>
+
+      <h1>Профилактика-AI: Методологический манифест</h1>
+      <p class="subtitle">Архитектура Prevention Intelligence Engine для управления генеративными ИИ-моделями в доказательной профилактической психологии</p>
+
+      <div class="byline">
+        <p><strong>Автор:</strong> Дубровский Роман Геннадьевич, к.с.н.</p>
+        <p>Практикующий психолог, исследователь поведения, единственный архитектор и разработчик экосистемы Профилактика-AI</p>
+      </div>
+
+      <div class="abstract">
+        <p class="abstract-label">Аннотация</p>
+        <p>Настоящий манифест описывает Prevention Intelligence Engine (PIE) — экспертный слой, предназначенный для детерминированного ограничения и управления большими языковыми моделями (LLM) в рамках доказательной психологии здоровья и поведенческой эпидемиологии. В отличие от стандартных ИИ-систем, построенных на открытом чате или плоском поиске по ключевым словам, Профилактика-AI использует детерминированный слой ограничений на основе четырёхмерной онтологической матрицы (модуля классификации) и набора системных поведенческих аксиом. Платформа развёртывается как экосистема взаимосвязанных продуктов: пользовательское приложение Teenology для семей и подростков, ИИ-ассистент IDA для взрослых, профессиональный Терминал для психологов и руководителей, открытая ИИ-Академия. Цель системы — автоматизировать рутинную работу специалистов по профилактике, сохранять методологическую безопасность вмешательств и обеспечивать общую инфраструктуру для науки, практики и государственного управления.</p>
+      </div>
+
+      <h2>1. Введение: преодоление методологического хаоса</h2>
+      <p>Прикладная психология здоровья и профилактика подростковых рисков исторически складывались как лоскутное одеяло разнородных теорий и разрозненных эмпирических исследований. Специалисты на передовой — педагоги-психологи, социальные педагоги, координаторы программ — сталкиваются с этим хаосом ежедневно, одновременно неся колоссальную нагрузку по отчётности.</p>
+      <p>Профилактика-AI создавалась как система, выстроенная от научных «паспортов» до производственного кода, где методология и инжиниринг находятся в постоянном согласовании. Её основа — доказательная профилактическая наука, оцифрованная в виде пошагового алгоритма: от короткой консультации до региональной программы — каждое эффективное профилактическое действие следует одному прослеживаемому пути в программном обеспечении.</p>
+
+
+
+      <h2>2. Конвейер деконструкции знаний и четырёхмерная таксономическая матрица</h2>
+      <p>Платформа избегает неструктурированных «PDF-свалок». Верифицированные источники, руководства и программы атомизируются в методологические атомы — минимальные единицы практики (микровмешательства, техники, фразовые мосты, рычаги и ограничители). Каждый атом получает цифровой паспорт.</p>
+      <p>Классификатор (модуль онтологии) отображает каждый запрос пользователя и каждый атом знания по четырём независимым осям:</p>
+
+      <ul class="axis-list">
+        <li>
+          <span class="axis-key">X-Stage · Фаза работы</span>
+          Стадия профилактической работы (Проблема → Оценка → Цели → Действие → Результат). Система отслеживает траекторию поддержки и блокирует шаги действий до верификации целей.
+        </li>
+        <li>
+          <span class="axis-key">Y-Level · Риск и напряжение</span>
+          Клиническая лестница порогов (Норма → Группа риска → Субклинический уровень → Кризисный / Клинический уровень). Инструмент разграничивает нормативный стресс развития и формирующиеся паттерны девиации.
+        </li>
+        <li>
+          <span class="axis-key">M-Modality · Модальность</span>
+          Биопсихосоциальный вектор (Биологический фактор → Психофизиология → Когнитивный уровень → Социальный вектор → Средовой фактор) для локализации ядра проблемы и направления вмешательств.
+        </li>
+        <li>
+          <span class="axis-key">Org-Scale · Масштаб системы</span>
+          Уровень вмешательства (Индивидуальный → Семейный → Групповой → Общешкольный / Сообщество → Общество).
+        </li>
+      </ul>
+
+      <p>Паспорта также кодируют профессиональную роль (Психолог, Педагог, Администратор). Противопоказания (например, «неприменимо в период острого семейного конфликта») жёстко блокируют извлечение атома — это ключевой механизм безопасности, формализованный в коде.</p>
+
+      <h3>2.1. Матрица покрытия Teenology (TCM) как операционализация 4D-матрицы</h3>
+      <p>Абстрактные оси 4D-матрицы реализованы в экспертном ядре платформы, которое определяет, какие именно комбинации <em>«Ключевая проблема × Фаза работы × Методологический подход»</em> составляют производственное покрытие продукта Teenology:</p>
+      <ul>
+        <li><strong>22 проблемных домена</strong>: образование, развитие, отношения, профилактика девиаций, сексуальное просвещение</li>
+        <li><strong>5 стадий</strong> (от оценки проблемы до анализа результатов)</li>
+        <li><strong>3 методологических подхода</strong> (когнитивно-поведенческий, ненасильственная коммуникация, схема-терапия)</li>
+        <li>Активных ячеек в производстве: <strong>261</strong> из ~330 ожидаемых (база знаний и качество протоколов непрерывно растёт)</li>
+      </ul>
+
+      <h3>2.2. Домен сексуального просвещения (UNESCO/ВОЗ)</h3>
+      <p>В состав таксономии входит домен нейтрального сексуального просвещения в безопасных границах стандартов UNESCO и ВОЗ (вопросы согласия, пубертата, безопасности, отношений и идентичности). Этот домен полностью изолирован от взрослого контента, который структурно исключён из школьного и семейного контекста.</p>
+
+      <h3>2.3. Изоляция базы знаний по типам приложений</h3>
+      <p>База знаний строго разделена по назначению приложений и целевой аудитории, что является ключевым механизмом безопасности: взрослый контент физически не может попасть в школьный или семейный контекст.</p>
+      <ul>
+        <li><strong>Семейный и школьный контур (Teenology):</strong> материалы для родителей и подростков</li>
+        <li><strong>Взрослый контур (IDA):</strong> вопросы взаимоотношений взрослых пользователей</li>
+        <li><strong>Контур Академии:</strong> методологические материалы и обучающие курсы для специалистов</li>
+      </ul>
+
+      <h2>3. Аппаратный слой системных аксиом</h2>
+      <p>Анализ ситуации проходит через фиксированные законы из системной семейной психологии и поведенческой эпидемиологии:</p>
+
+      <h3>Круговая причинность</h3>
+      <p>Движок блокирует линейное приписывание вины (например, конфликты родитель–подросток) и перенаправляет диалог к самоподдерживающимся петлям взаимодействия внутри семейной системы.</p>
+
+      <h3>Системный гистерезис</h3>
+      <p>Каждый ход пользователя фильтруется через накопленную историю (предшествующие конфликты, семейный контекст), взвешивая «заряд» деструктивных реакций.</p>
+
+      <h3>Эффект воронки</h3>
+      <p>Когда стресс или выгорание сужают поведенческий выбор, генерация схлопывается до стабилизирующих микрошагов («тихий режим» и единственная точка опоры).</p>
+
+      <h2>4. Двухпоточный семантический RAG и компиляция процедурного ответа</h2>
+      <p>Входящий текст эмбеддируется так, что улавливается латентный смысл — например, родительский стыд после срыва или депрессивный дрейф подростка без явных ключевых слов.</p>
+      <p>Два параллельных потока атомов извлекаются:</p>
+      <ul>
+        <li><strong>Поток A (Фрейм):</strong> методологические правила, этические границы, гипотезы и ограничения;</li>
+        <li><strong>Поток B (Процедура):</strong> практические техники, упражнения, паттерны ненасильственной коммуникации и шаблоны фраз.</li>
+      </ul>
+      <p>Языковая модель не цитирует источники; под управлением Потока A она компилирует из атомов Потока B план вмешательства из 3–6 шагов, настроенный под возраст ребёнка, ограничения и текущий ресурсный уровень родителя или специалиста.</p>
+
+      <h3>4.1. Протокольно-управляемая модель: сессия → спринт → протокол</h3>
+      <p>Система использует строго регламентированную модель выполнения: запрос → сессия → спринт → выбор протокола. Протоколы — это версионированные и верифицированные алгоритмы действий, имеющие четкие статусы надежности (активные / на рецензии / черновики). В производстве используются только проверенные и активные протоколы, выбранные по точному совпадению проблемы, фазы работы и методологического подхода. Это трансформирует «доказательность» из качественного утверждения в количественно отслеживаемое свойство.</p>
+
+      <h3>4.2. Экспресс-диагностика</h3>
+      <p>Отдельный диагностический слой (8–12 вопросов по ключевым зонам: отношения, уровень тревоги, конфликты, внутренний ресурс) подключается к контексту работы, обеспечивая прицельный выбор протокола ещё до первого диалогового хода.</p>
+
+      <h2>5. Иерархический приоритет безопасности (Safety Loop)</h2>
+      <p>Безопасность переопределяет все пути диалога. Маркеры критического риска (самоповреждение, насилие, непосредственная угроза жизни ребёнка) останавливают стандартную генерацию и переключают на кризисный протокол — инструкции по стабилизации и маршрутизацию к живым экстренным службам — как для пользователя, так и для организации-оператора.</p>
+      <p>На институциональном уровне модуль «Безопасная среда» терминала агрегирует сигналы риска по организации без персональных данных и делает их доступными в панели управления директора — расширяя безопасность с индивидуального ИИ-ответа до организационной ситуационной осведомлённости.</p>
+
+      <h2>6. Мультипродуктовая архитектура: три линии на одном движке</h2>
+      <p>Платформа развёртывается не как монолитный инструмент, а как экосистема брендированных продуктов, разделяющих общее ИИ-ядро, но различающихся по аудитории, области KB и интерфейсу:</p>
+
+      <table class="product-table">
+        <thead>
+          <tr>
+            <th>Продукт</th>
+            <th>Идентификатор</th>
+            <th>Аудитория</th>
+            <th>Статус</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Teenology</strong></td>
+            <td>Семейный контур</td>
+            <td>Семьи, подростки, школы</td>
+            <td>Доступен на teenology.care</td>
+          </tr>
+          <tr>
+            <td><strong>IDA</strong></td>
+            <td>Взрослый контур</td>
+            <td>Взрослые, пары, психологические центры</td>
+            <td>В разработке</td>
+          </tr>
+          <tr>
+            <td><strong>Терминал</strong></td>
+            <td>Профессиональный контур</td>
+            <td>Специалисты, руководители, органы власти</td>
+            <td>В эксплуатации</td>
+          </tr>
+          <tr>
+            <td><strong>ИИ-Академия</strong></td>
+            <td>Образовательный контур</td>
+            <td>Специалисты, методисты</td>
+            <td>Доступна на prevention.school</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>Teenology — это узкий школьно-семейный контур; IDA — расширенный набор тех же тем для взрослых на том же движке; Терминал обслуживает профессионалов, а не потребителей.</p>
+
+      <h2>7. Институциональный терминал: локально-ориентированная архитектура</h2>
+      <p>Терминал — ключевое технологическое отличие платформы от облачных ИИ-решений. Его принцип: <strong>все персональные данные хранятся только на устройстве специалиста</strong>.</p>
+
+      <h3>Локальное хранение данных</h3>
+      <p>ФИО клиентов, журналы приёма, тексты сессий хранятся исключительно в локальной базе данных на компьютере специалиста и защищены локальным шифрованием. В облако передаются исключительно деперсонализированные аналитические показатели. Принцип «нулевого облака» — не опция, а архитектурная константа.</p>
+
+      <h3>Иерархическая структура: децентрализованное доверие</h3>
+      <p>Терминалы связываются иерархически по кодам приглашений:</p>
+      <ul>
+        <li><strong>Уровень 1 (Специалист)</strong> — полный профессиональный контур с встроенной панелью управления;</li>
+        <li><strong>Уровень 2 (Директор / руководитель)</strong> — агрегирует показатели нескольких специалистов, отображает только метрики без персональных данных;</li>
+        <li><strong>Уровень 3+ (Территориальное управление)</strong> — сводная аналитика по подведомственным организациям.</li>
+      </ul>
+
+      <h3>Три конфигурации рабочего места</h3>
+      <ul>
+        <li><strong>Панель управления руководителя</strong> — сводная аналитика, виджеты IDA, без индивидуального реестра и ПДн;</li>
+        <li><strong>Специалист (психолог)</strong> — полный профессиональный контур, реестр опционален, максимальная локальная безопасность;</li>
+        <li><strong>Педагог lite (бесплатно)</strong> — ИИ-ассистент, групповые занятия, без реестра и ИПР.</li>
+      </ul>
+
+      <h2>8. Соответствие 152-ФЗ, суверенитет данных и инфраструктура Yandex Cloud</h2>
+      <p>Российский сегмент платформы (<code>prevention-ai.ru</code>, <code>ida-psy.ru</code>) спроектирован в строгом соответствии с требованиями Федерального закона № 152-ФЗ «О персональных данных» и регуляторными стандартами безопасности:</p>
+      <ul>
+        <li><strong>Local-First децентрализация:</strong> персональные данные специалистов, учащихся и клиентов физически хранятся на локальном зашифрованном носителе (SQLCipher, AES-256) устройства специалиста и не передаются во внешние базы данных.</li>
+        <li><strong>Размещение в РФ (Yandex Cloud):</strong> облачные микросервисы, статический контент и API функционируют в защищенном контуре Yandex Cloud с физическим размещением центров обработки данных на территории Российской Федерации.</li>
+        <li><strong>Российский ИИ (YandexGPT):</strong> нейросетевая генерация черновиков документов, структурирование заметок и анализ методических ситуаций осуществляются с использованием отечественных языковых моделей Yandex Foundation Models (YandexGPT). Запросы не покидают периметр Yandex Cloud.</li>
+        <li><strong>Автоматическая деперсонализация:</strong> при обращении к ИИ персональные идентификаторы (ФИО, контакты, реквизиты организаций) отсекаются на клиенте — в языковую модель передается исключительно обезличенный контекст методической задачи.</li>
+      </ul>
+
+      <h2>9. Модуль интеграции для организаций (Embed-виджет)</h2>
+      <p>Для коммерческих центров и организаций предусмотрена интеграция через легкий встраиваемый виджет — чат и форма записи клиентов. Виджет подключается на сайт организации одной строкой кода. Заявки поступают напрямую в локальный терминал центра, минуя сторонние сервера: персональные данные клиента никогда не покидают компьютер организации.</p>
+
+      <h2>Заключение: инфраструктура для общего понимания</h2>
+      <p>Профилактика-AI уважает труд специалистов на передовой. Строгая методологическая дисциплина и продуманная архитектура позволяют превратить генеративный ИИ из непредсказуемого собеседника в детерминированный высокоточный прикладной инструмент.</p>
+      <p>Система сегодня работает на трёх уровнях: потребительский ИИ (Teenology / IDA), профессиональные инструменты специалиста (Терминал) и институциональный уровень управления (панели управления директоров и федерация в органы власти). Суверенитет данных является явным принципом проектирования: ПДн остаются локальными, только агрегаты федерируются вверх. Два регуляторных контура (международный и российский 152-ФЗ) обслуживаются из единой кодовой базы.</p>
+      <p>Платформа нацелена на объединение исследователей, практикующих специалистов и государственных институтов вокруг единой профилактической инфраструктуры в интересах психологического благополучия подрастающих поколений. Ключевое — не покрытие как цифра, а глубина методологии, качество знаний и надёжность интерпретации каждого взаимодействия.</p>
+
+      <footer class="footer-nav">
+        <a href="/ru/">Главная</a>
+        &nbsp;·&nbsp;
+        <a href="/ru/science/">Наука</a>
+        &nbsp;·&nbsp;
+        <a href="/ru/academy/">Академия</a>
+        &nbsp;·&nbsp;
+        <a href="/ru/teenology/">Teenology</a>
+        &nbsp;·&nbsp;
+        <a href="https://www.linkedin.com/in/romandubrovsky/" target="_blank" rel="noopener">LinkedIn автора</a>
+        &nbsp;·&nbsp;
+        <a href="/whitepaper/">English version</a>
+        <p class="copyright" style="margin-top: 14px;">
+          <a href="mailto:admin@prevention-ai.ru">admin@prevention-ai.ru</a>
+          &nbsp;·&nbsp;
+          <a href="https://t.me/RomanDubrovsky" target="_blank" rel="noopener noreferrer">Telegram</a>
+        </p>
+        <p class="copyright">© Дубровский Р.Г. Опубликовано для профессионального использования. Все права защищены.</p>
+      </footer>
+    </article>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.2/html2pdf.bundle.min.js" integrity="sha512-YcsIPGwhjNWHbdjQ/YCv7E+CTbLWTLgqfPP6P6+Q8vPtdUOYS1v48aSrA0xfuMolD1fC0Tjf8siYI4iAe3Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    (function () {
+      var btn = document.getElementById('btn-download-pdf');
+      var doc = document.getElementById('manifesto-doc');
+      if (!btn || !doc || typeof html2pdf === 'undefined') return;
+
+      btn.addEventListener('click', function () {
+        btn.disabled = true;
+        var label = btn.innerHTML;
+        btn.textContent = 'Формирование PDF…';
+
+        html2pdf()
+          .set({
+            margin: [14, 16, 14, 16],
+            filename: 'Profilaktika-AI-Metodologicheskiy-Manifest.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2, useCORS: true, letterRendering: true },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+            pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+          })
+          .from(doc)
+          .save()
+          .then(function () {
+            btn.disabled = false;
+            btn.innerHTML = label;
+          })
+          .catch(function () {
+            btn.disabled = false;
+            btn.innerHTML = label;
+            window.print();
+          });
+      });
+    })();
+
+    // Theme toggle
+    const btn = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    let isDark = false;
+    if (btn) {
+      btn.addEventListener('click', () => {
+        isDark = !isDark;
+        html.setAttribute('data-theme', isDark ? 'dark' : 'light');
+        btn.textContent = isDark ? 'Светлая' : 'Темная';
+      });
+    }
+  </script>
+</body>
+</html>

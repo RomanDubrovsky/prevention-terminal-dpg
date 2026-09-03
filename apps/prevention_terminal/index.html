@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self' tauri:; media-src 'self' blob: data: https://api.prevention.school https://*.prevention.school https://api.teenology.care https://*.teenology.care; frame-src 'self' tauri: blob: data: https://prevention.school https://*.prevention.school https://ida-psy.pro https://*.ida-psy.pro https://teenology.care https://*.teenology.care; img-src 'self' data: blob: tauri: https: https://*.tile.openstreetmap.org https://*.yandex.ru https://disk.yandex.ru https://*.yandexcloud.net; style-src 'self' 'unsafe-inline' tauri:; connect-src 'self' tauri: https: https://prevention.school https://*.prevention.school https://nominatim.openstreetmap.org https://photon.komoot.io https://api.prevention.school https://api.teenology.care https://*.supabase.co" />
+    <title>Терминал Специалиста — Профилактика.АИ</title>
+    <script>
+      var _lastErrorNoticeTime = 0;
+      function showFriendlyErrorNotice(customMsg) {
+        var now = Date.now();
+        if (now - _lastErrorNoticeTime < 15000) return;
+        _lastErrorNoticeTime = now;
+
+        var existing = document.getElementById('friendly-error-toast');
+        if (existing) existing.remove();
+
+        var toast = document.createElement('div');
+        toast.id = 'friendly-error-toast';
+        toast.style.cssText = 'position:fixed;bottom:24px;right:24px;z-index:999999;max-width:420px;background:rgba(15,23,42,0.92);color:#fff;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:16px 20px;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,0.3);font-family:system-ui,-apple-system,sans-serif;font-size:13px;line-height:1.5;display:flex;gap:14px;align-items:flex-start;border:1px solid rgba(255,255,255,0.15);';
+
+        var icon = document.createElement('div');
+        icon.style.cssText = 'font-size:22px;line-height:1;flex-shrink:0;';
+        icon.innerHTML = '🛠️';
+
+        var body = document.createElement('div');
+        body.style.cssText = 'flex:1;';
+        body.innerHTML = '<strong style="display:block;font-size:14px;margin-bottom:4px;color:#60A5FA;">На странице зафиксирован сбой</strong>' +
+          (customMsg || 'Автоматическая система диагностики уже зафиксировала ошибку и приняла её в работу. Пожалуйста, попробуйте повторить действие через 10–15 минут.');
+
+        var closeBtn = document.createElement('button');
+        closeBtn.innerHTML = '✕';
+        closeBtn.style.cssText = 'background:none;border:none;color:#94A3B8;font-size:16px;cursor:pointer;padding:0 0 0 8px;line-height:1;';
+        closeBtn.onclick = function() { toast.remove(); };
+
+        toast.appendChild(icon);
+        toast.appendChild(body);
+        toast.appendChild(closeBtn);
+        document.body.appendChild(toast);
+
+        setTimeout(function() {
+          if (toast && toast.parentNode) {
+            toast.style.opacity = '0';
+            toast.style.transition = 'opacity 0.5s ease';
+            setTimeout(function() { if (toast.parentNode) toast.remove(); }, 500);
+          }
+        }, 12000);
+      }
+
+      window.addEventListener('error', function(e) {
+        fetch('https://api.prevention.school/api/telemetry/client-error', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ message: e.message, source: e.filename, lineno: e.lineno, url: window.location.href, stack: e.error ? e.error.stack : '' })
+        }).catch(function(err) {});
+        showFriendlyErrorNotice();
+      });
+
+      window.addEventListener('unhandledrejection', function(e) {
+        if (e.reason && (e.reason.name === 'AbortError' || String(e.reason).indexOf('AbortError') !== -1)) return;
+        fetch('https://api.prevention.school/api/telemetry/client-error', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ message: e.reason ? e.reason.toString() : 'Unhandled Rejection', source: 'promise', url: window.location.href })
+        }).catch(function(err) {});
+        showFriendlyErrorNotice();
+      });
+      window.showFriendlyErrorNotice = showFriendlyErrorNotice;
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
