@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="app-api-base" content="https://api.prevention.school">
+    <title>Скачать рабочее место — IDA Portal</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/favicon.png">
+    <link rel="stylesheet" href="/styles/ida.css">
+</head>
+<body class="sw-body">
+    <header class="sw-header">
+        <div class="sw-brand">
+            <span class="sw-brand-mark">I</span>
+            <div>
+                <div class="sw-brand-title" id="sw-center-name">Загрузка...</div>
+                <div class="sw-brand-sub">Личный кабинет организации</div>
+            </div>
+        </div>
+        <nav class="sw-nav">
+            <a href="/portal/inbox.html" class="sw-nav-link">Заявки</a>
+            <a href="/portal/specialists.html" class="sw-nav-link">Психологи</a>
+            <a href="/portal/widgets.html" class="sw-nav-link">Код виджетов</a>
+            <a href="/portal/download.html" class="sw-nav-link active">Скачать ПК-версию</a>
+            <button onclick="window.IDA_AUTH.logout()" class="sw-btn sw-btn--secondary" style="padding: 6px 12px; font-size:12.5px;">Выйти</button>
+        </nav>
+    </header>
+
+    <main class="sw-main sw-main--narrow">
+        <section class="sw-panel" style="text-align:center;">
+            <h1 style="margin-top:0;">Десктопное приложение IDA Pro</h1>
+            <p class="sw-lead">Для работы с конфиденциальными записями клиентов, проведения ИИ-супервизии и ведения журнала сессий используйте десктопное приложение.</p>
+            
+            <div style="background:#f8fafc; border:1px solid var(--sw-border); border-radius:12px; padding:20px; text-align:left; font-size:13.5px; margin:24px 0;">
+                <h3 style="margin-top:0; color:var(--sw-primary);">Почему Terminal безопаснее веб-версии?</h3>
+                <ul style="padding-left:18px; margin:10px 0; display:flex; flex-direction:column; gap:8px;">
+                    <li><strong>Локальное шифрование (SQLCipher):</strong> Имена клиентов, телефоны и личные заметки шифруются на диске вашего ПК и не передаются в облако.</li>
+                    <li><strong>Полный журнал сессий:</strong> Удобный интерактивный календарь и карточка клиента с историей встреч.</li>
+                    <li><strong>ИИ-ассистент:</strong> Встроенный генератор планов вмешательств и супервизор.</li>
+                </ul>
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap:12px;">
+                <a href="https://ida-ai.chat/dist/Prevention_Terminal_0.0.1_x64-setup.exe" class="sw-btn sw-btn--primary">Скачать для Windows (.exe)</a>
+                <a href="https://ida-ai.chat/dist/Prevention_Terminal_0.0.1_x64_en-US.msi" class="sw-btn sw-btn--secondary">Скачать пакет установки (.msi)</a>
+            </div>
+        </section>
+    </main>
+
+    <script src="/portal-auth.js"></script>
+</body>
+</html>

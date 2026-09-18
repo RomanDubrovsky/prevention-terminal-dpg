@@ -1,0 +1,33 @@
+{
+  "editions": {
+    "intl": {
+      "distribution_url": "https://prevention.school/terminal/",
+      "lite_pwa_url": "https://app.prevention.school/lite/",
+      "dashboard_url": "https://app.prevention.school/",
+      "map_provider": "google",
+      "locale_default": "en",
+      "locales": [
+        "en",
+        "ru"
+      ],
+      "identity_gateway": null,
+      "aggregate_api": "https://api.prevention.school/api/terminal/aggregate",
+      "document_labels": null
+    },
+    "ru": {
+      "distribution_url": "https://irpp-edu.ru/profilaktika-ai/",
+      "paywall_url": "https://irpp-edu.ru/profilaktika-ai/",
+      "lite_pwa_url": "https://ru.prevention.school/lite/",
+      "dashboard_url": "https://ru.prevention.school/",
+      "map_provider": "yandex",
+      "locale_default": "ru",
+      "locales": [
+        "ru"
+      ],
+      "identity_gateway": "https://ru.prevention.school/id/",
+      "data_residency": "RU",
+      "aggregate_api": "https://api.prevention.school/api/terminal/aggregate",
+      "document_labels": null
+    }
+  }
+}

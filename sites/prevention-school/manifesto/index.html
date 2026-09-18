@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/favicon.png">
+  <title>Methodological Manifesto — Prevention-AI</title>
+  <meta name="description" content="Prevention Intelligence Engine (PIE): evidence-based AI architecture for preventive psychology. Author: Roman Dubrovsky, PhD.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/site.css">
+  <style>
+    :root {
+      --paper: #fafaf9;
+      --ink: #1c1917;
+      --muted: #57534e;
+      --rule: #d6d3d1;
+      --doc-accent: #0f766e;
+      --doc-accent-hover: #115e59;
+      --mono: "IBM Plex Mono", ui-monospace, monospace;
+      --serif: "IBM Plex Serif", Georgia, "Times New Roman", serif;
+    }
+    body {
+      background: var(--paper);
+    }
+    .doc-toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 24px;
+      background: rgba(250, 250, 249, 0.92);
+      border-bottom: 1px solid var(--rule);
+      backdrop-filter: blur(8px);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .btn-pdf {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: Inter, system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 9px 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      color: #fff;
+      background: var(--doc-accent);
+      transition: background 0.15s;
+      text-decoration: none;
+    }
+    .btn-pdf:hover { background: var(--doc-accent-hover); }
+    .btn-pdf:disabled { opacity: 0.65; cursor: wait; }
+    .btn-pdf svg { width: 16px; height: 16px; flex-shrink: 0; }
+    #manifesto-doc {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: 56px 24px 100px;
+      font-family: var(--serif);
+      font-size: 1.0625rem;
+      line-height: 1.75;
+      color: var(--ink);
+    }
+    .doc-meta {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+    #manifesto-doc h1 {
+      font-size: clamp(1.65rem, 4vw, 2.1rem);
+      font-weight: 600;
+      line-height: 1.22;
+      margin: 0 0 12px;
+      letter-spacing: -0.02em;
+      font-family: var(--serif);
+      color: var(--ink);
+    }
+    .subtitle {
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin: 0 0 28px;
+      line-height: 1.5;
+      font-family: var(--serif);
+    }
+    .byline {
+      margin: 0 0 32px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--rule);
+      font-size: 0.95rem;
+      color: var(--muted);
+      font-family: var(--serif);
+    }
+    .byline strong { color: var(--ink); font-weight: 600; }
+    .abstract {
+      margin: 0 0 32px;
+      padding: 20px 22px;
+      border-left: 3px solid var(--doc-accent);
+      background: #f5f5f4;
+      font-size: 0.98rem;
+    }
+    .abstract-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--doc-accent);
+      margin-bottom: 10px;
+    }
+    #manifesto-doc h2 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 44px 0 14px;
+      padding-top: 8px;
+      letter-spacing: -0.01em;
+      font-family: var(--serif);
+      color: var(--ink);
+    }
+    #manifesto-doc h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 24px 0 10px;
+      font-family: var(--serif);
+      color: var(--ink);
+    }
+    #manifesto-doc p {
+      margin: 0 0 1rem;
+      text-align: justify;
+      hyphens: auto;
+    }
+    #manifesto-doc ul, #manifesto-doc ol {
+      margin: 0 0 1rem;
+      padding-left: 1.35rem;
+    }
+    #manifesto-doc li { margin-bottom: 0.5rem; }
+    code, .mono {
+      font-family: var(--mono);
+      font-size: 0.88em;
+      font-weight: 500;
+      color: var(--ink);
+    }
+    .axis-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.25rem;
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .axis-list li {
+      margin: 0;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--rule);
+      font-size: 0.98rem;
+    }
+    .axis-list li:last-child { border-bottom: none; }
+    .axis-list .axis-key {
+      display: block;
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--doc-accent);
+      margin-bottom: 4px;
+    }
+    .product-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0 0 1.25rem;
+      font-size: 0.9rem;
+      font-family: Inter, system-ui, sans-serif;
+    }
+    .product-table th {
+      text-align: left;
+      padding: 8px 12px;
+      border-bottom: 2px solid var(--rule);
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .product-table td {
+      padding: 9px 12px;
+      border-bottom: 1px solid var(--rule);
+      vertical-align: top;
+    }
+    .product-table tr:last-child td { border-bottom: none; }
+    .milestone-box {
+      margin: 0 0 1.25rem;
+      padding: 18px 20px;
+      border: 1px solid #a7f3d0;
+      border-radius: 6px;
+      background: #f0fdf4;
+      font-size: 0.95rem;
+    }
+    .milestone-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #065f46;
+      margin-bottom: 8px;
+    }
+    .footer-nav {
+      margin-top: 56px;
+      padding-top: 24px;
+      border-top: 1px solid var(--rule);
+      font-family: Inter, system-ui, sans-serif;
+      font-size: 14px;
+    }
+    .footer-nav a { color: var(--doc-accent); text-decoration: none; }
+    .footer-nav a:hover { text-decoration: underline; }
+    .copyright {
+      margin-top: 14px;
+      font-size: 12px;
+      color: var(--muted);
+      font-family: var(--mono);
+    }
+    @media print {
+      .site-header, .doc-toolbar { display: none !important; }
+      body { background: #fff; }
+      #manifesto-doc { max-width: none; padding: 0; }
+      #manifesto-doc p { text-align: left; hyphens: none; }
+      #manifesto-doc h2 { page-break-after: avoid; }
+      .axis-list { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="site-header">
+      <a class="brand" href="/"><span class="brand-mark">P</span><span>Prevention-AI</span></a>
+      <nav class="nav" aria-label="Navigation">
+        <a href="/science/">Science</a>
+        <a href="/academy/">Academy</a>
+        <a href="/government/">Government & Authorities</a>
+        <a href="/workspace/">Organizations</a>
+        <a href="/help-for-teacher/">Educators</a>
+        <a href="/teenology/">Parents & Teens</a>
+      </nav>
+      <div class="nav-controls">
+        <a href="https://web.prevention.school/" class="nav-cta" target="_blank" rel="noopener">Web Terminal</a>
+        <a href="/ru/manifesto/" class="lang-toggle" aria-label="Switch to Russian" style="font-weight: 600; text-decoration: none; padding: 4px 8px; border-radius: 4px; background: var(--surface-soft); color: var(--text);">RU</a>
+        <button type="button" class="theme-toggle" id="theme-toggle">Dark</button>
+      </div>
+    </header>
+
+    <div class="doc-toolbar">
+      <span>Prevention.school · Methodological Manifesto · 2026</span>
+      <button type="button" class="btn-pdf" id="btn-download-pdf" aria-label="Download PDF">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        Download PDF
+      </button>
+    </div>
+
+    <article id="manifesto-doc">
+      <p class="doc-meta">Prevention-AI · Methodological Manifesto · 2026</p>
+
+      <h1>Prevention-AI: Methodological Manifesto</h1>
+      <p class="subtitle">Prevention Intelligence Engine Architecture for Managing Generative AI Models in Evidence-Based Preventive Psychology</p>
+
+      <div class="byline">
+        <p><strong>Author:</strong> Roman Dubrovsky, PhD.</p>
+        <p>Practicing psychologist, behavioral researcher, sole architect and developer of the Prevention-AI ecosystem</p>
+      </div>
+
+      <div class="abstract">
+        <p class="abstract-label">Abstract</p>
+        <p>This manifesto describes the Prevention Intelligence Engine (PIE) — an expert layer designed for the deterministic constraint and management of Large Language Models (LLMs) within the framework of evidence-based health psychology and behavioral epidemiology. Unlike standard AI systems built on open chat or flat keyword search, Prevention-AI uses a deterministic constraint layer based on a four-dimensional ontological matrix (classification module) and a set of systemic behavioral axioms. The platform is deployed as an ecosystem of interconnected products: the Teenology user app for families and teens, the IDA AI assistant for adults, the professional Terminal for psychologists and administrators, and the open AI Academy. The goal of the system is to automate the routine work of prevention specialists, maintain the methodological safety of interventions, and provide a common infrastructure for science, practice, and governance.</p>
+      </div>
+
+      <h2>1. Introduction: Overcoming Methodological Chaos</h2>
+      <p>Applied health psychology and adolescent risk prevention have historically evolved as a patchwork of heterogeneous theories and disparate empirical studies. Frontline specialists — educational psychologists, social educators, program coordinators — face this chaos daily, simultaneously bearing a massive reporting load.</p>
+      <p>Prevention-AI was created as a system built from scientific "passports" to production code, where methodology and engineering are in constant alignment. Its foundation is evidence-based prevention science, digitized as a step-by-step algorithm: from a brief consultation to a regional program — every effective preventive action follows a single traceable path in the software.</p>
+
+      <h2>2. Knowledge Deconstruction Pipeline and Four-Dimensional Taxonomic Matrix</h2>
+      <p>The platform avoids unstructured "PDF dumps". Verified sources, manuals, and programs are atomized into methodological atoms — minimal units of practice (micro-interventions, techniques, phrasal bridges, levers, and limiters). Each atom receives a digital passport.</p>
+      <p>The classifier (ontology module) maps every user request and every knowledge atom across four independent axes:</p>
+
+      <ul class="axis-list">
+        <li>
+          <span class="axis-key">X-Stage · Work Phase</span>
+          The stage of preventive work (Problem → Assessment → Goals → Action → Result). The system tracks the support trajectory and blocks action steps until goals are verified.
+        </li>
+        <li>
+          <span class="axis-key">Y-Level · Risk and Tension</span>
+          The clinical threshold ladder (Normal → Risk Group → Subclinical Level → Crisis / Clinical Level). The tool distinguishes between normative developmental stress and forming deviation patterns.
+        </li>
+        <li>
+          <span class="axis-key">M-Modality · Modality</span>
+          The biopsychosocial vector (Biological factor → Psychophysiology → Cognitive level → Social vector → Environmental factor) to localize the core of the problem and direct interventions.
+        </li>
+        <li>
+          <span class="axis-key">Org-Scale · System Scale</span>
+          The level of intervention (Individual → Family → Group → School-wide / Community → Society).
+        </li>
+      </ul>
+
+      <p>Passports also code for professional roles (Psychologist, Educator, Administrator). Contraindications (e.g., "inapplicable during acute family conflict") strictly block the extraction of an atom — this is a key safety mechanism formalized in code.</p>
+
+      <h3>2.1. Teenology Coverage Matrix (TCM) as Operationalization of the 4D Matrix</h3>
+      <p>The abstract axes of the 4D matrix are implemented in the expert core of the platform, which determines exactly which combinations of <em>"Core Problem × Work Phase × Methodological Approach"</em> make up the production coverage of the Teenology product:</p>
+      <ul>
+        <li><strong>22 problem domains</strong>: education, development, relationships, deviation prevention, sex education</li>
+        <li><strong>5 stages</strong> (from problem assessment to result analysis)</li>
+        <li><strong>3 methodological approaches</strong> (cognitive-behavioral, non-violent communication, schema therapy)</li>
+        <li>Active cells in production: <strong>261</strong> of ~330 expected (the knowledge base and protocol quality are continuously growing)</li>
+      </ul>
+
+      <h3>2.2. Sex Education Domain (UNESCO/WHO)</h3>
+      <p>The taxonomy includes a domain of neutral sex education within the safe boundaries of UNESCO and WHO standards (issues of consent, puberty, safety, relationships, and identity). This domain is completely isolated from adult content, which is structurally excluded from the school and family context.</p>
+
+      <h3>2.3. Isolation of the Knowledge Base by Application Type</h3>
+      <p>The knowledge base is strictly divided by application purpose and target audience, which is a key safety mechanism: adult content physically cannot enter the school or family context.</p>
+      <ul>
+        <li><strong>Family and school contour (Teenology):</strong> materials for parents and adolescents</li>
+        <li><strong>Adult contour (IDA):</strong> relationship issues for adult users</li>
+        <li><strong>Academy contour:</strong> methodological materials and training courses for specialists</li>
+      </ul>
+
+      <h2>3. Hardware Layer of Systemic Axioms</h2>
+      <p>Situation analysis passes through fixed laws from systemic family psychology and behavioral epidemiology:</p>
+
+      <h3>Circular Causality</h3>
+      <p>The engine blocks linear attribution of blame (e.g., parent-teen conflicts) and redirects the dialogue towards self-sustaining interaction loops within the family system.</p>
+
+      <h3>Systemic Hysteresis</h3>
+      <p>Every user move is filtered through the accumulated history (previous conflicts, family context), weighing the "charge" of destructive reactions.</p>
+
+      <h3>Funnel Effect</h3>
+      <p>When stress or burnout narrow behavioral choices, generation collapses to stabilizing micro-steps ("quiet mode" and a single anchor point).</p>
+
+      <h2>4. Dual-Stream Semantic RAG and Procedural Response Compilation</h2>
+      <p>Incoming text is embedded to capture latent meaning — for example, parental shame after an outburst or adolescent depressive drift without explicit keywords.</p>
+      <p>Two parallel streams of atoms are extracted:</p>
+      <ul>
+        <li><strong>Stream A (Frame):</strong> methodological rules, ethical boundaries, hypotheses, and limitations;</li>
+        <li><strong>Stream B (Procedure):</strong> practical techniques, exercises, non-violent communication patterns, and phrase templates.</li>
+      </ul>
+      <p>The language model does not quote sources; under the control of Stream A, it compiles an intervention plan of 3–6 steps from Stream B atoms, tailored to the child's age, constraints, and the current resource level of the parent or specialist.</p>
+
+      <h3>4.1. Protocol-Driven Model: Session → Sprint → Protocol</h3>
+      <p>The system uses a strictly regulated execution model: request → session → sprint → protocol selection. Protocols are versioned and verified action algorithms with clear reliability statuses (active / under review / draft). Only verified and active protocols, selected by exact match of problem, work phase, and methodological approach, are used in production. This transforms "evidence-based" from a qualitative statement into a quantitatively trackable property.</p>
+
+      <h3>4.2. Express Diagnostics</h3>
+      <p>A separate diagnostic layer (8–12 questions on key areas: relationships, anxiety level, conflicts, internal resources) connects to the work context, ensuring targeted protocol selection even before the first dialogue turn.</p>
+
+      <h2>5. Hierarchical Safety Priority (Safety Loop)</h2>
+      <p>Safety overrides all dialogue paths. Critical risk markers (self-harm, violence, immediate threat to a child's life) stop standard generation and switch to a crisis protocol — stabilization instructions and routing to live emergency services — for both the user and the operating organization.</p>
+      <p>At the institutional level, the "Safe Environment" module of the terminal aggregates risk signals across the organization without personal data and makes them available in the principal's dashboard — extending safety from an individual AI response to organizational situational awareness.</p>
+
+      <h2>6. Multi-Product Architecture: Three Lines on One Engine</h2>
+      <p>The platform is deployed not as a monolithic tool, but as an ecosystem of branded products sharing a common AI core, but differing in audience, KB domain, and interface:</p>
+
+      <table class="product-table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Identifier</th>
+            <th>Audience</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Teenology</strong></td>
+            <td>Family Contour</td>
+            <td>Families, teens, schools</td>
+            <td>Available on teenology.care</td>
+          </tr>
+          <tr>
+            <td><strong>IDA</strong></td>
+            <td>Adult Contour</td>
+            <td>Adults, couples, psychological centers</td>
+            <td>In development</td>
+          </tr>
+          <tr>
+            <td><strong>Terminal</strong></td>
+            <td>Professional Contour</td>
+            <td>Specialists, administrators, authorities</td>
+            <td>In operation</td>
+          </tr>
+          <tr>
+            <td><strong>AI Academy</strong></td>
+            <td>Educational Contour</td>
+            <td>Specialists, methodologists</td>
+            <td>Available on prevention.school</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>Teenology is a narrow school-family contour; IDA is an expanded set of the same topics for adults on the same engine; the Terminal serves professionals, not consumers.</p>
+
+      <h2>7. Institutional Terminal: Local-First Architecture</h2>
+      <p>The Terminal is the key technological differentiator of the platform from cloud AI solutions. Its principle: <strong>all personal data is stored exclusively on the specialist's device</strong>.</p>
+
+      <h3>Local Data Storage</h3>
+      <p>Client names, appointment logs, and session texts are stored exclusively in a local database on the specialist's computer and are protected by local encryption. Only depersonalized analytical metrics are transmitted to the cloud. The "zero cloud" principle is not an option, but an architectural constant.</p>
+
+      <h3>Hierarchical Structure: Decentralized Trust</h3>
+      <p>Terminals are linked hierarchically via invitation codes:</p>
+      <ul>
+        <li><strong>Level 1 (Specialist)</strong> — full professional contour with a built-in dashboard;</li>
+        <li><strong>Level 2 (Principal / Administrator)</strong> — aggregates metrics from multiple specialists, displays only metrics without personal data;</li>
+        <li><strong>Level 3+ (Territorial Authority)</strong> — summary analytics for subordinate organizations.</li>
+      </ul>
+
+      <h3>Three Workspace Configurations</h3>
+      <ul>
+        <li><strong>Administrator Dashboard</strong> — summary analytics, IDA widgets, no individual registry or PII;</li>
+        <li><strong>Specialist (Psychologist)</strong> — full professional contour, optional registry, maximum local security;</li>
+        <li><strong>Educator lite (free)</strong> — AI assistant, group sessions, no registry or individual prevention routes (IPR).</li>
+      </ul>
+
+      <h2>8. HIPAA, GDPR, and Patient Privacy Regulations Compliance</h2>
+      <p>The platform is designed in compliance with strict patient privacy regulations like HIPAA and GDPR. User identifiers are processed through secure gateways; personal data is physically excluded from the cloud infrastructure; session residency is enforced. Deployments are executed on secure, compliant server segments, adhering to requirements of local regulatory bodies.</p>
+
+      <h2>9. Integration Module for Organizations (Embed Widget)</h2>
+      <p>For commercial centers and private practices, integration is provided via a lightweight embed widget — chat and client booking form. The widget is added to the organization's website with a single line of code. Requests flow directly into the center's local terminal, bypassing third-party servers: client personal data never leaves the organization's computer.</p>
+
+      <h2>Conclusion: Infrastructure for Common Understanding</h2>
+      <p>Prevention-AI respects the labor of frontline professionals. Strict methodological discipline and a well-thought-out architecture transform generative AI from an unpredictable conversationalist into a deterministic, high-precision applied tool.</p>
+      <p>The system today operates on three levels: consumer AI (Teenology / IDA), professional tools for specialists (Terminal), and the institutional management level (principal dashboards and federation to authorities). Data sovereignty is an explicit design principle: PII remains local, only aggregates are federated upwards. Multiple regulatory contours are served from a single codebase.</p>
+      <p>The platform aims to unite researchers, practitioners, and government institutions around a unified prevention infrastructure in the interests of psychological well-being. The key is not coverage as a number, but the depth of methodology, the quality of knowledge, and the reliability of interpretation of each interaction.</p>
+
+      <footer class="footer-nav">
+        <a href="/">Home</a>
+        &nbsp;·&nbsp;
+        <a href="/science/">Science</a>
+        &nbsp;·&nbsp;
+        <a href="/academy/">Academy</a>
+        &nbsp;·&nbsp;
+        <a href="/teenology/">Teenology</a>
+        &nbsp;·&nbsp;
+        <a href="https://www.linkedin.com/in/romandubrovsky/" target="_blank" rel="noopener">Author's LinkedIn</a>
+        &nbsp;·&nbsp;
+        <a href="/ru/manifesto/">Russian version</a>
+        <p class="copyright" style="margin-top: 14px;">
+          <a href="mailto:admin@prevention-ai.ru">admin@prevention-ai.ru</a>
+          &nbsp;·&nbsp;
+          <a href="https://t.me/RomanDubrovsky" target="_blank" rel="noopener noreferrer">Telegram</a>
+        </p>
+        <p class="copyright">© Roman Dubrovsky. Published for professional use. All rights reserved.</p>
+      </footer>
+    </article>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.2/html2pdf.bundle.min.js" integrity="sha512-YcsIPGwhjNWHbdjQ/YCv7E+CTbLWTLgqfPP6P6+Q8vPtdUOYS1v48aSrA0xfuMolD1fC0Tjf8siYI4iAe3Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    (function () {
+      var btn = document.getElementById('btn-download-pdf');
+      var doc = document.getElementById('manifesto-doc');
+      if (!btn || !doc || typeof html2pdf === 'undefined') return;
+
+      btn.addEventListener('click', function () {
+        btn.disabled = true;
+        var label = btn.innerHTML;
+        btn.textContent = 'Generating PDF…';
+
+        html2pdf()
+          .set({
+            margin: [14, 16, 14, 16],
+            filename: 'Prevention-AI-Methodological-Manifesto.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2, useCORS: true, letterRendering: true },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+            pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+          })
+          .from(doc)
+          .save()
+          .then(function () {
+            btn.disabled = false;
+            btn.innerHTML = label;
+          })
+          .catch(function () {
+            btn.disabled = false;
+            btn.innerHTML = label;
+            window.print();
+          });
+      });
+    })();
+
+    // Theme toggle
+    const btn = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    let isDark = false;
+    if (btn) {
+      btn.addEventListener('click', () => {
+        isDark = !isDark;
+        html.setAttribute('data-theme', isDark ? 'dark' : 'light');
+        btn.textContent = isDark ? 'Light' : 'Dark';
+      });
+    }
+  </script>
+</body>
+</html>

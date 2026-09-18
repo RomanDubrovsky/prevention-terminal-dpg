@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <link class="favicon" rel="icon" href="/favicon.ico" sizes="any">
+  <link class="favicon" rel="icon" href="/favicon.png" type="image/png">
+  <link class="apple-touch-icon" href="/favicon.png">
+  <title>Prevention-AI — Pilot Implementation Proposal for Centers and Schools</title>
+  <meta name="description" content="Secure implementation of Prevention-AI infrastructure for government and municipal organizations. 100% compliance with HIPAA, GDPR, and strict patient privacy regulations.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;550;650;760;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/site.css">
+  <style>
+    .offer-page { padding: 32px 0 80px; }
+    .offer-container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+
+    .offer-hero {
+      text-align: center;
+      margin-bottom: 48px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--line);
+    }
+    .offer-hero h1 {
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin: 0 0 16px;
+    }
+    .offer-hero .lead {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .offer-section { margin-bottom: 40px; }
+    .offer-section h2 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin: 0 0 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .offer-section h2 .icon {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .offer-section p, .offer-section li {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--text-color);
+    }
+    .offer-section ul {
+      padding-left: 1.2rem;
+      margin: 12px 0;
+    }
+    .offer-section li {
+      margin-bottom: 10px;
+    }
+
+    .pilot-card {
+      background: color-mix(in srgb, #10b981 8%, var(--surface));
+      border: 2px solid #10b981;
+      border-radius: 16px;
+      padding: 32px;
+      margin: 24px 0;
+    }
+    .pilot-card h3 {
+      margin: 0 0 16px;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #059669;
+    }
+    .pilot-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: step;
+    }
+    .pilot-steps li {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      counter-increment: step;
+    }
+    .pilot-steps li::before {
+      content: counter(step);
+      min-width: 32px; height: 32px;
+      border-radius: 50%;
+      background: #10b981;
+      color: white;
+      font-weight: 700;
+      font-size: 0.85rem;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .guarantee-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 16px 0;
+      padding: 0;
+      list-style: none;
+    }
+    .guarantee-list li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: 0.9rem;
+      margin: 0;
+    }
+    .guarantee-list .check {
+      color: #10b981;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .cta-block {
+      text-align: center;
+      margin-top: 48px;
+      padding: 40px 32px;
+      background: var(--surface-soft);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+    }
+    .cta-block h2 {
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+    .cta-block p {
+      max-width: 520px;
+      margin: 0 auto 24px;
+    }
+    .cta-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .cta-buttons a {
+      padding: 14px 32px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    .cta-primary {
+      background: #10b981;
+      color: white;
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+    }
+
+    @media (max-width: 640px) {
+      .guarantee-list { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="site-header">
+      <a class="brand" href="/"><span class="brand-mark">P</span><span>Prevention-AI</span></a>
+    </header>
+    <main>
+      <div class="offer-page">
+        <div class="offer-container">
+
+          <!-- HERO -->
+          <div class="offer-hero">
+            <span style="display: inline-block; padding: 5px 14px; border-radius: 20px; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; background: rgba(16,185,129,0.12); color: #059669; margin-bottom: 16px;">Special Offer</span>
+            <h1>Terminal Pilot Implementation<br>in a Center or School</h1>
+            <p class="lead">
+              Get a modern digital workspace for psychologists that saves up to 40 minutes per assessment and generates perfect reports, fully compliant with HIPAA, GDPR, and strict patient privacy regulations.
+            </p>
+          </div>
+
+          <!-- PROBLEM -->
+          <div class="offer-section">
+            <h2>
+              <span class="icon" style="background: rgba(239,68,68,0.1); color: #ef4444;">⚡</span>
+              What psychologists face today
+            </h2>
+            <p>
+              Educational psychologists are drowning in paperwork. Writing assessments, filling out complex forms, preparing intervention routes — all this takes time away from actual work with children.
+            </p>
+            <p>
+              At the same time, management is afraid to use modern digital solutions due to <strong>strict audits by local regulatory bodies</strong> (HIPAA, GDPR, data privacy).
+            </p>
+          </div>
+
+          <!-- SOLUTION -->
+          <div class="offer-section">
+            <h2>
+              <span class="icon" style="background: rgba(109,91,208,0.1); color: var(--violet);">🛡</span>
+              Solution: Local Vault
+            </h2>
+            <p>
+              Prevention-AI is designed on a "Local-First" principle. This means the system is installed on the psychologist's computer like a regular program (like Microsoft Word or Excel).
+            </p>
+            <ul class="guarantee-list">
+              <li><span class="check">✓</span> <span><strong>Database on the hard drive.</strong> Data is not stored in the cloud. Only the psychologist with the master password has access.</span></li>
+              <li><span class="check">✓</span> <span><strong>SQLCipher protection.</strong> The entire database is encrypted to military standards. If the computer is stolen, the data cannot be read.</span></li>
+              <li><span class="check">✓</span> <span><strong>AI without personal data.</strong> Only anonymized behavioral patterns are sent to the neural network for analysis. No names, school numbers, or addresses.</span></li>
+              <li><span class="check">✓</span> <span><strong>Fully offline.</strong> No internet is required to maintain the journal and client cards at all.</span></li>
+            </ul>
+          </div>
+
+          <!-- PILOT OFFER -->
+          <div class="offer-section">
+            <h2>
+              <span class="icon" style="background: rgba(16,185,129,0.1); color: #059669;">🤝</span>
+              Pilot Implementation Format
+            </h2>
+            <p>
+              I offer testing of the system without bureaucratic risks and without burdening your IT department.
+            </p>
+
+            <div class="pilot-card">
+              <h3>Free Trial Period (1 month)</h3>
+              <ol class="pilot-steps">
+                <li>
+                  <div>
+                    <strong>Group Selection:</strong> You select 3-5 psychologists (preferably those open to innovation).
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Installation without IT admins:</strong> Specialists simply download the .exe file and install it on their work laptops. I will conduct a short training call.
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>A month of real work:</strong> Psychologists manage real cases; AI helps them generate intervention plans and assessments. The manager sees macro-statistics via the browser (how many consultations held, on what topics) but does not see personal data.
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Decision making:</strong> If the system doesn't fit, the program is simply deleted; the data stays with you. If psychologists ask to keep the system (and they will when they see the time saved), we discuss long-term cooperation.
+                  </div>
+                </li>
+              </ol>
+            </div>
+          </div>
+
+          <!-- CTA -->
+          <div class="cta-block">
+            <h2 style="margin-bottom: 16px; justify-content: center; font-size: 1.4rem;">Next Step</h2>
+            <p>
+              Let's set up a 30-minute call where I'll show a live demo of the system and we can discuss the pilot format for your organization.
+            </p>
+            <div class="cta-buttons">
+              <a href="/" style="padding: 14px 32px; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 1rem; border: 2px solid var(--line); color: var(--text-color); background: var(--surface);">Go to main site</a>
+              <a href="https://t.me/RomanDubrovsky" target="_blank" class="cta-primary" style="background: #0f766e; box-shadow: 0 4px 15px rgba(15, 118, 110, 0.3);">Message on Telegram</a>
+            </div>
+          </div>
+
+          <!-- SIGNATURE -->
+          <div class="author-sig" style="display: flex; align-items: center; gap: 14px; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--line);">
+            <div class="avatar" style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #0f766e, #0ea5e9); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.1rem; flex-shrink: 0;">RD</div>
+            <div>
+              <div class="name" style="font-weight: 700; font-size: 0.95rem; color: var(--text-color);">Roman Dubrovsky</div>
+              <div class="role" style="margin-bottom: 4px; font-size: 0.82rem; color: var(--muted);">PhD, 25+ years in psychological counseling and prevention</div>
+              <a href="https://ida-psy.pro/en/founder/" target="_blank" style="font-size: 0.85rem; color: #0f766e; text-decoration: underline; font-weight: 500;">About me and the methodology</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer" style="margin-top: 60px; padding: 30px 0; border-top: 1px solid var(--line); text-align: center; font-size: 0.85rem; color: var(--muted);">
+      <div>
+        <strong>Prevention-AI</strong><br>
+        Psychological well-being support infrastructure<br>
+        <a href="mailto:admin@prevention-ai.ru" style="color: var(--text);">admin@prevention-ai.ru</a>
+      </div>
+    </footer>
+  </div>
+  <script src="/assets/theme.js" defer></script>
+</body>
+</html>

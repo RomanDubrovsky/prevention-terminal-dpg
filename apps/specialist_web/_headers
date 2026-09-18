@@ -1,0 +1,14 @@
+/*
+  CSP: allow API calls to Teenology Azure backend and IRPP consultants link.
+*/
+/*
+  X-Frame-Options: DENY
+*/
+/styles/*
+  Cache-Control: public, max-age=3600
+/common.js
+  Cache-Control: public, max-age=300
+/workspace.js
+  Cache-Control: public, max-age=300
+/appointment.js
+  Cache-Control: public, max-age=300

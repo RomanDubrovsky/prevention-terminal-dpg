@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="ru" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link class="favicon" rel="icon" href="/favicon.ico" sizes="any">
+  <link class="favicon" rel="icon" href="/favicon.png" type="image/png">
+  <link class="apple-touch-icon" href="/favicon.png">
+  <title>Академия Превенции: Проектирование, Инструменты & Практикум</title>
+  <meta name="description" content="Образовательная среда Академии Превенции: послойная модель проектирования, изучение АРМ Prevention Terminal, 3D-онтология и интерактивный симулятор.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/site.css">
+  
+  <style>
+    :root {
+      --violet-glow: rgba(124, 58, 237, 0.15);
+      --accent-glow: rgba(59, 130, 246, 0.15);
+      --shelf-bg: #f8fafc;
+      --shelf-border: #e2e8f0;
+      --shelf-active: #4f46e5;
+    }
+    
+    .hero-v2 {
+      position: relative;
+      padding: 64px 0 40px;
+      text-align: center;
+      background: radial-gradient(circle at 50% 0%, var(--violet-glow) 0%, transparent 70%);
+    }
+
+    .manifesto-box {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(16, 185, 129, 0.05));
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin: 32px auto 48px;
+      max-width: 960px;
+      text-align: left;
+      line-height: 1.7;
+    }
+    .manifesto-box h3 {
+      color: #312e81;
+      margin-top: 0;
+      font-size: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Shelves Interactive Component */
+    .shelves-container {
+      background: #ffffff;
+      border: 1px solid var(--shelf-border);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+      padding: 36px;
+      margin-bottom: 56px;
+      text-align: left;
+    }
+    .shelves-nav {
+      display: flex;
+      gap: 8px;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 12px;
+      overflow-x: auto;
+      margin-bottom: 24px;
+    }
+    .shelf-btn {
+      padding: 10px 18px;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      background: #f1f5f9;
+      color: #475569;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .shelf-btn:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+    .shelf-btn.active {
+      background: #4f46e5;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+    }
+    .shelf-content {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+    @media(max-width: 960px) {
+      .shelf-content { grid-template-columns: 1fr; }
+    }
+    .shelf-card-main {
+      background: #f8fafc;
+      border-radius: 14px;
+      padding: 24px;
+      border: 1px solid #e2e8f0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .shelf-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      background: #e0e7ff;
+      color: #4338ca;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .shelf-topics {
+      list-style: none;
+      padding: 0;
+      margin: 12px 0 0;
+    }
+    .shelf-topics li {
+      padding: 8px 12px;
+      margin-bottom: 6px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      color: #1e293b;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .shelf-topics li::before {
+      content: "📁";
+      font-size: 0.85rem;
+    }
+
+    /* Terminal Tool Box */
+    .terminal-tool-box {
+      background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
+      color: #f8fafc;
+      border-radius: 14px;
+      padding: 22px;
+      margin-top: 16px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .terminal-tool-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .terminal-tool-icon {
+      font-size: 1.4rem;
+      background: rgba(255,255,255,0.1);
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .terminal-tool-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #a5b4fc;
+    }
+    .terminal-tool-desc {
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: #cbd5e1;
+      margin: 0 0 10px;
+    }
+    .terminal-tool-badge {
+      display: inline-block;
+      padding: 3px 8px;
+      background: rgba(99, 102, 241, 0.25);
+      border: 1px solid rgba(165, 180, 252, 0.4);
+      color: #e0e7ff;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    /* 3 Tracks Cards */
+    .tracks-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 64px;
+    }
+    @media(max-width: 960px) {
+      .tracks-grid { grid-template-columns: 1fr; }
+    }
+    .track-card {
+      background: #ffffff;
+      border: 1px solid var(--shelf-border);
+      border-radius: 18px;
+      padding: 32px 24px;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .track-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+      border-color: #cbd5e1;
+    }
+    .track-card.highlight {
+      border-color: #6366f1;
+      background: linear-gradient(180deg, #ffffff 0%, rgba(99, 102, 241, 0.03) 100%);
+    }
+    .track-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #6366f1;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .track-icon {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+    }
+    .track-card h3 {
+      margin: 0 0 12px;
+      font-size: 1.25rem;
+      color: #0f172a;
+    }
+    .track-card p {
+      color: #64748b;
+      font-size: 0.92rem;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .track-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 20px;
+      background: #f1f5f9;
+      color: #1e293b;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      margin-top: auto;
+    }
+    .track-card.highlight .track-btn {
+      background: #4f46e5;
+      color: white;
+    }
+    .track-btn:hover {
+      background: #0f172a;
+      color: white;
+    }
+  </style>
+<body>
+  <div class="wrap">
+    <header class="site-header">
+      <a class="brand" href="/ru/"><span class="brand-mark">П</span><span>Профилактика-AI <small style="font-size: 10px; font-weight: 800; text-transform: uppercase; color: #0d9488; margin-left: 4px; vertical-align: super;">Beta</small></span></a>
+      <nav class="nav" aria-label="Навигация">
+        <a href="/ru/about/">О проекте</a>
+        <a href="/ru/science/">Наука</a>
+        <a href="/ru/academy/" class="nav-active" aria-current="page">Академия</a>
+        <a href="/ru/government/">Органам власти и МСУ</a>
+        <a href="/ru/workspace/">Организациям</a>
+        <a href="/ru/help-for-teacher/">Педагогам</a>
+        <a href="/ru/teenology/">Родителям и подросткам</a>
+      </nav>
+      <div class="nav-controls">
+        <a href="https://web.prevention.school/" class="nav-cta" target="_blank" rel="noopener">Веб-терминал</a>
+        <a class="lang-toggle" href="/ru/academy/experimental.html" aria-label="Переключить на русскую версию" style="font-weight: 600; text-decoration: none; padding: 4px 8px; border-radius: 4px; background: var(--surface-soft); color: var(--text);">RU</a>
+        <button type="button" class="theme-toggle" id="theme-toggle">Темная</button>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section class="hero-v2">
+        <span class="eyebrow">Образовательная среда нового поколения</span>
+        <h1 style="font-size: 2.8rem; letter-spacing: -0.02em; margin: 12px 0 20px;">
+          Инженерия целенаправленной деятельности
+        </h1>
+        <p style="font-size: 1.2rem; color: var(--muted); max-width: 780px; margin: 0 auto; line-height: 1.6;">
+          Психологическая и превентивная практика без мистики и когнитивного перегруза. Изучайте методологию проектирования через работу в реальном электронном кабинете психолога (Prevention Terminal).
+        </p>
+      </section>
+
+      <!-- Manifesto Box: Метафора проектирования -->
+      <section class="manifesto-box">
+        <h3>💡 О чем этот курс: от пиццы к клиническому проектированию</h3>
+        <p style="margin-bottom: 12px;">
+          Каждый биологический вид чем-то уникален. Людей отличает способность к воображению сложных систем, целеполаганию и прогнозу. Все эти навыки составляют самую сложную деятельность человека — <strong>проектирование</strong>.
+        </p>
+        <p style="margin-bottom: 12px;">
+          Представьте: вы смотрите фильм, но вдруг захотели есть. Противоречие между фильмом и голодом — это <strong>Проблема</strong>. Вы оцениваете варианты (заказать пиццу, заглянуть в холодильник), тратите время и деньги (<strong>Ресурсы</strong>) и оцениваете <strong>Результат</strong>: удалось ли быстро утолить голод, не отрываясь от экрана?
+        </p>
+        <p style="margin-bottom: 0; color: #4338ca; font-weight: 600;">
+          В психотерапии и превенции мы делаем ровно то же самое. Мы даем «шкаф с 5 понятными полочками» и сразу показываем, какими цифровыми инструментами Терминала специалист решает каждую задачу.
+        </p>
+      </section>
+
+      <!-- Interactive 5 Shelves Component -->
+      <section id="shelves" class="shelves-container">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; margin-bottom: 16px;">
+          <div>
+            <span class="shelf-badge">Интерактивная карта понятий & АРМ</span>
+            <h2 style="margin: 4px 0 0; font-size: 1.6rem;">Шкаф с 5 полочками: теория и рабочий терминал</h2>
+          </div>
+          <span style="font-size: 0.85rem; color: #64748b;">Выберите полочку, чтобы увидеть темы курса и рабочий инструмент АРМ</span>
+        </div>
+
+        <div class="shelves-nav" id="shelves-nav">
+          <button class="shelf-btn active" onclick="selectShelf(0)">1. Проблема (X1)</button>
+          <button class="shelf-btn" onclick="selectShelf(1)">2. Диагностика (X2)</button>
+          <button class="shelf-btn" onclick="selectShelf(2)">3. Целеполагание (X3)</button>
+          <button class="shelf-btn" onclick="selectShelf(3)">4. Вмешательство (X4)</button>
+          <button class="shelf-btn" onclick="selectShelf(4)">5. Оценка (X5)</button>
+          <button class="shelf-btn" onclick="selectShelf(5)">Фундамент: Специалист</button>
+        </div>
+
+        <div class="shelf-content" id="shelf-display">
+          <!-- Populated by JS -->
+        </div>
+      </section>
+
+      <!-- 3 Tracks of Academy -->
+      <section>
+        <div style="text-align: center; margin-bottom: 36px;">
+          <span class="eyebrow">Форматы обучения</span>
+          <h2 style="margin: 8px 0 0; font-size: 2rem;">Три образовательных трека</h2>
+        </div>
+
+        <div class="tracks-grid">
+          <!-- Track 1: Course -->
+          <div class="track-card">
+            <div>
+              <span class="track-badge">Теоретический базис</span>
+              <div class="track-icon">🎬</div>
+              <h3>Видеокурс и конспекты</h3>
+              <p>160 академических часов программы ДПО. 21 подробная видеолекция, авторские конспекты, стенограммы и сравнительные таблицы.</p>
+            </div>
+            <a href="/ru/academy/course/" class="track-btn">Открыть видеолекторий →</a>
+          </div>
+
+          <!-- Track 2: Practicum Simulator -->
+          <div class="track-card highlight">
+            <div>
+              <span class="track-badge" style="color: #4f46e5;">Клиническая лаборатория</span>
+              <div class="track-icon">🎮</div>
+              <h3>Практикум: AI-Симулятор</h3>
+              <p>Отработка навыков на реальных кейсах. Интерактивный диалог с виртуальным клиентом, живая матрица супервизии и разбор ошибок через RAG.</p>
+            </div>
+            <a href="/ru/academy/practicum/" class="track-btn">Запустить тренажер →</a>
+          </div>
+
+          <!-- Track 3: 3D Graph -->
+          <div class="track-card">
+            <div>
+              <span class="track-badge">Концептуальная карта</span>
+              <div class="track-icon">🪐</div>
+              <h3>3D-Граф онтологии</h3>
+              <p>Пространственная навигация по школам и методам. Переход от макро-уровня 5 полочек к микро-связям теорий и интервенций.</p>
+            </div>
+            <a href="/ru/academy/graph/" class="track-btn">Исследовать 3D-модель →</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer" style="margin-top: 80px;">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <strong>Профилактика-AI</strong><br>Открытая инфраструктура электронных рабочих мест.
+          <p class="footer-contact">
+            <a href="mailto:admin@prevention-ai.ru">admin@prevention-ai.ru</a><span class="footer-contact-sep" aria-hidden="true">·</span><a href="https://t.me/RomanDubrovsky" target="_blank" rel="noopener noreferrer">Telegram</a><span class="footer-contact-sep" aria-hidden="true">·</span><a href="https://www.linkedin.com/in/romandubrovsky/" target="_blank" rel="noopener">LinkedIn</a>
+          </p>
+          <p class="footer-community" style="margin-top: 8px; font-size: 0.85rem; color: var(--muted);">
+            Сообщества проекта (зеркала):<br>
+            Вконтакте: <a href="https://vk.ru/prevention_ai" target="_blank" rel="noopener">https://vk.ru/prevention_ai</a><br>
+            Телеграм: <a href="https://t.me/anthropology_health" target="_blank" rel="noopener">https://t.me/anthropology_health</a>
+          </p>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/ru/science/">Наука</a>
+          <a href="/ru/academy/">Академия</a>
+          <a href="/ru/government/">Органам власти и МСУ</a>
+          <a href="/ru/workspace/">Организациям</a>
+          <a href="/ru/help-for-teacher/">Педагогам</a>
+          <a href="/ru/teenology/">Родителям и подросткам</a>
+        </nav>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const SHELVES_DATA = [{"id": "X1_Problem", "x_stage": "X1_Problem", "order": 1, "title": "Полочка 1. ПРОБЛЕМА (Столкновение с противоречием)", "shortTitle": "X1: Проблема", "category_keys": ["cat_case", "cat_methodology"], "primary_problem_keys": ["DEV_EMO", "REL_FAM", "PREV_AGGR", "PREV_BULL"], "leadQuestion": "С чем пришел клиент? Где локализовано противоречие ситуации?", "analogy": "Чувство голода во время просмотра фильма.", "schema": "Следствия ➔ ПРОБЛЕМА ➔ Факторы", "terminal_tools": {"module_name": "Входящие и первичный скрининг (Inbox & Intake)", "component_ref": "InboxPanel / IntakeForm", "icon": "📥", "workflow": "Прием обращений с внешних сайтов и виджетов, первичная анкета с автоматическим определением шкалы тяжести Y (Y1_Normal → Y4_Crisis).", "key_feature": "Бесшовная фиксация жалобы без бумажной рутины и защита персональных данных."}, "topics_from_curriculum": ["Введение в дистанционное психологическое консультирование", "Установление доверительного контакта и терапевтического альянса", "Характеристика основных запросов родителей и подростков в онлайн-среде", "Типология первичных обращений (агрессия, тревожность, изоляция, конфликты)"], "key_artifacts": ["Первичный протокол обращения", "Карта противоречия", "Скрининг острой симптоматики"]}, {"id": "X2_Diag", "x_stage": "X2_Diag", "order": 2, "title": "Полочка 2. ИССЛЕДОВАНИЕ / ДИАГНОСТИКА (Откуда это взялось?)", "shortTitle": "X2: Диагностика", "category_keys": ["cat_theory", "cat_methodology"], "m_modalities": ["M1_Biology", "M2_Psychophysiology", "M3_Cognition", "M4_Social", "M5_Environment"], "leadQuestion": "Каковы корни и механизмы проблемы? Что ее поддерживает в системе?", "analogy": "Оценка запасов холодильника, времени доставки и баланса карты.", "schema": "Био-психо-социальные факторы (M1-M5) + Семейная система", "terminal_tools": {"module_name": "Карточка кейса & ИИ-Контекст (CaseStore & AI Brain)", "component_ref": "CaseAiContext / FamilyGenogram", "icon": "🧬", "workflow": "Структурированный сбор анамнеза по 5 модальностям (M1-M5), фиксация генограммы семьи, выявление триггеров и поддерживающих факторов симптома.", "key_feature": "Встроенный локальный ИИ-ассистент подсвечивает неочевидные системные риски."}, "topics_from_curriculum": ["Психология семьи: структура, границы, онтология и кризисы развития", "Ненормативные кризисы семьи: развод, потеря, острое горе", "Экзистенциально-аналитическая диагностика переживаний и смыслов", "Практикум: построение генограммы и социограммы семейной системы", "Диагностика тяжести состояний: норма, группа риска, кризис"], "key_artifacts": ["Генограмма семьи", "Диагностическое заключение", "Матрица факторов уязвимости"]}, {"id": "X3_Goal", "x_stage": "X3_Goal", "order": 3, "title": "Полочка 3. ЦЕЛЕПОЛАГАНИЕ (Образ желаемого будущего)", "shortTitle": "X3: Цель", "category_keys": ["cat_methodology", "cat_practice"], "leadQuestion": "Куда мы идем? Что конкретно будет считаться успехом?", "analogy": "Выбор: едим пиццу дома или идем в ресторан после фильма.", "schema": "Ожидаемые результаты ➔ Главная цель ➔ Задачи по звеньям", "terminal_tools": {"module_name": "Конструктор ИПР и Контракта (IprExportPanel)", "component_ref": "IprExportPanel / ContractWizard", "icon": "🎯", "workflow": "Формирование Индивидуальной программы развития/сопровождения (ИПР), формулирование терапевтической мишени и разграничение ответственности.", "key_feature": "Автоматическая генерация понятного для клиента договора-контракта в 1 клик."}, "topics_from_curriculum": ["Обсуждение и терапевтическая фокусировка проблемы", "Формулирование терапевтического контракта и распределение ответственности", "Выбор адекватного модального подхода под цель и ресурсы"], "key_artifacts": ["Терапевтический контракт", "Дерево целей и задач", "Критерии достижения цели"]}, {"id": "X4_Action", "x_stage": "X4_Action", "order": 4, "title": "Полочка 4. ВМЕШАТЕЛЬСТВО / РЕШЕНИЕ (План мероприятий)", "shortTitle": "X4: Решение", "category_keys": ["cat_technique", "cat_exercise"], "methods": ["cbt", "nvc", "schema", "emdr", "family_systems", "existential"], "leadQuestion": "Какие техники и интервенции изменят динамику?", "analogy": "Заказ пиццы через приложение, оплата, встреча курьера.", "schema": "Целевые группы × Звенья профилактики (L1..L5) × Методы", "terminal_tools": {"module_name": "Журнал консультаций & Голосовой ввод (ConsultationJournal & Whisper)", "component_ref": "ConsultationJournalPanel / SpeechDictationButton", "icon": "⚡", "workflow": "Проведение консультаций, надиктовывание заметок через локальный Whisper, моментальная выдача RAG-протоколов методик (КПТ, Схема, ДПДГ).", "key_feature": "Специалист полностью вовлечен в контакт с клиентом — аудио преобразуется в структурированный протокол автоматически."}, "topics_from_curriculum": ["Направления и содержание семейного консультирования (КПТ, системный подход)", "Специфика диалога: контакт с подростком, работа с родителем, работа с парой", "Психологическая коррекция реакций на травматический стресс (ПТСР)", "Экзистенциально-аналитическая помощь при кризисах идентичности"], "key_artifacts": ["План консультативных сессий", "Протоколы интервенций (КПТ/ДПДГ)", "Домашние задания"]}, {"id": "X5_Eval", "x_stage": "X5_Eval", "order": 5, "title": "Полочка 5. ОЦЕНКА РЕЗУЛЬТАТА (Завершение и проверка эффекта)", "shortTitle": "X5: Оценка", "category_keys": ["cat_audit", "cat_practice"], "leadQuestion": "Сработал ли проект? Как закрепить автономию клиента?", "analogy": "Сытость наступила? Фильм досмотрен с удовольствием? Расходы в норме?", "schema": "Индикаторы оценки + План устойчивости + Профилактика рецидива", "terminal_tools": {"module_name": "Телеметрия динамики & Экспорт отчетов (DashboardRollup & DocxExport)", "component_ref": "DashboardRollupPanel / LocalReportingPanel", "icon": "📊", "workflow": "Наглядные графики изменения шкал состояния во времени, оценка достижения целей ИПР, экспорт официального итогового заключения в DOCX.", "key_feature": "Доказательная база эффективности работы специалиста для клиента, руководства или родителей."}, "topics_from_curriculum": ["Завершающий этап психологического консультирования", "Подведение итогов: замеры изменений и закрепление инсайтов", "Профилактика рецидивов: конкретизация самостоятельных действий клиента", "Экологичный выход из терапевтического процесса"], "key_artifacts": ["Опросник динамики", "Памятка автономии", "Итоговый отчет в DOCX"]}, {"id": "Specialist_Core", "title": "ФУНДАМЕНТ: Специалист и несущая конструкция", "category_keys": ["cat_ethics", "cat_legal"], "executor_roles": ["psychologist", "educator", "manager"], "leadQuestion": "Кто проектирует? На каких ценностях и границах держится процесс?", "terminal_tools": {"module_name": "Контур безопасности & Настройки АРМ (Local-First Security & Setup)", "component_ref": "TerminalSetupFormSections / AiModesPanel", "icon": "🛡️", "workflow": "Полная локальная изоляция конфиденциальных данных на машине специалиста (152-ФЗ), переключение ИИ-режимов супервизора, аудит психогигиены.", "key_feature": "Нулевой риск утечки данных клиентов и профессиональная защита специалиста."}, "topics_from_curriculum": ["Общая и профессиональная этика в дистанционном консультировании", "Деонтология и нормативно-правовые рамки работы психолога (152-ФЗ)", "Понимание консультантом самого себя, рефлексия контрпереноса", "Психогигиена специалиста и профилактика эмоционального выгорания"], "key_artifacts": ["Этический кодекс", "Чек-лист психогигиены", "Согласие на обработку данных"]}];
+
+    function selectShelf(idx) {
+      const btns = document.querySelectorAll('.shelf-btn');
+      btns.forEach((b, i) => b.classList.toggle('active', i === idx));
+
+      const shelf = SHELVES_DATA[idx];
+      const tool = shelf.terminal_tools || {};
+      const display = document.getElementById('shelf-display');
+
+      display.innerHTML = `
+        <div class="shelf-card-main">
+          <div>
+            <span class="shelf-badge">${shelf.x_stage || 'Фундамент'}</span>
+            <h3 style="margin: 0 0 8px; font-size: 1.25rem; color: #1e1b4b;">${shelf.title}</h3>
+            <p style="color: #4338ca; font-weight: 500; font-size: 0.92rem; margin-bottom: 14px;">${shelf.analogy}</p>
+            <div style="background: #ffffff; padding: 12px 14px; border-radius: 10px; border: 1px solid #e2e8f0; margin-bottom: 14px;">
+              <strong style="color: #0f172a; font-size: 0.85rem;">Главный вопрос этапа:</strong>
+              <p style="margin: 4px 0 0; color: #475569; font-size: 0.88rem;">${shelf.leadQuestion}</p>
+            </div>
+            <div style="font-size: 0.82rem; color: #64748b; line-height: 1.5;">
+              <strong>Схема:</strong> ${shelf.schema}<br>
+              <strong>Артефакты:</strong> ${shelf.key_artifacts ? shelf.key_artifacts.join(', ') : ''}
+            </div>
+          </div>
+
+          <!-- Terminal Tool Block -->
+          <div class="terminal-tool-box">
+            <div class="terminal-tool-head">
+              <div class="terminal-tool-icon">${tool.icon || '🛠️'}</div>
+              <div>
+                <span class="terminal-tool-badge">Инструмент в Терминале (АРМ)</span>
+                <div class="terminal-tool-title">${tool.module_name || 'Модуль АРМ'}</div>
+              </div>
+            </div>
+            <p class="terminal-tool-desc">${tool.workflow || ''}</p>
+            <div style="font-size: 0.78rem; color: #94a3b8;">
+              ⚡ <strong>Автоматизирует:</strong> ${tool.key_feature || ''}
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h4 style="margin: 0 0 10px; font-size: 0.95rem; color: #334155;">Темы курса из программы ДПО (88888.txt), попадающие на эту полку:</h4>
+          <ul class="shelf-topics">
+            ${shelf.topics_from_curriculum.map(t => `<li>${t}</li>`).join('')}
+          </ul>
+        </div>
+      `;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      selectShelf(0);
+      const btn = document.getElementById('theme-toggle');
+      if (btn) {
+        const saved = localStorage.getItem('theme');
+        if (saved === 'dark') { document.documentElement.setAttribute('data-theme','dark'); btn.textContent = 'Светлая'; }
+        btn.addEventListener('click', () => {
+          const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+          document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+          localStorage.setItem('theme', isDark ? 'light' : 'dark');
+          btn.textContent = isDark ? 'Темная' : 'Светлая';
+        });
+      }
+    });
+  </script>
+</body>
+</html>

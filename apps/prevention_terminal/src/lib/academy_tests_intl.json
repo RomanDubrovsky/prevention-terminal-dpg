@@ -1,0 +1,25 @@
+[
+  {
+    "id": "m1_q1",
+    "moduleId": 1,
+    "question": "Health is the absence of disease. Choose which type of diseases this statement characterizes to a greater extent.",
+    "options": [
+      "Infectious",
+      "Chronic"
+    ],
+    "correctIndex": 0,
+    "explanation": "Yes, that is exactly so, according to the first half of the WHO definition of health, which stems from the biomedical understanding of health and disease."
+  },
+  {
+    "id": "m1_q2",
+    "moduleId": 1,
+    "question": "Which level of the chronic disease prevention model targets vulnerable groups or individuals not just with high stress levels, but with specific signs of a particular behavioral disorder?",
+    "options": [
+      "Universal",
+      "Selective",
+      "Indicated"
+    ],
+    "correctIndex": 2,
+    "explanation": "Indicated prevention targets vulnerable groups or individuals with specific signs of a behavioral disorder. Its purpose is the early detection of individuals with pronounced risk behavior signs and the timely provision of professional help, primarily psychological."
+  }
+]

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="app-api-base" content="https://api.prevention.school">
+    <title>Входящие заявки — IDA Portal</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/favicon.png">
+    <link rel="stylesheet" href="/styles/ida.css">
+</head>
+<body class="sw-body">
+    <header class="sw-header">
+        <div class="sw-brand">
+            <span class="sw-brand-mark">I</span>
+            <div>
+                <div class="sw-brand-title" id="sw-center-name">Загрузка...</div>
+                <div class="sw-brand-sub">Личный кабинет организации</div>
+            </div>
+        </div>
+        <nav class="sw-nav">
+            <a href="/portal/inbox.html" class="sw-nav-link active">Заявки</a>
+            <a href="/portal/specialists.html" class="sw-nav-link">Психологи</a>
+            <a href="/portal/widgets.html" class="sw-nav-link">Код виджетов</a>
+            <a href="/portal/download.html" class="sw-nav-link">Скачать ПК-версию</a>
+            <button onclick="window.IDA_AUTH.logout()" class="sw-btn sw-btn--secondary" style="padding: 6px 12px; font-size:12.5px;">Выйти</button>
+        </nav>
+    </header>
+
+    <main class="sw-main">
+        <section class="sw-panel" style="margin-bottom:20px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                <h1 style="margin:0; font-size:1.6rem;">Заявки на консультацию</h1>
+                <button onclick="loadLeads()" class="sw-btn sw-btn--secondary" style="padding:8px 14px; font-size:13.5px;">Обновить список</button>
+            </div>
+        </section>
+
+        <div id="leads-loading" class="muted">Загрузка заявок...</div>
+        <div id="leads-empty" class="sw-panel hidden" style="text-align:center; padding:40px;">
+            <h3 style="margin-top:0;">Пока нет ни одной заявки</h3>
+            <p class="muted">Когда клиент отправит заявку через виджет на вашем сайте, она мгновенно появится здесь.</p>
+        </div>
+
+        <div id="leads-list" class="lead-list"></div>
+    </main>
+
+    <script src="/portal-auth.js"></script>
+    <script>
+        function loadLeads() {
+            var token = window.IDA_AUTH.getSetupToken();
+            var centerId = sessionStorage.getItem('ida_center_id');
+            var loadingEl = document.getElementById('leads-loading');
+            var emptyEl = document.getElementById('leads-empty');
+            var listEl = document.getElementById('leads-list');
+
+            if (!token || !centerId) return;
+
+            loadingEl.classList.remove('hidden');
+            emptyEl.classList.add('hidden');
+            listEl.innerHTML = '';
+
+            var url = window.IDA_AUTH.API_BASE + '/api/ida/centers/' + encodeURIComponent(centerId) + '/leads?setup_token=' + encodeURIComponent(token);
+            
+            fetch(url)
+                .then(function (r) { return r.json(); })
+                .then(function (d) {
+                    loadingEl.classList.add('hidden');
+                    if (!d || !Array.isArray(d) || d.length === 0) {
+                        emptyEl.classList.remove('hidden');
+                        return;
+                    }
+
+                    d.forEach(function (lead) {
+                        var card = document.createElement('div');
+                        card.className = 'lead-card';
+                        
+                        var dateStr = lead.created_at ? new Date(lead.created_at).toLocaleString('ru-RU') : '';
+                        var briefStr = lead.intake_json ? parseBrief(lead.intake_json) : 'Сводка не сформирована.';
+                        
+                        var statusLabel = 'Новая';
+                        var statusClass = 'status-new';
+                        if (lead.status === 'processing') {
+                            statusLabel = 'В работе';
+                            statusClass = 'status-processing';
+                        } else if (lead.status === 'done') {
+                            statusLabel = 'Завершена';
+                            statusClass = 'status-done';
+                        }
+
+                        card.innerHTML = `
+                            <div class="lead-header">
+                                <div>
+                                    <span class="lead-name">${escapeHtml(lead.name || 'Анонимный клиент')}</span>
+                                    <span class="lead-status-badge ${statusClass}">${statusLabel}</span>
+                                </div>
+                                <span class="lead-date">${dateStr}</span>
+                            </div>
+                            <div class="lead-meta">
+                                <div><strong>Контакты:</strong> ${escapeHtml(lead.contact || 'Не указаны')}</div>
+                                <div><strong>Выбранный специалист ID:</strong> ${escapeHtml(lead.specialist_id || 'Любой свободный')}</div>
+                                <div><strong>Источник:</strong> ${escapeHtml(lead.source || 'виджет')}</div>
+                            </div>
+                            <div class="lead-brief">
+                                <strong>ИИ-Анамнез обращения (Intake Brief):</strong><br>
+                                <div style="margin-top:6px; white-space:pre-wrap;">${escapeHtml(briefStr)}</div>
+                            </div>
+                            <div style="display:flex; gap:10px; margin-top:8px;">
+                                <button onclick="updateStatus('${lead.id}', 'processing')" class="sw-btn sw-btn--secondary" style="padding:6px 12px; font-size:12.5px;">В работу</button>
+                                <button onclick="updateStatus('${lead.id}', 'done')" class="sw-btn sw-btn--secondary" style="padding:6px 12px; font-size:12.5px;">Завершить</button>
+                            </div>
+                        `;
+                        listEl.appendChild(card);
+                    });
+                })
+                .catch(function (err) {
+                    loadingEl.className = 'ap-status ap-status--err';
+                    loadingEl.textContent = 'Ошибка загрузки заявок со стороны API.';
+                });
+        }
+
+        function parseBrief(jsonStr) {
+            try {
+                var data = JSON.parse(jsonStr);
+                if (data.intake_brief) return data.intake_brief;
+                if (data.summary) return data.summary;
+                return jsonStr;
+            } catch (_) {
+                return jsonStr;
+            }
+        }
+
+        function updateStatus(leadId, status) {
+            var token = window.IDA_AUTH.getSetupToken();
+            var centerId = sessionStorage.getItem('ida_center_id');
+            if (!token || !centerId) return;
+
+            var url = window.IDA_AUTH.API_BASE + '/api/ida/centers/' + encodeURIComponent(centerId) + '/leads/' + encodeURIComponent(leadId) + '/status?setup_token=' + encodeURIComponent(token) + '&status=' + encodeURIComponent(status);
+            
+            fetch(url, { method: 'POST' })
+                .then(function (r) { return r.json(); })
+                .then(function (d) {
+                    if (d.ok) {
+                        loadLeads();
+                    } else {
+                        alert('Не удалось обновить статус: ' + (d.error || 'ошибка сервера'));
+                    }
+                })
+                .catch(function () {
+                    alert('Ошибка сети.');
+                });
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Wait brief moment for auth validation before fetching leads
+            setTimeout(loadLeads, 400);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="app-api-base" content="https://api.prevention.school">
+    <title>IDA Portal — Вход для партнеров</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/favicon.png">
+    <link rel="stylesheet" href="/styles/ida.css">
+</head>
+<body class="sw-body">
+    <header class="sw-header">
+        <div class="sw-brand">
+            <span class="sw-brand-mark">I</span>
+            <div>
+                <div class="sw-brand-title">IDA Pro</div>
+                <div class="sw-brand-sub">Личный кабинет организации</div>
+            </div>
+        </div>
+    </header>
+
+    <main class="sw-main sw-main--narrow">
+        <section class="sw-panel">
+            <h1 style="margin-top:0;">Вход в личный кабинет</h1>
+            <p class="sw-lead">Введите Ключ подключения (Setup Token), полученный при регистрации вашего центра на сайте или в IDA Pro.</p>
+            
+            <form id="login-form" class="ap-form">
+                <div class="ap-field">
+                    <label for="setup-token">Ключ подключения (Setup Token)</label>
+                    <input type="password" id="setup-token" required placeholder="Введите 32-значный ключ..." autocomplete="current-password">
+                </div>
+                <div id="login-status" class="ap-status ap-status--err hidden"></div>
+                <button type="submit" id="login-btn" class="sw-btn sw-btn--primary">Войти в кабинет</button>
+            </form>
+
+            <div style="margin-top:20px; border-top:1px solid var(--sw-border); padding-top:15px; text-align:center; font-size:13.5px;">
+                Нет аккаунта? <a href="/setup/" style="color:var(--sw-primary); font-weight:600; text-decoration:none;">Создать новый кабинет</a>
+            </div>
+        </section>
+    </main>
+
+    <script src="/portal-auth.js"></script>
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            var token = document.getElementById('setup-token').value.trim();
+            var btn = document.getElementById('login-btn');
+            var statusEl = document.getElementById('login-status');
+            
+            if (!token) return;
+            btn.disabled = true;
+            statusEl.classList.add('hidden');
+
+            fetch(window.IDA_AUTH.API_BASE + '/api/ida/centers/session?setup_token=' + encodeURIComponent(token))
+                .then(function (r) { return r.json(); })
+                .then(function (d) {
+                    if (d.ok && d.center) {
+                        window.IDA_AUTH.setSetupToken(token);
+                        sessionStorage.setItem('ida_center_id', d.center.center_id || '');
+                        sessionStorage.setItem('ida_center_name', d.center.display_name || '');
+                        window.location.href = '/portal/inbox.html';
+                    } else {
+                        statusEl.textContent = 'Неверный токен. Проверьте правильность ввода.';
+                        statusEl.classList.remove('hidden');
+                    }
+                })
+                .catch(function () {
+                    statusEl.textContent = 'Ошибка сети. Не удалось связаться с сервером.';
+                    statusEl.classList.remove('hidden');
+                })
+                .finally(function () {
+                    btn.disabled = false;
+                });
+        });
+    </script>
+</body>
+</html>

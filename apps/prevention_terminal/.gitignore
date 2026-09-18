@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.vite/
+.tauri/
+src-tauri/target/
+src-tauri/Cargo.lock
+*.log
+*.sqlite
+*.sqlite-journal
+*.db
+.env
+.env.local

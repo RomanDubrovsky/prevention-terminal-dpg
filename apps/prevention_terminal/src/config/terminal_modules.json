@@ -1,0 +1,161 @@
+{
+  "modules": {
+    "manager": {
+      "mode": "manager",
+      "security_tier": "standard",
+      "registry_available": false,
+      "org_types": [
+        "education",
+        "preventive_public",
+        "commercial"
+      ],
+      "title_ru": "Дашборд руководителя",
+      "description_ru": "Директор школы / руководитель центра. Сводные данные (rollup), federation, IDA-виджеты для центра. Без реестра и без ФИО — только агрегаты."
+    },
+    "specialist": {
+      "mode": "specialist",
+      "security_tier": "standard",
+      "registry_available": true,
+      "registry_security_tier": "maximum",
+      "org_types": [
+        "education",
+        "preventive_public",
+        "commercial"
+      ],
+      "onboarding": null,
+      "title_ru": "Рабочее место специалиста",
+      "description_ru": "Школьный психолог, соцпедагог или специалист коммерческого центра. Реестр с ФИО — только если явно включён."
+    },
+    "educator_lite": {
+      "mode": "specialist",
+      "security_tier": "standard",
+      "registry_available": false,
+      "free_tier": true,
+      "org_types": [
+        "education"
+      ],
+      "onboarding": null,
+      "title_ru": "Рабочее место педагога (lite)",
+      "description_ru": "Только школа. Бесплатно: ИИ-консультант + план группового занятия. Простая регистрация. Не показывать для commercial.",
+      "default_modules": null
+    },
+    "reporting_panel": {
+      "id": "reporting_panel",
+      "always_on": true,
+      "paid": false,
+      "school_default": true,
+      "commercial_default": true,
+      "title_ru": "Отчётная панель",
+      "title_en": "Reporting panel",
+      "description_ru": "Сводка нагрузки, консультаций, ИПР и групповой работы без персональных данных в облаке. Встроена в рабочее место; в дашборде — rollup по иерархии.",
+      "description_en": "Workload and activity summary; cloud sees aggregates only."
+    },
+    "reception_journal": {
+      "id": "reception_journal",
+      "paid": false,
+      "school_default": true,
+      "commercial_default": true,
+      "specialist_only": true,
+      "requires_registry": true,
+      "pii_level": "maximum",
+      "title_ru": "Журнал приёма",
+      "title_en": "Reception journal",
+      "description_ru": "Конкретные ФИО учеников или клиентов. Доступно только специалисту, который создал реестр. Отдельный vault, максимальная секретность.",
+      "description_en": "Named clients/students; local encrypted storage only."
+    },
+    "consultation_journal": {
+      "id": "consultation_journal",
+      "paid": true,
+      "school_default": true,
+      "commercial_default": true,
+      "title_ru": "Журнал ведения консультаций",
+      "title_en": "Consultation case journal",
+      "description_ru": "Ход одной консультации: пол, возраст, problem_key, протоколы, этапы X1–X5. Платно: Architect — план и отчёт; Expert — формы заключений по одному человеку.",
+      "description_en": "Single-case workflow with taxonomy codes; paid AI Architect/Expert document modes."
+    },
+    "ipr": {
+      "id": "ipr",
+      "paid": true,
+      "school_only": true,
+      "school_default": true,
+      "commercial_default": false,
+      "title_ru": "ИПР — личное дело ребёнка",
+      "title_en": "IEP / individual child record",
+      "description_ru": "Личное дело, исполнение ИПР, digital twin документов (5-У). Платно: Architect/Expert как в консультациях.",
+      "description_en": "Individual education plan; school context only."
+    },
+    "group_sessions": {
+      "id": "group_sessions",
+      "paid": true,
+      "specialist_only": true,
+      "educator_lite_free": true,
+      "school_default": true,
+      "commercial_default": true,
+      "title_ru": "Групповые занятия",
+      "title_en": "Group sessions",
+      "description_ru": "План и отчёт групповой работы. Платно для специалиста (Architect/Expert). Бесплатно в пресете «педагог lite» — конструктор групповых занятий без реестра.",
+      "description_en": "Group prevention sessions with document twin."
+    },
+    "safe_environment": {
+      "id": "safe_environment",
+      "paid": true,
+      "school_only": true,
+      "school_default": true,
+      "commercial_default": false,
+      "title_ru": "Безопасная среда",
+      "title_en": "Safe environment program",
+      "description_ru": "Школьная программа; отчёт может подтягивать счётчики консультаций, ИПР и групп из других модулей.",
+      "description_en": "School-wide safe environment program with cross-module aggregates."
+    },
+    "embed_client_widget": {
+      "id": "embed_client_widget",
+      "manager_only": true,
+      "commercial_default": true,
+      "school_default": false,
+      "title_ru": "Виджет на сайт (чат + подбор)",
+      "title_en": "Website embed (chat + match)",
+      "description_ru": "Сгенерировать код виджета: бот, рекомендации, переход к отфильтрованному иконостасу специалистов.",
+      "description_en": "Embed snippet for client chat and specialist matching."
+    },
+    "specialist_registration_widget": {
+      "id": "specialist_registration_widget",
+      "manager_only": true,
+      "commercial_default": true,
+      "school_default": false,
+      "title_ru": "Виджет регистрации специалистов",
+      "title_en": "Specialist registration form",
+      "description_ru": "Страница/блок для заполнения профиля специалиста с тегами таксономии (draft → published).",
+      "description_en": "Public form for roster onboarding."
+    },
+    "specialist_iconostasis": {
+      "id": "specialist_iconostasis",
+      "manager_only": true,
+      "commercial_default": true,
+      "school_default": false,
+      "title_ru": "Иконостас специалистов",
+      "title_en": "Specialist directory page",
+      "description_ru": "Публичная страница опубликованных специалистов; фильтр для embed или полный каталог.",
+      "description_en": "Published specialist grid for website."
+    },
+    "ai_consultant_lite": {
+      "id": "ai_consultant_lite",
+      "paid": false,
+      "educator_lite_default": true,
+      "educator_lite_free": true,
+      "specialist_only": false,
+      "title_ru": "ИИ-консультант (просто спросить)",
+      "title_en": "AI consultant (ask mode)",
+      "description_ru": "Режим «просто спросить» без Expert/Architect. Для педагогов — бесплатно, без реестра и без персональных дел. Канал распространения бота в школе.",
+      "description_en": "Consultant mode only; free for educators; no registry or case files."
+    },
+    "consumer_app_link": {
+      "id": "consumer_app_link",
+      "workspace_only": true,
+      "specialist_only": true,
+      "title_ru": "Связь с пользовательским приложением",
+      "title_en": "Consumer app bridge",
+      "description_ru": "Дочерняя ссылка: Teenology (госорганизация/школа) или IDA (коммерческий центр). ИИ-мост специалист ↔ клиент (см. docs, shared_case).",
+      "description_en": "Link workspace to Teenology or IDA consumer PWA."
+    }
+  }
+}

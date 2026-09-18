@@ -1,0 +1,5 @@
+/*
+  https://web.prevention.school/          -> workspace (index.html)
+  https://appointment.prevention.school/  -> booking (/appointment/)
+*/
+https://appointment.prevention.school/*  /appointment/:splat  200

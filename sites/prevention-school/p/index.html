@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Умная визитка специалиста — IDA Pro</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/favicon.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;550;650;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0f766e;
+      --violet: #7c3aed;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --border: #e2e8f0;
+      --text: #0f172a;
+      --muted: #64748b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .mobile-container {
+      width: 100%;
+      max-width: 520px;
+      background: var(--surface);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .profile-header {
+      padding: 32px 20px 20px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, #f1f5f9 0%, #ffffff 100%);
+    }
+    .avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: #e2e8f0;
+      margin: 0 auto 16px;
+      border: 4px solid white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      object-fit: cover;
+      overflow: hidden;
+    }
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    h1 {
+      margin: 0 0 6px;
+      font-size: 1.4rem;
+      letter-spacing: -0.02em;
+    }
+    .bio {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.5;
+      margin: 0 0 14px;
+    }
+    .tags {
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .tag {
+      background: #f1f5f9;
+      color: #475569;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 550;
+    }
+    .tag.highlight {
+      background: rgba(124, 58, 237, 0.1);
+      color: var(--violet);
+    }
+    .widget-notice {
+      text-align: center;
+      font-size: 0.75rem;
+      color: #94a3b8;
+      padding: 16px;
+      border-top: 1px solid var(--border);
+      background: #fafafa;
+    }
+    .loading-state {
+      padding: 60px 20px;
+      text-align: center;
+      color: var(--muted);
+    }
+    .spinner {
+      width: 32px;
+      height: 32px;
+      border: 3px solid #e2e8f0;
+      border-top-color: var(--violet);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 16px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+  <div class="mobile-container">
+    <div id="card-content" class="loading-state">
+      <div class="spinner"></div>
+      <div>Загрузка анкеты специалиста...</div>
+    </div>
+    
+    <div id="register-widget-mount"></div>
+
+    <div class="widget-notice">
+      Умная визитка специалиста — Работает на платформе IDA Pro
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      var pathParts = window.location.pathname.split('/p/');
+      var rawId = pathParts[1] ? pathParts[1].replace(/\/.*$/, '') : '';
+      var urlParams = new URLSearchParams(window.location.search);
+      var specialistId = (rawId || urlParams.get('id') || urlParams.get('specialist_id') || '').trim();
+
+      var apiBase = 'https://api.prevention.school';
+      var container = document.getElementById('card-content');
+
+      if (!specialistId) {
+        container.innerHTML = '<div style="padding: 40px 20px; text-align: center; color: #ef4444;">' +
+          '<h3>Специалист не указан</h3>' +
+          '<p style="color: #64748b; font-size: 0.9rem;">Перейдите по прямой ссылке на визитку психолога или воспользуйтесь каталогом.</p>' +
+          '<a href="/specialists.html" style="display: inline-block; margin-top: 12px; color: #7c3aed; text-decoration: none; font-weight: 600;">Открыть каталог всех специалистов →</a>' +
+          '</div>';
+        return;
+      }
+
+      fetch(apiBase + '/api/ida/centers/irpp/specialists')
+        .then(function(res) { return res.json(); })
+        .then(function(data) {
+          var list = (data && data.specialists) || [];
+          var spec = list.find(function(s) { 
+            return s.specialist_id === specialistId || s.public_username === specialistId;
+          });
+
+          if (!spec) {
+            spec = {
+              display_name: 'Специалист ' + specialistId,
+              bio_short: 'Практикующий специалист платформы IDA Pro.',
+              status: 'published'
+            };
+          }
+
+          document.title = (spec.display_name || 'Специалист') + ' — Умная визитка (IDA Pro)';
+
+          var avatarHtml = spec.photo_url 
+            ? '<img src="' + spec.photo_url + '" alt="' + (spec.display_name || '') + '" />'
+            : '👩‍💼';
+
+          var tagsHtml = '';
+          if (spec.price) tagsHtml += '<span class="tag highlight">' + spec.price + ' ₽/сессия</span>';
+          if (spec.online !== false) tagsHtml += '<span class="tag">Онлайн</span>';
+          if (spec.offline) tagsHtml += '<span class="tag">Оффлайн</span>';
+
+          container.innerHTML = '<div class="profile-header">' +
+            '<div class="avatar">' + avatarHtml + '</div>' +
+            '<h1>' + (spec.display_name || 'Психолог') + '</h1>' +
+            '<p class="bio">' + (spec.bio_short || 'Клинический психолог, консультант платформы.') + '</p>' +
+            '<div class="tags">' + tagsHtml + '</div>' +
+          '</div>';
+
+          var widgetDiv = document.createElement('div');
+          widgetDiv.id = 'ida-register-container';
+          document.getElementById('register-widget-mount').appendChild(widgetDiv);
+
+          var script = document.createElement('script');
+          script.src = 'https://prevention.school/ida/embed/loader.js';
+          script.defer = true;
+          script.setAttribute('data-embed-base', 'https://prevention.school/ida/embed');
+          script.setAttribute('data-widget', 'register');
+          script.setAttribute('data-api-base', apiBase);
+          script.setAttribute('data-center-id', 'irpp');
+          script.setAttribute('data-specialist-id', specialistId);
+          script.setAttribute('data-brand', 'ИППР / IDA Pro');
+          script.setAttribute('data-locale', 'ru');
+          document.body.appendChild(script);
+        })
+        .catch(function(err) {
+          container.innerHTML = '<div style="padding: 40px 20px; text-align: center;">' +
+            '<h3>Загрузка анкеты...</h3>' +
+            '<p style="color: #64748b;">Если анкета не отобразилась, проверьте интернет-соединение.</p>' +
+            '</div>';
+        });
+    })();
+  </script>
+</body>
+</html>

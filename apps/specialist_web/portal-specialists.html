@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="app-api-base" content="https://api.prevention.school">
+    <title>Психологи центра — IDA Portal</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/favicon.png">
+    <link rel="stylesheet" href="/styles/ida.css">
+</head>
+<body class="sw-body">
+    <header class="sw-header">
+        <div class="sw-brand">
+            <span class="sw-brand-mark">I</span>
+            <div>
+                <div class="sw-brand-title" id="sw-center-name">Загрузка...</div>
+                <div class="sw-brand-sub">Личный кабинет организации</div>
+            </div>
+        </div>
+        <nav class="sw-nav">
+            <a href="/portal/inbox.html" class="sw-nav-link">Заявки</a>
+            <a href="/portal/specialists.html" class="sw-nav-link active">Психологи</a>
+            <a href="/portal/widgets.html" class="sw-nav-link">Код виджетов</a>
+            <a href="/portal/download.html" class="sw-nav-link">Скачать ПК-версию</a>
+            <button onclick="window.IDA_AUTH.logout()" class="sw-btn sw-btn--secondary" style="padding: 6px 12px; font-size:12.5px;">Выйти</button>
+        </nav>
+    </header>
+
+    <main class="sw-main">
+        <section class="sw-panel" style="margin-bottom:20px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                <div>
+                    <h1 style="margin:0; font-size:1.6rem;">Управление специалистами</h1>
+                    <p class="muted" style="margin:4px 0 0 0; font-size:13.5px;">Здесь вы можете согласовать психологов, чтобы они отображались на страницах иконостаса/ростера вашего сайта.</p>
+                </div>
+                <div style="display:flex; gap:10px;">
+                    <button onclick="loadSpecialists()" class="sw-btn sw-btn--secondary" style="padding:8px 14px; font-size:13.5px;">Обновить</button>
+                    <a href="/staff-register/" target="_blank" class="sw-btn sw-btn--primary" style="padding:8px 14px; font-size:13.5px;">Добавить анкету</a>
+                </div>
+            </div>
+        </section>
+
+        <div id="specs-loading" class="muted">Загрузка списка специалистов...</div>
+        <div id="specs-empty" class="sw-panel hidden" style="text-align:center; padding:40px;">
+            <h3 style="margin-top:0;">Список пуст</h3>
+            <p class="muted">Чтобы добавить психолога, нажмите кнопку «Добавить анкету» выше, заполните ее и отправьте. После этого вернитесь сюда и согласуйте ее.</p>
+        </div>
+
+        <div id="specs-list" class="spec-list"></div>
+    </main>
+
+    <script src="/portal-auth.js"></script>
+    <script>
+        function loadSpecialists() {
+            var token = window.IDA_AUTH.getSetupToken();
+            var centerId = sessionStorage.getItem('ida_center_id');
+            var loadingEl = document.getElementById('specs-loading');
+            var emptyEl = document.getElementById('specs-empty');
+            var listEl = document.getElementById('specs-list');
+
+            if (!token || !centerId) return;
+
+            loadingEl.classList.remove('hidden');
+            emptyEl.classList.add('hidden');
+            listEl.innerHTML = '';
+
+            var url = window.IDA_AUTH.API_BASE + '/api/ida/centers/' + encodeURIComponent(centerId) + '/specialists?setup_token=' + encodeURIComponent(token) + '&include_drafts=true';
+            
+            fetch(url)
+                .then(function (r) { return r.json(); })
+                .then(function (d) {
+                    loadingEl.classList.add('hidden');
+                    if (!d || !Array.isArray(d) || d.length === 0) {
+                        emptyEl.classList.remove('hidden');
+                        return;
+                    }
+
+                    d.forEach(function (spec) {
+                        var card = document.createElement('div');
+                        card.className = 'spec-card';
+                        
+                        var statusLabel = spec.status === 'published' ? 'Согласован (Published)' : 'Черновик (Draft)';
+                        var statusClass = spec.status === 'published' ? 'spec-status--published' : 'spec-status--draft';
+                        
+                        var approveBtn = spec.status !== 'published' 
+                            ? `<button onclick="approveSpecialist('${spec.provider_id || spec.id}')" class="sw-btn sw-btn--primary" style="padding:6px 12px; font-size:12.5px; margin-top:8px; width:100%;">Согласовать на сайт</button>` 
+                            : `<button onclick="unapproveSpecialist('${spec.provider_id || spec.id}')" class="sw-btn sw-btn--secondary" style="padding:6px 12px; font-size:12.5px; margin-top:8px; width:100%;">Убрать в черновики</button>`;
+
+                        var avatarSrc = spec.photo_url || 'https://via.placeholder.com/150';
+
+                        card.innerHTML = `
+                            <img class="spec-avatar" src="${escapeHtml(avatarSrc)}" alt="Фото">
+                            <div class="spec-info">
+                                <h3 class="spec-name">${escapeHtml(spec.display_name || 'Без имени')}</h3>
+                                <div class="spec-status ${statusClass}">${statusLabel}</div>
+                                <p class="spec-bio">${escapeHtml(spec.bio_short || 'Описание не заполнено.')}</p>
+                                <div style="margin-top:auto;">
+                                    ${approveBtn}
+                                </div>
+                            </div>
+                        `;
+                        listEl.appendChild(card);
+                    });
+                })
+                .catch(function (err) {
+                    loadingEl.className = 'ap-status ap-status--err';
+                    loadingEl.textContent = 'Ошибка загрузки специалистов со стороны API.';
+                });
+        }
+
+        function approveSpecialist(specId) {
+            var token = window.IDA_AUTH.getSetupToken();
+            var centerId = sessionStorage.getItem('ida_center_id');
+            if (!token || !centerId) return;
+
+            var url = window.IDA_AUTH.API_BASE + '/api/ida/centers/' + encodeURIComponent(centerId) + '/reviews/' + encodeURIComponent(specId) + '/approve?setup_token=' + encodeURIComponent(token);
+            
+            fetch(url, { method: 'POST' })
+                .then(function (r) { return r.json(); })
+                .then(function (d) {
+                    if (d.ok) {
+                        loadSpecialists();
+                    } else {
+                        alert('Не удалось согласовать специалиста: ' + (d.error || 'ошибка сервера'));
+                    }
+                })
+                .catch(function () {
+                    alert('Ошибка сети.');
+                });
+        }
+
+        function unapproveSpecialist(specId) {
+            var token = window.IDA_AUTH.getSetupToken();
+            var centerId = sessionStorage.getItem('ida_center_id');
+            if (!token || !centerId) return;
+
+            var url = window.IDA_AUTH.API_BASE + '/api/ida/centers/' + encodeURIComponent(centerId) + '/reviews/' + encodeURIComponent(specId) + '/delete?setup_token=' + encodeURIComponent(token);
+            
+            fetch(url, { method: 'POST' })
+                .then(function (r) { return r.json(); })
+                .then(function (d) {
+                    if (d.ok) {
+                        loadSpecialists();
+                    } else {
+                        alert('Не удалось снять публикацию: ' + (d.error || 'ошибка сервера'));
+                    }
+                })
+                .catch(function () {
+                    alert('Ошибка сети.');
+                });
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(loadSpecialists, 400);
+        });
+    </script>
+</body>
+</html>

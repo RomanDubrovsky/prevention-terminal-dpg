@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Territorial Dashboard — preview</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Inter, system-ui, sans-serif; background: #f1f5f4; color: #1f2933; }
+    .app { display: grid; grid-template-columns: 220px 1fr; min-height: 100vh; }
+    .side { background: #fff; border-right: 1px solid #d9e0d8; padding: 20px 16px; }
+    .side h1 { font-size: 14px; margin: 0 0 16px; color: #0f766e; }
+    .side a { display: block; padding: 8px 10px; margin-bottom: 4px; border-radius: 8px; font-size: 13px; color: #405160; text-decoration: none; }
+    .side a.active { background: #dff5f0; color: #0b5f59; font-weight: 700; }
+    .main { padding: 20px 24px; }
+    .banner { font-size: 11px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; color: #0b5f59; background: #dff5f0; border: 1px solid #9fd9cc; padding: 8px 12px; border-radius: 8px; margin-bottom: 16px; }
+    h2 { margin: 0 0 12px; font-size: 20px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .card { background: #fff; border: 1px solid #d9e0d8; border-radius: 12px; padding: 14px; font-size: 13px; }
+    .card strong { display: block; margin-bottom: 6px; }
+    .risk { color: #b45309; }
+    .chart { height: 80px; background: linear-gradient(180deg, #e6f7f4, #fff); border-radius: 8px; margin-top: 8px; position: relative; }
+    .chart::after { content: ""; position: absolute; left: 8%; right: 8%; bottom: 12px; height: 3px; background: #0f766e; border-radius: 99px; box-shadow: 0 -18px 0 #f59e0b, 0 -36px 0 #0f766e; opacity: 0.7; }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <nav class="side">
+      <h1>Prevention.AI · Territory</h1>
+      <a class="active" href="#">Districts</a>
+      <a href="#">Schools</a>
+      <a href="#">Ministries</a>
+      <a href="#">Infrastructure status</a>
+    </nav>
+    <main class="main">
+      <div class="banner">Mode: Anonymized Macro Telemetry Loop · No PII records stored on this tier</div>
+      <h2>Regional prevention signals</h2>
+      <div class="grid">
+        <div class="card risk"><strong>District A</strong>Status: High risk signals (Anxiety index: +14% this month)</div>
+        <div class="card risk"><strong>School cluster #4</strong>Alert: Bullying prevention demand spiked in 7th grades</div>
+        <div class="card"><strong>Specialist workload</strong>88% capacity limit breached<div class="chart" aria-hidden="true"></div></div>
+        <div class="card"><strong>Protective factor trend</strong>Peer inclusion programs: +6% uptake (aggregate)</div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

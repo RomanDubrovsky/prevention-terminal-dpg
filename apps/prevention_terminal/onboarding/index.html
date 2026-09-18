@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Рабочее место — первичная настройка</title>
+    <link rel="stylesheet" href="onboarding.css" />
+</head>
+<body>
+    <main class="ob" id="ob-app">
+        <header class="ob__head">
+            <p class="ob__badge">Рабочее место · Настройка</p>
+            <h1 id="ob-title">Первичная настройка</h1>
+            <p class="ob__step" id="ob-step-label">Шаг 1 из 6</p>
+        </header>
+
+        <!-- Step 1: mode -->
+        <section class="ob__pane" data-step="1">
+            <h2>Режим работы</h2>
+            <p class="ob__hint">Выберите один вариант. Позже можно добавить второй профиль в том же приложении.</p>
+            <div class="ob__choices">
+                <label class="ob__card">
+                    <input type="radio" name="mode" value="specialist" checked />
+                    <strong>Рабочее место специалиста</strong>
+                    <span>Психолог, педагог-психолог, специалист по работе с молодёжью…</span>
+                </label>
+                <label class="ob__card">
+                    <input type="radio" name="mode" value="manager" />
+                    <strong>Дашборд руководителя</strong>
+                    <span>Администрация школы/организации, органы управления образованием…</span>
+                </label>
+            </div>
+        </section>
+
+        <!-- Step 2: federation -->
+        <section class="ob__pane ob__hidden" data-step="2">
+            <h2>Связи в иерархии</h2>
+            <p class="ob__hint" id="ob-fed-hint"></p>
+            <div class="ob__codes">
+                <label>Ваша дочерняя ссылка (для прикрепления снизу)
+                    <input id="ob-child-code" readonly />
+                    <button type="button" class="ob__copy" data-target="ob-child-code">Копировать</button>
+                </label>
+                <label id="ob-parent-block">Ваша родительская ссылка (для прикрепления сверху)
+                    <input id="ob-parent-code" readonly />
+                    <button type="button" class="ob__copy" data-target="ob-parent-code">Копировать</button>
+                </label>
+                <label>Вставьте ссылку родителя (если вас пригласили)
+                    <input id="ob-parent-in" placeholder="PARENT-XXXX" />
+                </label>
+                <label id="ob-child-in-block">Вставьте ссылку дочернего рабочего места
+                    <input id="ob-child-in" placeholder="CHILD-XXXX" />
+                </label>
+            </div>
+        </section>
+
+        <!-- Step 3: profile -->
+        <section class="ob__pane ob__hidden" data-step="3">
+            <h2>Профиль</h2>
+            <form class="ob__form" id="ob-profile-form">
+                <label>Имя пользователя<input name="display_name" required maxlength="120" /></label>
+                <label>Тип организации
+                    <select name="org_type">
+                        <option value="">Сингл (не указано)</option>
+                        <option value="government">Государственная / муниципальная</option>
+                        <option value="commercial">Коммерческая</option>
+                    </select>
+                </label>
+                <label>Должность<input name="job_title" maxlength="120" /></label>
+                <label>Название организации<input name="organization_name" maxlength="200" /></label>
+                <label>Населённый пункт<input name="settlement" maxlength="120" placeholder="Город / посёлок" /></label>
+            </form>
+        </section>
+
+        <!-- Step 4: consumer link (specialist only) -->
+        <section class="ob__pane ob__hidden" data-step="4">
+            <h2>Пользовательское приложение</h2>
+            <p class="ob__hint">Дочерняя ссылка для связи с клиентским PWA (опционально). Только для рабочего места специалиста.</p>
+            <div class="ob__choices" id="ob-consumer-choices">
+                <label class="ob__card"><input type="radio" name="consumer" value="" checked /> <strong>Не подключать</strong></label>
+                <label class="ob__card ob__school-only"><input type="radio" name="consumer" value="teenology" /> <strong>Teenology</strong><span>Школа / госорганизация</span></label>
+                <label class="ob__card ob__comm-only"><input type="radio" name="consumer" value="ida" /> <strong>IDA</strong><span>Коммерческий центр</span></label>
+            </div>
+        </section>
+
+        <!-- Step 5: modules -->
+        <section class="ob__pane ob__hidden" data-step="5">
+            <h2>Модули</h2>
+            <p class="ob__hint">Галочки по умолчанию зависят от типа организации. Можно изменить вручную.</p>
+            <div id="ob-modules" class="ob__modules"></div>
+        </section>
+
+        <!-- Step 6: done -->
+        <section class="ob__pane ob__hidden" data-step="6">
+            <h2>Готово</h2>
+            <p>ID терминала: <code id="ob-terminal-id"></code></p>
+            <p class="ob__hint">Конфигурация сохранена локально. Выбранные модули будут загружены при первом входе.</p>
+            <pre id="ob-summary" class="ob__summary"></pre>
+        </section>
+
+        <footer class="ob__nav">
+            <button type="button" id="ob-back" class="ob__btn ob__btn--ghost" disabled>Назад</button>
+            <button type="button" id="ob-next" class="ob__btn">Далее</button>
+        </footer>
+    </main>
+    <script src="onboarding.js"></script>
+</body>
+</html>

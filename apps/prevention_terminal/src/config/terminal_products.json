@@ -1,0 +1,26 @@
+{
+  "products": {
+    "platform": {
+      "title_ru": "Prevention Terminal",
+      "org_segment": null,
+      "consumer_app": null
+    },
+    "ida": {
+      "title_ru": "IDA Terminal",
+      "org_segment": "commercial",
+      "consumer_app": "ida",
+      "distribution_url": "https://ida-ai.chat/terminal/",
+      "default_site_origin": "https://irpp-edu.ru",
+      "site_path_chat": "/chat",
+      "site_path_consult": "/specialists",
+      "site_path_register": "/staff-register",
+      "site_path_iconostasis": "/specialists"
+    },
+    "school": {
+      "title_ru": "Prevention Terminal — школа",
+      "org_segment": "education",
+      "consumer_app": "teenology",
+      "distribution_url": "https://ru.prevention.school/terminal/staging/"
+    }
+  }
+}

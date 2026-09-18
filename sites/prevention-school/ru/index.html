@@ -1,0 +1,666 @@
+<!doctype html>
+<html lang="ru" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link class="favicon" rel="icon" href="/favicon.ico" sizes="any">
+  <link class="favicon" rel="icon" href="/favicon.png" type="image/png">
+  <link class="apple-touch-icon" href="/favicon.png">
+  <title>Психологическая служба в системе образования и в молодежной политике</title>
+  <meta name="description" content="Профилактика-AI — это изолированная цифровая среда, созданная специально для образовательных учреждений и организаций в сфере молодежной политики.">
+  <link rel="canonical" href="https://prevention.school/ru/">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;550;650;760;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/site.css">
+  <style>
+    .hero-buttons {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: nowrap;
+      margin: 0 auto;
+      max-width: 100%;
+    }
+    .hero-buttons .btn {
+      padding: 14px 22px;
+      font-size: 0.96rem;
+      font-weight: 700;
+      white-space: nowrap;
+      flex-shrink: 1;
+    }
+    @media (max-width: 820px) {
+      .hero-buttons {
+        flex-wrap: wrap;
+      }
+      .hero-buttons .btn {
+        width: 100%;
+        text-align: center;
+        white-space: normal;
+      }
+    }
+
+    .tabs-nav-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      background: var(--surface-soft);
+      border-bottom: 1px solid var(--line);
+      gap: 1px;
+    }
+    @media (max-width: 700px) {
+      .tabs-nav-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    .tab-btn {
+      background: none;
+      border: none;
+      font-size: 1rem;
+      padding: 14px 12px;
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--muted);
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+      text-align: center;
+      outline: none;
+    }
+    .tab-btn:hover {
+      background: var(--surface);
+      color: var(--text);
+    }
+    .tab-btn.active {
+      background: var(--surface);
+      color: var(--violet);
+      border-bottom: 3px solid var(--violet);
+    }
+
+    .card-module-view {
+      background: var(--surface);
+      border-radius: 12px;
+      padding: 8px 4px;
+    }
+    .card-module-header {
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--line);
+    }
+    .card-module-header h3 {
+      margin: 0 0 6px;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+    .card-module-header p {
+      margin: 0;
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    .features-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 16px;
+    }
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 16px;
+      background: var(--surface-soft);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: var(--text);
+    }
+    .feature-item strong {
+      color: var(--text);
+    }
+    .feature-bullet {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: color-mix(in srgb, var(--violet) 15%, transparent);
+      color: var(--violet);
+      font-weight: 800;
+      font-size: 12px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="site-header">
+      <a class="brand" href="/ru/"><span class="brand-mark">П</span><span>Профилактика-AI <small style="font-size: 10px; font-weight: 800; text-transform: uppercase; color: #0d9488; margin-left: 4px; vertical-align: super;">Beta</small></span></a>
+      <nav class="nav" aria-label="Навигация">
+        <a href="/ru/about/">О проекте</a>
+        <a href="/ru/science/">Наука</a>
+        <a href="/ru/academy/">Академия</a>
+        <a href="/ru/government/">Органам власти и МСУ</a>
+        <a href="/ru/help-for-teacher/">Педагогам</a>
+        <a href="/ru/teenology/">Родителям и подросткам</a>
+      </nav>
+      <div class="nav-controls">
+        <a href="https://web.prevention.school/" class="nav-cta" target="_blank" rel="noopener">Веб-терминал</a>
+        <button type="button" class="theme-toggle" id="theme-toggle">Темная</button>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero-layer" style="margin-top: 40px; text-align: center; padding-bottom: 40px;">
+        <div style="max-width: 1000px; margin: 0 auto; padding: 0 20px;">
+          <h1 style="font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 900; line-height: 1.1; margin: 24px 0 20px; letter-spacing: -0.02em;">Психологическая служба в системе образования и в молодежной политике</h1>
+          <p class="lead" style="font-size: 1.25rem; color: var(--muted); margin: 0 auto 40px; max-width: 800px; line-height: 1.6;">
+            Профилактика-AI — это изолированная цифровая среда, созданная специально для образовательных учреждений и организаций в сфере молодежной политики. Психолог получает удобную CRM и ИИ-помощника для повседневной работы, а директор — прозрачную безопасную среду в организации.
+          </p>
+          
+          <ul style="list-style: none; padding: 0; display: grid; gap: 14px; font-size: 1rem; text-align: left; max-width: 800px; margin: 0 auto 40px;">
+            <li style="display: flex; gap: 10px;"><span style="color: #10b981; font-weight: bold;">✓</span> <div><strong>Внедрение за 1 день:</strong> не требует установки серверов и привлечения сисадминов.</div></li>
+            <li style="display: flex; gap: 10px;"><span style="color: #10b981; font-weight: bold;">✓</span> <div><strong>Гарантия 152-ФЗ:</strong> 100% соблюдение профессиональной тайны благодаря архитектуре локального сейфа. Размещено в защищенном облаке</div></li>
+            <li style="display: flex; gap: 10px;"><span style="color: #10b981; font-weight: bold;">✓</span> <div><strong>Идеальные отчеты:</strong> система автоматически формирует безупречные с точки зрения бюрократии документы для любых проверок.</div></li>
+            <li style="display: flex; gap: 10px;"><span style="color: #10b981; font-weight: bold;">✓</span> <div><strong>Избавление от бумажной рутины:</strong> теперь ведение документации будет измеряться секундами, а не часами.</div></li>
+          </ul>
+
+          <div class="hero-buttons">
+            <a class="btn btn-primary" href="#download" style="box-shadow: 0 8px 24px rgba(109, 91, 208, 0.25);">Установить электронные рабочие места</a>
+            <a class="btn btn-outline" href="https://prevention.school/terminal/staging/?demo=school&role=specialist&edition=ru" target="_blank">Демо для психолога</a>
+            <a class="btn btn-outline" href="https://prevention.school/terminal/staging/?demo=school&role=director&edition=ru" target="_blank">Демо для директора</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4 MODULES TABS -->
+      <section id="modules" style="margin: 60px 0 80px; background: var(--surface-soft); padding: 70px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+        <div class="section-head" style="text-align: center; margin-bottom: 36px;">
+          <span class="eyebrow">Модули и документы</span>
+          <h2>Единая цифровая среда для всех документов</h2>
+        </div>
+
+        <div style="max-width: 960px; margin: 0 auto; padding: 0 16px;">
+          <div style="background: var(--surface); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.03);">
+            
+            <!-- 4 Nav Tabs (Clear labels without parentheses, wrapped cleanly in a grid) -->
+            <div class="tabs-nav-grid">
+              <button class="tab-btn active" onclick="openTab(event, 'tab-consult')">Консультации</button>
+              <button class="tab-btn" onclick="openTab(event, 'tab-ipr')">ИПР</button>
+              <button class="tab-btn" onclick="openTab(event, 'tab-group')">Групповая работа</button>
+              <button class="tab-btn" onclick="openTab(event, 'tab-safe')">Безопасная среда</button>
+            </div>
+
+            <div style="padding: 32px 28px;">
+              
+              <!-- TAB 1: Консультации -->
+              <div id="tab-consult" class="tab-content" style="display: block; animation: fadeIn 0.25s;">
+                <div class="card-module-view">
+                  <div class="card-module-header">
+                    <h3>Консультации и первичный прием</h3>
+                    <p>Индивидуальная консультативная работа с обучающимися, родителями и педагогами</p>
+                  </div>
+                  <ul class="features-list">
+                    <li class="feature-item">
+                      <span class="feature-bullet">1</span>
+                      <div><strong>Изолированный реестр персональных данных:</strong> доступ к карточкам и записям сессий строго зашифрован и находится только у психолога.</div>
+                    </li>
+                    <li class="feature-item">
+                      <span class="feature-bullet">2</span>
+                      <div><strong>Удобный протокол встречи:</strong> заполнение вручную или мгновенная голосовая диктовка ИИ-помощнику после завершения консультации.</div>
+                    </li>
+                    <li class="feature-item">
+                      <span class="feature-bullet">3</span>
+                      <div><strong>ИИ-помощник:</strong> помощь в анализе случая, супервизия по его ведению, подготовка плана консультации и автоматического отчета.</div>
+                    </li>
+                    <li class="feature-item">
+                      <span class="feature-bullet">4</span>
+                      <div><strong>Автоматическое создание документов:</strong> анализ поведенческих проблем, выработка рекомендаций, характеристика ребенка и заключение для ПМПк в 1 клик.</div>
+                    </li>
+                    <li class="feature-item">
+                      <span class="feature-bullet">5</span>
+                      <div><strong>Автоматический журнал:</strong> официальный журнал учета консультаций формируется и актуализируется сам без двойной работы.</div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- TAB 2: ИПР -->
+              <div id="tab-ipr" class="tab-content" style="display: none; animation: fadeIn 0.25s;">
+                <div class="card-module-view">
+                  <div class="card-module-header">
+                    <h3>ИПР (Индивидуальное профилактическое сопровождение)</h3>
+                    <p>Ведение комплексных траекторий сопровождения и межведомственного взаимодействия</p>
+                  </div>
+                  <ul class="features-list">
+                    <li class="feature-item">
+                      <span class="feature-bullet">1</span>
+                      <div><strong>Изолированный реестр персональных данных:</strong> многоуровневая защита личных дел и результатов диагностики с локальным шифрованием.</div>
+                    </li>
+                    <li class="feature-item">
+                      <span class="feature-bullet">2</span>
+                      <div><strong>Цифровые формы личного дела:</strong> ведение истории сопровождения, этапов и результатов через формы или голосовую диктовку.</div>
+                    </li>
+                    <li class="feature-item">
+                      <span class="feature-bullet">3</span>
+                      <div><strong>Встроенная оценка рисков:</strong> автоматический скрининг факторов уязвимости и потенциала для точного построения маршрута.</div>
+                    </li>
+                    <li class="feature-item">
+                      <span class="feature-bullet">4</span>
+                      <div><strong>Кейс-менеджмент:</strong> совместное ведение сложного случая мультидисциплинарной командой (психолог, социальный педагог, классный руководитель).</div>
+                    </li>
+                    <li class="feature-item">
+                      <span class="feature-bullet">5</span>
+                      <div><strong>Оцифровка архивов:</strong> умный импорт и распознавание старых бумажных документов и включение их в общую базу данных.</div>
+                    </li>
+                    <li class="feature-item">
+                      <span class="feature-bullet">6</span>
+                      <div><strong>Сводная статистика и ИИ-аналитика:</strong> мгновенные отчеты по динамике случая и рекомендации по всей базе подопечных.</div>
+                    </li>
+                    <li class="feature-item">
+                      <span class="feature-bullet">7</span>
+                      <div><strong>Генерация обязательных документов:</strong> характеристика, план вмешательства, заключение для ПМПк и итоговый отчет.</div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- TAB 3: Групповая работа -->
+              <div id="tab-group" class="tab-content" style="display: none; animation: fadeIn 0.25s;">
+                <div class="card-module-view">
+                  <div class="card-module-header">
+                    <h3>Групповая работа и тренинги</h3>
+                    <p>Проведение развивающих, коррекционных и адаптационных занятий с классами и группами</p>
+                  </div>
+                  <ul class="features-list">
+                    <li class="feature-item">
+                      <span class="feature-bullet">1</span>
+                      <div><strong>Генератор сценариев занятий:</strong> автоматическое составление подробного плана тренинга с таймингом и упражнениями даже по краткой теме.</div>
+                    </li>
+                    <li class="feature-item">
+                      <span class="feature-bullet">2</span>
+                      <div><strong>Быстрые отчеты:</strong> создание отчета по итогам занятия в пару кликов (достаточно надиктовать ключевые впечатления или загрузить аудио).</div>
+                    </li>
+                    <li class="feature-item">
+                      <span class="feature-bullet">3</span>
+                      <div><strong>Автоматический журнал групповых занятий:</strong> фиксация часов, тем, охвата обучающихся и аналитики динамики групп.</div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- TAB 4: Безопасная среда -->
+              <div id="tab-safe" class="tab-content" style="display: none; animation: fadeIn 0.25s;">
+                <div class="card-module-view">
+                  <div class="card-module-header">
+                    <h3>Безопасная образовательная среда</h3>
+                    <p>Общешкольная профилактика, мониторинг психологического климата и сводки для руководства</p>
+                  </div>
+                  <ul class="features-list">
+                    <li class="feature-item">
+                      <span class="feature-bullet">1</span>
+                      <div><strong>Мониторинг неблагополучия:</strong> цифровое взаимодействие между психологом и педагогами для раннего выявления тревожных сигналов.</div>
+                    </li>
+                    <li class="feature-item">
+                      <span class="feature-bullet">2</span>
+                      <div><strong>Годовой план профилактики:</strong> автоматическое формирование целевого плана мероприятий на учебный год на основе актуальной обстановки.</div>
+                    </li>
+                    <li class="feature-item">
+                      <span class="feature-bullet">3</span>
+                      <div><strong>Журнал общешкольных мероприятий:</strong> учет всех акций, лекций, тренингов и мониторинг вовлеченности классов.</div>
+                    </li>
+                    <li class="feature-item">
+                      <span class="feature-bullet">4</span>
+                      <div><strong>4-шаговый мастер годового отчета (Форма 10 и Форма 5):</strong> по кнопке «Заполнить из базы» система автоматически рассчитывает все показатели из первичных журналов (консультации учащихся, родителей, педагогов, диагностики, тренинги и мероприятия). ИИ-автопилот готовит текст всех разделов с финальным экспортом в Word (.doc).</div>
+                    </li>
+                    <li class="feature-item">
+                      <span class="feature-bullet">5</span>
+                      <div><strong>Панель руководства организации:</strong> агрегированная статистика рисков (буллинг, тревожность) без доступа к персональным данным детей и ИИ-рекомендации директору.</div>
+                    </li>
+                    <li class="feature-item">
+                      <span class="feature-bullet">6</span>
+                      <div><strong>Мгновенные ведомственные отчеты (Форма 11):</strong> формирование официальных форм для департаментов образования и территориальных органов управления за секунды.</div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <script>
+          function openTab(evt, tabId) {
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(t => t.style.display = 'none');
+            const btns = document.querySelectorAll('.tab-btn');
+            btns.forEach(b => {
+              b.classList.remove('active');
+            });
+            
+            document.getElementById(tabId).style.display = 'block';
+            evt.currentTarget.classList.add('active');
+          }
+        </script>
+      </section>
+
+      <!-- TOOLS -->
+      <section id="map" style="background: var(--surface-soft); padding: 60px 0; border-top: 1px solid var(--line);">
+        <div class="section-head">
+          <span class="eyebrow">Инструменты</span>
+          <h2>Ключевые возможности системы</h2>
+          <p>Всё необходимое собрано в одном простом интерфейсе.</p>
+        </div>
+
+        <style>
+          .tools-section { margin-bottom: 48px; }
+          .tools-group-title { font-size: 1.3rem; margin-bottom: 20px; padding-bottom: 8px; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 8px; font-weight: 760; }
+          .tools-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+          .tool-card { display: flex; flex-direction: column; background: color-mix(in srgb, var(--surface) 50%, var(--surface-soft)); border: 1px solid var(--line); padding: 18px; border-radius: 12px; transition: transform 0.2s, box-shadow 0.2s; border-left: 4px solid var(--violet); }
+          .tool-card h4 { margin: 0 0 8px; font-size: 1.05rem; }
+          .tool-card p { margin: 0; font-size: 0.9rem; color: var(--muted); line-height: 1.5; flex-grow: 1; }
+          
+          .group-crm .tools-group-title { color: #0284c7; }
+          .group-crm .tool-card { border-left-color: #0ea5e9; }
+          .group-expert .tools-group-title { color: #d97706; }
+          .group-expert .tool-card { border-left-color: #f59e0b; }
+          .group-arch .tools-group-title { color: #db2777; }
+          .group-arch .tool-card { border-left-color: #ec4899; }
+          .group-report .tools-group-title { color: #059669; }
+          .group-report .tool-card { border-left-color: #10b981; }
+        </style>
+        
+        <div style="max-width: 1000px; margin: 0 auto 40px; padding: 0 16px;">
+          
+          <!-- CRM -->
+          <div class="tools-section group-crm">
+            <h3 class="tools-group-title">Электронное рабочее место (CRM)</h3>
+            <div class="tools-cards">
+              <div class="tool-card">
+                <h4>Лента обращений</h4>
+                <p>Единое окно приема конфиденциальных заявок с сайта от учеников, родителей и педагогов.</p>
+              </div>
+              <div class="tool-card">
+                <h4>Реестр консультаций</h4>
+                <p>Автоматически формируемый журнал учета видов работы.</p>
+              </div>
+              <div class="tool-card">
+                <h4>Календарь и расписание</h4>
+                <p>Планирование загрузки специалиста и ведение карточек обучающихся.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Экспертиза -->
+          <div class="tools-section group-expert">
+            <h3 class="tools-group-title">ИИ-Экспертиза сложных случаев</h3>
+            <div class="tools-cards">
+              <div class="tool-card">
+                <h4>Функциональный анализ поведения (ФАП)</h4>
+                <p>Выявление триггеров и скрытых функций сложного поведения ученика.</p>
+              </div>
+              <div class="tool-card">
+                <h4>Психологическая характеристика</h4>
+                <p>Профилирование сильных сторон, зон риска и особенностей развития обучающегося.</p>
+              </div>
+              <div class="tool-card">
+                <h4>План поведенческого вмешательства</h4>
+                <p>Подбор стратегий деэскалации, предупреждения конфликтов и кризисный протокол.</p>
+              </div>
+              <div class="tool-card">
+                <h4>Анализ ролей участников</h4>
+                <p>Выявление скрытых рисков в групповых конфликтах и ситуациях буллинга.</p>
+              </div>
+              <div class="tool-card">
+                <h4>Синтез ситуации</h4>
+                <p>Глубокий анализ комплексных кейсов с выделением приоритетных направлений работы.</p>
+              </div>
+              <div class="tool-card">
+                <h4>Методический аудит</h4>
+                <p>Проверка профилактических программ школы на безопасность и соответствие стандартам.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Архитектор -->
+          <div class="tools-section group-arch">
+            <h3 class="tools-group-title">Генератор официальных документов (Архитектор)</h3>
+            <div class="tools-cards">
+              <div class="tool-card">
+                <h4>Индивидуальные консультации</h4>
+                <p>Планы психологического сопровождения и итоговые заключения по работе с учеником.</p>
+              </div>
+              <div class="tool-card">
+                <h4>Индивидуальный маршрут (ИПР)</h4>
+                <p>Планы индивидуальной профилактической работы и заключения о реализации маршрута.</p>
+              </div>
+              <div class="tool-card">
+                <h4>Групповые занятия</h4>
+                <p>Планы групповых занятий с конструктором упражнений и отчеты (заключения) о проведении.</p>
+              </div>
+              <div class="tool-card">
+                <h4>Программы безопасной среды</h4>
+                <p>Планы целевых программ профилактики и аналитические заключения по результатам их внедрения.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Отчеты -->
+          <div class="tools-section group-report">
+            <h3 class="tools-group-title">Отчеты и Аналитика (Форма 10, Форма 5 и сводки)</h3>
+            <div class="tools-cards">
+              <div class="tool-card">
+                <h4>Отчет руководителя (Форма 10)</h4>
+                <p>4-шаговый мастер годового отчета директора: анализ психологической службы, кадровая обеспеченность, инциденты и рекомендации.</p>
+              </div>
+              <div class="tool-card">
+                <h4>Заполнение из базы в 1 клик</h4>
+                <p>Автоматический расчет всех цифр из первичных журналов 4А–4Ж: консультации учащихся, родителей, педагогов, диагностики и тренинги.</p>
+              </div>
+              <div class="tool-card">
+                <h4>Аналитический отчет психолога (Форма 5 + 5А)</h4>
+                <p>ИИ-автопилот для формирования аналитических разделов, стилистическая «Финальная сборка» и мгновенный экспорт в официальный Word (.doc).</p>
+              </div>
+              <div class="tool-card">
+                <h4>Нагрузка и журналы (4А–4Ж)</h4>
+                <p>Прозрачная аналитика фактических часов работы, индивидуальных приемов, активных кейсов и выполненных ИПР.</p>
+              </div>
+              <div class="tool-card">
+                <h4>Сводка органа управления (Форма 11)</h4>
+                <p>Агрегированные территориальные показатели без раскрытия персональных данных (100% соответствие 152-ФЗ).</p>
+              </div>
+              <div class="tool-card">
+                <h4>Мониторинг рисков</h4>
+                <p>Автоматический трекинг тенденций психологического климата и своевременное выявление зон риска.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Автоматизация рутины -->
+          <div class="tools-section group-routine" style="margin-top: 36px; margin-bottom: 0;">
+            <h3 class="tools-group-title" style="color: #7c3aed;">Автоматизация рутины специалиста</h3>
+            <div class="tools-cards">
+              <div class="tool-card" style="border-left-color: #7c3aed;">
+                <h4>🎙 Голосовая диктовка (Речь в текст)</h4>
+                <p>Надиктовывайте выжимку сессии голосом сразу после встречи. Автоматическая раскладка по полям протокола кнопкой «✨ AI-Сводка».</p>
+              </div>
+              <div class="tool-card" style="border-left-color: #7c3aed;">
+                <h4>🤖 AI-Брифинг к сессии (Подготовка)</h4>
+                <p>Емкая сводка ключевого контекста, динамики и прошлых договоренностей по ребенку за 30 секунд до входа в кабинет.</p>
+              </div>
+              <div class="tool-card" style="border-left-color: #7c3aed;">
+                <h4>📸 Оцифровка архивов (Импорт записей)</h4>
+                <p>Быстрый перевод рукописных конспектов и бумажных папок в цифровую хронологическую ленту консультаций.</p>
+              </div>
+              <div class="tool-card" style="border-left-color: #7c3aed;">
+                <h4>📅 Календарь без авторизаций (Файл .ICS)</h4>
+                <p>Безопасный экспорт расписания встреч в ваш личный календарь (Outlook, Apple, Google) в один клик без связывания учеток.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SECURITY (152-ФЗ) — LIGHT THEME -->
+      <section id="privacy" style="background: var(--surface); color: var(--text); padding: 80px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+        <div style="max-width: 960px; margin: 0 auto; padding: 0 20px; text-align: center;">
+          <span style="display: inline-block; background: #ecfdf5; color: #059669; border: 1px solid #a7f3d0; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 20px;">Безопасность и Закон</span>
+          <h2 style="font-size: 2.2rem; margin-top: 0; margin-bottom: 20px; color: var(--text); font-weight: 800;">Абсолютная защита данных детей</h2>
+          <p style="font-size: 1.15rem; color: var(--muted); line-height: 1.6; margin-bottom: 40px; max-width: 820px; margin-left: auto; margin-right: auto;">
+            Никаких утечек. Мы гарантируем соблюдение закона о персональных данных и профессиональной тайны психолога благодаря архитектуре <strong>"Локального сейфа"</strong>. Терминал работает без передачи персональных данных в интернет:
+          </p>
+          
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; text-align: left;">
+            <div style="background: var(--surface-soft); padding: 24px; border-radius: 12px; border: 1px solid var(--line); box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
+              <h4 style="color: var(--text); margin-top: 0; font-size: 1.05rem; margin-bottom: 10px; font-weight: 760;">Локальный сейф (SQLCipher, AES-256)</h4>
+              <p style="color: var(--muted); font-size: 0.9rem; margin: 0; line-height: 1.5;">Имена, контакты и личные карточки учеников зашифрованы и физически находятся только на рабочем компьютере психолога.</p>
+            </div>
+            <div style="background: var(--surface-soft); padding: 24px; border-radius: 12px; border: 1px solid var(--line); box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
+              <h4 style="color: var(--text); margin-top: 0; font-size: 1.05rem; margin-bottom: 10px; font-weight: 760;">Передовой ИИ в безопасном контуре</h4>
+              <p style="color: var(--muted); font-size: 0.9rem; margin: 0; line-height: 1.5;">Для формирования характеристик и анализа кейсов используется передовые LLM-модели (например, Google Gemini) в защищенном контуре.</p>
+            </div>
+            <div style="background: var(--surface-soft); padding: 24px; border-radius: 12px; border: 1px solid var(--line); box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
+              <h4 style="color: var(--text); margin-top: 0; font-size: 1.05rem; margin-bottom: 10px; font-weight: 760;">Строгая анонимизация перед ИИ</h4>
+              <p style="color: var(--muted); font-size: 0.9rem; margin: 0; line-height: 1.5;">При обращении к ИИ-помощнику все имена и персональные идентификаторы автоматически исключаются — в модель поступает только обезличенный контекст методической задачи.</p>
+            </div>
+            <div style="background: var(--surface-soft); padding: 24px; border-radius: 12px; border: 1px solid var(--line); box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
+              <h4 style="color: var(--text); margin-top: 0; font-size: 1.05rem; margin-bottom: 10px; font-weight: 760;">Директор видит цифры, а не тайны</h4>
+              <p style="color: var(--muted); font-size: 0.9rem; margin: 0; line-height: 1.5;">Руководство получает агрегированную статистику («15 обращений по тревожности в 8Б классе»), но не имеет доступа к персональным данным и записям сессий.</p>
+            </div>
+            <div style="background: var(--surface-soft); padding: 24px; border-radius: 12px; border: 1px solid var(--line); box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
+              <h4 style="color: var(--text); margin-top: 0; font-size: 1.05rem; margin-bottom: 10px; font-weight: 760;">Полный офлайн-режим</h4>
+              <p style="color: var(--muted); font-size: 0.9rem; margin: 0; line-height: 1.5;">Журналы и карточки доступны всегда, даже если в учреждении временно отключен интернет.</p>
+            </div>
+            <div style="background: var(--surface-soft); padding: 24px; border-radius: 12px; border: 1px solid var(--line); box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
+              <h4 style="color: var(--text); margin-top: 0; font-size: 1.05rem; margin-bottom: 10px; font-weight: 760;">Реестр с персональными данными</h4>
+              <p style="color: var(--muted); font-size: 0.9rem; margin: 0; line-height: 1.5;">Персональные данные строго ограничены локальным устройством специалиста и никогда не передаются на внешние серверы.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- GET STARTED (DOWNLOAD) -->
+      <section id="download" style="margin-top: 60px;">
+        <div style="text-align: center; margin-bottom: 36px;">
+          <span style="display: inline-block; padding: 4px 14px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #0f766e; background: #ecfdf5; border: 1px solid #a7f3d0; margin-bottom: 12px;">Развернуть электронное рабочее место</span>
+          <h2 style="margin: 0 0 10px; font-size: 2rem; font-weight: 800; color: var(--text-color);">С чего начать работу</h2>
+          <p style="margin: 0 auto; max-width: 520px; font-size: 1rem; color: var(--muted); line-height: 1.6;">Попробуйте демо для вашей роли, запустите веб-версию или установите полную версию на ПК</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; max-width: 920px; margin: 0 auto 12px;">
+
+          <!-- Step 1: Demo -->
+          <div style="background: var(--surface); border-radius: 16px; padding: 24px; border: 1px solid var(--line); box-shadow: 0 2px 12px rgba(15,23,42,0.06); display: flex; flex-direction: column;">
+            <span style="display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; color: #065f46; background: #ecfdf5; border: 1px solid #a7f3d0; margin-bottom: 10px; align-self: flex-start;">1 · Изучить</span>
+            <h3 style="margin: 0 0 6px; font-size: 1.05rem; font-weight: 700; color: var(--text-color);">Демо без регистрации</h3>
+            <p style="margin: 0 0 16px; font-size: 0.85rem; color: var(--muted); line-height: 1.5;">Реалистичные данные — попробуйте любой кабинет за секунды.</p>
+            <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px;">
+              <a href="https://prevention.school/terminal/staging/?demo=school&role=specialist&edition=ru" style="display: block; padding: 10px 14px; border-radius: 9px; border: 1.5px solid #d1fae5; background: #f0fdf4; text-decoration: none;">
+                <div style="font-weight: 700; font-size: 0.85rem; color: var(--text-color);">Рабочее место школьного психолога</div>
+                <div style="font-size: 0.78rem; color: var(--muted); margin-top: 2px;">Случаи, журналы, AI-помощник</div>
+              </a>
+              <a href="https://prevention.school/terminal/staging/?demo=school&role=director&edition=ru" style="display: block; padding: 10px 14px; border-radius: 9px; border: 1.5px solid #bfdbfe; background: #eff6ff; text-decoration: none;">
+                <div style="font-weight: 700; font-size: 0.85rem; color: var(--text-color);">Кабинет директора школы</div>
+                <div style="font-size: 0.78rem; color: var(--muted); margin-top: 2px;">Управление и аналитика учреждения</div>
+              </a>
+              <a href="https://prevention.school/terminal/staging/?demo=authority&edition=ru" style="display: block; padding: 10px 14px; border-radius: 9px; border: 1.5px solid #e9d5ff; background: #fdf4ff; text-decoration: none;">
+                <div style="font-weight: 700; font-size: 0.85rem; color: var(--text-color);">Кабинет территориального управления</div>
+                <div style="font-size: 0.78rem; color: var(--muted); margin-top: 2px;">Макро-сводка и территориальные метрики</div>
+              </a>
+            </div>
+            <a href="https://prevention.school/ru/" style="display: block; margin-top: auto; padding: 12px; border-radius: 9px; background: #065f46; color: #fff; text-decoration: none; text-align: center; font-weight: 700; font-size: 0.88rem;">Изучить →</a>
+          </div>
+
+          <!-- Step 2: Web version -->
+          <div style="background: var(--surface); border-radius: 16px; padding: 24px; border: 1px solid var(--line); box-shadow: 0 2px 12px rgba(15,23,42,0.06); display: flex; flex-direction: column;">
+            <span style="display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; color: #1e40af; background: #eff6ff; border: 1px solid #bfdbfe; margin-bottom: 10px; align-self: flex-start;">2 · Начать</span>
+            <h3 style="margin: 0 0 6px; font-size: 1.05rem; font-weight: 700; color: var(--text-color);">Веб-версия терминала</h3>
+            <p style="margin: 0 0 12px; font-size: 0.85rem; color: var(--muted); line-height: 1.5;">Без установки, прямо в браузере. Данные в защищённом облаке.</p>
+            <ul style="margin: 0 0 10px; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px;">
+              <li style="display: flex; gap: 8px; font-size: 0.82rem; color: var(--text-secondary);"><span style="color: #1d4ed8; font-weight: 700;">✓</span> Ведение журналов и реестра учащихся</li>
+              <li style="display: flex; gap: 8px; font-size: 0.82rem; color: var(--text-secondary);"><span style="color: #1d4ed8; font-weight: 700;">✓</span> Командный доступ для всей службы</li>
+              <li style="display: flex; gap: 8px; font-size: 0.82rem; color: var(--text-secondary);"><span style="color: #1d4ed8; font-weight: 700;">✓</span> Документооборот и отчётность</li>
+            </ul>
+            <p style="margin: 0 0 14px; font-size: 0.78rem; color: var(--muted);">⚠ Нет офлайн-режима и локального шифрования</p>
+            <a href="https://web.prevention.school/" style="display: block; margin-top: auto; padding: 12px; border-radius: 9px; background: #1d4ed8; color: #fff; text-decoration: none; text-align: center; font-weight: 700; font-size: 0.88rem;">Зарегистрироваться →</a>
+          </div>
+
+          <!-- Step 3: Desktop -->
+          <div style="background: var(--surface); border-radius: 16px; padding: 24px; border: 2px solid #0f766e; box-shadow: 0 2px 16px rgba(15,118,110,0.10); position: relative;">
+            <div style="position: absolute; top: -12px; left: 20px; background: #0f766e; color: #fff; padding: 3px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.04em;">РЕКОМЕНДУЕМ</div>
+            <span style="display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; color: #065f46; background: #ecfdf5; border: 1px solid #6ee7b7; margin-bottom: 10px; margin-top: 8px;">3 · Установить</span>
+            <h3 style="margin: 0 0 6px; font-size: 1.05rem; font-weight: 700; color: var(--text-color);">Полный Терминал (ПК)</h3>
+            <p style="margin: 0 0 12px; font-size: 0.85rem; color: var(--muted); line-height: 1.5;">Устанавливается на ПК. Данные учащихся хранятся локально.</p>
+            <ul style="margin: 0 0 16px; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px;">
+              <li style="display: flex; gap: 8px; font-size: 0.82rem; color: var(--text-secondary);"><span style="color: #0f766e; font-weight: 700;">✓</span> Всё из веб-версии +</li>
+              <li style="display: flex; gap: 8px; font-size: 0.82rem; color: var(--text-secondary);"><span style="color: #0f766e; font-weight: 700;">✓</span> Формирование и печать сгенерированных и оформленных документов в DOCX</li>
+              <li style="display: flex; gap: 8px; font-size: 0.82rem; color: var(--text-secondary);"><span style="color: #0f766e; font-weight: 700;">✓</span> Локальное шифрование данных учащихся</li>
+              <li style="display: flex; gap: 8px; font-size: 0.82rem; color: var(--text-secondary);"><span style="color: #0f766e; font-weight: 700;">✓</span> Формы статотчётности (4А–4Г) и ИПР</li>
+            </ul>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <a href="/dist/Prevention_Terminal_2026.8_x64-setup.exe" style="display: block; padding: 12px; border-radius: 9px; background: #0f766e; color: #fff; text-decoration: none; text-align: center; font-weight: 700; font-size: 0.88rem;">⬇ Скачать для Windows (.exe)</a>
+              <a href="/dist/Prevention_Terminal_2026.8_x64_en-US.msi" style="display: block; padding: 10px; border-radius: 9px; border: 1px solid var(--line); background: var(--surface); text-decoration: none; text-align: center; font-weight: 600; font-size: 0.82rem; color: var(--muted);">Пакет MSI (.msi)</a>
+            </div>
+            <p style="margin: 12px 0 0; font-size: 0.76rem; color: var(--muted); line-height: 1.4; text-align: center;">💡 Приложение единое для всех ролей: режим работы (психолог, директор или управление) вы выбираете при запуске.</p>
+          </div>
+        </div>
+
+        <!-- Step 4: Login strip -->
+        <div style="max-width: 920px; margin: 0 auto; background: var(--surface); border-radius: 14px; padding: 18px 24px; border: 1px solid var(--line); display: flex; align-items: center; flex-wrap: wrap; gap: 12px;">
+          <span style="display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; color: #374151; background: #f9fafb; border: 1px solid #d1d5db;">4 · Войти</span>
+          <span style="font-size: 0.85rem; color: var(--muted); flex: 1;">Терминал уже настроен на этом устройстве?</span>
+          <a href="https://web.prevention.school/ru" style="padding: 10px 20px; border-radius: 8px; background: #374151; color: #fff; text-decoration: none; font-weight: 700; font-size: 0.85rem; white-space: nowrap;">Войти в Терминал →</a>
+        </div>
+      </section>
+
+    </main>
+    <footer class="footer">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <strong>Профилактика-AI</strong><br>Открытая инфраструктура электронных рабочих мест.
+          <p class="footer-contact">
+            <a href="mailto:admin@prevention-ai.ru">admin@prevention-ai.ru</a><span class="footer-contact-sep" aria-hidden="true">·</span><a href="https://t.me/RomanDubrovsky" target="_blank" rel="noopener noreferrer">Telegram</a><span class="footer-contact-sep" aria-hidden="true">·</span><a href="https://www.linkedin.com/in/romandubrovsky/" target="_blank" rel="noopener">LinkedIn</a>
+          </p>
+          <p class="footer-community" style="margin-top: 8px; font-size: 0.85rem; color: var(--muted);">
+            Сообщества проекта (зеркала):<br>
+            Вконтакте: <a href="https://vk.ru/prevention_ai" target="_blank" rel="noopener">https://vk.ru/prevention_ai</a><br>
+            Телеграм: <a href="https://t.me/anthropology_health" target="_blank" rel="noopener">https://t.me/anthropology_health</a>
+          </p>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/ru/science/">Наука</a>
+          <a href="/ru/academy/">Академия</a>
+          <a href="/ru/government/">Органам власти и МСУ</a>
+          <a href="/ru/about/">О проекте</a>
+          <a href="/ru/help-for-teacher/">Педагогам</a>
+          <a href="/ru/teenology/">Родителям и подросткам</a>
+        </nav>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const btn = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    let isDark = false;
+    btn.addEventListener('click', () => {
+      isDark = !isDark;
+      html.setAttribute('data-theme', isDark ? 'dark' : 'light');
+      btn.textContent = isDark ? 'Светлая' : 'Темная';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="app-api-base" content="https://api.prevention.school">
+    <meta name="sw-app-version" content="__SW_APP_VERSION__">
+    <title>Запись к психологу — Prevention.AI</title>
+    <link rel="stylesheet" href="/styles/app.css">
+</head>
+<body class="sw-body sw-body--appointment">
+    <header class="sw-header">
+        <div class="sw-brand">
+            <span class="sw-brand-mark">P</span>
+            <div>
+                <div class="sw-brand-title">Prevention.AI</div>
+                <div class="sw-brand-sub">Запись на консультацию</div>
+            </div>
+        </div>
+        <nav class="sw-nav">
+            <a href="/" class="sw-nav-link">Рабочее место</a>
+            <a href="https://prevention.school/" class="sw-nav-link">О платформе</a>
+        </nav>
+    </header>
+
+    <main class="sw-main sw-main--narrow">
+        <section class="sw-panel">
+            <h1>Записаться на приём</h1>
+            <p class="sw-lead">Оставьте контакт — координатор или специалист свяжется с вами для согласования времени. Это предварительная запись, не экстренная помощь.</p>
+            <form id="ap-form" class="ap-form">
+                <label class="ap-field">
+                    <span>Имя</span>
+                    <input type="text" id="ap-name" name="name" required maxlength="120" autocomplete="name">
+                </label>
+                <label class="ap-field">
+                    <span>Телефон или email</span>
+                    <input type="text" id="ap-contact" name="contact" required maxlength="240" autocomplete="tel">
+                </label>
+                <label class="ap-field">
+                    <span>Кратко о запросе (необязательно)</span>
+                    <textarea id="ap-message" name="message" rows="4" maxlength="2000" placeholder="Например: консультация для подростка 14 лет, тревога и конфликты в школе"></textarea>
+                </label>
+                <p class="sw-disclaimer">При угрозе жизни звоните 112. Не указывайте в форме данные третьих лиц без их согласия.</p>
+                <button type="submit" id="ap-submit" class="sw-btn sw-btn--primary">Отправить заявку</button>
+            </form>
+            <div id="ap-status" class="ap-status hidden" role="status"></div>
+        </section>
+    </main>
+
+    <script src="/common.js"></script>
+    <script src="/appointment.js"></script>
+</body>
+</html>

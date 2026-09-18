@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="ru" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link class="favicon" rel="icon" href="/favicon.ico" sizes="any">
+  <link class="favicon" rel="icon" href="/favicon.png" type="image/png">
+  <link class="apple-touch-icon" href="/favicon.png">
+  <title>Академия Превенции: Образовательные треки</title>
+  <meta name="description" content="Образовательная среда Академии Превенции: фундаментальный видеокурс, клинический AI-симулятор и 3D-онтология.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;550;650;760;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/site.css">
+  
+  <style>
+    :root {
+      --violet-glow: rgba(124, 58, 237, 0.15);
+      --shelf-border: #e2e8f0;
+    }
+    
+    .hero-v2 {
+      position: relative;
+      padding: 64px 0 40px;
+      text-align: center;
+      background: radial-gradient(circle at 50% 0%, var(--violet-glow) 0%, transparent 70%);
+    }
+
+    /* Philosophy / AI Education Section */
+    .philosophy-section {
+      max-width: 1000px;
+      margin: 40px auto 60px;
+      padding: 0 20px;
+    }
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 36px;
+      align-items: center;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 36px;
+      box-shadow: var(--shadow);
+    }
+    @media (max-width: 860px) {
+      .philosophy-grid {
+        grid-template-columns: 1fr;
+        padding: 24px;
+      }
+    }
+    .philosophy-content h2 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin: 0 0 16px;
+      color: var(--text);
+    }
+    .philosophy-content p {
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: var(--muted);
+      margin: 0 0 14px;
+    }
+    .philosophy-content p:last-child {
+      margin-bottom: 0;
+    }
+    .philosophy-highlight {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(16, 185, 129, 0.08));
+      border: 1px solid rgba(99, 102, 241, 0.25);
+      border-left: 4px solid var(--violet);
+      padding: 24px;
+      border-radius: 14px;
+      font-size: 1.02rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    /* 3 Tracks Cards */
+    .tracks-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 64px;
+    }
+    @media(max-width: 960px) {
+      .tracks-grid { grid-template-columns: 1fr; }
+    }
+    .track-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 32px 24px;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .track-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+      border-color: var(--violet);
+    }
+    .track-card.highlight {
+      border-color: #6366f1;
+      background: linear-gradient(180deg, var(--surface) 0%, rgba(99, 102, 241, 0.04) 100%);
+    }
+    .track-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #6366f1;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .track-icon {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+    }
+    .track-card h3 {
+      margin: 0 0 12px;
+      font-size: 1.25rem;
+      color: var(--text);
+    }
+    .track-card p {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .track-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 20px;
+      background: var(--surface-soft);
+      color: var(--text);
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      margin-top: auto;
+      border: 1px solid var(--line);
+    }
+    .track-card.highlight .track-btn {
+      background: #4f46e5;
+      color: white;
+      border-color: #4f46e5;
+    }
+    .track-btn:hover {
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+      border-color: var(--accent);
+    }
+    .track-card.highlight .track-btn:hover {
+      background: #4338ca;
+      color: white;
+    }
+
+    /* Experimental link banner */
+    .exp-note {
+      text-align: center;
+      margin-top: 10px;
+      margin-bottom: 40px;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .exp-note a {
+      color: var(--violet);
+      font-weight: 650;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="site-header">
+      <a class="brand" href="/ru/"><span class="brand-mark">П</span><span>Профилактика-AI <small style="font-size: 10px; font-weight: 800; text-transform: uppercase; color: #0d9488; margin-left: 4px; vertical-align: super;">Beta</small></span></a>
+      <nav class="nav" aria-label="Навигация">
+        <a href="/ru/about/">О проекте</a>
+        <a href="/ru/science/">Наука</a>
+        <a href="/ru/academy/" class="nav-active" aria-current="page">Академия</a>
+        <a href="/ru/government/">Органам власти и МСУ</a>
+        <a href="/ru/help-for-teacher/">Педагогам</a>
+        <a href="/ru/teenology/">Родителям и подросткам</a>
+      </nav>
+      <div class="nav-controls">
+        <a href="https://web.prevention.school/" class="nav-cta" target="_blank" rel="noopener">Веб-терминал</a>
+        <a class="lang-toggle" href="/academy/" aria-label="Switch to English" style="font-weight: 600; text-decoration: none; padding: 4px 8px; border-radius: 4px; background: var(--surface-soft); color: var(--text);">EN</a>
+        <button type="button" class="theme-toggle" id="theme-toggle">Темная</button>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section class="hero-v2">
+        <span class="eyebrow">Образовательная среда нового поколения</span>
+        <h1 style="font-size: 2.8rem; letter-spacing: -0.02em; margin: 12px 0 20px;">
+          Академия Профилактики & Психологии Здоровья
+        </h1>
+        <p style="font-size: 1.2rem; color: var(--muted); max-width: 780px; margin: 0 auto; line-height: 1.6;">
+          Обучение специалистов доказательной превенции, клиническому проектированию и осознанной работе с современными ИИ-инструментами.
+        </p>
+      </section>
+
+      <!-- Philosophy: Осмысленное использование ИИ -->
+      <section class="philosophy-section">
+        <div class="philosophy-grid">
+          <div class="philosophy-content">
+            <h2>Осмысленное использование ИИ</h2>
+            <p>
+              В эпоху искусственного интеллекта легко поддаться искушению делегировать все задачи алгоритмам. Однако бездумное использование даже самых совершенных инструментов не делает человека специалистом.
+            </p>
+            <p>
+              Наша Академия создана для того, чтобы дать вам фундаментальное понимание психологии здоровья и профилактики. Обучение необходимо для того, чтобы вы осознанно управляли платформой Терминала, понимали логику рекомендаций и принимали взвешенные профессиональные решения.
+            </p>
+          </div>
+          <div class="philosophy-highlight">
+            «Искусственный интеллект — это мощный ассистент, но стратегия, эмпатия и окончательное решение всегда остаются за человеком. Понимание методологии — вот что делает вас настоящим профессионалом.»
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 Tracks of Academy -->
+      <section>
+        <div style="text-align: center; margin-bottom: 36px;">
+          <span class="eyebrow">Форматы обучения</span>
+          <h2 style="margin: 8px 0 0; font-size: 2rem;">Три образовательных трека</h2>
+        </div>
+
+        <div class="tracks-grid">
+          <!-- Track 1: Course -->
+          <div class="track-card">
+            <div>
+              <span class="track-badge">Теоретический базис🎬</span>
+              <h3>Видеокурс и конспекты</h3>
+              <p>160 академических часов программы ДПО. 21 подробная видеолекция, авторские конспекты, стенограммы и сравнительные таблицы.</p>
+            </div>
+            <a href="/ru/academy/course/" class="track-btn">Открыть видеолекторий →</a>
+          </div>
+
+          <!-- Track 2: Practicum Simulator -->
+          <div class="track-card highlight">
+            <div>
+              <span class="track-badge" style="color: #4f46e5;">Клиническая лаборатория🎮</span>
+              <h3>Практикум: AI-Симулятор</h3>
+              <p>Отработка навыков на реальных кейсах. Интерактивный диалог с виртуальным клиентом, живая матрица супервизии и разбор ошибок через RAG.</p>
+            </div>
+            <a href="/ru/academy/practicum/" class="track-btn">Запустить тренажер →</a>
+          </div>
+
+          <!-- Track 3: 3D Graph -->
+          <div class="track-card">
+            <div>
+              <span class="track-badge">Концептуальная карта🪐</span>
+              <h3>3D-Граф онтологии</h3>
+              <p>Пространственная навигация по школам и методам. Переход от макро-уровня 5 полочек к микро-связям теорий и интервенций.</p>
+            </div>
+            <a href="/ru/academy/graph/" class="track-btn">Исследовать 3D-модель →</a>
+          </div>
+        </div>
+
+        <div class="exp-note">
+          🔬 Исследуете методологическую модель 5 полочек и рабочего места психолога? <a href="/ru/academy/experimental.html">Открыть интерактивную схему АРМ (Экспериментальная версия) →</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer" style="margin-top: 80px;">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <strong>Профилактика-AI</strong><br>Открытая инфраструктура электронных рабочих мест.
+          <p class="footer-contact">
+            <a href="mailto:admin@prevention-ai.ru">admin@prevention-ai.ru</a><span class="footer-contact-sep" aria-hidden="true">·</span><a href="https://t.me/RomanDubrovsky" target="_blank" rel="noopener noreferrer">Telegram</a><span class="footer-contact-sep" aria-hidden="true">·</span><a href="https://www.linkedin.com/in/romandubrovsky/" target="_blank" rel="noopener">LinkedIn</a>
+          </p>
+          <p class="footer-community" style="margin-top: 8px; font-size: 0.85rem; color: var(--muted);">
+            Сообщества проекта (зеркала):<br>
+            Вконтакте: <a href="https://vk.ru/prevention_ai" target="_blank" rel="noopener">https://vk.ru/prevention_ai</a><br>
+            Телеграм: <a href="https://t.me/anthropology_health" target="_blank" rel="noopener">https://t.me/anthropology_health</a>
+          </p>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/ru/science/">Наука</a>
+          <a href="/ru/academy/">Академия</a>
+          <a href="/ru/government/">Органам власти и МСУ</a>
+          <a href="/ru/about/">О проекте</a>
+          <a href="/ru/help-for-teacher/">Педагогам</a>
+          <a href="/ru/teenology/">Родителям и подросткам</a>
+        </nav>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const btn = document.getElementById('theme-toggle');
+    if (btn) {
+      const saved = localStorage.getItem('theme');
+      if (saved === 'dark') { document.documentElement.setAttribute('data-theme','dark'); btn.textContent = 'Светлая'; }
+      btn.addEventListener('click', () => {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+        localStorage.setItem('theme', isDark ? 'light' : 'dark');
+        btn.textContent = isDark ? 'Темная' : 'Светлая';
+      });
+    }
+  </script>
+</body>
+</html>
