@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/favicon.png">
+  <title>Политика в отношении файлов cookie — Профилактика-AI</title>
+  <meta name="description" content="Политика использования файлов cookie, локального хранилища браузера и счетчиков веб-аналитики на платформе Профилактика-AI. Инструкция по управлению cookie.">
+  <link rel="canonical" href="https://prevention.school/ru/cookies/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/site.css">
+  <style>
+    .legal-page { padding: 40px 0 80px; }
+    .legal-container { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+    .legal-header { margin-bottom: 40px; border-bottom: 1px solid var(--line); padding-bottom: 24px; }
+    .legal-header h1 { font-size: clamp(1.8rem, 4vw, 2.4rem); font-weight: 800; margin: 0 0 12px; line-height: 1.25; }
+    .legal-meta { font-size: 0.88rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 16px; }
+    .legal-section { margin-bottom: 36px; }
+    .legal-section h2 { font-size: 1.25rem; font-weight: 700; margin: 0 0 14px; color: var(--text); border-bottom: 1px solid var(--line); padding-bottom: 8px; }
+    .legal-section p, .legal-section li { font-size: 0.95rem; line-height: 1.7; color: var(--muted); }
+    .legal-section ul, .legal-section ol { padding-left: 1.4rem; margin: 12px 0 16px; }
+    .legal-section li { margin-bottom: 6px; }
+    .legal-section strong { color: var(--text); }
+    .back-nav { margin-bottom: 24px; }
+    .back-nav a { display: inline-flex; align-items: center; gap: 6px; font-size: 0.88rem; color: var(--muted); text-decoration: none; }
+    .back-nav a:hover { color: var(--text); }
+    .cookie-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 18px 0;
+      font-size: 0.9rem;
+    }
+    .cookie-table th, .cookie-table td {
+      border: 1px solid var(--line);
+      padding: 10px 14px;
+      text-align: left;
+    }
+    .cookie-table th {
+      background: var(--surface-soft);
+      color: var(--text);
+      font-weight: 600;
+    }
+    .cookie-table td {
+      color: var(--muted);
+    }
+  </style>
+<!-- Yandex.Metrika counter & Auto-Goal Tracker -->
+<script type="text/javascript">
+(function(m,e,t,r,i,k,a){
+    m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();
+    for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+})(window, document,'script','https://mc.yandex.ru/metrika/tag.js', 'ym');
+
+(function(){
+    try {
+        if (window.location.search.indexOf('no_track=1') !== -1 || window.location.search.indexOf('admin=1') !== -1) {
+            localStorage.setItem('ym_disable_tracking', '1');
+        }
+        if (localStorage.getItem('ym_disable_tracking') === '1') {
+            console.log('[Yandex.Metrika] Tracking disabled for owner/admin session.');
+            window.ymGoal = window.reachGoal = function(g, p){ console.log('[Goal skipped (admin)]', g, p || ''); };
+            return;
+        }
+    } catch(e) {}
+
+    var host = (window.location.hostname || '').toLowerCase();
+    var id = null;
+    if (host.indexOf('ida-psy.ru') !== -1) id = 113108416;
+    else if (host.indexOf('ida-psy.pro') !== -1) id = 113706104;
+    else if (host.indexOf('prevention-ai.ru') !== -1) id = 113108883;
+    else if (host.indexOf('prevention.school') !== -1) id = 113706126;
+    else if (host.indexOf('teenology-ai.ru') !== -1) id = 113108854;
+    else if (host.indexOf('teenology.care') !== -1) id = 109437867;
+    else if (host.indexOf('ru.decima.business') !== -1) id = 93591954;
+    else if (host.indexOf('decima.business') !== -1) id = 93591880;
+    else {
+        id = 113706126;
+    }
+
+    window._ymCounterId = id;
+
+    // Universal Goal Dispatcher
+    window.ymGoal = window.reachGoal = function(goalName, params) {
+        if (!id || typeof ym !== 'function') return;
+        try {
+            if (params) {
+                ym(id, 'reachGoal', goalName, params);
+            } else {
+                ym(id, 'reachGoal', goalName);
+            }
+            console.log('[YM Goal]', goalName, params || '');
+        } catch(e) {
+            console.warn('[YM Goal Error]', e);
+        }
+    };
+
+    if (id) {
+        ym(id, 'init', {
+            ssr: true,
+            webvisor: true,
+            clickmap: true,
+            ecommerce: "dataLayer",
+            referrer: document.referrer,
+            url: location.href,
+            accurateTrackBounce: true,
+            trackLinks: true
+        });
+    }
+
+    // Auto-Goal Click & Form Interceptors
+    document.addEventListener('DOMContentLoaded', function(){
+        // 1. Click tracker for buttons, links, actions
+        document.addEventListener('click', function(e){
+            var target = e.target;
+            if (!target) return;
+            var el = target.closest('a, button, [data-goal], input[type="submit"]');
+            if (!el) return;
+
+            // Explicit data-goal attribute
+            var explicitGoal = el.getAttribute('data-goal');
+            if (explicitGoal) {
+                window.ymGoal(explicitGoal);
+                return;
+            }
+
+            var href = (el.getAttribute('href') || '').toLowerCase();
+            var text = (el.innerText || el.textContent || el.value || '').trim().toLowerCase();
+            var idStr = (el.id || '').toLowerCase();
+            var cls = (el.className || '').toLowerCase();
+
+            // Messengers & Social
+            if (href.indexOf('t.me/') !== -1 || href.indexOf('telegram.me') !== -1) {
+                window.ymGoal('telegram_click', {url: href});
+            } else if (href.indexOf('vk.com/') !== -1) {
+                window.ymGoal('vk_click', {url: href});
+            } else if (href.indexOf('wa.me/') !== -1 || href.indexOf('whatsapp.com') !== -1) {
+                window.ymGoal('whatsapp_click', {url: href});
+            } else if (href.indexOf('tel:') === 0) {
+                window.ymGoal('phone_click', {phone: href});
+            } else if (href.indexOf('mailto:') === 0) {
+                window.ymGoal('email_click', {email: href});
+            } 
+            // File downloads
+            else if (/\.(pdf|docx?|xlsx?|zip|rar|pptx?)$/i.test(href)) {
+                window.ymGoal('file_download', {file: href});
+            }
+            // Registration & Auth
+            else if (href.indexOf('/join') !== -1 || href.indexOf('/staff-register') !== -1 || href.indexOf('/auth') !== -1 || href.indexOf('/register') !== -1 || idStr.indexOf('register') !== -1 || idStr.indexOf('login') !== -1 || text.indexOf('регистрац') !== -1 || text.indexOf('войти') !== -1 || text.indexOf('личный кабинет') !== -1) {
+                window.ymGoal('auth_click', {text: text});
+            }
+            // Demo & Interactive Room
+            else if (href.indexOf('#room=') !== -1 || href.indexOf('/demo') !== -1 || href.indexOf('/app') !== -1 || href.indexOf('/workspace') !== -1 || idStr.indexOf('demo') !== -1 || text.indexOf('демо') !== -1 || text.indexOf('попробовать') !== -1 || text.indexOf('запустить') !== -1) {
+                window.ymGoal('demo_open', {text: text});
+            }
+            // Test & Screening
+            else if (href.indexOf('/test') !== -1 || href.indexOf('screening') !== -1 || text.indexOf('тест') !== -1 || text.indexOf('диагностик') !== -1 || text.indexOf('опрос') !== -1) {
+                window.ymGoal('test_start', {text: text});
+            }
+            // Pricing / Tariffs
+            else if (href.indexOf('pricing') !== -1 || href.indexOf('tariff') !== -1 || text.indexOf('тариф') !== -1 || text.indexOf('купить') !== -1 || text.indexOf('подключить') !== -1) {
+                window.ymGoal('pricing_click', {text: text});
+            }
+            // Feedback / Call to action
+            else if (text.indexOf('оставить заявку') !== -1 || text.indexOf('записаться') !== -1 || text.indexOf('консультац') !== -1 || text.indexOf('связаться') !== -1) {
+                window.ymGoal('lead_button_click', {text: text});
+            }
+        }, true);
+
+        // 2. Form submission tracker
+        document.addEventListener('submit', function(e){
+            var form = e.target;
+            if (!form) return;
+            var formId = form.id || form.getAttribute('name') || form.getAttribute('action') || 'lead_form';
+            window.ymGoal('form_submit', {form_id: formId});
+        }, true);
+
+        // 3. Scroll depth tracking (50% and 90%)
+        var scroll50Fired = false;
+        var scroll90Fired = false;
+        window.addEventListener('scroll', function(){
+            var h = document.documentElement, 
+                b = document.body,
+                st = 'scrollTop',
+                sh = 'scrollHeight';
+            var percent = ((h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight)) * 100;
+            if (!scroll50Fired && percent >= 50) {
+                scroll50Fired = true;
+                window.ymGoal('scroll_50');
+            }
+            if (!scroll90Fired && percent >= 90) {
+                scroll90Fired = true;
+                window.ymGoal('scroll_90');
+            }
+        }, {passive: true});
+    });
+})();
+</script>
+<!-- /Yandex.Metrika counter -->
+</head>
+<body>
+  <div class="wrap">
+    <header class="site-header">
+      <a class="brand" href="/ru/"><span class="brand-mark">П</span><span>Профилактика-AI <small style="font-size: 10px; font-weight: 800; text-transform: uppercase; color: var(--accent); margin-left: 4px; vertical-align: super;">Beta</small></span></a>
+                        <nav class="nav" aria-label="Навигация">
+        <a href="/ru/about/">О проекте</a>
+        <a href="https://academy.prevention-ai.ru/" target="_blank" rel="noopener">Академия</a>
+        <a href="https://web.prevention-ai.ru/?entry=educator" target="_blank" rel="noopener">Учителю</a>
+        <a href="/ru/teenology/">Родителям и подросткам</a>
+      </nav>
+      <div class="nav-controls">
+        <a href="https://web.prevention-ai.ru/" class="nav-cta" target="_blank" rel="noopener">Вход в терминал</a>
+        <button type="button" class="theme-toggle" id="theme-toggle">Тема</button>
+      </div>
+    </header>
+
+    <main class="legal-page">
+      <div class="legal-container">
+        <div class="back-nav">
+          <a href="/ru/">← Вернуться на главную</a>
+        </div>
+
+        <div class="legal-header">
+          <h1>Политика в отношении использования файлов cookie</h1>
+          <div class="legal-meta">
+            <span>Редакция от 10 января 2026 года</span>
+            <span>Сайт: https://prevention-ai.ru/</span>
+          </div>
+        </div>
+
+        <section class="legal-section">
+          <h2>1. Что такое файлы cookie</h2>
+          <p>
+            Файлы cookie (куки) представляют собой небольшие текстовые фрагменты данных, сохраняемые браузером вашего устройства при открытии страниц платформы. Они помогают сохранять пользовательские настройки, обеспечивать безопасность авторизации в веб-терминале и анализировать производительность интерфейса.
+          </p>
+        </section>
+
+        <section class="legal-section">
+          <h2>2. Какие типы файлов cookie используются</h2>
+          <table class="cookie-table">
+            <thead>
+              <tr>
+                <th>Категория</th>
+                <th>Назначение</th>
+                <th>Срок хранения</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Технические (обязательные)</strong></td>
+                <td>Сохранение сессии входа в терминал «Цифровой психолог», выбор светлой или темной темы оформления, фиксация согласия с cookie-уведомлением (<code>cookie_consent_v1</code>).</td>
+                <td>До 12 месяцев или сессия</td>
+              </tr>
+              <tr>
+                <td><strong>Функциональные</strong></td>
+                <td>Запоминание выбранных фильтров в методических справочниках и открытых карточек подсказок.</td>
+                <td>До 6 месяцев</td>
+              </tr>
+              <tr>
+                <td><strong>Статистические (Яндекс.Метрика)</strong></td>
+                <td>Обезличенный учет обращений к материалам, скорости загрузки страниц и стабильности сервиса. Данные не связываются с личностью пользователя.</td>
+                <td>Устанавливаются счетчиком Яндекс.Метрика</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="legal-section">
+          <h2>3. Управление файлами cookie</h2>
+          <p>
+            Пользователь может в любой момент ограничить или полностью отключить сохранение cookie через настройки своего интернет-обозревателя (Яндекс Браузер, Chrome, Safari, Firefox). Обратите внимание, что отключение технически обязательных файлов cookie может повлиять на возможность авторизации в защищенном терминале.
+          </p>
+        </section>
+
+        <section class="legal-section">
+          <h2>4. Контакты</h2>
+          <p>
+            По вопросам политики cookie и обработки технических сведений обращайтесь по адресу: <strong>admin@prevention-ai.ru</strong>.
+          </p>
+        </section>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <strong>Профилактика-AI</strong><br>Открытая цифровая инфраструктура психологической службы образования.
+          <p class="footer-legal-notice" style="margin-top: 10px; font-size: 0.82rem; line-height: 1.5; color: var(--muted); max-width: 580px;">
+            В настоящее время Платформа проходит процедуру включения в Реестр отечественного программного обеспечения Минцифры России. Система работает в режиме открытой апробации и доступна специалистам и образовательным организациям для ознакомления и использования. Размещение серверных компонентов — защищенные сертифицированные ЦОД (152-ФЗ).
+          </p>
+          <p class="footer-contact">
+            <a href="mailto:admin@prevention-ai.ru">admin@prevention-ai.ru</a><span class="footer-contact-sep" aria-hidden="true">·</span><a href="https://t.me/RomanDubrovsky" target="_blank" rel="noopener noreferrer">Telegram</a><span class="footer-contact-sep" aria-hidden="true">·</span><a href="/ru/founder/">Автор проекта</a>
+          </p>
+          <p class="footer-community" style="margin-top: 8px; font-size: 0.85rem; color: var(--muted);">
+            Сообщества проекта:<br>
+            ВКонтакте: <a href="https://vk.ru/prevention_ai" target="_blank" rel="noopener">vk.ru/prevention_ai</a><br>
+            Телеграм-канал: <a href="https://t.me/anthropology_health" target="_blank" rel="noopener">t.me/anthropology_health</a>
+          </p>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/ru/about/">О проекте</a>
+          <a href="https://academy.prevention-ai.ru/" target="_blank" rel="noopener">Академия</a>
+          <a href="https://web.prevention-ai.ru/?entry=educator" target="_blank" rel="noopener">Учителю</a>
+          <a href="/ru/teenology/">Родителям и подросткам</a>
+          <a href="/ru/founder/">Основатель</a>
+          <a href="https://ida-psy.ru/" target="_blank" rel="noopener" style="color: #8b5cf6; font-weight: 600;">Психологам коммерческого сектора</a>
+          <a href="/ru/privacy/">Конфиденциальность</a>
+          <a href="/ru/consent/">Согласие на обработку</a>
+        </nav>
+      </div>
+    </footer>
+  </div>
+  <script src="/assets/theme.js" defer></script>
+  <script src="/assets/legal-banner.js" defer></script>
+</body>
+</html>

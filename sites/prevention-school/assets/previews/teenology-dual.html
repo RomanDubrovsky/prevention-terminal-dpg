@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Teenology PWA — preview</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Inter, system-ui, sans-serif; background: #172033; display: flex; justify-content: center; gap: 20px; padding: 24px; flex-wrap: wrap; }
+    .phone { width: 280px; border-radius: 28px; padding: 12px; border: 1px solid #334155; background: #0f172a; }
+    .screen { background: #fff; border-radius: 20px; padding: 16px; min-height: 480px; color: #1f2933; font-size: 12px; display: flex; flex-direction: column; gap: 10px; }
+    .label { font-size: 10px; color: #7b8794; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+    .tier { font-weight: 900; font-size: 13px; color: #0f766e; }
+    .pulse { font-size: 28px; font-weight: 900; color: #0f766e; }
+    .bar { height: 8px; background: #d9e0d8; border-radius: 99px; overflow: hidden; }
+    .bar span { display: block; height: 100%; width: 62%; background: #0f766e; }
+    .bubble { background: #e6f7f4; color: #0b5f59; padding: 11px; border-radius: 14px; }
+    .muted { background: #f0f4f2; color: #405160; padding: 10px; border-radius: 12px; }
+    .offline { margin-top: auto; display: flex; align-items: center; gap: 8px; font-size: 11px; color: #0b5f59; background: #dff5f0; padding: 8px 10px; border-radius: 10px; }
+    .lock { background: #fff7ed; color: #b45309; padding: 10px; border-radius: 12px; font-size: 11px; }
+  </style>
+<!-- Yandex.Metrika counter & Auto-Goal Tracker -->
+<script type="text/javascript">
+(function(m,e,t,r,i,k,a){
+    m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();
+    for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+})(window, document,'script','https://mc.yandex.ru/metrika/tag.js', 'ym');
+
+(function(){
+    try {
+        if (window.location.search.indexOf('no_track=1') !== -1 || window.location.search.indexOf('admin=1') !== -1) {
+            localStorage.setItem('ym_disable_tracking', '1');
+        }
+        if (localStorage.getItem('ym_disable_tracking') === '1') {
+            console.log('[Yandex.Metrika] Tracking disabled for owner/admin session.');
+            window.ymGoal = window.reachGoal = function(g, p){ console.log('[Goal skipped (admin)]', g, p || ''); };
+            return;
+        }
+    } catch(e) {}
+
+    var host = (window.location.hostname || '').toLowerCase();
+    var id = null;
+    if (host.indexOf('ida-psy.ru') !== -1) id = 113108416;
+    else if (host.indexOf('ida-psy.pro') !== -1) id = 113706104;
+    else if (host.indexOf('prevention-ai.ru') !== -1) id = 113108883;
+    else if (host.indexOf('prevention.school') !== -1) id = 113706126;
+    else if (host.indexOf('teenology-ai.ru') !== -1) id = 113108854;
+    else if (host.indexOf('teenology.care') !== -1) id = 109437867;
+    else if (host.indexOf('ru.decima.business') !== -1) id = 93591954;
+    else if (host.indexOf('decima.business') !== -1) id = 93591880;
+    else {
+        id = 113706126;
+    }
+
+    window._ymCounterId = id;
+
+    // Universal Goal Dispatcher
+    window.ymGoal = window.reachGoal = function(goalName, params) {
+        if (!id || typeof ym !== 'function') return;
+        try {
+            if (params) {
+                ym(id, 'reachGoal', goalName, params);
+            } else {
+                ym(id, 'reachGoal', goalName);
+            }
+            console.log('[YM Goal]', goalName, params || '');
+        } catch(e) {
+            console.warn('[YM Goal Error]', e);
+        }
+    };
+
+    if (id) {
+        ym(id, 'init', {
+            ssr: true,
+            webvisor: true,
+            clickmap: true,
+            ecommerce: "dataLayer",
+            referrer: document.referrer,
+            url: location.href,
+            accurateTrackBounce: true,
+            trackLinks: true
+        });
+    }
+
+    // Auto-Goal Click & Form Interceptors
+    document.addEventListener('DOMContentLoaded', function(){
+        // 1. Click tracker for buttons, links, actions
+        document.addEventListener('click', function(e){
+            var target = e.target;
+            if (!target) return;
+            var el = target.closest('a, button, [data-goal], input[type="submit"]');
+            if (!el) return;
+
+            // Explicit data-goal attribute
+            var explicitGoal = el.getAttribute('data-goal');
+            if (explicitGoal) {
+                window.ymGoal(explicitGoal);
+                return;
+            }
+
+            var href = (el.getAttribute('href') || '').toLowerCase();
+            var text = (el.innerText || el.textContent || el.value || '').trim().toLowerCase();
+            var idStr = (el.id || '').toLowerCase();
+            var cls = (el.className || '').toLowerCase();
+
+            // Messengers & Social
+            if (href.indexOf('t.me/') !== -1 || href.indexOf('telegram.me') !== -1) {
+                window.ymGoal('telegram_click', {url: href});
+            } else if (href.indexOf('vk.com/') !== -1) {
+                window.ymGoal('vk_click', {url: href});
+            } else if (href.indexOf('wa.me/') !== -1 || href.indexOf('whatsapp.com') !== -1) {
+                window.ymGoal('whatsapp_click', {url: href});
+            } else if (href.indexOf('tel:') === 0) {
+                window.ymGoal('phone_click', {phone: href});
+            } else if (href.indexOf('mailto:') === 0) {
+                window.ymGoal('email_click', {email: href});
+            } 
+            // File downloads
+            else if (/\.(pdf|docx?|xlsx?|zip|rar|pptx?)$/i.test(href)) {
+                window.ymGoal('file_download', {file: href});
+            }
+            // Registration & Auth
+            else if (href.indexOf('/join') !== -1 || href.indexOf('/staff-register') !== -1 || href.indexOf('/auth') !== -1 || href.indexOf('/register') !== -1 || idStr.indexOf('register') !== -1 || idStr.indexOf('login') !== -1 || text.indexOf('регистрац') !== -1 || text.indexOf('войти') !== -1 || text.indexOf('личный кабинет') !== -1) {
+                window.ymGoal('auth_click', {text: text});
+            }
+            // Demo & Interactive Room
+            else if (href.indexOf('#room=') !== -1 || href.indexOf('/demo') !== -1 || href.indexOf('/app') !== -1 || href.indexOf('/workspace') !== -1 || idStr.indexOf('demo') !== -1 || text.indexOf('демо') !== -1 || text.indexOf('попробовать') !== -1 || text.indexOf('запустить') !== -1) {
+                window.ymGoal('demo_open', {text: text});
+            }
+            // Test & Screening
+            else if (href.indexOf('/test') !== -1 || href.indexOf('screening') !== -1 || text.indexOf('тест') !== -1 || text.indexOf('диагностик') !== -1 || text.indexOf('опрос') !== -1) {
+                window.ymGoal('test_start', {text: text});
+            }
+            // Pricing / Tariffs
+            else if (href.indexOf('pricing') !== -1 || href.indexOf('tariff') !== -1 || text.indexOf('тариф') !== -1 || text.indexOf('купить') !== -1 || text.indexOf('подключить') !== -1) {
+                window.ymGoal('pricing_click', {text: text});
+            }
+            // Feedback / Call to action
+            else if (text.indexOf('оставить заявку') !== -1 || text.indexOf('записаться') !== -1 || text.indexOf('консультац') !== -1 || text.indexOf('связаться') !== -1) {
+                window.ymGoal('lead_button_click', {text: text});
+            }
+        }, true);
+
+        // 2. Form submission tracker
+        document.addEventListener('submit', function(e){
+            var form = e.target;
+            if (!form) return;
+            var formId = form.id || form.getAttribute('name') || form.getAttribute('action') || 'lead_form';
+            window.ymGoal('form_submit', {form_id: formId});
+        }, true);
+
+        // 3. Scroll depth tracking (50% and 90%)
+        var scroll50Fired = false;
+        var scroll90Fired = false;
+        window.addEventListener('scroll', function(){
+            var h = document.documentElement, 
+                b = document.body,
+                st = 'scrollTop',
+                sh = 'scrollHeight';
+            var percent = ((h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight)) * 100;
+            if (!scroll50Fired && percent >= 50) {
+                scroll50Fired = true;
+                window.ymGoal('scroll_50');
+            }
+            if (!scroll90Fired && percent >= 90) {
+                scroll90Fired = true;
+                window.ymGoal('scroll_90');
+            }
+        }, {passive: true});
+    });
+})();
+</script>
+<!-- /Yandex.Metrika counter -->
+</head>
+<body>
+  <div class="phone">
+    <div class="screen">
+      <div class="label">Teenology · Free</div>
+      <div class="tier">Relationship Pulse</div>
+      <div class="pulse">62%</div>
+      <div class="bar"><span></span></div>
+      <div class="bubble">Today’s micro-action: one short supportive phrase, not a big talk.</div>
+      <div class="muted">Mediation protocol · media de-escalation card</div>
+      <div class="offline">🛡 Data saved locally in browser · Offline mode</div>
+    </div>
+  </div>
+  <div class="phone">
+    <div class="screen">
+      <div class="label">Teenology · Family+</div>
+      <div class="tier">Pulse + 14-day trend</div>
+      <div class="pulse">62% <span style="font-size:14px;color:#16a34a">↑ steady</span></div>
+      <div class="bar"><span></span></div>
+      <div class="bubble">Family Bridge: shared check-in scheduled · evening window</div>
+      <div class="muted">Diary sync · specialist handoff summary (no PII export)</div>
+      <div class="offline">🛡 Encrypted local log · Subscriber insights</div>
+    </div>
+  </div>
+</body>
+</html>

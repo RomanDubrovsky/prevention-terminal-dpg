@@ -1,0 +1,1251 @@
+/* Styles for IPR Case Walkthrough Modal (Presentation: Kirill Sokolov) */
+
+.ipr-walkthrough-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.72);
+  backdrop-filter: blur(8px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: iprWalkFadeIn 0.2s ease-out;
+}
+
+@keyframes iprWalkFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.ipr-walkthrough-container {
+  background: #ffffff;
+  color: #0f172a;
+  border-radius: 20px;
+  max-width: 980px;
+  width: 100%;
+  max-height: 94vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  animation: iprWalkSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes iprWalkSlideUp {
+  from { transform: translateY(20px) scale(0.97); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.ipr-walkthrough-head {
+  padding: 18px 24px;
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ipr-walkthrough-head-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ipr-walkthrough-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  width: fit-content;
+}
+
+.ipr-walkthrough-title {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 800;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ipr-walkthrough-title-sub {
+  font-size: 13px;
+  font-weight: 400;
+  color: #cbd5e1;
+}
+
+.ipr-walkthrough-close-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #e2e8f0;
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-weight: 600;
+}
+
+.ipr-walkthrough-close-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+/* Timeline / Slide Indicators */
+.ipr-walkthrough-nav-bar {
+  display: flex;
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 8px 16px;
+  gap: 8px;
+  overflow-x: auto;
+}
+
+.ipr-walkthrough-tab-btn {
+  flex: 1;
+  min-width: 150px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 8px 12px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ipr-walkthrough-tab-btn:hover {
+  background: #f1f5f9;
+}
+
+.ipr-walkthrough-tab-btn.active {
+  background: #ffffff;
+  border-color: #6366f1;
+  box-shadow: 0 2px 6px rgba(99, 102, 241, 0.12);
+}
+
+.ipr-walkthrough-tab-time {
+  font-size: 11px;
+  font-weight: 700;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ipr-walkthrough-tab-btn.active .ipr-walkthrough-tab-time {
+  color: #4f46e5;
+}
+
+.ipr-walkthrough-tab-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #334155;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ipr-walkthrough-tab-btn.active .ipr-walkthrough-tab-label {
+  color: #0f172a;
+}
+
+/* Body Content */
+.ipr-walkthrough-body {
+  padding: 20px 24px;
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Split Layout: Left Info & Right Mockup */
+.ipr-walkthrough-grid {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 20px;
+  align-items: stretch;
+}
+
+@media (max-width: 860px) {
+  .ipr-walkthrough-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Left Narrative Card */
+.ipr-walkthrough-narrative {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ipr-narrative-step-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  color: #4f46e5;
+  background: #eef2ff;
+  border: 1px solid #c7d2fe;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  width: fit-content;
+}
+
+.ipr-narrative-h3 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.3;
+}
+
+.ipr-narrative-case-box {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-left: 4px solid #6366f1;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #334155;
+}
+
+.ipr-narrative-case-box strong {
+  color: #0f172a;
+}
+
+.ipr-narrative-points {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ipr-narrative-point {
+  display: flex;
+  gap: 10px;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: #475569;
+}
+
+.ipr-narrative-point-icon {
+  font-size: 16px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.ipr-narrative-callout {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #166534;
+}
+
+/* Right Mockup Screen Frame */
+.ipr-mockup-frame {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.ipr-mockup-topbar {
+  background: #1e293b;
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.ipr-mockup-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.ipr-mockup-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+
+.ipr-mockup-dot.red { background: #ef4444; }
+.ipr-mockup-dot.yellow { background: #f59e0b; }
+.ipr-mockup-dot.green { background: #10b981; }
+
+.ipr-mockup-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: #94a3b8;
+  letter-spacing: 0.03em;
+}
+
+.ipr-mockup-screen {
+  padding: 16px;
+  background: #f8fafc;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Slide 1 Mockup Items */
+.ipr-mockup-card-header {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ipr-mockup-profile-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ipr-mockup-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: #e0e7ff;
+  color: #4338ca;
+  font-size: 16px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ipr-mockup-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.ipr-mockup-sub {
+  font-size: 11px;
+  color: #64748b;
+}
+
+.ipr-mockup-tag {
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.ipr-mockup-tag.warning {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde68a;
+}
+
+.ipr-mockup-tag.danger {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+.ipr-mockup-tag.success {
+  background: #dcfce7;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+.ipr-mockup-tag.info {
+  background: #e0f2fe;
+  color: #075985;
+  border: 1px solid #bae6fd;
+}
+
+.ipr-mockup-fields-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.ipr-mockup-field {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.ipr-mockup-field-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.ipr-mockup-field-val {
+  font-size: 12px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.ipr-mockup-field.highlighted {
+  border-color: #f59e0b;
+  background: #fffbeb;
+}
+
+/* Slide 2: 9 Domains Grid */
+.ipr-domains-mockup-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+@media (max-width: 600px) {
+  .ipr-domains-mockup-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ipr-domain-box {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.ipr-domain-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #1e293b;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ipr-domain-pill {
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  line-height: 1.2;
+}
+
+.ipr-domain-pill.risk {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.ipr-domain-pill.asset {
+  background: #dcfce7;
+  color: #166534;
+  font-weight: 700;
+}
+
+.ipr-risk-meter-box {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.ipr-risk-score-badge {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.ipr-risk-score-num {
+  font-size: 24px;
+  font-weight: 800;
+  color: #ea580c;
+}
+
+.ipr-risk-score-total {
+  font-size: 12px;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.ipr-risk-meter-bar-track {
+  flex: 1;
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 9999px;
+  overflow: hidden;
+  position: relative;
+}
+
+.ipr-risk-meter-bar-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.4s ease;
+}
+
+/* Slide 3: Plan Phases Table */
+.ipr-plan-mockup-phases {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ipr-plan-phase-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ipr-plan-phase-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ipr-plan-phase-title {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.ipr-plan-action-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f8fafc;
+  padding: 5px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+}
+
+.ipr-plan-role-chip {
+  font-size: 10px;
+  font-weight: 700;
+  color: #4338ca;
+  background: #e0e7ff;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* Slide 4: Direct Consultation Link */
+.ipr-consult-mockup-box {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ipr-speech-bubble {
+  background: #f1f5f9;
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: #334155;
+  font-style: italic;
+  border-left: 3px solid #0ea5e9;
+}
+
+.ipr-docs-badges-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ipr-doc-chip {
+  background: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 10.5px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Slide 5: DOCX Export Document Preview */
+.ipr-export-mockup-doc {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 14px 18px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ipr-export-doc-header {
+  text-align: center;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 8px;
+}
+
+.ipr-export-doc-stamp {
+  font-size: 9.5px;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: #64748b;
+}
+
+.ipr-export-doc-h1 {
+  margin: 4px 0 0;
+  font-size: 12px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.ipr-export-doc-text {
+  font-size: 11px;
+  line-height: 1.45;
+  color: #334155;
+}
+
+.ipr-export-action-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+/* Footer Controls */
+.ipr-walkthrough-footer {
+  padding: 14px 24px;
+  background: #ffffff;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.ipr-walkthrough-dots-nav {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.ipr-walkthrough-nav-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #cbd5e1;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ipr-walkthrough-nav-dot.active {
+  background: #4f46e5;
+  transform: scale(1.3);
+}
+
+.ipr-walkthrough-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ipr-walkthrough-btn {
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ipr-walkthrough-btn.secondary {
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+}
+
+.ipr-walkthrough-btn.secondary:hover {
+  background: #e2e8f0;
+}
+
+.ipr-walkthrough-btn.primary {
+  background: #4f46e5;
+  color: #ffffff;
+}
+
+.ipr-walkthrough-btn.primary:hover {
+  background: #4338ca;
+}
+
+/* 3-Forms Pipeline Tracker */
+.ipr-forms-pipeline {
+  display: flex;
+  background: #0f172a;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 8px 20px;
+  gap: 12px;
+  overflow-x: auto;
+  align-items: center;
+}
+
+.ipr-pipeline-stage {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #94a3b8;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.ipr-pipeline-stage:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #f8fafc;
+}
+
+.ipr-pipeline-stage.active {
+  background: rgba(99, 102, 241, 0.25);
+  border-color: #818cf8;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.ipr-pipeline-arrow {
+  color: #475569;
+  font-size: 14px;
+}
+
+/* Form Signposts (Зацепки для специалистов) */
+.ipr-signposts-box {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 10px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ipr-signposts-title {
+  font-size: 11.5px;
+  font-weight: 800;
+  color: #1e3a8a;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.ipr-signposts-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ipr-signpost-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #ffffff;
+  border: 1px solid #93c5fd;
+  color: #1e40af;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+/* Fullscreen Mockup Button & Interaction */
+.ipr-mockup-top-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ipr-mockup-fullscreen-btn {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+  border-radius: 6px;
+  padding: 3px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.15s;
+}
+
+.ipr-mockup-fullscreen-btn:hover {
+  background: #4f46e5;
+  border-color: #4f46e5;
+  color: #ffffff;
+}
+
+.ipr-mockup-clickable-wrapper {
+  cursor: zoom-in;
+  position: relative;
+  transition: transform 0.15s ease;
+}
+
+.ipr-mockup-clickable-wrapper:hover {
+  outline: 2px solid #818cf8;
+  outline-offset: 2px;
+}
+
+.ipr-mockup-zoom-hint {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(15, 23, 42, 0.85);
+  color: #ffffff;
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 6px;
+  pointer-events: none;
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  transition: opacity 0.2s;
+  z-index: 5;
+}
+
+.ipr-mockup-clickable-wrapper:hover .ipr-mockup-zoom-hint {
+  opacity: 1;
+}
+
+/* Overview 3-Forms View */
+.ipr-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 10px;
+}
+
+@media (max-width: 900px) {
+  .ipr-overview-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ipr-overview-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ipr-overview-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1);
+  border-color: #6366f1;
+}
+
+.ipr-overview-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 8px;
+}
+
+.ipr-overview-card-title {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.ipr-overview-card-desc {
+  font-size: 12px;
+  line-height: 1.4;
+  color: #475569;
+}
+
+.ipr-overview-card-features {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 11.5px;
+  color: #334155;
+  background: #ffffff;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+/* Fullscreen Lightbox Modal */
+.ipr-fullscreen-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(12px);
+  z-index: 20000;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  animation: iprWalkFadeIn 0.2s ease-out;
+}
+
+.ipr-fullscreen-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+.ipr-fullscreen-title {
+  font-size: 18px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ipr-fullscreen-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ipr-fullscreen-close-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.ipr-fullscreen-close-btn:hover {
+  background: rgba(239, 68, 68, 0.8);
+  border-color: #ef4444;
+}
+
+.ipr-fullscreen-body {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.ipr-fullscreen-card-container {
+  max-width: 1200px;
+  width: 100%;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.ipr-fullscreen-legend {
+  max-width: 1200px;
+  width: 100%;
+  margin-top: 14px;
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 12px 18px;
+  color: #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12.5px;
+}
+
+/* Indicators Table with Checkboxes (Form #1 Slide 2) */
+.ipr-indicators-table-wrapper {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.ipr-indicators-table-header {
+  display: grid;
+  grid-template-columns: 140px 1fr 1fr 70px;
+  background: #f1f5f9;
+  border-bottom: 2px solid #cbd5e1;
+  padding: 9px 12px;
+  font-size: 11.5px;
+  font-weight: 800;
+  color: #334155;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.ipr-indicators-table-row {
+  display: grid;
+  grid-template-columns: 140px 1fr 1fr 70px;
+  padding: 8px 12px;
+  border-bottom: 1px solid #f1f5f9;
+  align-items: center;
+  font-size: 12px;
+  gap: 8px;
+  transition: background 0.1s;
+}
+
+.ipr-indicators-table-row:hover {
+  background: #f8fafc;
+}
+
+.ipr-check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  line-height: 1.35;
+  margin-bottom: 3px;
+}
+
+.ipr-check-item:last-child {
+  margin-bottom: 0;
+}
+
+.ipr-check-item.checked-risk {
+  color: #b91c1c;
+  font-weight: 600;
+}
+
+.ipr-check-item.checked-asset {
+  color: #15803d;
+  font-weight: 600;
+}
+
+.ipr-check-item.muted-risk {
+  color: #94a3b8;
+  opacity: 0.7;
+}
+
+.ipr-check-item.muted-asset {
+  color: #94a3b8;
+  opacity: 0.7;
+}
+
+.ipr-indicators-table-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8fafc;
+  border-top: 2px solid #e2e8f0;
+  padding: 10px 14px;
+  font-size: 12px;
+}
+
+/* Official Protocol Sheet (Form #3 Slide 5) */
+.ipr-protocol-sheet {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  font-family: inherit;
+}
+
+.ipr-protocol-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 2px solid #0f172a;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+.ipr-protocol-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: 0.02em;
+}
+
+.ipr-protocol-sub {
+  font-size: 12px;
+  color: #475569;
+  margin-top: 3px;
+}
+
+.ipr-protocol-stamp {
+  background: #f0fdf4;
+  border: 2px dashed #16a34a;
+  color: #166534;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 6px 10px;
+  border-radius: 6px;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.ipr-protocol-compare-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  align-items: center;
+  gap: 12px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+}
+
+.ipr-protocol-stat-box {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.ipr-protocol-stat-box.before {
+  border-left: 4px solid #ef4444;
+}
+
+.ipr-protocol-stat-box.after {
+  border-left: 4px solid #10b981;
+}
+
+.ipr-protocol-stat-box.done {
+  border-left: 4px solid #3b82f6;
+}
+
+.ipr-protocol-stat-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.ipr-protocol-stat-val {
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 1.1;
+}
+
+.ipr-protocol-stat-box.before .ipr-protocol-stat-val {
+  color: #dc2626;
+}
+
+.ipr-protocol-stat-box.after .ipr-protocol-stat-val {
+  color: #059669;
+}
+
+.ipr-protocol-stat-box.done .ipr-protocol-stat-val {
+  color: #2563eb;
+}
+
+.ipr-protocol-stat-tag {
+  font-size: 11px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.ipr-protocol-arrow {
+  font-size: 20px;
+  font-weight: 800;
+  color: #94a3b8;
+}
+
+.ipr-protocol-section {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+}
+
+.ipr-protocol-sec-title {
+  font-size: 12px;
+  font-weight: 800;
+  color: #1e293b;
+  margin-bottom: 4px;
+}
+
+.ipr-protocol-sec-text {
+  font-size: 12px;
+  line-height: 1.45;
+  color: #334155;
+}
+
+.ipr-protocol-decision-box {
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 12px;
+  color: #065f46;
+  line-height: 1.45;
+}

@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Умная визитка специалиста — IDA Psy</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/favicon.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0f766e;
+      --primary-hover: #115e59;
+      --violet: #7c3aed;
+      --violet-hover: #6d28d9;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-soft: #f1f5f9;
+      --border: #e2e8f0;
+      --text: #0f172a;
+      --muted: #64748b;
+      --success: #16a34a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .mobile-container {
+      width: 100%;
+      max-width: 620px;
+      background: var(--surface);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .profile-header {
+      padding: 36px 24px 24px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+    }
+    .avatar {
+      width: 112px;
+      height: 112px;
+      border-radius: 50%;
+      background: #e2e8f0;
+      margin: 0 auto 16px;
+      border: 4px solid white;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.6rem;
+      object-fit: cover;
+      overflow: hidden;
+    }
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    h1 {
+      margin: 0 0 6px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .role-badge {
+      display: inline-block;
+      font-size: 0.9rem;
+      color: var(--violet);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .bio {
+      color: #334155;
+      font-size: 0.95rem;
+      line-height: 1.55;
+      margin: 0 0 16px;
+      white-space: pre-line;
+    }
+    .tags {
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    .tag {
+      background: #f1f5f9;
+      color: #334155;
+      padding: 6px 13px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      border: 1px solid #e2e8f0;
+    }
+    .tag.highlight {
+      background: rgba(124, 58, 237, 0.08);
+      color: var(--violet);
+      border-color: rgba(124, 58, 237, 0.2);
+      font-weight: 600;
+    }
+    .tag.price {
+      background: rgba(15, 118, 110, 0.08);
+      color: var(--primary);
+      border-color: rgba(15, 118, 110, 0.2);
+      font-weight: 600;
+    }
+    .action-buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 16px 24px;
+      background: #fafafa;
+      border-bottom: 1px solid var(--border);
+    }
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+    .btn-action-tg {
+      background: #0088cc;
+      color: white;
+    }
+    .btn-action-tg:hover { background: #0077b5; }
+    .btn-action-phone {
+      background: #f1f5f9;
+      color: #0f172a;
+      border-color: #cbd5e1;
+    }
+    .btn-action-phone:hover { background: #e2e8f0; }
+    .btn-action-email {
+      background: #f1f5f9;
+      color: #0f172a;
+      border-color: #cbd5e1;
+    }
+    .btn-action-email:hover { background: #e2e8f0; }
+    
+    .section-block {
+      padding: 22px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-title {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      font-weight: 700;
+      margin: 0 0 10px 0;
+    }
+    .section-content {
+      font-size: 0.94rem;
+      line-height: 1.6;
+      color: var(--text);
+      white-space: pre-line;
+    }
+
+    /* Embedded AI Booking Container */
+    .booking-card {
+      padding: 20px;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+    }
+    #ida-chat-container {
+      width: 100%;
+      min-height: 520px;
+      position: relative;
+    }
+    #ida-chat-container .ida-embed-panel--inline {
+      margin: 0 auto;
+      max-width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      border: 1px solid #e2e8f0;
+      height: 620px;
+    }
+
+    .widget-notice {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #94a3b8;
+      padding: 20px;
+      border-top: 1px solid var(--border);
+      background: #fafafa;
+      margin-top: auto;
+    }
+    .loading-state {
+      padding: 80px 20px;
+      text-align: center;
+      color: var(--muted);
+    }
+    .spinner {
+      width: 36px;
+      height: 36px;
+      border: 3px solid #e2e8f0;
+      border-top-color: var(--violet);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 16px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+<!-- Yandex.Metrika counter & Auto-Goal Tracker -->
+<script type="text/javascript">
+(function(m,e,t,r,i,k,a){
+    m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();
+    for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+})(window, document,'script','https://mc.yandex.ru/metrika/tag.js', 'ym');
+
+(function(){
+    try {
+        if (window.location.search.indexOf('no_track=1') !== -1 || window.location.search.indexOf('admin=1') !== -1) {
+            localStorage.setItem('ym_disable_tracking', '1');
+        }
+        if (localStorage.getItem('ym_disable_tracking') === '1') {
+            console.log('[Yandex.Metrika] Tracking disabled for owner/admin session.');
+            window.ymGoal = window.reachGoal = function(g, p){ console.log('[Goal skipped (admin)]', g, p || ''); };
+            return;
+        }
+    } catch(e) {}
+
+    var host = (window.location.hostname || '').toLowerCase();
+    var id = null;
+    if (host.indexOf('ida-psy.ru') !== -1) id = 113108416;
+    else if (host.indexOf('ida-psy.pro') !== -1) id = 113706104;
+    else if (host.indexOf('prevention-ai.ru') !== -1) id = 113108883;
+    else if (host.indexOf('prevention.school') !== -1) id = 113706126;
+    else if (host.indexOf('teenology-ai.ru') !== -1) id = 113108854;
+    else if (host.indexOf('teenology.care') !== -1) id = 109437867;
+    else {
+        id = 113706104;
+    }
+
+    window._ymCounterId = id;
+
+    window.ymGoal = window.reachGoal = function(goalName, params) {
+        if (!id || typeof ym !== 'function') return;
+        try {
+            if (params) {
+                ym(id, 'reachGoal', goalName, params);
+            } else {
+                ym(id, 'reachGoal', goalName);
+            }
+            console.log('[YM Goal]', goalName, params || '');
+        } catch(e) {
+            console.warn('[YM Goal Error]', e);
+        }
+    };
+
+    if (id) {
+        ym(id, 'init', {
+            ssr: true,
+            webvisor: true,
+            clickmap: true,
+            ecommerce: "dataLayer",
+            referrer: document.referrer,
+            url: location.href,
+            accurateTrackBounce: true,
+            trackLinks: true
+        });
+    }
+})();
+</script>
+<!-- /Yandex.Metrika counter -->
+</head>
+<body>
+
+  <div class="mobile-container">
+    <div id="card-content" class="loading-state">
+      <div class="spinner"></div>
+      <div>Загрузка профиля специалиста...</div>
+    </div>
+
+    <div class="widget-notice">
+      Умная визитка специалиста · Платформа профессиональной помощи IDA Psy
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      var pathParts = window.location.pathname.split('/p/');
+      var rawId = pathParts[1] ? pathParts[1].replace(/\/.*$/, '') : '';
+      var urlParams = new URLSearchParams(window.location.search);
+      var specialistId = (rawId || urlParams.get('id') || urlParams.get('specialist_id') || '').trim();
+
+      var apiBase = 'https://api.prevention.school';
+      var container = document.getElementById('card-content');
+
+      var METHOD_NAMES = {
+        cbt: 'КПТ',
+        gestalt: 'Гештальт-терапия',
+        psychoanalysis: 'Психоанализ',
+        psychodynamic: 'Психодинамический подход',
+        existential: 'Экзистенциальная терапия',
+        art: 'Арт-терапия',
+        body: 'Телесно-ориентированная терапия',
+        systemic_family: 'Системная семейная терапия',
+        family_sys: 'Семейная терапия',
+        emdr: 'EMDR / ДПДГ',
+        schema: 'Схема-терапия',
+        act: 'ACT (терапия принятия и ответственности)',
+        dbt: 'ДБТ (диалектическая поведенческая терапия)',
+        sfbt: 'ОРКТ (краткосрочная терапия решений)',
+        nvc: 'Ненасильственное общение (ННО)',
+        eft: 'Эмоционально-фокусированная терапия (EFT)',
+        narrative: 'Нарративная практика',
+        ta: 'Транзактный анализ',
+        provocative: 'Провокативная терапия',
+        hypnosis: 'Эриксоновский гипноз',
+        pos_psych: 'Позитивная психотерапия',
+        coaching: 'Коучинг',
+        mindfulness: 'Осознанность / Майндфулнесс',
+        integrative: 'Интегративный подход'
+      };
+
+      function formatMethodTag(tag) {
+        if (!tag) return '';
+        var lower = String(tag).trim().toLowerCase();
+        if (lower === 'fairy_tale') return ''; // Removed project artifact
+        if (METHOD_NAMES[lower]) return METHOD_NAMES[lower];
+        return tag.replace(/_/g, ' ').replace(/\b\w/g, function(l){ return l.toUpperCase(); });
+      }
+
+      if (!specialistId) {
+        container.innerHTML = '<div style="padding: 40px 20px; text-align: center; color: #ef4444;">' +
+          '<h3>Специалист не указан</h3>' +
+          '<p style="color: #64748b; font-size: 0.9rem;">Перейдите по прямой ссылке на визитку психолога или воспользуйтесь каталогом.</p>' +
+          '<a href="/specialists.html" style="display: inline-block; margin-top: 12px; color: #7c3aed; text-decoration: none; font-weight: 600;">Открыть реестр специалистов →</a>' +
+          '</div>';
+        return;
+      }
+
+      function parseExtended(text) {
+        if (!text) return { sections: [], contacts: {} };
+        var markerDefs = [
+          { key: "contactsLine", marker: "Контакты:", title: "Контакты" },
+          { key: "education", marker: "Образование:", title: "Образование и квалификация" },
+          { key: "specialization", marker: "Специализация:", title: "Специализация" },
+          { key: "competencies", marker: "Компетенции:", title: "Компетенции" },
+          { key: "workExperience", marker: "Опыт работы:", title: "Опыт работы" },
+          { key: "supervision", marker: "Супервизия:", title: "Супервизия и интервизии" },
+          { key: "clientRequests", marker: "Клиентские запросы:", title: "С чем я работаю" },
+          { key: "authorPrograms", marker: "Программы:", title: "Авторские программы" },
+          { key: "expertActivity", marker: "Экспертность:", title: "Экспертная деятельность" },
+          { key: "publications", marker: "Публикации:", title: "Публикации и статьи" },
+          { key: "awards", marker: "Награды:", title: "Награды и достижения" },
+          { key: "selfPresentation", marker: "О себе:", title: "Обо мне" },
+          { key: "additionalInfo", marker: "Дополнительно:", title: "Дополнительная информация" }
+        ];
+
+        var found = [];
+        for (var i = 0; i < markerDefs.length; i++) {
+          var def = markerDefs[i];
+          var idx = text.indexOf(def.marker);
+          if (idx !== -1) {
+            found.push({
+              key: def.key,
+              title: def.title,
+              start: idx,
+              contentStart: idx + def.marker.length
+            });
+          }
+        }
+
+        found.sort(function(a, b) { return a.start - b.start; });
+
+        var sections = [];
+        var contacts = {};
+        for (var j = 0; j < found.length; j++) {
+          var curr = found[j];
+          var next = found[j + 1];
+          var rawContent = next
+            ? text.substring(curr.contentStart, next.start)
+            : text.substring(curr.contentStart);
+          var content = rawContent.trim();
+          if (curr.key === 'contactsLine') {
+            contacts.raw = content;
+          } else if (content) {
+            sections.push({ title: curr.title, content: content });
+          }
+        }
+        return { sections: sections, contacts: contacts };
+      }
+
+      function renderSpec(spec) {
+        document.title = (spec.display_name || 'Специалист') + ' — Умная визитка (IDA Psy)';
+
+        var avatarHtml = spec.photo_url 
+          ? '<img src="' + spec.photo_url + '" alt="' + (spec.display_name || '') + '" />'
+          : '👩‍💼';
+
+        var tagsHtml = '';
+        if (spec.price || spec.price_base) {
+          var priceVal = spec.price || (spec.price_base + ' ₽');
+          tagsHtml += '<span class="tag price">' + priceVal + '</span>';
+        }
+        if (spec.online !== false) tagsHtml += '<span class="tag highlight">Онлайн</span>';
+        if (spec.offline) tagsHtml += '<span class="tag">Очно</span>';
+
+        if (spec.method_tags && spec.method_tags.length) {
+          for (var i = 0; i < spec.method_tags.length; i++) {
+            var rawTag = spec.method_tags[i];
+            var formatted = formatMethodTag(rawTag);
+            if (formatted) {
+              tagsHtml += '<span class="tag">' + formatted + '</span>';
+            }
+          }
+        }
+
+        var headerHtml = '<div class="profile-header">' +
+          '<div class="avatar">' + avatarHtml + '</div>' +
+          '<h1>' + (spec.display_name || 'Психолог') + '</h1>' +
+          '<div class="role-badge">' + (spec.executor_role || 'Практикующий психолог') + '</div>' +
+          '<p class="bio">' + (spec.bio_short || 'Клинический психолог, консультант платформы IDA Psy.') + '</p>' +
+          '<div class="tags">' + tagsHtml + '</div>' +
+        '</div>';
+
+        // Direct action buttons if contacts available
+        var ext = parseExtended(spec.case_examples);
+        var actionButtonsHtml = '';
+        var contactsRaw = ext.contacts.raw || '';
+        var phoneMatch = contactsRaw.match(/\+?[0-9\s\-\(\)]{10,18}/);
+        var emailMatch = contactsRaw.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/);
+        var tgMatch = contactsRaw.match(/@([a-zA-Z0-9_]{4,})/);
+
+        var actions = [];
+        if (tgMatch) {
+          actions.push('<a href="https://t.me/' + tgMatch[1] + '" target="_blank" rel="noreferrer" class="btn-action btn-action-tg">✈ Написать в Telegram</a>');
+        }
+        if (phoneMatch) {
+          var cleanPhone = phoneMatch[0].replace(/[^0-9+]/g, '');
+          actions.push('<a href="tel:' + cleanPhone + '" class="btn-action btn-action-phone">📞 Позвонить</a>');
+        }
+        if (emailMatch) {
+          actions.push('<a href="mailto:' + emailMatch[0] + '" class="btn-action btn-action-email">✉ Написать Email</a>');
+        }
+
+        if (actions.length) {
+          actionButtonsHtml = '<div class="action-buttons">' + actions.join('') + '</div>';
+        }
+
+        var sectionsHtml = '';
+        for (var s = 0; s < ext.sections.length; s++) {
+          var sec = ext.sections[s];
+          sectionsHtml += '<div class="section-block">' +
+            '<div class="section-title">' + sec.title + '</div>' +
+            '<div class="section-content">' + sec.content + '</div>' +
+          '</div>';
+        }
+
+        // Platform Integrated AI Booking & Intake Widget
+        var bookingCardHtml = '<div class="booking-card" id="booking-section">' +
+          '<div id="ida-chat-container"></div>' +
+        '</div>';
+
+        container.className = '';
+        container.innerHTML = headerHtml + actionButtonsHtml + sectionsHtml + bookingCardHtml;
+
+        // Dynamically load IDA platform embed widget configured for this specialist
+        var loaderScript = document.createElement('script');
+        loaderScript.src = '/ida/embed/loader.js';
+        loaderScript.setAttribute('data-api-base', apiBase);
+        loaderScript.setAttribute('data-center-id', spec.center_id || 'irpp');
+        loaderScript.setAttribute('data-specialist-id', spec.specialist_id || specialistId);
+        loaderScript.setAttribute('data-specialist-name', spec.display_name || '');
+        loaderScript.setAttribute('data-inline', 'true');
+        loaderScript.setAttribute('data-accent', '#7c3aed');
+        if (spec.booking_url) {
+          loaderScript.setAttribute('data-consult-url', spec.booking_url);
+        }
+        document.getElementById('booking-section').appendChild(loaderScript);
+      }
+
+      // 1. First attempt: Dedicated single specialist endpoint
+      fetch(apiBase + '/api/ida/specialists/' + encodeURIComponent(specialistId))
+        .then(function(res) {
+          if (res.ok) return res.json();
+          throw new Error('not_found');
+        })
+        .then(function(data) {
+          if (data && data.ok && data.specialist) {
+            renderSpec(data.specialist);
+          } else {
+            throw new Error('no_spec');
+          }
+        })
+        .catch(function() {
+          // 2. Fallback: Global specialists list
+          fetch(apiBase + '/api/ida/global_specialists')
+            .then(function(res) { return res.json(); })
+            .then(function(data) {
+              var list = (data && data.specialists) || [];
+              var spec = list.find(function(s) { 
+                return s.specialist_id === specialistId || s.public_username === specialistId;
+              });
+
+              if (spec) {
+                renderSpec(spec);
+              } else {
+                // 3. Fallback: IRPP center specialists list
+                return fetch(apiBase + '/api/ida/centers/irpp/specialists')
+                  .then(function(res2) { return res2.json(); })
+                  .then(function(data2) {
+                    var list2 = (data2 && data2.specialists) || [];
+                    var spec2 = list2.find(function(s) { 
+                      return s.specialist_id === specialistId || s.public_username === specialistId;
+                    });
+                    if (spec2) {
+                      renderSpec(spec2);
+                    } else {
+                      renderSpec({
+                        specialist_id: specialistId,
+                        display_name: 'Специалист ' + specialistId,
+                        bio_short: 'Практикующий специалист платформы IDA Psy.',
+                        status: 'published'
+                      });
+                    }
+                  });
+              }
+            })
+            .catch(function(err) {
+              renderSpec({
+                specialist_id: specialistId,
+                display_name: 'Специалист ' + specialistId,
+                bio_short: 'Практикующий специалист платформы IDA Psy.',
+                status: 'published'
+              });
+            });
+        });
+    })();
+  </script>
+</body>
+</html>

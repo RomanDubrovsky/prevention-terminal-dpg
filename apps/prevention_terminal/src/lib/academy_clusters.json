@@ -1,0 +1,398 @@
+{
+  "0": {
+    "id": 0,
+    "title_ru": "Введение: Добро пожаловать в Академию",
+    "clusters": [
+      {
+        "id": "general",
+        "title_ru": "Общие вопросы",
+        "path": "general/"
+      }
+    ]
+  },
+  "1": {
+    "id": 1,
+    "title_ru": "Здоровье и болезнь в психологии",
+    "clusters": [
+      {
+        "id": "DEV_SELF",
+        "title_ru": "DEV_SELF",
+        "path": "DEV_SELF/"
+      },
+      {
+        "id": "DEV_EMO",
+        "title_ru": "DEV_EMO",
+        "path": "DEV_EMO/"
+      }
+    ]
+  },
+  "2": {
+    "id": 2,
+    "title_ru": "Стресс и резистентность",
+    "clusters": [
+      {
+        "id": "DEV_EMO",
+        "title_ru": "DEV_EMO",
+        "path": "DEV_EMO/"
+      },
+      {
+        "id": "DEV_WILL",
+        "title_ru": "DEV_WILL",
+        "path": "DEV_WILL/"
+      },
+      {
+        "id": "DEV_TIME",
+        "title_ru": "DEV_TIME",
+        "path": "DEV_TIME/"
+      }
+    ]
+  },
+  "3": {
+    "id": 3,
+    "title_ru": "Девиантность",
+    "clusters": [
+      {
+        "id": "PREV_AGGR",
+        "title_ru": "PREV_AGGR",
+        "path": "PREV_AGGR/"
+      },
+      {
+        "id": "PREV_DEL",
+        "title_ru": "PREV_DEL",
+        "path": "PREV_DEL/"
+      },
+      {
+        "id": "PREV_BULL",
+        "title_ru": "PREV_BULL",
+        "path": "PREV_BULL/"
+      },
+      {
+        "id": "PREV_VICT",
+        "title_ru": "PREV_VICT",
+        "path": "PREV_VICT/"
+      },
+      {
+        "id": "PREV_CYBER",
+        "title_ru": "PREV_CYBER",
+        "path": "PREV_CYBER/"
+      }
+    ]
+  },
+  "4": {
+    "id": 4,
+    "title_ru": "Модели профилактики",
+    "clusters": [
+      {
+        "id": "PREV_AGGR",
+        "title_ru": "PREV_AGGR",
+        "path": "PREV_AGGR/"
+      },
+      {
+        "id": "PREV_DEL",
+        "title_ru": "PREV_DEL",
+        "path": "PREV_DEL/"
+      },
+      {
+        "id": "PREV_BULL",
+        "title_ru": "PREV_BULL",
+        "path": "PREV_BULL/"
+      },
+      {
+        "id": "PREV_VICT",
+        "title_ru": "PREV_VICT",
+        "path": "PREV_VICT/"
+      }
+    ]
+  },
+  "5": {
+    "id": 5,
+    "title_ru": "Тенденции развития системы профилактики в современном мире",
+    "clusters": [
+      {
+        "id": "general",
+        "title_ru": "Общие вопросы",
+        "path": "general/"
+      }
+    ]
+  },
+  "6": {
+    "id": 6,
+    "title_ru": "Исследования в системе профилактики",
+    "clusters": [
+      {
+        "id": "general",
+        "title_ru": "Общие вопросы",
+        "path": "general/"
+      }
+    ]
+  },
+  "7": {
+    "id": 7,
+    "title_ru": "Неструктурированное интервью",
+    "clusters": [
+      {
+        "id": "general",
+        "title_ru": "Общие вопросы",
+        "path": "general/"
+      }
+    ]
+  },
+  "8": {
+    "id": 8,
+    "title_ru": "Полуструктурированное интервью",
+    "clusters": [
+      {
+        "id": "general",
+        "title_ru": "Общие вопросы",
+        "path": "general/"
+      }
+    ]
+  },
+  "9": {
+    "id": 9,
+    "title_ru": "Наблюдение",
+    "clusters": [
+      {
+        "id": "general",
+        "title_ru": "Общие вопросы",
+        "path": "general/"
+      }
+    ]
+  },
+  "10": {
+    "id": 10,
+    "title_ru": "Эксперимент",
+    "clusters": [
+      {
+        "id": "general",
+        "title_ru": "Общие вопросы",
+        "path": "general/"
+      }
+    ]
+  },
+  "11": {
+    "id": 11,
+    "title_ru": "Социально-статистическое исследование",
+    "clusters": [
+      {
+        "id": "general",
+        "title_ru": "Общие вопросы",
+        "path": "general/"
+      }
+    ]
+  },
+  "12": {
+    "id": 12,
+    "title_ru": "Социологические (популяционные) опросы",
+    "clusters": [
+      {
+        "id": "REL_FAM",
+        "title_ru": "REL_FAM",
+        "path": "REL_FAM/"
+      },
+      {
+        "id": "REL_PEER",
+        "title_ru": "REL_PEER",
+        "path": "REL_PEER/"
+      },
+      {
+        "id": "REL_LOVE",
+        "title_ru": "REL_LOVE",
+        "path": "REL_LOVE/"
+      },
+      {
+        "id": "SEX_CONSENT",
+        "title_ru": "SEX_CONSENT",
+        "path": "SEX_CONSENT/"
+      },
+      {
+        "id": "SEX_PUBERTY",
+        "title_ru": "SEX_PUBERTY",
+        "path": "SEX_PUBERTY/"
+      },
+      {
+        "id": "SEX_SAFETY",
+        "title_ru": "SEX_SAFETY",
+        "path": "SEX_SAFETY/"
+      },
+      {
+        "id": "SEX_RELATIONS",
+        "title_ru": "SEX_RELATIONS",
+        "path": "SEX_RELATIONS/"
+      },
+      {
+        "id": "SEX_IDENTITY",
+        "title_ru": "SEX_IDENTITY",
+        "path": "SEX_IDENTITY/"
+      }
+    ]
+  },
+  "13": {
+    "id": 13,
+    "title_ru": "Психологическое тестирование",
+    "clusters": [
+      {
+        "id": "DEV_SELF",
+        "title_ru": "DEV_SELF",
+        "path": "DEV_SELF/"
+      },
+      {
+        "id": "DEV_EMO",
+        "title_ru": "DEV_EMO",
+        "path": "DEV_EMO/"
+      },
+      {
+        "id": "DEV_COMM",
+        "title_ru": "DEV_COMM",
+        "path": "DEV_COMM/"
+      },
+      {
+        "id": "DEV_WILL",
+        "title_ru": "DEV_WILL",
+        "path": "DEV_WILL/"
+      },
+      {
+        "id": "EDU_LRN",
+        "title_ru": "EDU_LRN",
+        "path": "EDU_LRN/"
+      },
+      {
+        "id": "EDU_PATH",
+        "title_ru": "EDU_PATH",
+        "path": "EDU_PATH/"
+      },
+      {
+        "id": "EDU_CAREER",
+        "title_ru": "EDU_CAREER",
+        "path": "EDU_CAREER/"
+      },
+      {
+        "id": "EDU_SELF",
+        "title_ru": "EDU_SELF",
+        "path": "EDU_SELF/"
+      }
+    ]
+  },
+  "14": {
+    "id": 14,
+    "title_ru": "Диагностические и профилактические мероприятия",
+    "clusters": [
+      {
+        "id": "PREV_AGGR",
+        "title_ru": "PREV_AGGR",
+        "path": "PREV_AGGR/"
+      },
+      {
+        "id": "PREV_DEL",
+        "title_ru": "PREV_DEL",
+        "path": "PREV_DEL/"
+      },
+      {
+        "id": "PREV_BULL",
+        "title_ru": "PREV_BULL",
+        "path": "PREV_BULL/"
+      },
+      {
+        "id": "PREV_VICT",
+        "title_ru": "PREV_VICT",
+        "path": "PREV_VICT/"
+      },
+      {
+        "id": "PREV_CYBER",
+        "title_ru": "PREV_CYBER",
+        "path": "PREV_CYBER/"
+      }
+    ]
+  },
+  "15": {
+    "id": 15,
+    "title_ru": "Дизайн исследования и доказательная профилактика",
+    "clusters": [
+      {
+        "id": "general",
+        "title_ru": "Общие вопросы",
+        "path": "general/"
+      }
+    ]
+  },
+  "16": {
+    "id": 16,
+    "title_ru": "Логика и структура профилактического проекта",
+    "clusters": [
+      {
+        "id": "general",
+        "title_ru": "Общие вопросы",
+        "path": "general/"
+      }
+    ]
+  },
+  "17": {
+    "id": 17,
+    "title_ru": "План мероприятий профилактической программы",
+    "clusters": [
+      {
+        "id": "DEV_COMM",
+        "title_ru": "DEV_COMM",
+        "path": "DEV_COMM/"
+      },
+      {
+        "id": "DEV_EMO",
+        "title_ru": "DEV_EMO",
+        "path": "DEV_EMO/"
+      },
+      {
+        "id": "DEV_SELF",
+        "title_ru": "DEV_SELF",
+        "path": "DEV_SELF/"
+      },
+      {
+        "id": "DEV_WILL",
+        "title_ru": "DEV_WILL",
+        "path": "DEV_WILL/"
+      },
+      {
+        "id": "REL_FAM",
+        "title_ru": "REL_FAM",
+        "path": "REL_FAM/"
+      },
+      {
+        "id": "REL_PEER",
+        "title_ru": "REL_PEER",
+        "path": "REL_PEER/"
+      }
+    ]
+  },
+  "18": {
+    "id": 18,
+    "title_ru": "Оценка эффективности профилактики",
+    "clusters": [
+      {
+        "id": "general",
+        "title_ru": "Общие вопросы",
+        "path": "general/"
+      }
+    ]
+  },
+  "19": {
+    "id": 19,
+    "title_ru": "Синтез курса: от алгоритма проектирования к 4D-матрице ИИ",
+    "clusters": [
+      {
+        "id": "general",
+        "title_ru": "Общие вопросы",
+        "path": "general/"
+      }
+    ]
+  },
+  "20": {
+    "id": 20,
+    "title_ru": "Завершающее занятие: Prevention.AI экосистема",
+    "clusters": [
+      {
+        "id": "general",
+        "title_ru": "Общие вопросы",
+        "path": "general/"
+      }
+    ]
+  }
+}

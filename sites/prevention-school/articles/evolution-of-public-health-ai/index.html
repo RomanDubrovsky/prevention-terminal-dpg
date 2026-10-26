@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link class="favicon" rel="icon" href="/favicon.ico" sizes="any">
+  <link class="favicon" rel="icon" href="/favicon.png" type="image/png">
+  <link class="apple-touch-icon" href="/favicon.png">
+  <title>The Evolution of Public Health.AI — Prevention.School</title>
+  <meta name="title" content="The Evolution of Public Health.AI — Roman Dubrovsky">
+  <meta name="description" content="How Artificial Intelligence resolves systemic bottlenecks in public health and establishes an evidence-informed ecosystem for prevention.">
+  <meta name="author" content="Roman Dubrovsky">
+  <link rel="canonical" href="https://prevention.school/articles/evolution-of-public-health-ai/">
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Prevention.School">
+  <meta property="og:title" content="The Evolution of Public Health.AI">
+  <meta property="og:description" content="How Artificial Intelligence resolves systemic bottlenecks in public health and establishes an evidence-informed ecosystem for prevention.">
+  <meta property="og:url" content="https://prevention.school/articles/evolution-of-public-health-ai/">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://prevention.school/assets/og-evolution-article-en.png">
+  <meta property="og:image:secure_url" content="https://prevention.school/assets/og-evolution-article-en.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="The Evolution of Public Health.AI — Roman Dubrovsky">
+  <meta property="article:author" content="Roman Dubrovsky">
+  <meta property="article:section" content="Public Health & AI">
+  <meta property="article:published_time" content="2026-09-18T12:00:00Z">
+
+  <!-- Twitter / X Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Evolution of Public Health.AI">
+  <meta name="twitter:description" content="How Artificial Intelligence resolves systemic bottlenecks in public health and establishes an evidence-informed ecosystem for prevention.">
+  <meta name="twitter:image" content="https://prevention.school/assets/og-evolution-article-en.png">
+  <meta name="twitter:image:alt" content="The Evolution of Public Health.AI">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;550;650;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/site.css">
+  <link rel="stylesheet" href="../../assets/site.css">
+
+  <style>
+    :root {
+      --paper: #fafaf9;
+      --paper-card: #ffffff;
+      --ink: #1c1917;
+      --muted: #57534e;
+      --rule: #e7e5e4;
+      --accent: #0f766e;
+      --accent-hover: #115e59;
+      --accent-soft: #ecfdf5;
+      --accent-border: #a7f3d0;
+      --mono: "IBM Plex Mono", ui-monospace, monospace;
+      --serif: "IBM Plex Serif", Georgia, "Times New Roman", serif;
+      --sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    [data-theme="dark"] {
+      --paper: #0c111c;
+      --paper-card: #151d2e;
+      --ink: #f1f5f9;
+      --muted: #94a3b8;
+      --rule: #243048;
+      --accent: #2dd4bf;
+      --accent-hover: #5eead4;
+      --accent-soft: rgba(45, 212, 191, 0.12);
+      --accent-border: rgba(45, 212, 191, 0.3);
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      width: 28px;
+      height: 28px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 14px;
+    }
+
+    .nav {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 550;
+      transition: color 0.15s;
+    }
+
+    .nav a:hover {
+      color: var(--accent);
+    }
+
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-cta {
+      background: var(--accent);
+      color: #ffffff !important;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .theme-toggle, .lang-toggle {
+      background: var(--accent-soft);
+      color: var(--ink);
+      border: 1px solid var(--rule);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .article-layout {
+      max-width: 44rem;
+      margin: 48px auto 96px;
+      padding: 0 16px;
+    }
+
+    .article-header {
+      margin-bottom: 40px;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 32px;
+    }
+
+    .article-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-soft);
+      border: 1px solid var(--accent-border);
+      margin-bottom: 20px;
+    }
+
+    .article-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 2.65rem);
+      font-weight: 600;
+      line-height: 1.22;
+      color: var(--ink);
+      margin: 0 0 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .article-content {
+      font-family: var(--serif);
+      font-size: 1.125rem;
+      line-height: 1.82;
+      color: var(--ink);
+    }
+
+    .article-content p {
+      margin: 0 0 26px;
+    }
+
+    .article-content ul {
+      margin: 0 0 32px;
+      padding-left: 24px;
+    }
+
+    .article-content li {
+      margin-bottom: 16px;
+    }
+
+    .article-content strong {
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .article-content a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .article-content a:hover {
+      color: var(--accent-hover);
+    }
+
+    .article-callout {
+      background: var(--paper-card);
+      border: 1px solid var(--rule);
+      border-left: 4px solid var(--accent);
+      padding: 22px 26px;
+      border-radius: 0 12px 12px 0;
+      margin: 36px 0;
+      font-family: var(--sans);
+      font-size: 1rem;
+      line-height: 1.65;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    }
+
+    .article-footer-note {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--rule);
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--muted);
+    }
+
+    .site-footer {
+      border-top: 1px solid var(--rule);
+      padding: 40px 0;
+      margin-top: 60px;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .nav { display: none; }
+      .article-layout { margin: 24px auto 64px; }
+    }
+  </style>
+<!-- Yandex.Metrika counter & Auto-Goal Tracker -->
+<script type="text/javascript">
+(function(m,e,t,r,i,k,a){
+    m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();
+    for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+})(window, document,'script','https://mc.yandex.ru/metrika/tag.js', 'ym');
+
+(function(){
+    try {
+        if (window.location.search.indexOf('no_track=1') !== -1 || window.location.search.indexOf('admin=1') !== -1) {
+            localStorage.setItem('ym_disable_tracking', '1');
+        }
+        if (localStorage.getItem('ym_disable_tracking') === '1') {
+            console.log('[Yandex.Metrika] Tracking disabled for owner/admin session.');
+            window.ymGoal = window.reachGoal = function(g, p){ console.log('[Goal skipped (admin)]', g, p || ''); };
+            return;
+        }
+    } catch(e) {}
+
+    var host = (window.location.hostname || '').toLowerCase();
+    var id = null;
+    if (host.indexOf('ida-psy.ru') !== -1) id = 113108416;
+    else if (host.indexOf('ida-psy.pro') !== -1) id = 113706104;
+    else if (host.indexOf('prevention-ai.ru') !== -1) id = 113108883;
+    else if (host.indexOf('prevention.school') !== -1) id = 113706126;
+    else if (host.indexOf('teenology-ai.ru') !== -1) id = 113108854;
+    else if (host.indexOf('teenology.care') !== -1) id = 109437867;
+    else if (host.indexOf('ru.decima.business') !== -1) id = 93591954;
+    else if (host.indexOf('decima.business') !== -1) id = 93591880;
+    else {
+        id = 113706126;
+    }
+
+    window._ymCounterId = id;
+
+    // Universal Goal Dispatcher
+    window.ymGoal = window.reachGoal = function(goalName, params) {
+        if (!id || typeof ym !== 'function') return;
+        try {
+            if (params) {
+                ym(id, 'reachGoal', goalName, params);
+            } else {
+                ym(id, 'reachGoal', goalName);
+            }
+            console.log('[YM Goal]', goalName, params || '');
+        } catch(e) {
+            console.warn('[YM Goal Error]', e);
+        }
+    };
+
+    if (id) {
+        ym(id, 'init', {
+            ssr: true,
+            webvisor: true,
+            clickmap: true,
+            ecommerce: "dataLayer",
+            referrer: document.referrer,
+            url: location.href,
+            accurateTrackBounce: true,
+            trackLinks: true
+        });
+    }
+
+    // Auto-Goal Click & Form Interceptors
+    document.addEventListener('DOMContentLoaded', function(){
+        // 1. Click tracker for buttons, links, actions
+        document.addEventListener('click', function(e){
+            var target = e.target;
+            if (!target) return;
+            var el = target.closest('a, button, [data-goal], input[type="submit"]');
+            if (!el) return;
+
+            // Explicit data-goal attribute
+            var explicitGoal = el.getAttribute('data-goal');
+            if (explicitGoal) {
+                window.ymGoal(explicitGoal);
+                return;
+            }
+
+            var href = (el.getAttribute('href') || '').toLowerCase();
+            var text = (el.innerText || el.textContent || el.value || '').trim().toLowerCase();
+            var idStr = (el.id || '').toLowerCase();
+            var cls = (el.className || '').toLowerCase();
+
+            // Messengers & Social
+            if (href.indexOf('t.me/') !== -1 || href.indexOf('telegram.me') !== -1) {
+                window.ymGoal('telegram_click', {url: href});
+            } else if (href.indexOf('vk.com/') !== -1) {
+                window.ymGoal('vk_click', {url: href});
+            } else if (href.indexOf('wa.me/') !== -1 || href.indexOf('whatsapp.com') !== -1) {
+                window.ymGoal('whatsapp_click', {url: href});
+            } else if (href.indexOf('tel:') === 0) {
+                window.ymGoal('phone_click', {phone: href});
+            } else if (href.indexOf('mailto:') === 0) {
+                window.ymGoal('email_click', {email: href});
+            } 
+            // File downloads
+            else if (/\.(pdf|docx?|xlsx?|zip|rar|pptx?)$/i.test(href)) {
+                window.ymGoal('file_download', {file: href});
+            }
+            // Registration & Auth
+            else if (href.indexOf('/join') !== -1 || href.indexOf('/staff-register') !== -1 || href.indexOf('/auth') !== -1 || href.indexOf('/register') !== -1 || idStr.indexOf('register') !== -1 || idStr.indexOf('login') !== -1 || text.indexOf('регистрац') !== -1 || text.indexOf('войти') !== -1 || text.indexOf('личный кабинет') !== -1) {
+                window.ymGoal('auth_click', {text: text});
+            }
+            // Demo & Interactive Room
+            else if (href.indexOf('#room=') !== -1 || href.indexOf('/demo') !== -1 || href.indexOf('/app') !== -1 || href.indexOf('/workspace') !== -1 || idStr.indexOf('demo') !== -1 || text.indexOf('демо') !== -1 || text.indexOf('попробовать') !== -1 || text.indexOf('запустить') !== -1) {
+                window.ymGoal('demo_open', {text: text});
+            }
+            // Test & Screening
+            else if (href.indexOf('/test') !== -1 || href.indexOf('screening') !== -1 || text.indexOf('тест') !== -1 || text.indexOf('диагностик') !== -1 || text.indexOf('опрос') !== -1) {
+                window.ymGoal('test_start', {text: text});
+            }
+            // Pricing / Tariffs
+            else if (href.indexOf('pricing') !== -1 || href.indexOf('tariff') !== -1 || text.indexOf('тариф') !== -1 || text.indexOf('купить') !== -1 || text.indexOf('подключить') !== -1) {
+                window.ymGoal('pricing_click', {text: text});
+            }
+            // Feedback / Call to action
+            else if (text.indexOf('оставить заявку') !== -1 || text.indexOf('записаться') !== -1 || text.indexOf('консультац') !== -1 || text.indexOf('связаться') !== -1) {
+                window.ymGoal('lead_button_click', {text: text});
+            }
+        }, true);
+
+        // 2. Form submission tracker
+        document.addEventListener('submit', function(e){
+            var form = e.target;
+            if (!form) return;
+            var formId = form.id || form.getAttribute('name') || form.getAttribute('action') || 'lead_form';
+            window.ymGoal('form_submit', {form_id: formId});
+        }, true);
+
+        // 3. Scroll depth tracking (50% and 90%)
+        var scroll50Fired = false;
+        var scroll90Fired = false;
+        window.addEventListener('scroll', function(){
+            var h = document.documentElement, 
+                b = document.body,
+                st = 'scrollTop',
+                sh = 'scrollHeight';
+            var percent = ((h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight)) * 100;
+            if (!scroll50Fired && percent >= 50) {
+                scroll50Fired = true;
+                window.ymGoal('scroll_50');
+            }
+            if (!scroll90Fired && percent >= 90) {
+                scroll90Fired = true;
+                window.ymGoal('scroll_90');
+            }
+        }, {passive: true});
+    });
+})();
+</script>
+<!-- /Yandex.Metrika counter -->
+</head>
+<body>
+  <div class="wrap">
+        <header class="site-header">
+      <a class="brand" href="/"><span class="brand-mark">P</span><span>Prevention School <small style="font-size: 10px; font-weight: 800; text-transform: uppercase; color: var(--accent); margin-left: 4px; vertical-align: super;">Beta</small></span></a>
+      <nav class="nav" aria-label="Navigation">
+        <a href="/about/">About</a>
+        <a href="/academy/">Academy 🎓</a>
+        <a href="https://corporate-health.ida-psy.pro/" target="_blank" rel="noopener">Corporate Health ↗</a>
+        <a href="https://web.prevention.school/?entry=educator" target="_blank" rel="noopener">For Educators</a>
+        <a href="/teenology/">Parents &amp; Teens</a>
+      </nav>
+      <div class="nav-controls">
+        <a href="https://web.prevention.school/" class="nav-cta" target="_blank" rel="noopener">Web Terminal</a>
+        <button type="button" class="theme-toggle" id="theme-toggle">Dark</button>
+      </div>
+    </header>
+
+    <main>
+      <article class="article-layout">
+        <header class="article-header">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+            <span class="article-tag" style="margin-bottom: 0;">Public Health &amp; AI</span>
+            <a href="/articles/evolution-of-public-health-ai/" class="lang-switch-pill" style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); text-decoration: none; border: 1px solid var(--accent-border);">🇷🇺 Читать на русском</a>
+          </div>
+          <h1 class="article-title">The Evolution of Public Health.AI</h1>
+          <div class="article-meta">
+            <span>By <a href="/founder/" style="color: inherit; font-weight: 700; text-decoration: none; border-bottom: 1px dashed var(--muted);">Roman Dubrovsky, PhD</a></span>
+            <span>•</span>
+            <span>Series: Prevention Intelligence</span>
+          </div>
+        </header>
+
+        <div class="article-content">
+          <p>Throughout human history, up until the last few centuries, the life of each new generation developed according to a predictable scenario: the lives of children were almost the same as the lives of their parents, and the transmission of cultural norms served as the main mechanism for forming safe behavior. However, today we are experiencing unprecedented demographic changes that have led to sharp changes in the nature of morbidity and mortality, which, in turn, required the formation of fundamentally new approaches to public health protection.</p>
+
+          <p>The shift of the leading mortality pattern from infectious to chronic (when the main threat became not infections, but stress and an unhealthy lifestyle) shifted the focus of responsibility for health from the healthcare system to the individual. At the same time, the ancestral cultural norms that supported us for millennia turn out to be practically useless today — the world is changing faster than we have time to adapt to it. This is exactly why the public demand for psychology has grown so sharply over the past hundred years. Today it is transforming into health psychology, taking its rightful place in the healthcare system and mastering the scientific tools of medicine — evidence-based principles.</p>
+
+          <p>But, despite the century-long history of psychology's development, the public health system is stuck in the transition from the standards of the industrial era to the realities of a post-industrial society. This is clearly visible in the critical problems characteristic of most countries:</p>
+
+          <ul>
+            <li><strong>Methodological fragmentation.</strong> Prevention subjects (officials, theorists, practitioners from different departments) often speak completely different languages. Sometimes they even put different meanings into the exact same terms.</li>
+            <li><strong>Information starvation.</strong> Departmental reporting has turned into a "paper hell" that eats up the time of meaningful work. At the same time, despite colossal costs, it remains useless and does not give managers an up-to-date picture for decision-making.</li>
+            <li><strong>Operating blindly.</strong> The listed problems make it impossible to fine-tune the system based on scientific justification. Evidence-based principles are either ignored or remain a formal tribute to the requirements of grantors.</li>
+          </ul>
+
+          <p>Dozens of other problems stem from these key issues, which any specialist in this field faces daily. Until now, their solution seemed impossible for technical reasons: humanity simply did not have sufficiently complex, yet convenient information systems.</p>
+
+          <p>Today, such solutions are appearing. Artificial intelligence acts not just as a tool, but as a co-architect of complex systems, ensuring flexible interaction with users.</p>
+
+          <div class="article-callout">
+            <p style="margin: 0;">An example of such a solution is <a href="https://prevention.school/">Prevention.School</a> (or <a href="https://prevention-ai.ru/">Profilaktika-AI</a>) — an open infrastructure and platform for managing the territorial system of adolescent deviance prevention. Its foundation is the automation of the psychological service in the education system.</p>
+          </div>
+
+          <p>In addition to operational functionality, the platform solves those very critical industry problems:</p>
+
+          <ul>
+            <li><strong>Unified methodology.</strong> The integration of a knowledge base and interconnected working tools forms a unified professional vision of problems at all levels of management.</li>
+            <li><strong>Routine automation.</strong> An ensemble of specialized AI assistants takes over the paperwork: generation of plans, reports, form filling, and digitization of archives. Time is returned to the psychologist for what they entered the profession for — to actually help people.</li>
+            <li><strong>Seamless telemetry.</strong> The system aggregates huge arrays of anonymized data in the background (not raw texts, but their mathematical "digital footprints"). This gives managers an up-to-date heat map of risks — from a single school to a macro-region — with absolute compliance with professional secrecy and legislation.</li>
+            <li><strong>"Evidence factory".</strong> By analyzing big data, AI algorithms continuously evaluate the effectiveness of the prevention protocols used. We are moving from intuitive methods to a reliable, scientifically based foundation.</li>
+            <li><strong>Shadow testing (promising direction).</strong> AI opens the way to the evolution of psychodiagnostics. Instead of bulky direct questionnaires that cause resistance and the social desirability effect in teenagers, the system transitions to background assessment. By analyzing interaction patterns, game mechanics, and dialogue environments, AI invisibly and accurately assesses risks, making diagnostics a natural part of the application's operation.</li>
+          </ul>
+
+          <p>AI technologies are making the transition from bioreductionist medicine to a holistic approach tangible right before our eyes. The next step is the further refinement of the prompt hierarchy and knowledge base to reduce the risks of hallucinations and strictly comply with ethics and safety requirements.</p>
+
+          <p>For this, the "Profilaktika-AI" platform includes tools for collegial expertise: specialists can see right through the neural network's decision-making process, monitor the quality of AI bot responses, evaluate knowledge base deficits, and approve steps for calibrating the entire architecture. Such an approach eliminates "blind spots" and turns the algorithm from a static product into a living, self-learning public health institution strictly controlled by the scientific community.</p>
+
+          <div class="article-footer-note">
+            The following articles will be devoted to a detailed consideration of all the nodes of the "Profilaktika-AI" platform and summarizing the experience of its use.
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <strong>Prevention School</strong><br>Open digital infrastructure for psychological support in education.
+          <p class="footer-legal-notice" style="margin-top: 10px; font-size: 0.82rem; line-height: 1.5; color: var(--muted); max-width: 580px;">
+            The platform operates under zero-knowledge privacy standards, complying with FERPA, COPPA, and GDPR frameworks. Personal student identification data never leaves the local school environment or enters third-party AI training pipelines.
+          </p>
+          <p class="footer-contact">
+            <a href="mailto:admin@prevention.school">admin@prevention.school</a><span class="footer-contact-sep" aria-hidden="true">·</span><a href="https://t.me/RomanDubrovsky" target="_blank" rel="noopener noreferrer">Telegram (@RomanDubrovsky)</a><span class="footer-contact-sep" aria-hidden="true">·</span><a href="/founder/">Author Profile</a>
+          </p>
+          <p class="footer-community" style="margin-top: 8px; font-size: 0.85rem; color: var(--muted);">
+            International Research & Deployment:<br>
+            GitHub: <a href="https://github.com/teenology/prevention-school" target="_blank" rel="noopener">github.com/teenology</a><br>
+            Community Channel: <a href="https://t.me/anthropology_health" target="_blank" rel="noopener">t.me/anthropology_health</a>
+          </p>
+        </div>
+        <nav class="footer-links" aria-label="Footer Navigation">
+          <a href="/science/">Science & Methodology</a>
+          <a href="/articles/">Publications & Papers</a>
+          <a href="/founder/">Founder Profile</a>
+          <a href="https://corporate-health.ida-psy.pro/" target="_blank" rel="noopener">Corporate Health ↗</a>
+          <a href="https://ida-psy.pro/" target="_blank" rel="noopener">Private Practice Kit ↗</a>
+          <a href="/privacy/">Privacy Policy</a>
+          <a href="/terms/">Terms of Service</a>
+        </nav>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const btn = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    let isDark = html.getAttribute('data-theme') === 'dark';
+    if (btn) {
+      btn.addEventListener('click', () => {
+        isDark = !isDark;
+        html.setAttribute('data-theme', isDark ? 'dark' : 'light');
+        btn.textContent = isDark ? 'Light' : 'Dark';
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+# Legacy consumer content moved to product domains
+/teenology/parents/faq/*  https://teenology.care/parents/faq/:splat  301
+/teenology/*              https://teenology.care/:splat  301
+/ida/*                    https://ida-psy.pro/:splat  301
+/centers                  https://ida-psy.pro/  301
+/centers/*                https://ida-psy.pro/:splat  301
+/ru/centers               https://ida-psy.pro/  301
+/unicef-letter            /partnership-proposal/  301
+/unicef-letter.html       /partnership-proposal/  301
+
+# Event page redirects (singular vs plural)
+/event                    /events/  301
+/event/                   /events/  301
+/events                   /events/  301
+/ru/event                 /events/  301
+/ru/event/                /events/  301
+/ru/events                /events/  301
+
+# Academy and Course redirects to unified IDA Academy
+/academy                  https://academy.ida-psy.ru/  301
+/academy/                 https://academy.ida-psy.ru/  301
+/academy/*                https://academy.ida-psy.ru/:splat  301
+/ru/academy               https://academy.ida-psy.ru/  301
+/ru/academy/              https://academy.ida-psy.ru/  301
+/ru/academy/*             https://academy.ida-psy.ru/:splat  301
+/ru/academy/graph         https://academy.ida-psy.ru/  301
+/academy/graph            https://academy.ida-psy.ru/  301
+/course                   https://academy.ida-psy.ru/  301
+/course/                  https://academy.ida-psy.ru/  301
+/course/*                 https://academy.ida-psy.ru/:splat  301
+/ru/course                https://academy.ida-psy.ru/  301
+/ru/course/               https://academy.ida-psy.ru/  301
+/ru/course/*              https://academy.ida-psy.ru/:splat  301
+
+# Workspace
+/terminal                 /workspace/  301
+/terminal/                /workspace/  301
+/ru/terminal              /ru/workspace/  301
+/ru/terminal/*            /ru/workspace/:splat  301
+
+# Founder page redirects
+/expert                   /founder/     301
+/expert/                  /founder/     301
+/expert/*                 /founder/     301
+/ru/expert                /ru/founder/  301
+/ru/expert/               /ru/founder/  301
+/ru/expert/*              /ru/founder/  301
+/ru/founder               /ru/founder/  301
+/ru/fouder                /ru/founder/  301
+/ru/fouder/               /ru/founder/  301
+/founder                  /founder/     301
+/fouder                   /founder/     301
+/fouder/                  /founder/     301

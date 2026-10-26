@@ -1,0 +1,1080 @@
+import { useState, useRef, useEffect, useMemo } from "react";
+import { SendOnEnterToggle, useSendOnEnter } from "./SendOnEnterToggle.tsx";
+import { t } from "../lib/i18n.ts";
+import AiProfessorAvatar from "./AiProfessorAvatar.tsx";
+import type { ProfessorState } from "./AiProfessorAvatar.tsx";
+import SpeechDictationButton from "./SpeechDictationButton.tsx";
+import ModuleCheckpoint from "./ModuleCheckpoint.tsx";
+import { useAiProfessorVoice } from "../lib/useAiProfessorVoice.ts";
+import { sendAiTurn } from "../lib/ai_workspace.ts";
+import { getTerminalEdition } from "../lib/terminal_edition.ts";
+import { platformApiBase } from "../lib/platform_api.ts";
+import academyLecturesData from "../lib/academy_lectures.json" with { type: "json" };
+import { markLectureRead, markClusterExplored, addPoints, loadProgress, getRank, unlockAchievementDirect } from "../lib/academy_progress.ts";
+import AcademyGamificationWidget from "./AcademyGamificationWidget.tsx";
+import ClusterQuiz from "./ClusterQuiz.tsx";
+import type { ClusterDef } from "./ClusterGrid.tsx";
+import "./AIAcademyWorkspace.css";
+
+interface ChatMessage {
+  role: "user" | "professor";
+  text: string;
+}
+
+interface ModuleItem {
+  id?: string | number;
+  title: string;
+  isHeader?: boolean;
+  isTest?: boolean;
+}
+
+interface AcademyCard {
+  title: string;
+  title_en?: string;
+  x_stage?: string;
+  y_level?: string;
+  m_modality?: string;
+  executor_role?: string;
+  org_scale?: string;
+  topic_tags?: string[];
+  content_type?: string;
+  refined_text?: string;
+  refined_text_en?: string;
+  reflection_prompt?: string;
+  reflection_prompt_en?: string;
+}
+
+interface AcademyLectureObj {
+  title?: string;
+  title_en?: string;
+  html?: string;
+  raw_text?: string;
+  slides?: string[];
+  cards?: AcademyCard[];
+}
+
+const MODULES: ModuleItem[] = [
+  { isHeader: true, title: t("Модуль 1. ТЕОРИЯ И МЕТОДОЛОГИЯ", "Module 1. THEORY & METHODOLOGY") },
+  { id: 0, title: t("0. Вводное занятие: Добро пожаловать в Академию", "0. Intro Lesson: Welcome to the Academy") },
+  { id: 1, title: t("1. Здоровье и болезнь в психологии", "1. Health and Illness in Psychology") },
+  { id: 2, title: t("2. Стресс и резистентность", "2. Stress and Resistance") },
+  { id: 3, title: t("3. Девиантность", "3. Deviance") },
+  { id: 4, title: t("4. Модели профилактики", "4. Prevention Models") },
+  { id: 5, title: t("5. Тенденции развития системы профилактики в современном мире", "5. Trends in Prevention System Development in the Modern World") },
+  { id: "test-1", title: t("Тест к модулю 1", "Checkpoint 1"), isTest: true },
+
+  { isHeader: true, title: t("Модуль 2. ИССЛЕДОВАНИЕ И ДИАГНОСТИКА", "Module 2. RESEARCH & DIAGNOSIS") },
+  { id: 6, title: t("6. Исследования в системе профилактики", "6. Research in the Prevention System") },
+  { id: 7, title: t("7. Неструктурированное интервью", "7. Unstructured Interview") },
+  { id: 8, title: t("8. Полуструктурированное интервью", "8. Semi-Structured Interview") },
+  { id: 9, title: t("9. Наблюдение", "9. Observation") },
+  { id: 10, title: t("10. Эксперимент", "10. Experiment") },
+  { id: 11, title: t("11. Социально-статистическое исследование", "11. Socio-Statistical Research") },
+  { id: 12, title: t("12. Социологические (популяционные) опросы", "12. Sociological (Population) Surveys") },
+  { id: 13, title: t("13. Психологическое тестирование", "13. Psychological Testing") },
+  { id: 14, title: t("14. Диагностические и профилактические мероприятия", "14. Diagnostic and Preventive Measures") },
+  { id: 15, title: t("15. Дизайн исследования и доказательная профилактика", "15. Research Design and Evidence-Based Prevention") },
+  { id: "test-2", title: t("Тест к модулю 2", "Checkpoint 2"), isTest: true },
+
+  { isHeader: true, title: t("Модуль 3. ПРАКТИКА", "Module 3. PRACTICE") },
+  { id: 16, title: t("16. Логика и структура профилактического проекта", "16. Logic and Structure of a Prevention Project") },
+  { id: 17, title: t("17. План мероприятий профилактической программы", "17. Prevention Program Action Plan") },
+  { id: 18, title: t("18. Оценка эффективности профилактики", "18. Prevention Efficiency Evaluation") },
+  { id: 19, title: t("19. Структура и автоматизация психологической службы", "19. Structure and Automation of Psychological Service") },
+  { id: "test-3", title: t("Тест к модулю 3", "Checkpoint 3"), isTest: true },
+];
+
+function resolveAsset(path: string) {
+  let base = import.meta.env.BASE_URL || "/";
+  if (!base.endsWith("/")) base += "/";
+  if (path.startsWith("/")) {
+    return base + path.slice(1);
+  }
+  return path;
+}
+
+function LocalizedLectureImage({ src, alt, className = "" }: { src: string; alt: string; className?: string }) {
+  const [imgSrc, setImgSrc] = useState(resolveAsset(src));
+  const isEn = navigator.language.startsWith("en");
+
+  useEffect(() => {
+    let newSrc = src;
+    if (isEn && src.includes("_ru")) {
+      newSrc = src.replace("_ru", "_en");
+    }
+    setImgSrc(resolveAsset(newSrc));
+  }, [src, isEn]);
+
+  const handleError = () => {
+    if (imgSrc.includes("_en")) {
+      setImgSrc(resolveAsset(src));
+    }
+  };
+
+  return <img src={imgSrc} alt={alt} className={className} onError={handleError} />;
+}
+
+function parseInlineMarkdown(text: string): React.ReactNode[] {
+  // Split on <br> tags, **bold** patterns, and markdown links [label](url)
+  const parts = text.split(/(<br\s*\/?>|\*\*[^*]+\*\*|\[[^\]]+\]\([^)]+\))/gi);
+  return parts.map((part, idx) => {
+    if (part.toLowerCase().startsWith("<br")) {
+      return <br key={idx} />;
+    }
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return <strong key={idx}>{part.slice(2, -2)}</strong>;
+    }
+    if (part.startsWith("[") && part.includes("](") && part.endsWith(")")) {
+      const closeBracketIdx = part.indexOf("](");
+      const label = part.slice(1, closeBracketIdx);
+      const url = part.slice(closeBracketIdx + 2, -1);
+      
+      // If link is to edu page, render a premium action-link button style
+      const isEdu = url.includes("/edu");
+      return (
+        <a
+          key={idx}
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={isEdu ? {
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "4px",
+            background: "linear-gradient(135deg, rgba(37,99,235,0.06), rgba(124,58,237,0.06))",
+            border: "1px solid rgba(37,99,235,0.18)",
+            color: "var(--accent-color, #2563eb)",
+            padding: "4px 10px",
+            borderRadius: "6px",
+            fontSize: "12px",
+            fontWeight: 600,
+            textDecoration: "none",
+            margin: "2px 0",
+            transition: "all 0.2s"
+          } : {
+            color: "var(--accent-color, #2563eb)",
+            textDecoration: "underline"
+          }}
+        >
+          {label}
+        </a>
+      );
+    }
+    return part;
+  });
+}
+
+function renderFormattedBody(bodyText: string) {
+  const lines = bodyText.split("\n");
+  const elements: React.ReactNode[] = [];
+  let currentTableRows: string[][] = [];
+  let inTable = false;
+
+  const flushTable = (key: string | number) => {
+    if (currentTableRows.length === 0) return;
+    
+    const headers = currentTableRows[0].map(h => h.trim());
+    const dataRows = currentTableRows.slice(2); // Skip separator row at index 1
+    
+    elements.push(
+      <div key={`table-${key}`} className="table-responsive" style={{ overflowX: "auto", margin: "16px 0", border: "1px solid var(--border-color, #e5e7eb)", borderRadius: "8px" }}>
+        <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.85rem", textAlign: "left" }}>
+          <thead>
+            <tr style={{ background: "var(--bg-card-alt, #f9fafb)", borderBottom: "2px solid var(--border-color, #e5e7eb)" }}>
+              {headers.map((h, i) => (
+                <th key={i} style={{ padding: "8px 10px", fontWeight: 700, borderRight: i < headers.length - 1 ? "1px solid var(--border-color, #e5e7eb)" : "none" }}>
+                  {parseInlineMarkdown(h)}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {dataRows.map((row, rIdx) => (
+              <tr key={rIdx} style={{ borderBottom: rIdx < dataRows.length - 1 ? "1px solid var(--border-color, #e5e7eb)" : "none", background: rIdx % 2 === 1 ? "rgba(0, 0, 0, 0.01)" : "transparent" }}>
+                {row.map((cell, cIdx) => (
+                  <td key={cIdx} style={{ padding: "8px 10px", verticalAlign: "top", borderRight: cIdx < row.length - 1 ? "1px solid var(--border-color, #e5e7eb)" : "none" }}>
+                    {parseInlineMarkdown(cell.trim())}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    );
+    currentTableRows = [];
+    inTable = false;
+  };
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+    if (line.startsWith("|")) {
+      inTable = true;
+      const cells = line.split("|").slice(1, -1);
+      currentTableRows.push(cells);
+    } else {
+      if (inTable) {
+        flushTable(i);
+      }
+      if (line) {
+        elements.push(
+          <p key={i} style={{ margin: "0 0 10px 0", whiteSpace: "pre-line" }}>
+            {parseInlineMarkdown(line)}
+          </p>
+        );
+      }
+    }
+  }
+  if (inTable) {
+    flushTable("final");
+  }
+
+  return elements;
+}
+
+type TrackId = 'full' | 'express' | 'researcher' | 'practitioner';
+
+const TRACKS = [
+  { id: 'full', title: t("🎓 Полный курс", "🎓 Full Course"), desc: t("Все модули и материалы (19 шагов)", "All modules and materials (19 steps)"), modules: [] },
+  { id: 'express', title: t("⚡ Экспресс-курс", "⚡ Express Course"), desc: t("Самое важное для быстрого старта", "The essentials for a quick start"), modules: [0, 1, 4, 16, 18] },
+  { id: 'researcher', title: t("🔬 Трек: Диагност", "🔬 Track: Diagnostician"), desc: t("Методы исследований и опросы", "Research methods and surveys"), modules: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, "test-2"] },
+  { id: 'practitioner', title: t("🛠 Трек: Практик", "🛠 Track: Practitioner"), desc: t("Организация и оценка проектов", "Organization and evaluation of projects"), modules: [16, 17, 18, 19, "test-3"] },
+];
+
+export default function AIAcademyWorkspace({ aiSubscriptionActive = true }: { aiSubscriptionActive?: boolean }) {
+  const [selectedTrack, setSelectedTrack] = useState<TrackId>('full');
+
+  const [activeModule, setActiveModule] = useState<string | number>(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const lectureParam = params.get("lecture");
+      if (lectureParam !== null && lectureParam !== "") {
+        const parsed = Number(lectureParam);
+        return isNaN(parsed) ? lectureParam : parsed;
+      }
+    } catch (e) {
+      /* ignore */
+    }
+    return 0;
+  });
+  const [stepData, setStepData] = useState<{ title?: string; core_text?: string; is_free?: boolean } | null>(null);
+  const [profState, setProfState] = useState<ProfessorState>("idle");
+  const [activeCluster, setActiveCluster] = useState<ClusterDef | null>(null);
+
+  // Сброс кластера при смене лекции и отметка о прочтении
+  useEffect(() => {
+    setActiveCluster(null);
+    if (activeModule !== undefined && activeModule !== null && !String(activeModule).startsWith("test-")) {
+      markLectureRead(activeModule);
+    }
+  }, [activeModule]);
+
+  // Отметка об изучении кластера
+  useEffect(() => {
+    if (activeCluster) {
+      markClusterExplored(activeCluster.id);
+    }
+  }, [activeCluster]);
+
+  const selectableModules = useMemo(() => {
+    if (selectedTrack === 'full') return MODULES.filter((m) => !m.isHeader && m.id !== undefined);
+    const track = TRACKS.find(t => t.id === selectedTrack);
+    if (!track) return MODULES.filter((m) => !m.isHeader && m.id !== undefined);
+    
+    return MODULES.filter((m) => !m.isHeader && m.id !== undefined && track.modules.includes(m.id as never));
+  }, [selectedTrack]);
+
+  const displayedModules = useMemo(() => {
+    if (selectedTrack === 'full') return MODULES;
+    const track = TRACKS.find(t => t.id === selectedTrack);
+    if (!track) return MODULES;
+    
+    // For custom tracks, we show the track title as a header, and then the filtered modules.
+    const filtered = MODULES.filter((m) => !m.isHeader && m.id !== undefined && track.modules.includes(m.id as never));
+    return [
+      { isHeader: true, title: track.title },
+      ...filtered
+    ];
+  }, [selectedTrack]);
+
+  const activeIndex = useMemo(
+    () => selectableModules.findIndex((m) => m.id === activeModule),
+    [selectableModules, activeModule],
+  );
+
+  const goToPrevModule = () => {
+    if (activeIndex > 0) {
+      const prev = selectableModules[activeIndex - 1];
+      if (prev.id !== undefined) setActiveModule(prev.id);
+    }
+  };
+
+  const goToNextModule = () => {
+    if (activeIndex >= 0 && activeIndex < selectableModules.length - 1) {
+      const next = selectableModules[activeIndex + 1];
+      if (next.id !== undefined) setActiveModule(next.id);
+    }
+  };
+
+  useEffect(() => {
+    const isEmbed = typeof window !== "undefined" && new URLSearchParams(window.location.search).get("embed") === "true";
+    if (isEmbed) {
+      setStepData(null);
+      return;
+    }
+
+    if (typeof activeModule === "number" && activeModule > 0) {
+      let isMounted = true;
+      const token = typeof localStorage !== "undefined" ? localStorage.getItem("platform_access_token") : null;
+      const headers: Record<string, string> = {};
+      if (token) {
+        headers["Authorization"] = `Bearer ${token}`;
+      }
+      fetch(`${platformApiBase()}/api/v1/academy/step/${activeModule}`, { headers })
+        .then((r) => (r.ok ? r.json() : null))
+        .then((data) => {
+          if (isMounted && data && data.ok && data.step) {
+            setStepData(data.step);
+          } else if (isMounted) {
+            setStepData(null);
+          }
+        })
+        .catch(() => {
+          if (isMounted) setStepData(null);
+        });
+      return () => {
+        isMounted = false;
+      };
+    } else {
+      setStepData(null);
+    }
+  }, [activeModule]);
+  
+  const { speak, stop, voices, selectedVoiceName, selectVoice, isMuted, toggleMute } = useAiProfessorVoice((speaking) => {
+    setProfState(speaking ? "speaking" : "idle");
+  });
+
+  const [chat, setChat] = useState<ChatMessage[]>([]);
+  const [inputText, setInputText] = useState("");
+  const chatHistoryRef = useRef<HTMLDivElement>(null);
+
+  // States for resizable layout
+  const [topHeight, setTopHeight] = useState(50); // percentage
+  const [leftWidth, setLeftWidth] = useState(50); // percentage
+  const [isDraggingV, setIsDraggingV] = useState(false);
+  const [isDraggingH, setIsDraggingH] = useState(false);
+  const [isCoursePlanOpen, setIsCoursePlanOpen] = useState(true);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const topRowRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (isDraggingV && containerRef.current) {
+        const containerRect = containerRef.current.getBoundingClientRect();
+        const newTopHeight = ((e.clientY - containerRect.top) / containerRect.height) * 100;
+        setTopHeight(Math.max(20, Math.min(80, newTopHeight)));
+      }
+      if (isDraggingH && topRowRef.current) {
+        const topRowRect = topRowRef.current.getBoundingClientRect();
+        const newLeftWidth = ((e.clientX - topRowRect.left) / topRowRect.width) * 100;
+        setLeftWidth(Math.max(20, Math.min(80, newLeftWidth)));
+      }
+    };
+
+    const handleMouseUp = () => {
+      setIsDraggingV(false);
+      setIsDraggingH(false);
+    };
+
+    if (isDraggingV || isDraggingH) {
+      window.addEventListener("mousemove", handleMouseMove);
+      window.addEventListener("mouseup", handleMouseUp);
+      document.body.style.cursor = isDraggingV ? "row-resize" : "col-resize";
+      document.body.style.userSelect = "none";
+    } else {
+      document.body.style.cursor = "";
+      document.body.style.userSelect = "";
+    }
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", handleMouseUp);
+    };
+  }, [isDraggingV, isDraggingH]);
+
+  // When activeModule changes, have Professor greet and explain the new lecture/topic
+  useEffect(() => {
+    stop(); // Stop any previous speech
+    const localLecture = (academyLecturesData as Record<string, AcademyLectureObj>)[String(activeModule)];
+    const title = t(localLecture?.title || `${t("Лекция", "Lecture")} ${activeModule}`, localLecture?.title_en || localLecture?.title || `${t("Лекция", "Lecture")} ${activeModule}`);
+    const firstCard = localLecture?.cards?.[0];
+    const firstCardTitle = firstCard ? t(firstCard.title, firstCard.title_en || firstCard.title) : "";
+    const cardsCount = localLecture?.cards?.length || 0;
+
+    let introText = "";
+    if (typeof activeModule === "string" && activeModule.startsWith("test-")) {
+      introText = t(
+        `Мы перешли к контрольному рубежу: ${title}. Выполните тест справа, а я помогу разобрать ошибки и закрепить материал!`,
+        `We have moved to the checkpoint: ${title}. Complete the test on the right, and I will help analyze mistakes and reinforce the material!`
+      );
+    } else if (activeModule === 0 || activeModule === "0") {
+      introText = t(
+        `Приветствую в Академии! Текущая тема: ${title}. Здесь мы разбираем 4D-матрицу профилактики и логику работы платформы. Изучайте карточки справа или задайте мне любой вопрос!`,
+        `Welcome to the Academy! Current topic: ${title}. Here we analyze the 4D prevention matrix and platform logic. Study the cards on the right or ask me any question!`
+      );
+    } else if (firstCard) {
+      introText = t(
+        `Переходим к теме «${title}». В этой лекции ${cardsCount} ключевых тезисов. Начнем с главного: ${firstCardTitle}. Изучайте слайды и карточки справа, или нажмите кнопку «Обсудить с профессором» для детального разбора!`,
+        `Moving to the topic "${title}". This lecture has ${cardsCount} key theses. Let's start with the main one: ${firstCardTitle}. Study the slides and cards on the right, or click "Discuss with Professor" for a detailed analysis!`
+      );
+    } else {
+      introText = t(
+        `Открыта тема: «${title}». Ознакомьтесь с материалами лекции справа. Если возникнут вопросы — я готов объяснить сложную теорию простыми словами с жизненными примерами!`,
+        `Topic opened: "${title}". Review the lecture materials on the right. If you have questions, I am ready to explain complex theory simply with real-life examples!`
+      );
+    }
+
+    setChat((prev) => [
+      ...prev,
+      { role: "professor", text: `📢 [${t("Тема", "Topic")}: ${title}]\n\n${introText}` }
+    ]);
+    speak(introText);
+    const iframe = document.querySelector('iframe[title="3D Knowledge Graph"]') as HTMLIFrameElement;
+    if (iframe && iframe.contentWindow) {
+      iframe.contentWindow.postMessage({ type: 'SET_ACADEMY_TOPIC', payload: title }, '*');
+    }
+  }, [activeModule]);
+
+  useEffect(() => {
+    if (chatHistoryRef.current) {
+      chatHistoryRef.current.scrollTo({
+        top: chatHistoryRef.current.scrollHeight,
+        behavior: "smooth",
+      });
+    }
+  }, [chat]);
+
+  const { handleKeyDown: onEnterKeyDown } = useSendOnEnter();
+
+  const handleSend = async () => {
+    const msg = inputText.trim();
+    if (!msg) return;
+    stop();
+    setChat((prev) => [...prev, { role: "user", text: msg }]);
+    setInputText("");
+    setProfState("thinking");
+
+    try {
+      const progressData = loadProgress();
+      const currentRank = getRank(progressData.points);
+
+      const res = await sendAiTurn({
+        mode: "consultant",
+        consultantSub: "academy",
+        appId: "school_academy",
+        message: msg,
+        context: t(
+          `Слушатель изучает лекцию: ${activeModule}. Текущая тема: ${activeModule}. ${activeCluster ? "Глубокое погружение в кластер: " + activeCluster.title_ru : "Находится в корне лекции."}\n[Статус студента: Ранг "${currentRank.title}", ${progressData.points} Depth Points]\nВыбранный трек: ${TRACKS.find(t=>t.id===selectedTrack)?.title}. Адаптируйте свои объяснения под этот сценарий.`, 
+          `The listener is studying the lecture: ${activeModule}. Current topic: ${activeModule}. ${activeCluster ? "Deep dive into cluster: " + activeCluster.title_ru : "At the root of the lecture."}\n[Student status: Rank "${currentRank.en}", ${progressData.points} Depth Points]\nSelected track: ${TRACKS.find(t=>t.id===selectedTrack)?.title}. Adapt your explanations to this scenario.`
+        ),
+        lang: getTerminalEdition() === "intl" ? "en" : "ru",
+      });
+      const reply = res.reply || t("Не удалось получить ответ.", "Failed to get a response.");
+      setChat((prev) => [...prev, { role: "professor", text: reply }]);
+      speak(reply);
+
+      // Award points for discussion
+      if (activeCluster) addPoints(5);
+    } catch (e) {
+      setChat((prev) => [...prev, { role: "professor", text: t("Произошла ошибка связи с профессором.", "Communication error with the professor occurred.") }]);
+      setProfState("idle");
+    }
+  };
+
+  const handleSendSuggestion = async (msg: string) => {
+    stop();
+    setChat((prev) => [...prev, { role: "user", text: msg }]);
+    setProfState("thinking");
+
+    try {
+      const progressData = loadProgress();
+      const currentRank = getRank(progressData.points);
+
+      const res = await sendAiTurn({
+        mode: "consultant",
+        consultantSub: "academy",
+        appId: "school_academy",
+        message: msg,
+        context: t(
+          `Слушатель изучает лекцию: ${activeModule}. Текущая тема: ${activeModule}. ${activeCluster ? "Глубокое погружение в кластер: " + activeCluster.title_ru : "Находится в корне лекции."}\n[Статус студента: Ранг "${currentRank.title}", ${progressData.points} Depth Points]\nВыбранный трек: ${TRACKS.find(t=>t.id===selectedTrack)?.title}. Адаптируйте свои объяснения под этот сценарий.`, 
+          `The listener is studying the lecture: ${activeModule}. Current topic: ${activeModule}. ${activeCluster ? "Deep dive into cluster: " + activeCluster.title_ru : "At the root of the lecture."}\n[Student status: Rank "${currentRank.en}", ${progressData.points} Depth Points]\nSelected track: ${TRACKS.find(t=>t.id===selectedTrack)?.title}. Adapt your explanations to this scenario.`
+        ),
+        lang: getTerminalEdition() === "intl" ? "en" : "ru",
+      });
+      const reply = res.reply || t("Не удалось получить ответ.", "Failed to get a response.");
+      setChat((prev) => [...prev, { role: "professor", text: reply }]);
+      speak(reply);
+      
+      // Award points for discussion
+      if (activeCluster) addPoints(5);
+    } catch (e) {
+      setChat((prev) => [...prev, { role: "professor", text: t("Произошла ошибка связи с профессором.", "Communication error with the professor occurred.") }]);
+      setProfState("idle");
+    }
+  };
+
+  const isIdaHost = typeof window !== "undefined" && (
+    window.location.hostname.includes("ida-psy") || 
+    window.location.hostname.includes("ida")
+  );
+
+  return (
+    <div 
+      ref={containerRef}
+      className="ai-academy-workspace" 
+      style={{ position: "relative", width: "100%", height: "100%", flexDirection: "column", overflow: "hidden", display: "flex" }}
+    >
+      {/* TOP HEADER: GAMIFICATION & ACTIVITY STATUS */}
+      <AcademyGamificationWidget />
+      
+      {/* TOP ROW: Main Area & Lecture Selection */}
+      <div 
+        style={{ 
+          display: 'flex', 
+          height: isIdaHost ? '100%' : `calc(${topHeight}% - 24px)`, 
+          flex: isIdaHost ? '1 1 100%' : `0 0 calc(${topHeight}% - 24px)`,
+          minHeight: '0', 
+          width: '100%',
+          position: 'relative',
+          borderBottom: isIdaHost ? 'none' : '1px solid var(--border-color)'
+        }}
+      >
+        {/* LEFT PANEL: TOPICS */}
+        <div style={{ width: isCoursePlanOpen ? '320px' : '48px', flexShrink: 0, borderRight: '1px solid var(--border-color)', background: 'var(--bg-card)', transition: 'width 0.3s ease', display: 'flex', flexDirection: 'column', position: 'relative', zIndex: 50 }}>
+          
+<div style={{ padding: "12px", borderBottom: "1px solid var(--border-color)", background: "var(--bg-card)", display: "flex", alignItems: "center", justifyContent: isCoursePlanOpen ? "space-between" : "center", minHeight: "56px", boxSizing: "border-box" }}>
+  {isCoursePlanOpen && <h3 style={{ margin: 0, fontSize: "1rem", color: "var(--foreground)" }}>{t("Темы", "Topics")}</h3>}
+  <button onClick={() => setIsCoursePlanOpen(!isCoursePlanOpen)} style={{ background: "var(--primary-light)", border: "none", cursor: "pointer", fontSize: "1rem", color: "var(--primary)", width: "28px", height: "28px", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "6px", transition: "all 0.2s" }} title={isCoursePlanOpen ? t("Свернуть панель", "Collapse panel") : t("Развернуть панель", "Expand panel")}>
+    {isCoursePlanOpen ? "◀" : "▶"}
+  </button>
+</div>
+<div style={{ flex: 1, overflowY: "auto", padding: isCoursePlanOpen ? "20px" : "0", display: isCoursePlanOpen ? "block" : "none" }}>
+  <div style={{ maxHeight: "100%", overflowY: "auto" }}>
+    <ul className="module-list">
+                {displayedModules.map((mod, idx) => {
+                  if (mod.isHeader) {
+                    return (
+                      <li key={`header-${idx}`} className="module-header-title" style={{ padding: "10px 16px", fontSize: "0.75rem", background: "var(--bg-body)", fontWeight: "bold" }}>
+                        {mod.title}
+                      </li>
+                    );
+                  }
+
+                  const isActive = activeModule === mod.id;
+                  const isTest = mod.isTest;
+
+                  return (
+                    <li 
+                      key={mod.id} 
+                      className={`module-item ${isActive ? "active" : ""} ${isTest ? "is-test" : ""}`}
+                      onClick={() => mod.id !== undefined && setActiveModule(mod.id)}
+                      style={{ padding: "10px 16px", fontSize: "0.9rem", cursor: "pointer" }}
+                    >
+                      <div className="module-status-icon" style={{ marginRight: "10px" }}>
+                        {isActive ? "▶" : (isTest ? "📝" : "○")}
+                      </div>
+                      <div className="module-title">{mod.title}</div>
+                    </li>
+                  );
+                })}
+              </ul>
+  </div>
+</div>
+
+        </div>
+
+        {/* RIGHT PANEL: CONTENT & PROFESSOR */}
+        <div ref={topRowRef} style={{ display: 'flex', flexDirection: 'column', flex: 1, minWidth: 0, position: 'relative', overflowY: 'auto' }}>
+          {/* LECTURE MATERIALS */}
+          <div style={{ 
+            width: "100%", flex: "1 1 100%", 
+            overflowY: 'auto', 
+            minHeight: '0',
+            display: 'flex', 
+            flexDirection: 'column', 
+            padding: '20px', 
+            background: 'var(--bg-body)',
+            boxSizing: 'border-box'
+          }}>
+            {/* LECTURE MATERIALS */}
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
+            <h3 style={{ fontSize: "1.1rem", margin: 0, color: "var(--foreground)" }}>{t("Содержание", "Content")}</h3>
+            <span className="lecture-badge" style={{ fontSize: "0.75rem", padding: "4px 10px", background: "var(--primary-light)", color: "var(--primary)", borderRadius: "12px", fontWeight: "600" }}>
+              {typeof activeModule === "number" ? `Шаг ${activeModule} / 19` : "Чекпойнт"}
+            </span>
+          </div>
+
+          <div className="materials-content" style={{ padding: 0 }}>
+          {!aiSubscriptionActive && (
+            <div className="ai-subscription-banner" style={{ marginBottom: "20px", padding: "16px", background: "var(--bg-hover)", borderRadius: "8px", border: "1px solid var(--primary-light)" }}>
+              <h4 style={{ margin: "0 0 8px 0", color: "var(--primary)" }}>Unlock AI Professor</h4>
+              <p style={{ margin: 0, fontSize: "0.9rem" }}>Upgrade your subscription to interact with the AI Professor, ask questions about the lecture, and get personalized feedback on checkpoints.</p>
+            </div>
+          )}
+
+          {typeof activeModule === "string" && activeModule.startsWith("test-") ? (
+            <ModuleCheckpoint 
+              moduleId={parseInt(activeModule.split("-")[1], 10)} 
+              onComplete={(score, total, failed) => {
+                const failedText = failed.map(q => q.question).join(" | ");
+                if (!aiSubscriptionActive) {
+                  return;
+                }
+                const msg = t(`[СИСТЕМНОЕ СООБЩЕНИЕ: Студент прошел чекпойнт. Оценка: ${score}/${total}. Ошибки в темах: ${failedText}. Дайте ободряющую обратную связь и посоветуйте, что повторить.]`, `[SYSTEM MESSAGE: Student passed the checkpoint. Score: ${score}/${total}. Mistakes in topics: ${failedText}. Give encouraging feedback and advise what to review.]`);
+                
+                setProfState("thinking");
+                sendAiTurn({
+                  mode: "consultant",
+                  consultantSub: "academy",
+                  appId: "school_academy",
+                  message: msg,
+                  context: t(`Результаты теста модуля ${activeModule}`, `Test results for module ${activeModule}`),
+                  lang: getTerminalEdition() === "intl" ? "en" : "ru",
+                }).then(res => {
+                  const reply = res.reply || t("Отлично поработали!", "Great job!");
+                  setChat((prev) => [...prev, { role: "professor", text: reply }]);
+                  speak(reply);
+                }).catch(() => {
+                  setProfState("idle");
+                });
+              }}
+            />
+          ) : (
+            <div className="lecture-text-placeholder">
+
+              {(() => {
+                const localLecture = (academyLecturesData as Record<string, AcademyLectureObj>)[String(activeModule)];
+                const lectureHtml = stepData?.core_text || localLecture?.html;
+                const lectureTitle = stepData?.title || t(localLecture?.title || `${t("Лекция", "Lecture")} ${activeModule}`, localLecture?.title_en || localLecture?.title || `${t("Лекция", "Lecture")} ${activeModule}`);
+                const slides = localLecture?.slides || [];
+                const cards = localLecture?.cards || [];
+
+                return (
+                  <>
+                    <h2 style={{ fontSize: "1.6rem", marginBottom: "20px", color: "var(--foreground)", borderBottom: "2px solid var(--primary)", paddingBottom: "10px", display: "inline-block" }}>
+                      {lectureTitle}
+                    </h2>
+
+                    {/* Slides Gallery / Carousel */}
+                    {slides.length > 0 && (
+                      <div className="lecture-slides-section" style={{ marginBottom: "32px" }}>
+                        <h3 style={{ fontSize: "1.15rem", marginBottom: "14px", display: "flex", alignItems: "center", gap: "8px", color: "var(--primary)", fontWeight: 700 }}>
+                          <span>🖼️</span> {t("Аутентичные слайды и иллюстрации к теме", "Authentic slides and illustrations for the topic")} ({slides.length})
+                        </h3>
+                        <div className="slides-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "18px" }}>
+                          {slides.map((slideUrl, sIdx) => {
+                            const resolvedSlideUrl = resolveAsset(slideUrl);
+                            return (
+                            <div key={sIdx} className="slide-card" style={{ border: "1px solid var(--border)", borderRadius: "14px", overflow: "hidden", background: "var(--card)", boxShadow: "0 4px 14px rgba(0,0,0,0.06)", transition: "transform 0.2s ease" }}>
+                              <a href={resolvedSlideUrl} target="_blank" rel="noopener noreferrer" title="Нажмите для увеличения">
+                                <img src={resolvedSlideUrl} alt={`Слайд ${sIdx + 1}`} style={{ width: "100%", height: "210px", objectFit: "cover", display: "block" }} />
+                              </a>
+                              <div style={{ padding: "10px 14px", fontSize: "0.85rem", color: "var(--muted-foreground)", background: "var(--card-alt, rgba(0,0,0,0.03))", borderTop: "1px solid var(--border)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                                <span style={{ fontWeight: 600 }}>Слайд {sIdx + 1}</span>
+                                <a href={resolvedSlideUrl} target="_blank" rel="noopener noreferrer" style={{ color: "var(--primary)", textDecoration: "none", fontWeight: 600, display: "flex", alignItems: "center", gap: "4px" }}>🔍 Открыть</a>
+                              </div>
+                            </div>
+                          )})}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Digitized Knowledge Cards Feed */}
+                    {cards.length > 0 ? (
+                      <div className="lecture-cards-section" style={{ marginBottom: "32px" }}>
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "18px", flexWrap: "wrap", gap: "10px" }}>
+                          <h3 style={{ fontSize: "1.25rem", margin: 0, color: "var(--foreground)", display: "flex", alignItems: "center", gap: "8px", fontWeight: 700 }}>
+                            <span>🧠</span> {t("Оцифрованные карточки знаний и тезисы", "Digitized knowledge cards and theses")} ({cards.length})
+                          </h3>
+                          <span className="badge" style={{ background: "rgba(139, 92, 246, 0.15)", color: "#8b5cf6", padding: "6px 14px", borderRadius: "20px", fontSize: "0.8rem", fontWeight: 700 }}>
+                            ⚡ 4D-Матрица ИИ готова
+                          </span>
+                        </div>
+
+                        <div className="cards-feed" style={{ display: "flex", flexDirection: "column", gap: "22px" }}>
+                          {cards.map((card, cIdx) => {
+                            const cardTitle = t(card.title || `${t("Тезис", "Thesis")} #${cIdx + 1}`, card.title_en || card.title || `${t("Тезис", "Thesis")} #${cIdx + 1}`);
+                            const cardText = t(card.refined_text || "", card.refined_text_en || card.refined_text || "");
+                            const reflection = t(card.reflection_prompt || "", card.reflection_prompt_en || card.reflection_prompt || "");
+                            const sections = cardText ? cardText.split(/(?=##\s+)/) : [];
+
+                            return (
+                              <div key={cIdx} className="knowledge-card" style={{ border: "1px solid var(--border)", borderRadius: "16px", padding: "22px", background: "var(--card)", boxShadow: "0 6px 20px rgba(0,0,0,0.04)", transition: "all 0.2s ease" }}>
+                                {/* Card Header & Metadata Pills */}
+                                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "12px", marginBottom: "14px", flexWrap: "wrap", borderBottom: "1px dashed var(--border)", paddingBottom: "14px" }}>
+                                  <h4 style={{ margin: 0, fontSize: "1.2rem", color: "var(--primary)", fontWeight: 700 }}>
+                                    #{cIdx + 1}. {cardTitle}
+                                  </h4>
+
+                                  <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
+                                    {card.x_stage && <span style={{ fontSize: "0.75rem", padding: "4px 10px", borderRadius: "12px", background: "rgba(59, 130, 246, 0.1)", color: "#3b82f6", fontWeight: 600 }}>{card.x_stage}</span>}
+                                    {card.y_level && <span style={{ fontSize: "0.75rem", padding: "4px 10px", borderRadius: "12px", background: "rgba(16, 185, 129, 0.1)", color: "#10b981", fontWeight: 600 }}>{card.y_level}</span>}
+                                    {card.m_modality && <span style={{ fontSize: "0.75rem", padding: "4px 10px", borderRadius: "12px", background: "rgba(245, 158, 11, 0.1)", color: "#d97706", fontWeight: 600 }}>{card.m_modality}</span>}
+                                    {card.executor_role && <span style={{ fontSize: "0.75rem", padding: "4px 10px", borderRadius: "12px", background: "rgba(236, 72, 153, 0.1)", color: "#ec4899", fontWeight: 600 }}>👤 {card.executor_role}</span>}
+                                  </div>
+                                </div>
+
+                                {/* Topic Tags */}
+                                {card.topic_tags && card.topic_tags.length > 0 && (
+                                  <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginBottom: "16px" }}>
+                                    {card.topic_tags.map((tag, tIdx) => (
+                                      <span key={tIdx} style={{ fontSize: "0.8rem", color: "var(--muted-foreground)", background: "var(--card-alt, rgba(0,0,0,0.05))", padding: "3px 10px", borderRadius: "6px" }}>
+                                        #{tag}
+                                      </span>
+                                    ))}
+                                  </div>
+                                )}
+
+                                {/* Formatted Content */}
+                                <div className="card-content-body" style={{ lineHeight: "1.7", color: "var(--foreground)", fontSize: "0.95rem" }}>
+                                  {sections.length > 0 ? (
+                                    sections.map((sec, sIdx) => {
+                                      const titleMatch = sec.match(/^##\s+([^\n]+)\n?/);
+                                      const title = titleMatch ? titleMatch[1] : "";
+                                      const body = titleMatch ? sec.slice(titleMatch[0].length).trim() : sec.trim();
+                                      if (!body && !title) return null;
+
+                                      let icon = "📌";
+                                      if (title.includes("Ключевой") || title.includes("Тезис") || title.includes("Key") || title.includes("Thesis")) icon = "💡";
+                                      else if (title.includes("Вопрос") || title.includes("размышлен") || title.includes("Question") || title.includes("Reflection")) icon = "❓";
+                                      else if (title.includes("Пример") || title.includes("Иллюстрац") || title.includes("Example") || title.includes("Illustration")) icon = "🔬";
+                                      else if (title.includes("Ограничен") || title.includes("Limit") || title.includes("Pitfall")) icon = "⚠️";
+
+                                      return (
+                                        <div key={sIdx} style={{ marginBottom: "14px", background: (title.includes("Вопрос") || title.includes("Question")) ? "rgba(139, 92, 246, 0.05)" : "transparent", padding: (title.includes("Вопрос") || title.includes("Question")) ? "14px" : "0", borderRadius: "10px", borderLeft: (title.includes("Вопрос") || title.includes("Question")) ? "4px solid #8b5cf6" : "none" }}>
+                                          {title && <h5 style={{ margin: "0 0 6px 0", fontSize: "1rem", fontWeight: 700, color: (title.includes("Вопрос") || title.includes("Question")) ? "#8b5cf6" : "var(--foreground)", display: "flex", alignItems: "center", gap: "6px" }}><span>{icon}</span> {title}</h5>}
+                                          {renderFormattedBody(body)}
+                                        </div>
+                                      );
+                                    })
+                                  ) : (
+                                    <div className="card-raw-body">{renderFormattedBody(cardText)}</div>
+                                  )}
+                                </div>
+
+                                {/* Interactive Action Button to Discuss with AI Professor */}
+                                <div style={{ marginTop: "18px", paddingTop: "14px", borderTop: "1px solid var(--border)", display: "flex", justifyContent: "flex-end" }}>
+                                  <button
+                                    type="button"
+                                    className="ob-btn secondary"
+                                    style={{ padding: "8px 16px", fontSize: "0.85rem", borderRadius: "8px", fontWeight: 500, cursor: "pointer", transition: "all 0.2s" }}
+                                    onClick={() => {
+                                      const questionText = reflection || t(
+                                        `Объясни подробнее тезис "${cardTitle}" из лекции, приведи жизненный пример и задай мне проверочный вопрос.`,
+                                        `Explain in detail the thesis "${cardTitle}" from the lecture, provide a real-life example, and ask me a check question.`
+                                      );
+                                      const fullPrompt = `💬 ${t("Карточка", "Card")} #${cIdx + 1}: ${cardTitle}\n\n${questionText}`;
+                                      stop();
+                                      setChat((prev) => [...prev, { role: "user", text: fullPrompt }]);
+                                      setProfState("thinking");
+
+                                      const isIntl = getTerminalEdition() === "intl";
+                                      const lectureTitle = t(localLecture?.title || "", localLecture?.title_en || localLecture?.title || "");
+
+                                      sendAiTurn({
+                                        mode: "consultant",
+                                        consultantSub: "academy",
+                                        appId: "school_academy",
+                                        message: isIntl
+                                          ? `The student is studying card "${cardTitle}" (Topic: ${lectureTitle}). Their question/task: ${questionText}. Reply in Robert Sapolsky's style: accessible, scientific, with a real-life example, and ask 1 check question at the end in English.`
+                                          : `Ученик изучает карточку "${cardTitle}" (Тема: ${lectureTitle}). Его вопрос/задача: ${questionText}. Ответь в стиле Сапольского: понятно, научно, с живым примером, и в конце задай 1 вопрос для проверки.`,
+                                        context: cardText,
+                                        lang: isIntl ? "en" : "ru",
+                                      }).then(res => {
+                                        const reply = res.reply || t("Отлично, давайте разберем эту карточку!", "Great, let's analyze this card!");
+                                        setChat((prev) => [...prev, { role: "professor", text: reply }]);
+                                        speak(reply);
+                                      }).catch(() => {
+                                        setProfState("idle");
+                                      });
+                                    }}
+                                  >
+                                    {t("Обсудить с профессором", "Discuss with Professor")}
+                                  </button>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                        
+                        <ClusterQuiz 
+                           clusterTitle={activeCluster?.title_ru || ""} 
+                          onPassed={() => {
+                            addPoints(25);
+                            unlockAchievementDirect("quiz_champion");
+                            setChat(prev => [...prev, { role: "professor", text: t("Поздравляю с успешным прохождением теста! Вы получили +25 XP и разблокировали значок Чемпиона Квизов.", "Congratulations on passing the test! You gained +25 XP and unlocked the Quiz Champion badge.") }]);
+                            speak(t("Поздравляю с успешным прохождением теста!", "Congratulations on passing the test!"));
+                          }} 
+                        />
+                      </div>
+                    ) : null}
+
+                    {/* Fallback to legacy HTML if no cards exist */}
+                    {cards.length === 0 && (
+                      lectureHtml ? (
+                        <div style={{ lineHeight: "1.7", marginTop: "1rem", fontSize: "1rem" }} dangerouslySetInnerHTML={{ __html: lectureHtml }} />
+                      ) : (
+                        <p style={{ color: "var(--muted-foreground)" }}>{t('Здесь отображается учебный материал из базы знаний. Выберите другую тему или используйте кнопки навигации ниже.', 'Study material from the knowledge base is displayed here. Select another topic or use the navigation buttons below.')}</p>
+                      )
+                    )}
+
+                    {/* Schema image for introduction / general models */}
+                    {cards.length === 0 && slides.length === 0 && (
+                      <div className="lecture-image-container" style={{ marginTop: "28px" }}>
+                        <LocalizedLectureImage src="/img/schema_ru.jpg" alt="Схема" className="lecture-img" />
+                        <div className="img-caption">{t("Схема 1. Биопсихосоциальная модель профилактики (ru/en)", "Scheme 1. Biopsychosocial prevention model (ru/en)")}</div>
+                      </div>
+                    )}
+                  </>
+                );
+              })()}
+
+              {/* Bottom Step Navigation Control Bar */}
+              <div className="lecture-nav-controls" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "28px", paddingTop: "16px", borderTop: "1px solid var(--border)" }}>
+                <button 
+                  className="ob-btn secondary"
+                  disabled={activeIndex <= 0}
+                  onClick={goToPrevModule}
+                  style={{ opacity: activeIndex <= 0 ? 0.5 : 1, cursor: activeIndex <= 0 ? "not-allowed" : "pointer" }}
+                >
+                  ← {t("Предыдущая лекция", "Previous Lecture")}
+                </button>
+
+                <span style={{ fontSize: "0.85rem", color: "var(--muted-foreground)" }}>
+                  {activeIndex + 1} / {selectableModules.length}
+                </span>
+
+                <button 
+                  className="ob-btn primary"
+                  disabled={activeIndex >= selectableModules.length - 1}
+                  onClick={goToNextModule}
+                  style={{ opacity: activeIndex >= selectableModules.length - 1 ? 0.5 : 1, cursor: activeIndex >= selectableModules.length - 1 ? "not-allowed" : "pointer" }}
+                >
+                  {t("Следующая лекция", "Next Lecture")} →
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+          </div>
+
+          
+          {/* TOP RIGHT: AI PROFESSOR CHAT */}
+        {aiSubscriptionActive && (
+          <div className="academy-chat-section" style={{ width: "100%", flex: "0 0 auto", display: "flex", flexDirection: "column", minHeight: "350px", borderTop: "2px solid var(--border-color)", borderBottom: "1px solid var(--border-color)", background: "var(--bg-body)", boxSizing: "border-box" }}>
+            <div className="avatar-header" style={{ 
+              display: "flex", 
+              flexDirection: "row", 
+              alignItems: "center", 
+              justifyContent: "space-between", 
+              padding: "10px 16px", 
+              height: "56px",
+              minHeight: "56px",
+              background: "var(--bg-card)", 
+              borderBottom: "1px solid var(--border-color)",
+              boxShadow: "0 2px 8px rgba(0,0,0,0.02)"
+            }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "10px", flexDirection: "row" }}>
+                <AiProfessorAvatar state={profState} className="compact" />
+                <div className="avatar-status-label" style={{ fontWeight: 600, margin: 0, marginTop: 0, textTransform: "none", letterSpacing: "normal", fontSize: "0.85rem" }}>
+                  {profState === "idle" && t("ИИ-Профессор в сети", "AI Professor Online")}
+                  {profState === "listening" && t("Слушает вас...", "Listening to you...")}
+                  {profState === "thinking" && t("Формирует ответ...", "Generating response...")}
+                  {profState === "speaking" && t("Объясняет материал", "Explaining lecture")}
+                </div>
+              </div>
+
+              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                {voices.length > 0 && (
+                  <select
+                    value={selectedVoiceName}
+                    onChange={(e) => selectVoice(e.target.value)}
+                    style={{
+                      padding: "4px 8px",
+                      borderRadius: "8px",
+                      fontSize: "0.75rem",
+                      border: "1px solid var(--border-color)",
+                      background: "var(--bg-body)",
+                      color: "var(--text-main)",
+                      maxWidth: "150px",
+                      textOverflow: "ellipsis",
+                      whiteSpace: "nowrap",
+                      overflow: "hidden"
+                    }}
+                    title={t("Выбрать голос", "Select voice")}
+                  >
+                    <option value="">{t("Авто (Лучший)", "Auto (Best)")}</option>
+                    {voices.map(v => (
+                      <option key={v.name} value={v.name}>
+                        {v.name.replace(/Microsoft |Google /g, "").replace(/\(.*?\)/g, "").trim()}
+                      </option>
+                    ))}
+                  </select>
+                )}
+                <button
+                  type="button"
+                  onClick={toggleMute}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "6px",
+                    padding: "4px 10px",
+                    borderRadius: "8px",
+                    fontSize: "0.75rem",
+                    fontWeight: 600,
+                    cursor: "pointer",
+                    border: isMuted ? "1px solid var(--border-color)" : "1px solid var(--primary)",
+                    background: isMuted ? "var(--bg-body)" : "var(--primary-light)",
+                    color: isMuted ? "var(--text-muted)" : "var(--primary)"
+                  }}
+                  title={isMuted ? t("Включить озвучку", "Enable voice") : t("Выключить озвучку", "Mute voice")}
+                >
+                  <span>{isMuted ? "🔇" : "🔊"}</span>
+                  <span>{isMuted ? t("Выкл", "Muted") : t("Вкл", "Active")}</span>
+                </button>
+                <button type="button" onClick={() => speak(t("Я здесь и готов помочь!", "I am here and ready to help!"))} style={{ padding: "4px 10px", borderRadius: "8px", border: "1px solid var(--primary-light)", background: "var(--bg-body)", color: "var(--primary)", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }} title="Play">
+                  ▶
+                </button>
+                <button type="button" onClick={stop} style={{ padding: "4px 10px", borderRadius: "8px", border: "1px solid var(--primary-light)", background: "var(--bg-body)", color: "var(--primary)", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }} title="Stop">
+                  ⏹
+                </button>
+              </div>
+            </div>
+
+            <div className="chat-container" style={{ position: "relative", flex: 1, display: "flex", flexDirection: "column", minHeight: 0 }}>
+              <div ref={chatHistoryRef} className="chat-history" style={{ padding: "16px", paddingBottom: "70px", flex: 1, overflowY: "auto" }}>
+                {chat.map((msg, idx) => (
+                  <div key={idx} className={`chat-bubble ${msg.role}`}>
+                    {msg.text}
+                  </div>
+                ))}
+              </div>
+              
+              <div className="chat-suggestions" style={{ 
+                position: "absolute",
+                bottom: "76px", left: "12px", right: "12px", background: "var(--bg-body)",
+                display: "flex", 
+                flexDirection: "row", 
+                flexWrap: "nowrap", 
+                overflowX: "auto", 
+                gap: "6px", 
+                padding: "6px 0", 
+                background: "transparent", 
+                borderTop: "none",
+                scrollbarWidth: "none",
+                msOverflowStyle: "none",
+                zIndex: 10
+              }}>
+                <button className="suggestion-chip" style={{ 
+                  whiteSpace: "nowrap", 
+                  flexShrink: 0, 
+                  fontSize: "0.8rem", 
+                  padding: "6px 12px",
+                  borderRadius: "20px",
+                  background: "rgba(255, 255, 255, 0.8)",
+                  backdropFilter: "blur(6px)",
+                  boxShadow: "0 2px 6px rgba(0,0,0,0.05)",
+                  border: "1px solid var(--border-color)",
+                  color: "var(--text-main)",
+                  cursor: "pointer"
+                }} onClick={() => handleSendSuggestion(t("Затрудняюсь с ответом. Пожалуйста, разъясните эту концепцию подробнее с точки зрения нейробиологии и поведения в стиле Сапольского.", "Explain this concept in Sapolsky style."))}>
+                  {t("Разъяснить концепцию", "Explain concept")}
+                </button>
+                <button className="suggestion-chip" style={{ 
+                  whiteSpace: "nowrap", 
+                  flexShrink: 0, 
+                  fontSize: "0.8rem", 
+                  padding: "6px 12px",
+                  borderRadius: "20px",
+                  background: "rgba(255, 255, 255, 0.8)",
+                  backdropFilter: "blur(6px)",
+                  boxShadow: "0 2px 6px rgba(0,0,0,0.05)",
+                  border: "1px solid var(--border-color)",
+                  color: "var(--text-main)",
+                  cursor: "pointer"
+                }} onClick={() => handleSendSuggestion(t("Сформулируйте, пожалуйста, вопрос в тестовом формате с тремя вариантами ответа (А, Б, В), чтобы я мог выбрать верный вариант.", "Formulate multiple choice question."))}>
+                  {t("Тестовый формат", "Multiple choice")}
+                </button>
+                <button className="suggestion-chip" style={{ 
+                  whiteSpace: "nowrap", 
+                  flexShrink: 0, 
+                  fontSize: "0.8rem", 
+                  padding: "6px 12px",
+                  borderRadius: "20px",
+                  background: "rgba(255, 255, 255, 0.8)",
+                  backdropFilter: "blur(6px)",
+                  boxShadow: "0 2px 6px rgba(0,0,0,0.05)",
+                  border: "1px solid var(--border-color)",
+                  color: "var(--text-main)",
+                  cursor: "pointer"
+                }} onClick={() => handleSendSuggestion(t("Приведите, пожалуйста, иллюстративный клинический или школьный пример из практики, демонстрирующий данный тезис.", "Provide clinical example."))}>
+                  {t("Пример из практики", "Clinical example")}
+                </button>
+                <button className="suggestion-chip" style={{ 
+                  whiteSpace: "nowrap", 
+                  flexShrink: 0, 
+                  fontSize: "0.8rem", 
+                  padding: "6px 12px",
+                  borderRadius: "20px",
+                  background: "rgba(255, 255, 255, 0.8)",
+                  backdropFilter: "blur(6px)",
+                  boxShadow: "0 2px 6px rgba(0,0,0,0.05)",
+                  border: "1px solid var(--border-color)",
+                  color: "var(--text-main)",
+                  cursor: "pointer"
+                }} onClick={() => handleSendSuggestion(t("Материал усвоен. Давайте перейдём к следующему аспекту темы.", "Understood, let's proceed."))}>
+                  {t("Материал усвоен, далее", "Understood, proceed")}
+                </button>
+              </div>
+
+              <div className="chat-input-area" style={{ padding: "16px", display: "flex", alignItems: "center", gap: "8px" }}>
+                <input 
+                  type="text" 
+                  placeholder={t("Задайте вопрос или ответьте профессору...", "Ask a question...")} 
+                  value={inputText}
+                  onChange={(e) => setInputText(e.target.value)}
+                  onKeyDown={(e) => onEnterKeyDown(e, handleSend)}
+                />
+                <SpeechDictationButton 
+                  onText={(text: string) => setInputText((prev) => prev + " " + text)}
+                />
+                <SendOnEnterToggle />
+                <button className="ob-btn primary send-btn" onClick={handleSend}>➤</button>
+              </div>
+            </div>
+          </div>
+        )}
+        </div>
+      </div>
+
+      {!isIdaHost && (
+        <>
+          <div 
+            onMouseDown={(e) => { e.preventDefault(); setIsDraggingV(true); }}
+            style={{ height: '10px', cursor: 'row-resize', background: isDraggingV ? 'rgba(16, 185, 129, 0.2)' : '#f1f5f9', zIndex: 100, width: '100%', flexShrink: 0, position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', borderTop: '1px solid #e2e8f0', borderBottom: '1px solid #e2e8f0', transition: 'background 0.2s' }}
+          >
+            <div style={{ width: '40px', height: '4px', borderRadius: '2px', background: isDraggingV ? '#10b981' : '#cbd5e1', transition: 'background 0.2s' }} />
+          </div>
+
+          <div className="academy-left-graph" style={{ height: `calc(${100 - topHeight}% - 24px)`, flex: `0 0 calc(${100 - topHeight}% - 24px)`, borderRight: 'none', width: '100%', pointerEvents: (isDraggingV || isDraggingH) ? 'none' : 'auto' }}>
+            <iframe 
+              src={`/academy/graph/?embed=true&lang=${getTerminalEdition() === "intl" ? "en" : "ru"}`} 
+              title="3D Knowledge Graph"
+              style={{ width: '100%', height: '100%', border: 'none' }}
+            />
+          </div>
+        </>
+      )}
+    </div>
+  );
+}

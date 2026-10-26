@@ -1,0 +1,800 @@
+<!doctype html>
+<html lang="ru" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link class="favicon" rel="icon" href="../../favicon.ico" sizes="any">
+  <link class="favicon" rel="icon" href="../../favicon.png" type="image/png">
+  <link class="apple-touch-icon" href="../../favicon.png">
+  <title>ИИ-видеоассистент для школьного психолога — Помощь и Супервизия в реальном времени | Профилактика-AI</title>
+  <meta name="description" content="Встроенный ИИ-ассистент для видеосессий школьного и социального психолога: кнопка SOS во время консультации, автоматическая супервизия, отчёты. Снижает тревожность и неопределённость. Обучение на практике.">
+  <link rel="canonical" href="https://prevention.school/ru/ai-video/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Профилактика-AI">
+  <meta property="og:title" content="ИИ-видеоассистент для психолога — супервизия и помощь прямо во время сессии">
+  <meta property="og:description" content="Кнопка SOS, автосупервизия после каждой сессии, памятки клиенту — всё встроено в видеозвонок. Снижает тревожность и ускоряет профессиональный рост.">
+  <meta property="og:url" content="https://prevention.school/ru/ai-video/">
+  <meta property="og:locale" content="ru_RU">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;550;650;760;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <style>
+    .va-hero { padding: 80px 0 60px; text-align: center; }
+    .va-hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 900; line-height: 1.08; margin: 0 0 20px; max-width: 860px; margin-inline: auto; }
+    .va-hero .accent-text { color: var(--violet); }
+    .va-hero .lead { font-size: clamp(1rem, 1.6vw, 1.2rem); color: var(--muted); line-height: 1.6; max-width: 700px; margin: 0 auto 36px; }
+
+    .va-pain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 60px; }
+    .va-pain-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; text-align: center; }
+    .va-pain-card .pain-icon { font-size: 2.4rem; margin-bottom: 12px; display: block; }
+    .va-pain-card h3 { margin: 0 0 8px; font-size: 1.05rem; font-weight: 800; }
+    .va-pain-card p { margin: 0; font-size: 0.92rem; color: var(--muted); line-height: 1.5; }
+
+    .va-section { padding: 50px 0; border-top: 1px solid var(--line); }
+    .va-section-head { max-width: 760px; margin-bottom: 32px; }
+    .va-section-head .eyebrow { display: inline-block; background: var(--accent-soft); color: var(--accent); font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; padding: 6px 16px; border-radius: 999px; margin-bottom: 12px; }
+    .va-section-head h2 { font-size: 1.8rem; font-weight: 900; margin: 0 0 12px; line-height: 1.15; }
+    .va-section-head p { font-size: 1.05rem; color: var(--muted); line-height: 1.55; margin: 0; }
+
+    .va-feature-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 32px; margin-bottom: 20px; }
+    .va-feature-card h3 { font-size: 1.2rem; font-weight: 800; margin: 0 0 12px; }
+    .va-feature-card p { font-size: 0.95rem; color: var(--text); line-height: 1.6; margin: 0 0 16px; }
+    .va-feature-card ul { margin: 0; padding-left: 20px; }
+    .va-feature-card ul li { font-size: 0.93rem; line-height: 1.65; margin-bottom: 6px; }
+    .va-feature-card .tech-note { font-size: 0.82rem; color: var(--muted); margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--line); }
+
+    .va-flow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 36px 0 20px; }
+    .va-flow-step { background: var(--surface-soft); border: 1px solid var(--line); border-radius: 16px; padding: 24px; position: relative; }
+    .va-flow-step .step-num { display: inline-block; background: var(--accent); color: #fff; width: 30px; height: 30px; border-radius: 50%; text-align: center; line-height: 30px; font-size: 14px; font-weight: 800; margin-bottom: 10px; }
+    .va-flow-step h4 { font-size: 1rem; font-weight: 800; margin: 0 0 8px; }
+    .va-flow-step p { font-size: 0.88rem; color: var(--muted); line-height: 1.5; margin: 0; }
+
+    .va-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 36px 0 20px; }
+    .va-stat { text-align: center; padding: 20px; }
+    .va-stat .stat-num { font-size: 2.2rem; font-weight: 900; color: var(--accent); line-height: 1; }
+    .va-stat .stat-label { font-size: 0.82rem; color: var(--muted); margin-top: 6px; }
+
+    .va-diff-card { background: rgba(109, 91, 208, 0.06); border: 2px solid var(--violet); border-radius: var(--radius); padding: 32px; margin-top: 20px; }
+    .va-diff-card h3 { color: var(--violet); font-size: 1.2rem; font-weight: 800; margin: 0 0 16px; }
+
+    .va-comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 16px; }
+    .va-comp-col { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 24px; }
+    .va-comp-col h4 { font-size: 0.95rem; font-weight: 800; margin: 0 0 12px; }
+    .va-comp-col ul { margin: 0; padding-left: 16px; }
+    .va-comp-col ul li { font-size: 0.88rem; line-height: 1.6; margin-bottom: 4px; color: var(--muted); }
+    .va-comp-col.is-us { border-color: var(--accent); }
+    .va-comp-col.is-us li { color: var(--text); }
+
+    .va-cta-block { text-align: center; padding: 60px 0 40px; }
+    .va-cta-block h2 { font-size: 1.8rem; font-weight: 900; margin: 0 0 16px; }
+    .va-cta-block p { font-size: 1.05rem; color: var(--muted); margin: 0 0 28px; max-width: 600px; margin-inline: auto; }
+    .va-cta-block .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: #fff; padding: 14px 32px; border-radius: 14px; text-decoration: none; font-weight: 800; font-size: 1.05rem; transition: background 0.2s; }
+    .va-cta-block .btn-primary:hover { background: var(--accent-strong); }
+
+    .va-quote { background: var(--surface-soft); border-left: 4px solid var(--violet); border-radius: 0 12px 12px 0; padding: 24px 28px; margin: 32px 0; font-style: italic; font-size: 1.05rem; line-height: 1.6; color: var(--text); }
+    .va-quote cite { display: block; margin-top: 10px; font-style: normal; font-size: 0.85rem; color: var(--muted); }
+
+    @media (max-width: 800px) {
+      .va-pain-grid, .va-flow, .va-comparison { grid-template-columns: 1fr; }
+      .va-stats { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+  <!-- Yandex.Metrika counter & Auto-Goal Tracker -->
+<script type="text/javascript">
+(function(m,e,t,r,i,k,a){
+    m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();
+    for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+})(window, document,'script','https://mc.yandex.ru/metrika/tag.js', 'ym');
+
+(function(){
+    try {
+        if (window.location.search.indexOf('no_track=1') !== -1 || window.location.search.indexOf('admin=1') !== -1) {
+            localStorage.setItem('ym_disable_tracking', '1');
+        }
+        if (localStorage.getItem('ym_disable_tracking') === '1') {
+            console.log('[Yandex.Metrika] Tracking disabled for owner/admin session.');
+            window.ymGoal = window.reachGoal = function(g, p){ console.log('[Goal skipped (admin)]', g, p || ''); };
+            return;
+        }
+    } catch(e) {}
+
+    var host = (window.location.hostname || '').toLowerCase();
+    var id = null;
+    if (host.indexOf('ida-psy.ru') !== -1) id = 113108416;
+    else if (host.indexOf('ida-psy.pro') !== -1) id = 113706104;
+    else if (host.indexOf('prevention-ai.ru') !== -1) id = 113108883;
+    else if (host.indexOf('prevention.school') !== -1) id = 113706126;
+    else if (host.indexOf('teenology-ai.ru') !== -1) id = 113108854;
+    else if (host.indexOf('teenology.care') !== -1) id = 109437867;
+    else if (host.indexOf('ru.decima.business') !== -1) id = 93591954;
+    else if (host.indexOf('decima.business') !== -1) id = 93591880;
+    else {
+        id = 113706126;
+    }
+
+    window._ymCounterId = id;
+
+    // Universal Goal Dispatcher
+    window.ymGoal = window.reachGoal = function(goalName, params) {
+        if (!id || typeof ym !== 'function') return;
+        try {
+            if (params) {
+                ym(id, 'reachGoal', goalName, params);
+            } else {
+                ym(id, 'reachGoal', goalName);
+            }
+            console.log('[YM Goal]', goalName, params || '');
+        } catch(e) {
+            console.warn('[YM Goal Error]', e);
+        }
+    };
+
+    if (id) {
+        ym(id, 'init', {
+            ssr: true,
+            webvisor: true,
+            clickmap: true,
+            ecommerce: "dataLayer",
+            referrer: document.referrer,
+            url: location.href,
+            accurateTrackBounce: true,
+            trackLinks: true
+        });
+    }
+
+    // Auto-Goal Click & Form Interceptors
+    document.addEventListener('DOMContentLoaded', function(){
+        // 1. Click tracker for buttons, links, actions
+        document.addEventListener('click', function(e){
+            var target = e.target;
+            if (!target) return;
+            var el = target.closest('a, button, [data-goal], input[type="submit"]');
+            if (!el) return;
+
+            // Explicit data-goal attribute
+            var explicitGoal = el.getAttribute('data-goal');
+            if (explicitGoal) {
+                window.ymGoal(explicitGoal);
+                return;
+            }
+
+            var href = (el.getAttribute('href') || '').toLowerCase();
+            var text = (el.innerText || el.textContent || el.value || '').trim().toLowerCase();
+            var idStr = (el.id || '').toLowerCase();
+            var cls = (el.className || '').toLowerCase();
+
+            // Messengers & Social
+            if (href.indexOf('t.me/') !== -1 || href.indexOf('telegram.me') !== -1) {
+                window.ymGoal('telegram_click', {url: href});
+            } else if (href.indexOf('vk.com/') !== -1) {
+                window.ymGoal('vk_click', {url: href});
+            } else if (href.indexOf('wa.me/') !== -1 || href.indexOf('whatsapp.com') !== -1) {
+                window.ymGoal('whatsapp_click', {url: href});
+            } else if (href.indexOf('tel:') === 0) {
+                window.ymGoal('phone_click', {phone: href});
+            } else if (href.indexOf('mailto:') === 0) {
+                window.ymGoal('email_click', {email: href});
+            } 
+            // File downloads
+            else if (/\.(pdf|docx?|xlsx?|zip|rar|pptx?)$/i.test(href)) {
+                window.ymGoal('file_download', {file: href});
+            }
+            // Registration & Auth
+            else if (href.indexOf('/join') !== -1 || href.indexOf('/staff-register') !== -1 || href.indexOf('/auth') !== -1 || href.indexOf('/register') !== -1 || idStr.indexOf('register') !== -1 || idStr.indexOf('login') !== -1 || text.indexOf('регистрац') !== -1 || text.indexOf('войти') !== -1 || text.indexOf('личный кабинет') !== -1) {
+                window.ymGoal('auth_click', {text: text});
+            }
+            // Demo & Interactive Room
+            else if (href.indexOf('#room=') !== -1 || href.indexOf('/demo') !== -1 || href.indexOf('/app') !== -1 || href.indexOf('/workspace') !== -1 || idStr.indexOf('demo') !== -1 || text.indexOf('демо') !== -1 || text.indexOf('попробовать') !== -1 || text.indexOf('запустить') !== -1) {
+                window.ymGoal('demo_open', {text: text});
+            }
+            // Test & Screening
+            else if (href.indexOf('/test') !== -1 || href.indexOf('screening') !== -1 || text.indexOf('тест') !== -1 || text.indexOf('диагностик') !== -1 || text.indexOf('опрос') !== -1) {
+                window.ymGoal('test_start', {text: text});
+            }
+            // Pricing / Tariffs
+            else if (href.indexOf('pricing') !== -1 || href.indexOf('tariff') !== -1 || text.indexOf('тариф') !== -1 || text.indexOf('купить') !== -1 || text.indexOf('подключить') !== -1) {
+                window.ymGoal('pricing_click', {text: text});
+            }
+            // Feedback / Call to action
+            else if (text.indexOf('оставить заявку') !== -1 || text.indexOf('записаться') !== -1 || text.indexOf('консультац') !== -1 || text.indexOf('связаться') !== -1) {
+                window.ymGoal('lead_button_click', {text: text});
+            }
+        }, true);
+
+        // 2. Form submission tracker
+        document.addEventListener('submit', function(e){
+            var form = e.target;
+            if (!form) return;
+            var formId = form.id || form.getAttribute('name') || form.getAttribute('action') || 'lead_form';
+            window.ymGoal('form_submit', {form_id: formId});
+        }, true);
+
+        // 3. Scroll depth tracking (50% and 90%)
+        var scroll50Fired = false;
+        var scroll90Fired = false;
+        window.addEventListener('scroll', function(){
+            var h = document.documentElement, 
+                b = document.body,
+                st = 'scrollTop',
+                sh = 'scrollHeight';
+            var percent = ((h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight)) * 100;
+            if (!scroll50Fired && percent >= 50) {
+                scroll50Fired = true;
+                window.ymGoal('scroll_50');
+            }
+            if (!scroll90Fired && percent >= 90) {
+                scroll90Fired = true;
+                window.ymGoal('scroll_90');
+            }
+        }, {passive: true});
+    });
+})();
+</script>
+<!-- /Yandex.Metrika counter -->
+</head>
+<body>
+  <div class="wrap">
+    <header class="site-header">
+      <a class="brand" href="/ru/"><span class="brand-mark">П</span><span>Профилактика-AI <small style="font-size: 10px; font-weight: 800; text-transform: uppercase; color: var(--accent); margin-left: 4px; vertical-align: super;">Beta</small></span></a>
+                        <nav class="nav" aria-label="Навигация">
+        <a href="/ru/about/">О проекте</a>
+        <a href="https://academy.prevention-ai.ru/" target="_blank" rel="noopener">Академия</a>
+        <a href="https://web.prevention-ai.ru/?entry=educator" target="_blank" rel="noopener">Учителю</a>
+        <a href="/ru/teenology/">Родителям и подросткам</a>
+      </nav>
+      <div class="nav-controls">
+        <a class="nav-cta" href="/terminal/" target="_blank" rel="noopener">Войти в Систему &rarr;</a>
+        <button class="theme-toggle" id="theme-toggle">Тёмная</button>
+      </div>
+    </header>
+
+    <main>
+
+      <!-- ===== HERO ===== -->
+      <section class="va-hero">
+        <h1>
+          ИИ-супервизор и ассистент<br>
+          <span class="accent-text">прямо в окне видеосессии</span>
+        </h1>
+        <p class="lead">
+          Встроенная видеосвязь с распознаванием речи в реальном времени, кнопкой мгновенной помощи и автоматическим разбором каждой сессии. <strong>Снижает тревожность и неопределённость</strong> — а каждый звонок превращается в практическое обучение.
+        </p>
+        <a href="/terminal/" class="btn-primary" style="display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: #fff; padding: 14px 32px; border-radius: 14px; text-decoration: none; font-weight: 800; font-size: 1.05rem;">
+          Войти в систему &rarr;
+        </a>
+
+        <!-- CSS MOCKUP -->
+        <div class="va-mockup-wrapper" style="max-width: 960px; margin: 50px auto 0; background: #fff; border-radius: 16px; border: 1px solid var(--line); box-shadow: 0 12px 32px rgba(0,0,0,0.06); overflow: hidden; display: flex; height: 500px; text-align: left;">
+          
+          <!-- Video Area -->
+          <div style="flex: 1; background: #111; position: relative; display: flex; flex-direction: column;">
+            
+            <!-- Main Video (Client) -->
+            <div style="flex: 1; position: relative; background: url('https://images.unsplash.com/photo-1517672651691-24622a91b550?w=800&q=80') center/cover; opacity: 0.9;">
+              <div style="position: absolute; top: 16px; left: 16px; background: rgba(15,23,42,0.85); backdrop-filter: blur(8px); border: 1px solid rgba(56,189,248,0.4); color: #e2e8f0; padding: 6px 12px; border-radius: 8px; font-size: 0.8rem; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 14px rgba(0,0,0,0.4);">
+                <span style="display: inline-block; width: 7px; height: 7px; background: #38bdf8; border-radius: 50%; box-shadow: 0 0 8px #38bdf8;"></span>
+                <span><strong>🎯 В работе:</strong> Тревога перед контрольной · 1/4 Встреча и контакт · 🔒 Приватно</span>
+              </div>
+              <div style="position: absolute; bottom: 20px; left: 20px; background: rgba(0,0,0,0.6); color: white; padding: 4px 10px; border-radius: 6px; font-size: 0.85rem; display: flex; align-items: center; gap: 6px;">
+                <span style="display: inline-block; width: 8px; height: 8px; background: #10b981; border-radius: 50%;"></span>
+                Максим (Ученик)
+              </div>
+            </div>
+            
+            <!-- Self Video (Therapist) -->
+            <div style="position: absolute; top: 20px; right: 20px; width: 140px; height: 100px; background: url('https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=300&q=80') center/cover; border-radius: 8px; border: 2px solid rgba(255,255,255,0.2);">
+            </div>
+            
+            <!-- Bottom Controls -->
+            <div style="height: 64px; background: #1a1a1a; display: flex; justify-content: center; align-items: center; gap: 16px;">
+              <div style="width: 44px; height: 44px; background: #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">🎤</div>
+              <div style="width: 44px; height: 44px; background: #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">📹</div>
+              <div style="width: 44px; height: 44px; background: #ef4444; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transform: rotate(135deg);">📞</div>
+            </div>
+          </div>
+
+          <!-- Sidebar / AI Assistant -->
+          <div style="width: 340px; background: #f8fafc; border-left: 1px solid var(--line); display: flex; flex-direction: column;">
+            <div style="padding: 16px; border-bottom: 1px solid var(--line); font-weight: 700; color: var(--text-color); display: flex; align-items: center; justify-content: space-between;">
+              <div>ИИ-Супервизор</div>
+              <span style="font-size: 0.75rem; background: var(--violet); color: white; padding: 2px 8px; border-radius: 12px; display:flex; align-items:center; gap: 4px;"><span class="live-indicator" style="width: 6px; height: 6px; background: #fff; border-radius: 50%; display: inline-block;"></span> Активен</span>
+            </div>
+            
+            <div id="demo-sidebar-scroll" style="flex: 1; padding: 16px; overflow-y: auto; font-size: 0.9rem;">
+              
+              <div style="margin-bottom: 20px;">
+                <div style="font-size: 0.8rem; color: var(--muted); margin-bottom: 6px;">Транскрипт</div>
+                <div style="color: var(--muted); line-height: 1.5;">
+                  <p style="margin: 0 0 8px;"><strong>Максим:</strong> Да бесит меня эта физичка, она специально меня валит!</p>
+                  <p style="margin: 0 0 8px;"><strong>Вы:</strong> <span style="position: relative;">И ты из-за этого так сильно переживаешь?<span class="live-typing" style="display:inline-block; width:4px; height:12px; background:var(--muted); margin-left:4px; vertical-align:middle; animation: blink 1s step-end infinite;"></span></span></p>
+                </div>
+              </div>
+
+              <!-- SOS Button Container -->
+              <div id="demo-sos-container" style="margin-top: 30px; text-align: center;">
+                <div style="font-size: 0.75rem; color: var(--muted); margin-bottom: 8px;">Зашли в тупик? Попросите ИИ помочь:</div>
+                <button id="demo-sos-btn" style="width: 100%; padding: 12px; background: #ef4444; color: white; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(239,68,68,0.3); transition: all 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+                  <span>🚨</span> Кнопка SOS
+                </button>
+              </div>
+
+              <!-- SOS Result (Hidden initially) -->
+              <div id="demo-sos-result" style="display: none; margin-top: 20px;">
+                <div style="font-size: 0.8rem; color: var(--muted); margin-bottom: 6px;">Прямо сейчас</div>
+                <div style="background: white; border: 1px solid var(--violet); border-radius: 8px; padding: 12px; box-shadow: 0 4px 12px rgba(124,58,237,0.08); animation: fadeIn 0.4s;">
+                  <div style="font-weight: 700; color: var(--violet); margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+                    <span>💡</span> Подсказка
+                  </div>
+                  <p style="margin: 0 0 8px; color: var(--text-color); line-height: 1.5;">Подросток выражает сильную фрустрацию из-за оценок, но, похоже, реальная проблема — в страхе перед родителями.</p>
+                  <div style="background: #f1f5f9; padding: 8px 10px; border-radius: 6px; font-size: 0.85rem; color: #334155; font-style: italic; border-left: 3px solid var(--violet);">
+                    «Максим, я слышу, как тебя злят эти двойки. А что произойдет, когда ты придешь с ними домой?»
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            
+            <div style="padding: 16px; border-top: 1px solid var(--line); background: white;">
+              <button id="demo-analyze-btn" style="width: 100%; padding: 12px; background: rgba(124,58,237,0.1); color: var(--violet); border: 1px solid var(--violet); border-radius: 8px; font-weight: 600; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; transition: all 0.2s;">
+                <span>✨</span> Запросить разбор сессии
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ===== PAIN POINTS ===== -->
+      <section style="padding-bottom: 50px;">
+        <div class="va-pain-grid">
+          <div class="va-pain-card">
+            <span class="pain-icon">😰</span>
+            <h3>«Что, если я не знаю, что&nbsp;сказать?»</h3>
+            <p>Начинающие психологи часто испытывают тревогу перед сложными случаями. Кнопка SOS даёт подсказку за 2 секунды — и тревога отступает.</p>
+          </div>
+          <div class="va-pain-card">
+            <span class="pain-icon">📝</span>
+            <h3>«Опять заполнять документацию после каждого звонка»</h3>
+            <p>ИИ формирует протокол визита, супервизию и памятку автоматически. Ваше время — для подопечных, а не для бумаг.</p>
+          </div>
+          <div class="va-pain-card">
+            <span class="pain-icon">🎓</span>
+            <h3>«Я работаю один — не с кем посоветоваться»</h3>
+            <p>ИИ-супервизор разбирает каждую сессию: подсвечивает слепые зоны и точки роста. Практическое обучение в каждом звонке.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== HOW IT WORKS ===== -->
+      <section class="va-section">
+        <div class="va-section-head">
+          <span class="eyebrow">Как это работает</span>
+          <h2>Три этапа — до, во время и после сессии</h2>
+          <p>Система сопровождает психолога на каждом шаге консультации.</p>
+        </div>
+
+        <div class="va-flow">
+          <div class="va-flow-step">
+            <span class="step-num">1</span>
+            <h4>Подготовка</h4>
+            <p>ИИ читает историю предыдущих визитов и формирует брифинг: на чём остановились, что спросить, на что обратить внимание.</p>
+          </div>
+          <div class="va-flow-step">
+            <span class="step-num">2</span>
+            <h4>Во время звонка</h4>
+            <p>Речь распознаётся в реальном времени. В любой момент — кнопка «🆘&nbsp;Помощь&nbsp;AI»: анализ ситуации + готовые вопросы за 2&nbsp;секунды.</p>
+          </div>
+          <div class="va-flow-step">
+            <span class="step-num">3</span>
+            <h4>После сессии</h4>
+            <p>Автоматический разбор: формальный отчёт, клиническая супервизия для вас и памятка подопечному с рекомендациями.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== FEATURE: SOS BUTTON ===== -->
+      <section class="va-section">
+        <div class="va-section-head">
+          <span class="eyebrow">Во время сессии</span>
+          <h2>Кнопка SOS: мгновенная помощь, когда вы застряли</h2>
+          <p>Подопечный замолчал. Сопротивление. Неожиданная реакция. Нажмите одну кнопку — и через 2 секунды получите конкретную подсказку.</p>
+        </div>
+
+        <div class="va-feature-card">
+          <h3>🆘 Помощь AI — как это работает</h3>
+          <p>Система берёт весь накопленный транскрипт текущей сессии (до 150 000 символов — это 2-3 часа непрерывного диалога), передаёт его специализированной ИИ-модели и мгновенно возвращает:</p>
+          <ul>
+            <li><strong>Краткий анализ ситуации</strong> — где сейчас находится подопечный: аффект, сопротивление, ступор, защитная реакция.</li>
+            <li><strong>2 готовых вопроса</strong> — конкретные формулировки, которые можно задать прямо сейчас.</li>
+            <li><strong>Рекомендация техники</strong> — какой приём уместно применить в данный момент.</li>
+          </ul>
+          <p class="tech-note">
+            <strong>Конфиденциальность:</strong> транскрипт остаётся в оперативной памяти браузера и не сохраняется на внешних серверах. Видеосвязь идёт через шифрованный WebRTC-канал. Все данные обрабатываются в соответствии с ФЗ-152.
+          </p>
+        </div>
+
+        <blockquote class="va-quote">
+          «Когда подросток начинал замыкаться, я раньше терялась. Теперь нажимаю кнопку помощи — и за 3 секунды понимаю, что происходит и что мне делать. Тревога уходит, появляется уверенность.»
+          <cite>— Школьный психолог, 3 года стажа</cite>
+        </blockquote>
+      </section>
+
+      <!-- ===== FEATURE: POST-SESSION ===== -->
+      <section class="va-section">
+        <div class="va-section-head">
+          <span class="eyebrow">После сессии</span>
+          <h2>Автоматическая документация и супервизия за 10 секунд</h2>
+          <p>По завершении звонка ИИ-супервизор анализирует весь транскрипт и формирует три блока информации.</p>
+        </div>
+
+        <div class="va-feature-card">
+          <h3>📋 Формальный отчёт</h3>
+          <p>Автоматически заполняет структуру карточки визита:</p>
+          <ul>
+            <li><strong>Жалобы и запрос</strong> — что беспокоит, с чем обратился.</li>
+            <li><strong>Гипотезы</strong> — предварительные гипотезы по результатам сессии.</li>
+            <li><strong>Примененные интервенции</strong> — какие техники использованы.</li>
+            <li><strong>Реакция</strong> — как подопечный отреагировал.</li>
+            <li><strong>План</strong> — что делать дальше, рекомендации.</li>
+          </ul>
+        </div>
+
+        <div class="va-feature-card">
+          <h3>🎓 Клиническая супервизия</h3>
+          <p>Бережная обратная связь для специалиста. ИИ-супервизор подсвечивает:</p>
+          <ul>
+            <li><strong>Сильные стороны</strong> — что вы сделали хорошо.</li>
+            <li><strong>Слепые зоны</strong> — что могло быть пропущено: контрперенос, невербальные сигналы.</li>
+            <li><strong>Оценка соответствия</strong> — adherence score, насколько сессия соответствовала протоколу.</li>
+            <li><strong>Карточки Базы Знаний</strong> — автоматически подобранные материалы из Академии.</li>
+          </ul>
+          <p class="tech-note">
+            <strong>Зачем это нужно:</strong> Супервизия стоит дорого и не всегда доступна, особенно в отдалённых школах и небольших городах. ИИ-супервизор даёт структурированную обратную связь после <em>каждой</em> сессии — бесплатно и мгновенно.
+          </p>
+        </div>
+
+        <div class="va-feature-card">
+          <h3>📝 Памятка подопечному</h3>
+          <p>Эмпатичное письмо с подведением итогов встречи и 1-3 рекомендациями. Можно отправить в мессенджер или распечатать.</p>
+          <ul>
+            <li>Персонализировано под конкретную сессию.</li>
+            <li>Рекомендации адаптированы под использованные техники.</li>
+            <li>Укрепляет контакт и помогает закрепить навыки между встречами.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===== STATS ===== -->
+      <section class="va-section">
+        <div class="va-section-head">
+          <span class="eyebrow">В цифрах</span>
+          <h2>Экономия времени и снижение стресса</h2>
+        </div>
+        <div class="va-stats">
+          <div class="va-stat">
+            <div class="stat-num">2 сек</div>
+            <div class="stat-label">Время ответа кнопки SOS</div>
+          </div>
+          <div class="va-stat">
+            <div class="stat-num">25 мин</div>
+            <div class="stat-label">Экономия на каждом отчёте</div>
+          </div>
+          <div class="va-stat">
+            <div class="stat-num">150K</div>
+            <div class="stat-label">Символов контекста (2-3 часа)</div>
+          </div>
+          <div class="va-stat">
+            <div class="stat-num">E2E</div>
+            <div class="stat-label">Шифрование (WebRTC)</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== DIFFERENTIATOR ===== -->
+      <section class="va-section">
+      <!-- ===== ARCHITECTURE ===== -->
+      <section class="va-section">
+        <div class="va-section-head">
+          <span class="eyebrow">Под капотом</span>
+          <h2>Интегрированная рабочая среда</h2>
+          <p>Профилактика-AI объединяет видеосвязь, электронную карту ученика и клиническую базу знаний в единый защищенный контур. Система глубоко интегрирована на архитектурном уровне.</p>
+        </div>
+
+        <div class="va-pain-grid" style="grid-template-columns: repeat(2, 1fr); margin-bottom: 20px;">
+          <div class="va-pain-card" style="text-align: left;">
+            <span class="pain-icon">📡</span>
+            <h3>1. Встроенная видеосвязь</h3>
+            <p>Собственный WebRTC-сервер встроен прямо в платформу. Аудиопоток транскрибируется на лету, поэтому нет необходимости использовать сторонние программы видеосвязи и вручную переносить текст.</p>
+          </div>
+          <div class="va-pain-card" style="text-align: left;">
+            <span class="pain-icon">🗂️</span>
+            <h3>2. Связь с электронной картой</h3>
+            <p>AI Engine имеет безопасный доступ к анамнезу и предыдущим отчетам. Интеллектуальный анализ учитывает историю подростка, предлагая релевантные подсказки в контексте всего кейса.</p>
+          </div>
+          <div class="va-pain-card" style="text-align: left;">
+            <span class="pain-icon">🧠</span>
+            <h3>3. Академическая База Знаний</h3>
+            <p>Алгоритмы работают поверх нашей внутренней методологической базы (RAG). Интервенции и оценка соответствия протоколу формируются на основе профессиональных данных.</p>
+          </div>
+          <div class="va-pain-card" style="text-align: left;">
+            <span class="pain-icon">🔒</span>
+            <h3>4. Приватность и 152-ФЗ</h3>
+            <p>Видеопотоки используют сквозное шифрование (E2EE), а обработка данных происходит в изолированном защищенном контуре. Это гарантирует строжайшее соблюдение закона при работе с несовершеннолетними.</p>
+          </div>
+        </div>
+
+        <div class="va-diff-card" style="margin-top: 28px;">
+          <h3>💡 Почему это снижает тревожность?</h3>
+          <p style="margin: 0; line-height: 1.6;">
+            Основной источник тревоги психолога — <strong>неопределённость</strong>: «правильно ли я делаю?», «что сейчас происходит?», «не упускаю ли я что-то важное?». ИИ-видеоассистент убирает эту неопределённость:
+          </p>
+          <ol style="margin: 16px 0 0; padding-left: 20px; line-height: 1.7; font-size: 0.95rem;">
+            <li><strong>Мгновенная подсказка</strong> — вы всегда знаете, что можно спросить дальше.</li>
+            <li><strong>Супервизия после каждой сессии</strong> — вы получаете обратную связь, а не гадаете, хорошо ли прошло.</li>
+            <li><strong>Накопление опыта</strong> — карточки Академии, подобранные под ваши кейсы, ускоряют профессиональный рост.</li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ===== WHO IS IT FOR ===== -->
+      <section class="va-section">
+        <div class="va-section-head">
+          <span class="eyebrow">Для кого</span>
+          <h2>Кому особенно полезен видео-ассистент</h2>
+        </div>
+        <div class="va-pain-grid">
+          <div class="va-pain-card">
+            <span class="pain-icon">🏫</span>
+            <h3>Школьным психологам</h3>
+            <p>Работаете один на всю школу. ИИ-супервизор — ваш второй коллега, который всегда рядом во время сложных бесед.</p>
+          </div>
+          <div class="va-pain-card">
+            <span class="pain-icon">🌱</span>
+            <h3>Начинающим специалистам</h3>
+            <p>После вуза или переквалификации. Каждый звонок — практическое обучение с мгновенной обратной связью.</p>
+          </div>
+          <div class="va-pain-card">
+            <span class="pain-icon">🏥</span>
+            <h3>Социальным и кризисным психологам</h3>
+            <p>Работа с трудными случаями, где нет права на ошибку. Кнопка SOS и протоколы безопасности — ваша страховка.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== CTA ===== -->
+      <section class="va-cta-block">
+        <h2>Начните использовать ИИ-видеоассистент</h2>
+        <p>Войдите в систему — и следующая видеоконсультация пройдёт с полной поддержкой ИИ-супервизора.</p>
+        <a href="/terminal/" class="btn-primary">
+          Войти в систему &rarr;
+        </a>
+        <p style="margin-top: 16px; font-size: 0.85rem; color: var(--muted);">
+          Работает в браузере. Не требует установки дополнительного ПО.
+        </p>
+      </section>
+
+    </main>
+
+    <footer class="footer">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <strong>Профилактика-AI</strong><br>Открытая цифровая инфраструктура психологической службы образования.
+          <p class="footer-legal-notice" style="margin-top: 10px; font-size: 0.82rem; line-height: 1.5; color: var(--muted); max-width: 580px;">
+            В настоящее время Платформа проходит процедуру включения в Реестр отечественного программного обеспечения Минцифры России. Система работает в режиме открытой апробации и доступна специалистам и образовательным организациям для ознакомления и использования. Размещение серверных компонентов — защищенные сертифицированные ЦОД (152-ФЗ).
+          </p>
+          <p class="footer-contact">
+            <a href="mailto:admin@prevention-ai.ru">admin@prevention-ai.ru</a><span class="footer-contact-sep" aria-hidden="true">·</span><a href="https://t.me/RomanDubrovsky" target="_blank" rel="noopener noreferrer">Telegram</a><span class="footer-contact-sep" aria-hidden="true">·</span><a href="/ru/founder/">Автор проекта</a>
+          </p>
+          <p class="footer-community" style="margin-top: 8px; font-size: 0.85rem; color: var(--muted);">
+            Сообщества проекта:<br>
+            ВКонтакте: <a href="https://vk.ru/prevention_ai" target="_blank" rel="noopener">vk.ru/prevention_ai</a><br>
+            Телеграм-канал: <a href="https://t.me/anthropology_health" target="_blank" rel="noopener">t.me/anthropology_health</a>
+          </p>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/ru/about/">О проекте</a>
+          <a href="https://academy.prevention-ai.ru/" target="_blank" rel="noopener">Академия</a>
+          <a href="https://web.prevention-ai.ru/?entry=educator" target="_blank" rel="noopener">Учителю</a>
+          <a href="/ru/teenology/">Родителям и подросткам</a>
+          <a href="/ru/founder/">Основатель</a>
+          <a href="https://ida-psy.ru/" target="_blank" rel="noopener" style="color: #8b5cf6; font-weight: 600;">Психологам коммерческого сектора</a>
+          <a href="/ru/privacy/">Конфиденциальность</a>
+          <a href="/ru/consent/">Согласие на обработку</a>
+        </nav>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    /* Theme toggle */
+    (function() {
+      var toggle = document.getElementById('theme-toggle');
+      if (!toggle) return;
+      var html = document.documentElement;
+      function applyTheme(t) {
+        html.setAttribute('data-theme', t);
+        toggle.textContent = t === 'dark' ? 'Светлая' : 'Тёмная';
+        try { localStorage.setItem('theme', t); } catch(e) {}
+      }
+      var saved = 'light';
+      try { saved = localStorage.getItem('theme') || 'light'; } catch(e) {}
+      applyTheme(saved);
+      toggle.addEventListener('click', function() {
+        applyTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+      });
+    })();
+  <style>
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+    @keyframes pulse-ring { 0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); } 70% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); } 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); } }
+    @keyframes blink { 50% { opacity: 0; } }
+    .live-indicator { animation: pulse-ring 2s infinite; }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const sosBtn = document.getElementById('demo-sos-btn');
+      if (sosBtn) {
+        sosBtn.addEventListener('click', () => {
+          sosBtn.innerHTML = `<span style="animation: spin 1s linear infinite; display: inline-block;">⏳</span> Анализируем контекст...`;
+          sosBtn.style.opacity = '0.8';
+          sosBtn.style.cursor = 'wait';
+          sosBtn.disabled = true;
+          setTimeout(() => {
+            document.getElementById('demo-sos-container').style.display = 'none';
+            document.getElementById('demo-sos-result').style.display = 'block';
+          }, 1200);
+        });
+      }
+
+      const btn = document.getElementById('demo-analyze-btn');
+      const sidebar = document.getElementById('demo-sidebar-scroll');
+      
+      if (btn && sidebar) {
+        btn.addEventListener('click', () => {
+          // Change button state to Loading
+          btn.innerHTML = `<span style="animation: spin 1s linear infinite; display: inline-block;">⏳</span> Выполняем разбор...`;
+          btn.style.opacity = '0.8';
+          btn.style.cursor = 'wait';
+          btn.disabled = true;
+          
+          // Change indicator to processing state
+          const ind = document.querySelector('.live-indicator');
+          if (ind) { ind.style.background = '#eab308'; ind.style.animation = 'none'; }
+          document.querySelectorAll('.live-typing').forEach(el => el.style.display = 'none');
+
+          // Simulate API delay
+          setTimeout(() => {
+            // Render Post-Session Analysis
+            sidebar.innerHTML = `
+              <div style="margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--line); animation: fadeIn 0.4s;">
+                <div style="font-size: 0.8rem; color: var(--muted); margin-bottom: 8px; text-transform: uppercase; font-weight: 800;">📑 Отчёт (В карту школьника)</div>
+                <div style="font-size: 0.85rem; color: var(--text-color); line-height: 1.6;">
+                  <strong>Жалобы:</strong> Конфликты с учителем физики, низкая успеваемость, раздражительность.<br>
+                  <strong>Гипотезы:</strong> Страх наказания дома, проекция злости на учителя.<br>
+                  <strong>Интервенции:</strong> Прояснение последствий (сократический диалог).<br>
+                  <strong>План:</strong> Поговорить с классным руководителем.
+                </div>
+              </div>
+              
+              <div style="margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--line); animation: fadeIn 0.6s;">
+                <div style="font-size: 0.8rem; color: var(--muted); margin-bottom: 8px; text-transform: uppercase; font-weight: 800; color: var(--violet);">🧠 Супервизия сессии</div>
+                <div style="font-size: 0.85rem; color: var(--text-color); line-height: 1.6;">
+                  <span style="display:inline-block; margin-bottom:6px; font-weight:bold; color:#10b981; background: rgba(16,185,129,0.1); padding: 2px 8px; border-radius: 4px;">Следование протоколу: 90%</span><br>
+                  <strong>Сильные стороны:</strong> Хорошо удалось перевести фокус с учителя на личные переживания ученика.<br>
+                  <strong style="color: #ef4444;">Зоны роста:</strong> Следует избегать прямых советов в конце сессии, лучше дать подростку самому прийти к решению.
+                </div>
+              </div>
+
+              <div style="animation: fadeIn 0.8s;">
+                <div style="font-size: 0.8rem; color: var(--muted); margin-bottom: 8px; text-transform: uppercase; font-weight: 800; color: #0ea5e9;">💌 Памятка родителю</div>
+                <div style="background: #f0f9ff; padding: 12px; border-radius: 8px; font-size: 0.85rem; color: #0f172a; font-style: italic; border-left: 4px solid #0ea5e9; line-height: 1.5;">
+                  «Уважаемые родители, сегодня мы с Максимом обсуждали его трудности с физикой. Важно сейчас поддержать его и сместить акцент с оценки на сам процесс обучения. Постарайтесь на этой неделе...»
+                </div>
+              </div>
+
+              <div style="margin-top: 16px; animation: fadeIn 1s;">
+                <button id="demo-download-docx-btn" style="width:100%; padding: 10px; background: #fff; border: 1px solid var(--line); border-radius: 8px; font-size: 0.85rem; font-weight: 600; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; color: var(--text-color); box-shadow: 0 2px 4px rgba(0,0,0,0.02); transition: all 0.2s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background='#fff'">
+                  <span>📥</span> Скачать полный отчёт (.docx)
+                </button>
+                <div style="text-align: center; font-size: 0.7rem; color: var(--muted); margin-top: 6px;">
+                  Развернутый документ на 2–3 страницы
+                </div>
+              </div>
+            `;
+            
+            const dlBtn = document.getElementById('demo-download-docx-btn');
+            if (dlBtn) {
+              dlBtn.addEventListener('click', () => {
+                const reportContent = `\uFEFFКЛИНИЧЕСКИЙ ОТЧЕТ И СУПЕРВИЗИЯ ПО ИТОГАМ ОНЛАЙН-СЕССИИ
+Платформа: IDA Psy (https://ida-psy.pro)
+Дата сессии: 24 сентября 2026 г.
+Клиент: Елена С. (Сессия #3)
+Специалист: Психолог-консультант (Демо)
+Продолжительность: 50 минут (Видеосвязь IDA Smart Video)
+
+===================================================================
+1. ФОРМАЛЬНЫЙ ПРОТОКОЛ СЕССИИ (ДЛЯ МЕДИЦИНСКОЙ/ПСИХОЛОГИЧЕСКОЙ КАРТЫ)
+===================================================================
+
+1.1. ПЕРВИЧНЫЕ ЖАЛОБЫ И АКТУАЛЬНЫЙ ЗАПРОС:
+- Острая фрустрация и чувство эмоциональной изоляции в супружеских отношениях.
+- Трудности в открытом выражении обиды и злости; склонность к пассивному избеганию (уход в другую комнату, молчание).
+- Паттерн «накопление напряжения -> аффективная вспышка -> чувство вины».
+
+1.2. ПРЕДВАРИТЕЛЬНЫЕ ДИАГНОСТИЧЕСКИЕ ГИПОТЕЗЫ:
+- Схема эмоциональной депривации и покинутости (Schema Therapy).
+- Нарушение личных границ: проекция ожиданий «чтения мыслей» на партнера.
+
+1.3. ПРИМЕНЕННЫЕ ИНТЕРВЕНЦИИ И ТЕХНИКИ:
+- Эмпатическая валидация переживаний и эмоциональное заземление.
+- Выявление автоматических мыслей («Если он задержался — значит, я ему безразлична»).
+- Когнитивное переструктурирование (поиск альтернативных объяснений).
+- Анализ копинг-стратегий избегания.
+
+1.4. РЕАКЦИЯ И ДИНАМИКА КЛИЕНТА НА СЕССИИ:
+- В первой половине встречи преобладал высокий уровень тревоги и слёзы при упоминании ссоры.
+- После фокусировки на телесных ощущениях уровень напряжения снизился (с 8/10 до 4/10 по шкале субъективного дискомфорта SUD).
+- Появилась готовность признать собственный вклад в эскалацию конфликта.
+
+===================================================================
+2. АВТОМАТИЧЕСКАЯ КЛИНИЧЕСКАЯ СУПЕРВИЗИЯ (AI SUPERVISOR INSIGHTS)
+===================================================================
+
+Оценка следования терапевтическому протоколу (Adherence Score): 85%
+
+2.1. СИЛЬНЫЕ СТОРОНЫ ТЕРАПЕВТИЧЕСКОГО АЛЬЯНСА:
+- Высокий уровень эмпатии и своевременное отражение эмоций клиентки.
+- Плавный перевод диалога из русла обвинений партнера к исследованию собственных чувств и потребностей.
+
+2.2. ПОДМЕЧЕННЫЕ СЛЕПЫЕ ЗОНЫ И РИСК КОНТРПЕРЕНОСА:
+- В середине сессии (24-я минута) возник риск коалиции с клиенткой («сочувствие жертве»), что могло усилить позицию беспомощности.
+- Рекомендация супервизора: в следующей сессии уделить больше внимания ресурсам клиентки и вернуть локус контроля.
+
+2.3. РЕКОМЕНДУЕМЫЙ ПЛАН НА СЛЕДУЮЩУЮ ВСТРЕЧУ:
+- Проверить ведение дневника СМЭР (Ситуация - Мысль - Эмоция - Реакция).
+- Провести поведенческий эксперимент: прямое озвучивание просьбы партнеру без использования ультиматумов.
+
+===================================================================
+3. ПАМЯТКА ДЛЯ КЛИЕНТА (ВРУЧАЕТСЯ ПОСЕССИИ)
+===================================================================
+
+«Елена, спасибо за вашу открытость и смелость на сегодняшней встрече.
+
+Ключевой вывод нашей сессии:
+Ваша обида — это естественный сигнал о неудовлетворенной потребности во внимании и признании. Однако избегание диалога не помогает партнеру понять вашу боль, а лишь усиливает дистанцию.
+
+Домашнее задание к следующей встрече:
+1. Заполнять дневник мыслей: зафиксировать 2-3 ситуации, когда вам захотелось замкнуться в себе, и записать автоматическую мысль.
+2. Практика «Стоп-пауза»: при нарастании обиды сделать 3 глубоких вдоха и спросить себя: «Что я сейчас чувствую на самом деле?».
+
+До встречи в следующий вторник в 18:00!»
+`;
+                const blob = new Blob([reportContent], { type: 'application/msword;charset=utf-8' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'IDA_Psy_Clinical_Report_Elena_S.docx';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+              });
+            }
+            
+            btn.innerHTML = `<span>✅</span> Автоматически сохранено в карту`;
+            btn.style.background = '#10b981';
+            btn.style.color = 'white';
+            btn.style.borderColor = '#10b981';
+            btn.style.cursor = 'default';
+          }, 1500);
+        });
+      }
+    });
+  </script>
+</body>
+</html>

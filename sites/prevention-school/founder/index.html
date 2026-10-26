@@ -1,0 +1,971 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/favicon.png">
+  <title>Roman Dubrovsky, PhD — Founder & Lead Architect of Prevention-AI Platform</title>
+  <meta name="description" content="Roman Dubrovsky, PhD — AI Mental Health Domain Expert, Clinical Psychologist & Public Health Specialist. Founder & Lead Architect of Prevention AI, IDA-Psy & Teenology." />
+  <link rel="canonical" href="https://prevention.school/founder/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/site.css">
+  
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-sub: #64748b;
+      --border: #e2e8f0;
+      --accent: #0f766e;
+      --accent-hover: #115e59;
+      --accent-soft: rgba(15, 118, 110, 0.08);
+      --accent-border: rgba(15, 118, 110, 0.25);
+      --badge-bg: #f1f5f9;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'IBM Plex Mono', monospace;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0b0f19;
+      --card-bg: #111827;
+      --text-main: #f8fafc;
+      --text-muted: #cbd5e1;
+      --text-sub: #94a3b8;
+      --border: #1f2937;
+      --accent: #14b8a6;
+      --accent-hover: #2dd4bf;
+      --accent-soft: rgba(20, 184, 166, 0.12);
+      --accent-border: rgba(20, 184, 166, 0.3);
+      --badge-bg: #1e293b;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .cv-container {
+      max-width: 960px;
+      margin: 32px auto;
+      padding: 0 0 60px;
+    }
+
+    /* Action bar */
+    .top-action-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .back-btn:hover { opacity: 0.8; }
+    .action-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.15s;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      color: var(--text-main);
+    }
+    .btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .btn-primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+    }
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      color: #ffffff;
+    }
+
+    /* Main CV Card */
+    .cv-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    }
+
+    /* Header Profile */
+    .profile-header {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 32px;
+      align-items: center;
+      padding-bottom: 32px;
+      border-bottom: 1.5px solid var(--border);
+    }
+    @media (max-width: 680px) {
+      .profile-header {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .profile-photo { margin: 0 auto; }
+      .header-contacts { justify-content: center; }
+      .header-tags { justify-content: center; }
+    }
+    .profile-photo {
+      width: 160px;
+      height: 160px;
+      border-radius: 20px;
+      object-fit: cover;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      border: 2px solid var(--card-bg);
+    }
+    .profile-title h1 {
+      margin: 0 0 6px;
+      font-size: 2.1rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+    }
+    .profile-role {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin: 0 0 12px;
+    }
+    .header-contacts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 18px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+    .header-contacts a {
+      color: var(--text-muted);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: color 0.15s;
+    }
+    .header-contacts a:hover { color: var(--accent); }
+    .header-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .tag {
+      padding: 3px 10px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border-radius: 6px;
+      background: var(--badge-bg);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+    .tag-accent {
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-color: var(--accent-border);
+    }
+
+    /* Sections */
+    .section {
+      padding: 28px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .section:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.15rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-main);
+      margin: 0 0 18px;
+    }
+    .section-title::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 18px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    /* Highlight Summary Box */
+    .executive-summary {
+      background: var(--accent-soft);
+      border: 1px solid var(--accent-border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--text-main);
+      margin-bottom: 12px;
+    }
+    .executive-summary strong {
+      color: var(--accent);
+    }
+
+    /* Products Grid */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 14px;
+    }
+    @media (max-width: 640px) {
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .product-card {
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--bg);
+      transition: all 0.2s;
+    }
+    .product-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .product-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 6px;
+    }
+    .product-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .product-link {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .product-desc {
+      font-size: 0.83rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin: 0 0 10px;
+    }
+    .product-metrics {
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      color: var(--text-sub);
+    }
+
+    /* Experience Timeline */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+    .exp-item {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 20px;
+    }
+    @media (max-width: 600px) {
+      .exp-item { grid-template-columns: 1fr; gap: 4px; }
+    }
+    .exp-date {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-sub);
+      font-family: var(--font-mono);
+      padding-top: 2px;
+    }
+    .exp-content h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 0 0 2px;
+    }
+    .exp-org {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin: 0 0 8px;
+    }
+    .exp-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+    .exp-bullets {
+      margin: 6px 0 0;
+      padding-left: 18px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .exp-bullets li { margin-bottom: 4px; }
+
+    /* Skills & Competencies Grid */
+    .skills-category-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    @media (max-width: 640px) {
+      .skills-category-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .skill-block {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .skill-block h4 {
+      margin: 0;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    /* Publications List */
+    .pub-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .pub-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg);
+      text-decoration: none;
+      transition: all 0.15s;
+    }
+    .pub-row:hover {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
+    .pub-details {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .pub-name {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+    .pub-meta {
+      font-size: 0.78rem;
+      color: var(--text-sub);
+    }
+    .pub-badge {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    /* Print Styles */
+    @media print {
+      body { background: #ffffff; color: #000000; font-size: 11pt; }
+      .site-header, .footer, .top-action-bar, .theme-toggle, .btn { display: none !important; }
+      .wrap, .cv-container { max-width: 100%; margin: 0; padding: 0; }
+      .cv-card { border: none; box-shadow: none; padding: 0; }
+      .skills-category-grid, .products-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px; }
+      .product-card, .skill-block, .pub-row { border: 1px solid #ccc; break-inside: avoid; }
+      .section { padding: 16px 0; break-inside: avoid; }
+      a { text-decoration: none; color: #000000; }
+      .tag, .tag-accent { border: 1px solid #999; color: #000; background: #fff; }
+      .executive-summary { background: #f4f4f4; border: 1px solid #ccc; color: #000; }
+    }
+  </style>
+
+  <!-- Yandex.Metrika counter & Auto-Goal Tracker -->
+  <script type="text/javascript">
+  (function(m,e,t,r,i,k,a){
+      m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();
+      for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+      k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+  })(window, document,'script','https://mc.yandex.ru/metrika/tag.js', 'ym');
+
+  (function(){
+      try {
+          if (window.location.search.indexOf('no_track=1') !== -1 || window.location.search.indexOf('admin=1') !== -1) {
+              localStorage.setItem('ym_disable_tracking', '1');
+          }
+          if (localStorage.getItem('ym_disable_tracking') === '1') {
+              console.log('[Yandex.Metrika] Tracking disabled for owner/admin session.');
+              window.ymGoal = window.reachGoal = function(g, p){ console.log('[Goal skipped (admin)]', g, p || ''); };
+              return;
+          }
+      } catch(e) {}
+
+      var host = (window.location.hostname || '').toLowerCase();
+      var id = null;
+      if (host.indexOf('ida-psy.ru') !== -1) id = 113108416;
+      else if (host.indexOf('ida-psy.pro') !== -1) id = 113706104;
+      else if (host.indexOf('prevention-ai.ru') !== -1) id = 113108883;
+      else if (host.indexOf('prevention.school') !== -1) id = 113706126;
+      else if (host.indexOf('teenology-ai.ru') !== -1) id = 113108854;
+      else if (host.indexOf('teenology.care') !== -1) id = 109437867;
+      else if (host.indexOf('ru.decima.business') !== -1) id = 93591954;
+      else if (host.indexOf('decima.business') !== -1) id = 93591880;
+      else {
+          id = 113706126;
+      }
+
+      window._ymCounterId = id;
+
+      window.ymGoal = window.reachGoal = function(goalName, params) {
+          if (!id || typeof ym !== 'function') return;
+          try {
+              if (params) {
+                  ym(id, 'reachGoal', goalName, params);
+              } else {
+                  ym(id, 'reachGoal', goalName);
+              }
+              console.log('[YM Goal]', goalName, params || '');
+          } catch(e) {
+              console.warn('[YM Goal Error]', e);
+          }
+      };
+
+      if (id) {
+          ym(id, 'init', {
+              ssr: true,
+              webvisor: true,
+              clickmap: true,
+              ecommerce: "dataLayer",
+              referrer: document.referrer,
+              url: location.href,
+              accurateTrackBounce: true,
+              trackLinks: true
+          });
+      }
+
+      document.addEventListener('DOMContentLoaded', function(){
+          document.addEventListener('click', function(e){
+              var target = e.target;
+              if (!target) return;
+              var el = target.closest('a, button, [data-goal], input[type="submit"]');
+              if (!el) return;
+
+              var explicitGoal = el.getAttribute('data-goal');
+              if (explicitGoal) {
+                  window.ymGoal(explicitGoal);
+                  return;
+              }
+
+              var href = (el.getAttribute('href') || '').toLowerCase();
+              var text = (el.innerText || el.textContent || el.value || '').trim().toLowerCase();
+              var idStr = (el.id || '').toLowerCase();
+
+              if (href.indexOf('t.me/') !== -1 || href.indexOf('telegram.me') !== -1) {
+                  window.ymGoal('telegram_click', {url: href});
+              } else if (href.indexOf('tel:') === 0) {
+                  window.ymGoal('phone_click', {phone: href});
+              } else if (href.indexOf('mailto:') === 0) {
+                  window.ymGoal('email_click', {email: href});
+              } else if (/\.(pdf|docx?|xlsx?|zip|rar|pptx?)$/i.test(href)) {
+                  window.ymGoal('file_download', {file: href});
+              } else if (href.indexOf('/join') !== -1 || href.indexOf('/auth') !== -1 || href.indexOf('/register') !== -1) {
+                  window.ymGoal('auth_click', {text: text});
+              }
+          }, true);
+      });
+  })();
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <header class="site-header">
+      <a class="brand" href="/"><span class="brand-mark">P</span><span>Prevention School <small style="font-size: 10px; font-weight: 800; text-transform: uppercase; color: var(--accent); margin-left: 4px; vertical-align: super;">Beta</small></span></a>
+      <nav class="nav" aria-label="Navigation">
+        <a href="/about/">About</a>
+        <a href="/academy/">Academy 🎓</a>
+        <a href="https://corporate-health.ida-psy.pro/" target="_blank" rel="noopener">Corporate Health ↗</a>
+        <a href="https://web.prevention.school/?entry=educator" target="_blank" rel="noopener">For Educators</a>
+        <a href="/teenology/">Parents &amp; Teens</a>
+      </nav>
+      <div class="nav-controls">
+        <a href="https://web.prevention.school/" class="nav-cta" target="_blank" rel="noopener">Web Terminal</a>
+        <button type="button" class="theme-toggle" id="theme-toggle">Dark</button>
+      </div>
+    </header>
+
+    <div class="cv-container">
+      
+      <!-- Top Action Bar -->
+      <div class="top-action-bar">
+        <a href="/" class="back-btn">← Back to Home</a>
+        <div class="action-group">
+          <button type="button" class="btn" onclick="window.print()">
+            🖨️ Print / Save as PDF
+          </button>
+          <a href="mailto:admin@prevention-ai.ru" class="btn btn-primary">
+            ✉️ Contact Founder
+          </a>
+        </div>
+      </div>
+
+      <!-- CV Card -->
+      <div class="cv-card">
+        
+        <!-- Header / Profile -->
+        <div class="profile-header">
+          <img src="/assets/founder.jpg" alt="Roman Dubrovsky, PhD" class="profile-photo" width="160" height="160" loading="eager">
+          <div class="profile-title">
+            <h1>Roman Dubrovsky, PhD</h1>
+            <div class="profile-role">Founder &amp; Lead AI System Architect • Clinical Psychologist • Public Health Specialist</div>
+            
+            <div class="header-contacts">
+              <span>📍 Tbilisi, Georgia / Remote</span>
+              <a href="mailto:admin@prevention-ai.ru">✉️ admin@prevention-ai.ru</a>
+              <a href="https://t.me/RomanDubrovsky" target="_blank" rel="noopener">✈️ @RomanDubrovsky</a>
+              <a href="https://www.linkedin.com/in/romandubrovsky/" target="_blank" rel="noopener">💼 LinkedIn Profile</a>
+              <a href="https://orcid.org/0000-0001-9876-9798" target="_blank" rel="noopener">🆔 ORCID: 0000-0001-9876-9798</a>
+            </div>
+
+            <div class="header-tags">
+              <span class="tag tag-accent">Founder of Prevention AI Platform</span>
+              <span class="tag tag-accent">PhD in Public Health &amp; Sociology</span>
+              <span class="tag tag-accent">25+ Yrs Clinical CBT Practice</span>
+              <span class="tag">AI Alignment &amp; RLHF</span>
+              <span class="tag">Mental Health LLM Evaluation</span>
+              <span class="tag tag-accent">Russian: Native</span>
+              <span class="tag">English: Working Proficiency (C1)</span>
+              <span class="tag">UNODC / WHO / UNICEF Alumnus</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Executive Strategic Summary & Founder's Vision -->
+        <div class="section">
+          <div class="section-title">Strategic Value &amp; Founder's Vision</div>
+          <div class="executive-summary">
+            <strong>Strategic AI &amp; Mental Health Expertise:</strong> Over 25 years of continuous hands-on clinical psychotherapy (Cognitive Behavioral Therapy for adolescents and adults) and population-level public health system design, combined with modern generative AI architecture. Creator and Lead System Architect of <strong>Prevention AI</strong>, <strong>IDA-Psy</strong>, and <strong>Teenology Care</strong> — production-deployed AI ecosystems empowering psychologists, clinical practices, and educational institutions.
+            <br><br>
+            <strong>Founder's Mission:</strong> The Prevention AI platform is the direct embodiment of my entire professional journey, made possible through today's frontier artificial intelligence. It bridges real frontline clinical needs with rigorous data privacy and evidence-based protocols. Prevention AI is an independent, mission-driven initiative continuously evolving in close dialogue with practitioners and the global mental health community.
+          </div>
+        </div>
+
+        <!-- Proprietary Live AI Platforms -->
+        <div class="section">
+          <div class="section-title">Live AI Systems &amp; Platforms Built</div>
+          <p style="font-size: 0.88rem; color: var(--text-muted); margin: 0 0 12px;">
+            Production-grade AI solutions engineered to bridge clinical psychology standards with modern generative LLM orchestration:
+          </p>
+
+          <div class="products-grid">
+            
+            <div class="product-card">
+              <div class="product-header">
+                <span class="product-name">Prevention AI Platform</span>
+                <a href="https://prevention.school" target="_blank" class="product-link">prevention.school ↗</a>
+              </div>
+              <p class="product-desc">
+                AI-native clinical &amp; documentation workspace for educational psychologists and social services. Features local zero-knowledge encryption, MHPSS risk triage, and structured generative case summaries.
+              </p>
+              <div class="product-metrics">Architecture: Open-core CRM + GenAI Co-pilot</div>
+            </div>
+
+            <div class="product-card">
+              <div class="product-header">
+                <span class="product-name">IDA-Psy Ecosystem</span>
+                <a href="https://ida-psy.pro" target="_blank" class="product-link">ida-psy.pro ↗</a>
+              </div>
+              <p class="product-desc">
+                Operating system for private therapists and psychological clinics. Includes live AI supervision copilots, interactive psychological situation graphs, CBT protocol alignment, and intake triage.
+              </p>
+              <div class="product-metrics">Focus: Protocol Fidelity &amp; Clinical Supervision</div>
+            </div>
+
+            <div class="product-card">
+              <div class="product-header">
+                <span class="product-name">Teenology Care</span>
+                <a href="https://teenology.care" target="_blank" class="product-link">teenology.care ↗</a>
+              </div>
+              <p class="product-desc">
+                Youth and family mental health micro-intervention ecosystem. Designed with strict ethical guardrails, empathetic boundary maintenance, and crisis de-escalation triggers.
+              </p>
+              <div class="product-metrics">Safety: Red-teaming &amp; Crisis Escalation</div>
+            </div>
+
+            <div class="product-card">
+              <div class="product-header">
+                <span class="product-name">Prevention AI Academy</span>
+                <a href="https://academy.ida-psy.ru" target="_blank" class="product-link">academy.ida-psy.ru ↗</a>
+              </div>
+              <p class="product-desc">
+                Interactive simulation and training hub for mental health practitioners with synthetic client scenario drills, therapeutic case testing, and real-time intervention feedback.
+              </p>
+              <div class="product-metrics">Engine: Synthetic Case Drills &amp; Simulator</div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Core Competencies & Skills -->
+        <div class="section">
+          <div class="section-title">Core Competencies &amp; AI Alignment Strengths</div>
+          <div class="skills-category-grid">
+            
+            <div class="skill-block">
+              <h4>🧠 Clinical Psychology &amp; CBT</h4>
+              <div class="skill-list">
+                <span class="tag">Cognitive Behavioral Therapy (CBT)</span>
+                <span class="tag">Adolescent &amp; Family Therapy</span>
+                <span class="tag">Crisis Intervention</span>
+                <span class="tag">Suicidality &amp; Risk Screening</span>
+                <span class="tag">Evidence-Based Protocols</span>
+              </div>
+            </div>
+
+            <div class="skill-block">
+              <h4>🤖 AI Evaluation &amp; RLHF Alignment</h4>
+              <div class="skill-list">
+                <span class="tag">LLM Output Evaluation</span>
+                <span class="tag">Therapeutic Ground Truth</span>
+                <span class="tag">Side-by-Side (SxS) Annotation</span>
+                <span class="tag">Bias &amp; Hallucination Auditing</span>
+                <span class="tag">Empathy &amp; Safety Benchmarks</span>
+              </div>
+            </div>
+
+            <div class="skill-block">
+              <h4>📊 Public Health &amp; Epidemiology</h4>
+              <div class="skill-list">
+                <span class="tag">ESPAD / UNODC Methodologies</span>
+                <span class="tag">Population Mental Health Surveys</span>
+                <span class="tag">Behavioral Risk Monitoring</span>
+                <span class="tag">Yale MPH / Fogarty Framework</span>
+                <span class="tag">Impact &amp; Outcome Evaluation</span>
+              </div>
+            </div>
+
+            <div class="skill-block">
+              <h4>🛡️ Ethics, Privacy &amp; Architecture</h4>
+              <div class="skill-list">
+                <span class="tag">MHPSS Guidelines</span>
+                <span class="tag">GDPR / COPPA / HIPAA Readiness</span>
+                <span class="tag">Russian: Native</span>
+                <span class="tag">English: Professional Working (C1)</span>
+                <span class="tag">Clinical Prompt Engineering</span>
+                <span class="tag">Clinical Manual Writing</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Professional Experience -->
+        <div class="section">
+          <div class="section-title">Professional Experience</div>
+          <div class="timeline">
+
+            <div class="exp-item">
+              <div class="exp-date">2026 — Present</div>
+              <div class="exp-content">
+                <h3>Founder &amp; Lead System Architect</h3>
+                <div class="exp-org">Prevention AI Platform &amp; IDA-Psy Ecosystem (Remote / Global)</div>
+                <p class="exp-desc">
+                  Architected and deployed an AI-native digital ecosystem for mental health professionals, clinics, and educational psychologists.
+                </p>
+                <ul class="exp-bullets">
+                  <li>Formulated domain-specific clinical prompt libraries, guardrails, and automated evaluation metrics for psychological consultations.</li>
+                  <li>Designed strict compliance pipelines ensuring psychological data confidentiality, ethical boundaries, and MHPSS alignment.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-date">2005 — Present</div>
+              <div class="exp-content">
+                <h3>Adolescent Psychologist &amp; CBT Consultant</h3>
+                <div class="exp-org">Private Clinical Practice (21+ Years Continuous Practice)</div>
+                <p class="exp-desc">
+                  Conducted thousands of hours of direct, individual and family psychological counseling focusing on adolescents and young adults.
+                </p>
+                <ul class="exp-bullets">
+                  <li>Specialized in CBT for anxiety, depression, behavioral challenges, and developmental crises.</li>
+                  <li>Translated two decades of clinical practitioner "pain points" into intuitive software workflows and AI prompt architectures.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-date">2020 — 2026</div>
+              <div class="exp-content">
+                <h3>Lead Analytical Expert &amp; Methodologist</h3>
+                <div class="exp-org">Federal Center for the Protection of Children (Ministry of Education)</div>
+                <ul class="exp-bullets">
+                  <li>Evaluated national youth prevention data arrays and regional reporting across all federal administrative districts.</li>
+                  <li>Authored official federal methodological guidelines, prevention toolkits, and clinical protocols utilized by school psychologists nationwide.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-date">2019 — 2023</div>
+              <div class="exp-content">
+                <h3>Senior Prevention Specialist &amp; Lead Methodologist</h3>
+                <div class="exp-org">St. Petersburg Center "KONTAKT" for Youth Social Programs &amp; Deviant Behavior Prevention</div>
+                <ul class="exp-bullets">
+                  <li>Conducted a comprehensive scientific and methodological evaluation of a 25-year regional youth prevention system for juvenile offenders.</li>
+                  <li>Authored standardized intervention blueprints and rehabilitation pathways for high-risk youth.</li>
+                  <li>Formulated core technical requirements for automating youth prevention case management.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-date">2014 — 2016</div>
+              <div class="exp-content">
+                <h3>Adjunct Lecturer (Graduate Faculty of Psychology)</h3>
+                <div class="exp-org">Saint Petersburg State University (SPbSU)</div>
+                <ul class="exp-bullets">
+                  <li>Delivered advanced health psychology and prevention courses within the Master of Public Health (MPH) framework co-developed with <strong>Yale University (Yale School of Public Health)</strong> under the NIH Fogarty AITRP Grant (No. D43TW001028).</li>
+                  <li>Integrated WHO public health approaches and UNODC-aligned prevention standards into graduate training for clinical psychologists.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-date">2007 — 2017</div>
+              <div class="exp-content">
+                <h3>Senior Advisor on Youth Prevention Policy &amp; Social Communications</h3>
+                <div class="exp-org">Administration of the Leningrad Region (Regional Government)</div>
+                <ul class="exp-bullets">
+                  <li>Served as key prevention expert on the Regional Anti-Drug Commission, advising executive authorities on strategic funding and primary prevention design.</li>
+                  <li>Authored and published the acclaimed adolescent behavioral guide <em>"Growing Up Right!"</em> (Взрослею правильно).</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-date">2000 — 2014</div>
+              <div class="exp-content">
+                <h3>Lead Senior Researcher</h3>
+                <div class="exp-org">Prof. I.N. Gurvich Scientific School of Public Health (SPbSU / RAS)</div>
+                <ul class="exp-bullets">
+                  <li>Pioneered longitudinal research in the sociology of mental health, deviance, and adolescent risk behavior epidemiology.</li>
+                  <li>Led regional data collection and synchronization for the European School Survey Project on Alcohol and Other Drugs (ESPAD 2010), published in the 2012 UN/ESPAD Global Report.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-date">2000 — 2005</div>
+              <div class="exp-content">
+                <h3>Co-Founder &amp; Lead Researcher</h3>
+                <div class="exp-org">Social Project Centre "Stellit" (NGO)</div>
+                <ul class="exp-bullets">
+                  <li>Managed research-driven child protection and youth risk-reduction programs partnered with <strong>UNICEF, WHO, UNODC, and the European Commission</strong>.</li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Education & Academic Credentials -->
+        <div class="section">
+          <div class="section-title">Education &amp; Academic Degrees</div>
+          <div class="timeline">
+            
+            <div class="exp-item">
+              <div class="exp-date">1998 — 2001</div>
+              <div class="exp-content">
+                <h3>PhD — Candidate of Sociological Sciences (PhD Equivalent)</h3>
+                <div class="exp-org">Institute of Sociology, Russian Academy of Sciences</div>
+                <p class="exp-desc">Specialization: Sociology of Deviance, Youth Risk Behavior &amp; Public Health.</p>
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-date">1993 — 1998</div>
+              <div class="exp-content">
+                <h3>Specialist Degree in Psychology (M.Sc. Equivalent)</h3>
+                <div class="exp-org">Saint Petersburg State University (SPbSU), Faculty of Psychology</div>
+                <p class="exp-desc">5-year rigorous clinical psychology, diagnostics, and counseling program.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Featured Publications & Analytical Articles -->
+        <div class="section">
+          <div class="section-title">Selected Publications &amp; Methodological Works</div>
+          <div class="pub-grid">
+            
+            <a href="https://prevention.school/articles/evolution-of-public-health-ai/" target="_blank" class="pub-row">
+              <div class="pub-details">
+                <span class="pub-name">The Evolution of Public Health.AI: Resolving Systemic Bottlenecks with Generative AI</span>
+                <span class="pub-meta">Dubrovsky R. • Prevention AI Monograph &amp; Scientific Overview, 2026</span>
+              </div>
+              <span class="pub-badge">Read English Article →</span>
+            </a>
+
+            <a href="https://prevention.school/articles/mhpss-ai-exoskeleton/" target="_blank" class="pub-row">
+              <div class="pub-details">
+                <span class="pub-name">Maturation of MHPSS-AI: From Prompt Hacking to the Therapist's Cognitive Exoskeleton</span>
+                <span class="pub-meta">Dubrovsky R. • Prevention AI &amp; Clinical System Architecture Paper, 2026</span>
+              </div>
+              <span class="pub-badge">Read English Article →</span>
+            </a>
+
+            <a href="https://prevention.school/science/" target="_blank" class="pub-row">
+              <div class="pub-details">
+                <span class="pub-name">Scientific Foundations &amp; Taxonomy: Prevention Intelligence Engine (PIE)</span>
+                <span class="pub-meta">Dubrovsky R. • Core Scientific Rationale, Empirical MHPSS Protocols &amp; AI Alignment Framework</span>
+              </div>
+              <span class="pub-badge">Explore Science Rationale →</span>
+            </a>
+
+            <a href="https://drive.google.com/file/d/1FLx6-fR9ZQGGQ1Qr9RcjcuovlLlFTWtA/view?usp=drive_link" target="_blank" rel="noopener" class="pub-row">
+              <div class="pub-details">
+                <span class="pub-name">The Scientific School of Public Health of Prof. I. N. Gurvich (1952–2014)</span>
+                <span class="pub-meta">Dubrovsky R.G., Odinokova V.A. • Herzen University Scientific Journal, 2018</span>
+              </div>
+              <span class="pub-badge">Download PDF ↗</span>
+            </a>
+
+            <a href="https://drive.google.com/file/d/18a-D70Qk-MbI_T6euQduk15wGoWwZ1J-/view?usp=sharing" target="_blank" rel="noopener" class="pub-row">
+              <div class="pub-details">
+                <span class="pub-name">Conceptual Frameworks of Studying and Measuring Human Well-being from Psychological Science</span>
+                <span class="pub-meta">Tsvetkova L.A., Antonova N.A., Dubrovsky R.G. • RFBR Bulletin, 2019</span>
+              </div>
+              <span class="pub-badge">Download PDF ↗</span>
+            </a>
+
+            <a href="https://drive.google.com/file/d/1st1Rxbwcgbaaz4hffjwGKOfBHbXndHsd/view?usp=sharing" target="_blank" rel="noopener" class="pub-row">
+              <div class="pub-details">
+                <span class="pub-name">Barriers and Facilitators of Seeking Psychological Help in Education</span>
+                <span class="pub-meta">Antonova N.A., Eritsyan K.Y., Kazantseva T.V., Dubrovsky R.G. • Psychological Science &amp; Education, 2022</span>
+              </div>
+              <span class="pub-badge">Download PDF ↗</span>
+            </a>
+
+            <a href="https://drive.google.com/file/d/1WCzfIbqNA5AcVa8CTOIyHjtlrl5Och9k/view?usp=sharing" target="_blank" rel="noopener" class="pub-row">
+              <div class="pub-details">
+                <span class="pub-name">Preventive Interventions in Educational Organizations for Mental Health &amp; Positive Thinking</span>
+                <span class="pub-meta">Dubrovsky R.G. • Federal Center for Child Rights Protection, 2021 (Methodological Manual)</span>
+              </div>
+              <span class="pub-badge">Download PDF ↗</span>
+            </a>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <strong>Prevention School</strong><br>Open digital infrastructure for psychological support in education.
+          <p class="footer-legal-notice" style="margin-top: 10px; font-size: 0.82rem; line-height: 1.5; color: var(--muted); max-width: 580px;">
+            The platform operates under zero-knowledge privacy standards, complying with FERPA, COPPA, and GDPR frameworks. Personal student identification data never leaves the local school environment or enters third-party AI training pipelines.
+          </p>
+          <p class="footer-contact">
+            <a href="mailto:admin@prevention.school">admin@prevention.school</a><span class="footer-contact-sep" aria-hidden="true">·</span><a href="https://t.me/RomanDubrovsky" target="_blank" rel="noopener noreferrer">Telegram (@RomanDubrovsky)</a><span class="footer-contact-sep" aria-hidden="true">·</span><a href="/founder/">Author Profile</a>
+          </p>
+          <p class="footer-community" style="margin-top: 8px; font-size: 0.85rem; color: var(--muted);">
+            International Research & Deployment:<br>
+            GitHub: <a href="https://github.com/teenology/prevention-school" target="_blank" rel="noopener">github.com/teenology</a><br>
+            Community Channel: <a href="https://t.me/anthropology_health" target="_blank" rel="noopener">t.me/anthropology_health</a>
+          </p>
+        </div>
+        <nav class="footer-links" aria-label="Footer Navigation">
+          <a href="/science/">Science & Methodology</a>
+          <a href="/articles/">Publications & Papers</a>
+          <a href="/founder/">Founder Profile</a>
+          <a href="https://corporate-health.ida-psy.pro/" target="_blank" rel="noopener">Corporate Health ↗</a>
+          <a href="https://ida-psy.pro/" target="_blank" rel="noopener">Private Practice Kit ↗</a>
+          <a href="/privacy/">Privacy Policy</a>
+          <a href="/terms/">Terms of Service</a>
+        </nav>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const btn = document.getElementById('theme-toggle');
+    if (btn) {
+      const saved = localStorage.getItem('theme');
+      if (saved === 'dark') { document.documentElement.setAttribute('data-theme','dark'); btn.textContent = 'Light'; }
+      btn.addEventListener('click', () => {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        document.documentElement.setAttribute('data-theme', isDark ? '' : 'dark');
+        localStorage.setItem('theme', isDark ? '' : 'dark');
+        btn.textContent = isDark ? 'Dark' : 'Light';
+      });
+    }
+  </script>
+</body>
+</html>

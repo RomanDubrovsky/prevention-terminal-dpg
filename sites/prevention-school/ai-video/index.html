@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link class="favicon" rel="icon" href="../favicon.ico" sizes="any">
+  <link class="favicon" rel="icon" href="../favicon.png" type="image/png">
+  <link class="apple-touch-icon" href="../favicon.png">
+  <title>AI Video Cockpit for School Psychologists — Mind Maps, 4-Phase Sprints & Webinars | Prevention-AI</title>
+  <meta name="description" content="Integrated clinical AI cockpit for school and youth counseling video calls: 4-phase counseling sprints, session mind map, deep incongruence watcher, interactive parent webinars with live polls & Q&A, and instant official records.">
+  <link rel="canonical" href="https://prevention.school/ai-video/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Prevention-AI">
+  <meta property="og:title" content="AI Video Assistant for School Psychologists — Real-time Supervision Inside Every Call">
+  <meta property="og:description" content="SOS button, post-session auto-supervision, student progress notes, and parent handouts — seamlessly built into secure video calls.">
+  <meta property="og:url" content="https://prevention.school/ai-video/">
+  <meta property="og:locale" content="en_US">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;550;650;760;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/site.css">
+  <style>
+    .va-hero { padding: 80px 0 60px; text-align: center; }
+    .va-hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 900; line-height: 1.08; margin: 0 0 20px; max-width: 860px; margin-inline: auto; }
+    .va-hero p.lead { font-size: 1.25rem; color: var(--muted); max-width: 720px; margin: 0 auto 32px; line-height: 1.5; }
+    .va-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(13,148,136,0.1); color: #0d9488; border: 1px solid rgba(13,148,136,0.25); padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 24px; }
+    
+    .va-section { padding: 70px 0; border-top: 1px solid var(--line); }
+    .va-section-title { text-align: center; margin-bottom: 48px; }
+    .va-section-title h2 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 800; margin: 0 0 12px; }
+    .va-section-title p { color: var(--muted); font-size: 1.1rem; max-width: 640px; margin: 0 auto; }
+
+    /* Pain Points */
+    .va-pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+    .va-pain-card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 12px; position: relative; overflow: hidden; }
+    .va-pain-card .pain-icon { font-size: 2rem; margin-bottom: 4px; }
+    .va-pain-card h3 { margin: 0; font-size: 1.2rem; font-weight: 700; color: var(--text-color); }
+    .va-pain-card p { margin: 0; color: var(--muted); line-height: 1.55; font-size: 0.95rem; }
+
+    /* How It Works - 3 Columns */
+    .va-steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; }
+    .va-step { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 32px 24px; display: flex; flex-direction: column; position: relative; }
+    .va-step-num { width: 36px; height: 36px; border-radius: 50%; background: #0d9488; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1rem; margin-bottom: 20px; }
+    .va-step h3 { margin: 0 0 10px; font-size: 1.25rem; font-weight: 700; }
+    .va-step p { margin: 0; color: var(--muted); line-height: 1.55; font-size: 0.95rem; flex-grow: 1; }
+    .va-step-highlight { margin-top: 16px; padding: 12px 14px; border-radius: 8px; background: rgba(13,148,136,0.06); border-left: 3px solid #0d9488; font-size: 0.88rem; color: var(--text-color); }
+
+    /* Architecture Features (Subtle & Intelligent) */
+    .va-arch-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+    .va-arch-card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 8px; }
+    .va-arch-card .arch-icon { font-size: 1.8rem; margin-bottom: 4px; }
+    .va-arch-card h4 { margin: 0; font-size: 1.05rem; font-weight: 700; color: var(--text-color); }
+    .va-arch-card p { margin: 0; font-size: 0.88rem; color: var(--muted); line-height: 1.5; }
+
+    /* Results */
+    .va-metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+    .va-metric-card { text-align: center; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 32px 20px; }
+    .va-metric-card .num { font-size: 2.8rem; font-weight: 900; color: #0d9488; line-height: 1; margin-bottom: 8px; }
+    .va-metric-card .lbl { color: var(--muted); font-size: 0.95rem; line-height: 1.4; }
+
+    /* CTA */
+    .va-cta-block { text-align: center; background: linear-gradient(135deg, rgba(13,148,136,0.08) 0%, rgba(14,165,233,0.08) 100%); border: 1px solid rgba(13,148,136,0.2); border-radius: 20px; padding: 60px 24px; margin: 40px 0; }
+    .va-cta-block h2 { font-size: clamp(1.8rem, 3.5vw, 2.4rem); font-weight: 800; margin: 0 0 16px; }
+    .va-cta-block p { color: var(--muted); font-size: 1.1rem; max-width: 580px; margin: 0 auto 28px; line-height: 1.5; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+  <!-- Yandex.Metrika counter & Auto-Goal Tracker -->
+<script type="text/javascript">
+(function(m,e,t,r,i,k,a){
+    m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();
+    for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+})(window, document,'script','https://mc.yandex.ru/metrika/tag.js', 'ym');
+
+(function(){
+    try {
+        if (window.location.search.indexOf('no_track=1') !== -1 || window.location.search.indexOf('admin=1') !== -1) {
+            localStorage.setItem('ym_disable_tracking', '1');
+        }
+        if (localStorage.getItem('ym_disable_tracking') === '1') {
+            console.log('[Yandex.Metrika] Tracking disabled for owner/admin session.');
+            window.ymGoal = window.reachGoal = function(g, p){ console.log('[Goal skipped (admin)]', g, p || ''); };
+            return;
+        }
+    } catch(e) {}
+
+    var host = (window.location.hostname || '').toLowerCase();
+    var id = null;
+    if (host.indexOf('ida-psy.ru') !== -1) id = 113108416;
+    else if (host.indexOf('ida-psy.pro') !== -1) id = 113706104;
+    else if (host.indexOf('prevention-ai.ru') !== -1) id = 113108883;
+    else if (host.indexOf('prevention.school') !== -1) id = 113706126;
+    else if (host.indexOf('teenology-ai.ru') !== -1) id = 113108854;
+    else if (host.indexOf('teenology.care') !== -1) id = 109437867;
+    else if (host.indexOf('ru.decima.business') !== -1) id = 93591954;
+    else if (host.indexOf('decima.business') !== -1) id = 93591880;
+    else {
+        id = 113706126;
+    }
+
+    window._ymCounterId = id;
+
+    // Universal Goal Dispatcher
+    window.ymGoal = window.reachGoal = function(goalName, params) {
+        if (!id || typeof ym !== 'function') return;
+        try {
+            if (params) {
+                ym(id, 'reachGoal', goalName, params);
+            } else {
+                ym(id, 'reachGoal', goalName);
+            }
+            console.log('[YM Goal]', goalName, params || '');
+        } catch(e) {
+            console.warn('[YM Goal Error]', e);
+        }
+    };
+
+    if (id) {
+        ym(id, 'init', {
+            ssr: true,
+            webvisor: true,
+            clickmap: true,
+            ecommerce: "dataLayer",
+            referrer: document.referrer,
+            url: location.href,
+            accurateTrackBounce: true,
+            trackLinks: true
+        });
+    }
+
+    // Auto-Goal Click & Form Interceptors
+    document.addEventListener('DOMContentLoaded', function(){
+        // 1. Click tracker for buttons, links, actions
+        document.addEventListener('click', function(e){
+            var target = e.target;
+            if (!target) return;
+            var el = target.closest('a, button, [data-goal], input[type="submit"]');
+            if (!el) return;
+
+            // Explicit data-goal attribute
+            var explicitGoal = el.getAttribute('data-goal');
+            if (explicitGoal) {
+                window.ymGoal(explicitGoal);
+                return;
+            }
+
+            var href = (el.getAttribute('href') || '').toLowerCase();
+            var text = (el.innerText || el.textContent || el.value || '').trim().toLowerCase();
+            var idStr = (el.id || '').toLowerCase();
+            var cls = (el.className || '').toLowerCase();
+
+            // Messengers & Social
+            if (href.indexOf('t.me/') !== -1 || href.indexOf('telegram.me') !== -1) {
+                window.ymGoal('telegram_click', {url: href});
+            } else if (href.indexOf('vk.com/') !== -1) {
+                window.ymGoal('vk_click', {url: href});
+            } else if (href.indexOf('wa.me/') !== -1 || href.indexOf('whatsapp.com') !== -1) {
+                window.ymGoal('whatsapp_click', {url: href});
+            } else if (href.indexOf('tel:') === 0) {
+                window.ymGoal('phone_click', {phone: href});
+            } else if (href.indexOf('mailto:') === 0) {
+                window.ymGoal('email_click', {email: href});
+            } 
+            // File downloads
+            else if (/\.(pdf|docx?|xlsx?|zip|rar|pptx?)$/i.test(href)) {
+                window.ymGoal('file_download', {file: href});
+            }
+            // Registration & Auth
+            else if (href.indexOf('/join') !== -1 || href.indexOf('/staff-register') !== -1 || href.indexOf('/auth') !== -1 || href.indexOf('/register') !== -1 || idStr.indexOf('register') !== -1 || idStr.indexOf('login') !== -1 || text.indexOf('регистрац') !== -1 || text.indexOf('войти') !== -1 || text.indexOf('личный кабинет') !== -1) {
+                window.ymGoal('auth_click', {text: text});
+            }
+            // Demo & Interactive Room
+            else if (href.indexOf('#room=') !== -1 || href.indexOf('/demo') !== -1 || href.indexOf('/app') !== -1 || href.indexOf('/workspace') !== -1 || idStr.indexOf('demo') !== -1 || text.indexOf('демо') !== -1 || text.indexOf('попробовать') !== -1 || text.indexOf('запустить') !== -1) {
+                window.ymGoal('demo_open', {text: text});
+            }
+            // Test & Screening
+            else if (href.indexOf('/test') !== -1 || href.indexOf('screening') !== -1 || text.indexOf('тест') !== -1 || text.indexOf('диагностик') !== -1 || text.indexOf('опрос') !== -1) {
+                window.ymGoal('test_start', {text: text});
+            }
+            // Pricing / Tariffs
+            else if (href.indexOf('pricing') !== -1 || href.indexOf('tariff') !== -1 || text.indexOf('тариф') !== -1 || text.indexOf('купить') !== -1 || text.indexOf('подключить') !== -1) {
+                window.ymGoal('pricing_click', {text: text});
+            }
+            // Feedback / Call to action
+            else if (text.indexOf('оставить заявку') !== -1 || text.indexOf('записаться') !== -1 || text.indexOf('консультац') !== -1 || text.indexOf('связаться') !== -1) {
+                window.ymGoal('lead_button_click', {text: text});
+            }
+        }, true);
+
+        // 2. Form submission tracker
+        document.addEventListener('submit', function(e){
+            var form = e.target;
+            if (!form) return;
+            var formId = form.id || form.getAttribute('name') || form.getAttribute('action') || 'lead_form';
+            window.ymGoal('form_submit', {form_id: formId});
+        }, true);
+
+        // 3. Scroll depth tracking (50% and 90%)
+        var scroll50Fired = false;
+        var scroll90Fired = false;
+        window.addEventListener('scroll', function(){
+            var h = document.documentElement, 
+                b = document.body,
+                st = 'scrollTop',
+                sh = 'scrollHeight';
+            var percent = ((h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight)) * 100;
+            if (!scroll50Fired && percent >= 50) {
+                scroll50Fired = true;
+                window.ymGoal('scroll_50');
+            }
+            if (!scroll90Fired && percent >= 90) {
+                scroll90Fired = true;
+                window.ymGoal('scroll_90');
+            }
+        }, {passive: true});
+    });
+})();
+</script>
+<!-- /Yandex.Metrika counter -->
+</head>
+<body>
+  <div class="wrap">
+    
+    <!-- HEADER -->
+        <header class="site-header">
+      <a class="brand" href="/"><span class="brand-mark">P</span><span>Prevention School <small style="font-size: 10px; font-weight: 800; text-transform: uppercase; color: var(--accent); margin-left: 4px; vertical-align: super;">Beta</small></span></a>
+      <nav class="nav" aria-label="Navigation">
+        <a href="/about/">About</a>
+        <a href="/academy/">Academy 🎓</a>
+        <a href="https://corporate-health.ida-psy.pro/" target="_blank" rel="noopener">Corporate Health ↗</a>
+        <a href="https://web.prevention.school/?entry=educator" target="_blank" rel="noopener">For Educators</a>
+        <a href="/teenology/">Parents &amp; Teens</a>
+      </nav>
+      <div class="nav-controls">
+        <a href="https://web.prevention.school/" class="nav-cta" target="_blank" rel="noopener">Web Terminal</a>
+        <button type="button" class="theme-toggle" id="theme-toggle">Dark</button>
+      </div>
+    </header>
+
+    <main>
+      
+      <!-- ===== HERO ===== -->
+      <section class="va-hero">
+        <div class="va-badge">
+          <span>✨</span> Clinical Supervision for Youth & Educational Counselors
+        </div>
+        <h1>
+          School Counseling Video Calls with <span style="color: #0d9488;">AI Supervision</span>
+        </h1>
+        <p class="lead">
+          Integrated WebRTC tele-counseling room featuring <strong>4-phase counseling sprints</strong>, interactive session mind maps, deep incongruence detection (spotting hidden bullying & distress), and an <strong>interactive webinar studio with live polls and Q&A</strong> for parent assemblies.
+        </p>
+        <a href="/terminal/" class="btn-primary" style="display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: #fff; padding: 14px 32px; border-radius: 14px; text-decoration: none; font-weight: 800; font-size: 1.05rem;">
+          Open Terminal &rarr;
+        </a>
+
+        <!-- CSS MOCKUP -->
+        <div class="va-mockup-wrapper" style="max-width: 960px; margin: 50px auto 0; background: #fff; border-radius: 16px; border: 1px solid var(--line); box-shadow: 0 12px 32px rgba(0,0,0,0.06); overflow: hidden; display: flex; height: 500px; text-align: left;">
+          
+          <!-- Video Area -->
+          <div style="flex: 1; background: #111; position: relative; display: flex; flex-direction: column;">
+            
+            <!-- Main Video (Client) -->
+            <div style="flex: 1; position: relative; background: url('https://images.unsplash.com/photo-1517672651691-24622a91b550?w=800&q=80') center/cover; opacity: 0.9;">
+              <div style="position: absolute; top: 16px; left: 16px; background: rgba(15,23,42,0.85); backdrop-filter: blur(8px); border: 1px solid rgba(56,189,248,0.4); color: #e2e8f0; padding: 6px 12px; border-radius: 8px; font-size: 0.8rem; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 14px rgba(0,0,0,0.4);">
+                <span style="display: inline-block; width: 7px; height: 7px; background: #38bdf8; border-radius: 50%; box-shadow: 0 0 8px #38bdf8;"></span>
+                <span><strong>🎯 In Work:</strong> Exam anxiety · 1/4 Welcome & Rapport · 🔒 Private</span>
+              </div>
+              <div style="position: absolute; bottom: 20px; left: 20px; background: rgba(0,0,0,0.6); color: white; padding: 4px 10px; border-radius: 6px; font-size: 0.85rem; display: flex; align-items: center; gap: 6px;">
+                <span style="display: inline-block; width: 8px; height: 8px; background: #10b981; border-radius: 50%;"></span>
+                Max (Student, 9th Grade)
+              </div>
+            </div>
+            
+            <!-- Self Video (Therapist) -->
+            <div style="position: absolute; top: 20px; right: 20px; width: 140px; height: 100px; background: url('https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=300&q=80') center/cover; border-radius: 8px; border: 2px solid rgba(255,255,255,0.2);">
+            </div>
+            
+            <!-- Bottom Controls -->
+            <div style="height: 64px; background: #1a1a1a; display: flex; justify-content: center; align-items: center; gap: 16px;">
+              <div style="width: 44px; height: 44px; background: #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">🎤</div>
+              <div style="width: 44px; height: 44px; background: #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">📹</div>
+              <div style="width: 44px; height: 44px; background: #ef4444; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transform: rotate(135deg);">📞</div>
+            </div>
+          </div>
+
+          <!-- Sidebar / AI Assistant -->
+          <div style="width: 340px; background: #f8fafc; border-left: 1px solid var(--line); display: flex; flex-direction: column;">
+            <div style="padding: 16px; border-bottom: 1px solid var(--line); font-weight: 700; color: var(--text-color); display: flex; align-items: center; justify-content: space-between;">
+              <div>AI Case Supervisor</div>
+              <span style="font-size: 0.75rem; background: #0d9488; color: white; padding: 2px 8px; border-radius: 12px; display:flex; align-items:center; gap: 4px;"><span class="live-indicator" style="width: 6px; height: 6px; background: #fff; border-radius: 50%; display: inline-block;"></span> Active</span>
+            </div>
+            
+            <div id="demo-sidebar-scroll" style="flex: 1; padding: 16px; overflow-y: auto; font-size: 0.9rem;">
+              
+              <div style="margin-bottom: 20px;">
+                <div style="font-size: 0.8rem; color: var(--muted); margin-bottom: 6px;">Live Dialogue Transcript</div>
+                <div style="color: var(--muted); line-height: 1.5;">
+                  <p style="margin: 0 0 8px;"><strong>Max:</strong> I hate this physics teacher, she is deliberately trying to fail me!</p>
+                  <p style="margin: 0 0 8px;"><strong>You:</strong> <span style="position: relative;">And is that why you feel so upset?<span class="live-typing" style="display:inline-block; width:4px; height:12px; background:var(--muted); margin-left:4px; vertical-align:middle; animation: blink 1s step-end infinite;"></span></span></p>
+                </div>
+              </div>
+
+              <!-- SOS Button Container -->
+              <div id="demo-sos-container" style="margin-top: 30px; text-align: center;">
+                <div style="font-size: 0.75rem; color: var(--muted); margin-bottom: 8px;">Encountering student resistance? Ask AI:</div>
+                <button id="demo-sos-btn" style="width: 100%; padding: 12px; background: #ef4444; color: white; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(239,68,68,0.3); transition: all 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+                  <span>🚨</span> SOS Help Button
+                </button>
+              </div>
+
+              <!-- SOS Result (Hidden initially) -->
+              <div id="demo-sos-result" style="display: none; margin-top: 20px;">
+                <div style="font-size: 0.8rem; color: var(--muted); margin-bottom: 6px;">Live Clinical Guidance</div>
+                <div style="background: white; border: 1px solid #0d9488; border-radius: 8px; padding: 12px; box-shadow: 0 4px 12px rgba(13,148,136,0.08); animation: fadeIn 0.4s;">
+                  <div style="font-weight: 700; color: #0d9488; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+                    <span>💡</span> Socratic Suggestion
+                  </div>
+                  <p style="margin: 0 0 8px; color: var(--text-color); line-height: 1.5;">The student projects intense anger onto the teacher, masking severe fear of parental punishment over low grades.</p>
+                  <div style="background: #f1f5f9; padding: 8px 10px; border-radius: 6px; font-size: 0.85rem; color: #334155; font-style: italic; border-left: 3px solid #0d9488;">
+                    "Max, I hear how angry you are with these grades. What are you worried will happen when you get home with them?"
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            
+            <div style="padding: 16px; border-top: 1px solid var(--line); background: white;">
+              <button id="demo-analyze-btn" style="width: 100%; padding: 12px; background: rgba(13,148,136,0.1); color: #0d9488; border: 1px solid #0d9488; border-radius: 8px; font-weight: 600; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; transition: all 0.2s;">
+                <span>✨</span> Request Post-Session Analysis
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ===== PAIN POINTS ===== -->
+      <section style="padding-bottom: 50px;">
+        <div class="va-pain-grid">
+          <div class="va-pain-card">
+            <span class="pain-icon">😰</span>
+            <h3>"What if I say the wrong thing to a teenager?"</h3>
+            <p>School psychologists often deal with delicate acute crises alone. The SOS button provides validated clinical responses in 2 seconds.</p>
+          </div>
+          <div class="va-pain-card">
+            <span class="pain-icon">📝</span>
+            <h3>"Drowning in paperwork after every student call"</h3>
+            <p>AI automatically drafts official school consultation records, supervision logs, and parent follow-up memos in seconds.</p>
+          </div>
+          <div class="va-pain-card">
+            <span class="pain-icon">🎓</span>
+            <h3>"Working alone with no peer supervision"</h3>
+            <p>The AI Supervisor analyzes each session: tracking protocol adherence, spotlighting blind spots, and strengthening counseling competencies.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== HOW IT WORKS ===== -->
+      <section class="va-section">
+        <div class="va-section-title">
+          <h2>Four Pillars of the Educational Clinical Cockpit</h2>
+          <p>Continuous clinical support before, during, and after student sessions and parent-teacher webinars</p>
+        </div>
+
+        <div class="va-steps-grid">
+          
+          <div class="va-step">
+            <div class="va-step-num">1</div>
+            <h3>Session Mind Map & 4-Phase Counseling Sprints</h3>
+            <p>Direct the counseling vector in real time. Structure sessions into 4 structured phases: <strong>1. Exploration</strong> (identifying school triggers) &rarr; <strong>2. Desensitization</strong> (emotional regulation) &rarr; <strong>3. Cognitive Shift</strong> (reframing beliefs about competence/peers) &rarr; <strong>4. Micro-Step</strong> (behavioral contract / home-school task).</p>
+            <div class="va-step-highlight">
+              🎯 <strong>1-Click Statuses:</strong> Mark topics as Active Sprint, Overcome/Insight, Homework, or Parking Lot with full two-way notes synchronization.
+            </div>
+          </div>
+
+          <div class="va-step">
+            <div class="va-step-num">2</div>
+            <h3>Deep Incongruence & Bullying Watcher</h3>
+            <p>Identifies masked psychological defenses in youth: defensive laughter during distress (&quot;it was funny when they took my backpack&quot;), intellectualization, withdrawal, and sudden topic evasion.</p>
+            <div class="va-step-highlight">
+              ⚡ <strong>Early Warning:</strong> Non-intrusive clinical alerts highlighting potential unspoken trauma or peer victimization.
+            </div>
+          </div>
+
+          <div class="va-step">
+            <div class="va-step-num">3</div>
+            <h3>After Call: 3 Documents in 30 Seconds</h3>
+            <p>Upon finishing the call, the system transforms the dialogue into three essential educational deliverables:</p>
+            <div class="va-step-highlight">
+              📋 <strong>1. Student Record:</strong> Official school counseling log & behavioral notes.<br>
+              🧠 <strong>2. Clinical Supervision:</strong> Protocol adherence score & growth areas.<br>
+              💌 <strong>3. Parent Follow-up:</strong> Constructive, supportive guidance note for parents.
+            </div>
+          </div>
+
+          <div class="va-step">
+            <div class="va-step-num">4</div>
+            <h3>Interactive Webinar & Assembly Studio</h3>
+            <p>Conduct interactive parent-teacher assemblies, class prevention workshops, and educator webinars with live poll screening, anonymous Q&A, and presenter slide decks.</p>
+            <div class="va-step-highlight">
+              🎙️ <strong>Class & Parent Engagement:</strong> Gauge parental consensus and class psychological climate in real time.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ===== UNDER THE HOOD: ARCHITECTURAL FEATURES ===== -->
+      <section class="va-section" style="background: var(--surface-soft);">
+        <div class="va-section-title">
+          <h2>Under the Hood: Integrated Clinical Environment</h2>
+          <p>A professional workstation crafted specifically for educational and youth welfare institutions</p>
+        </div>
+
+        <div class="va-arch-grid">
+          
+          <div class="va-arch-card">
+            <span class="arch-icon">⚡</span>
+            <h4>Native WebRTC Video Room</h4>
+            <p>Direct browser-to-browser encrypted video. Works seamlessly without requiring students or parents to install third-party software.</p>
+          </div>
+
+          <div class="va-arch-card">
+            <span class="arch-icon">📂</span>
+            <h4>Direct Case File Integration</h4>
+            <p>The AI Supervisor leverages student history and past school assessments to provide highly contextual suggestions.</p>
+          </div>
+
+          <div class="va-arch-card">
+            <span class="arch-icon">📚</span>
+            <h4>Evidence-Based Methodological RAG</h4>
+            <p>All recommendations strictly adhere to validated educational psychology protocols and crisis prevention guidelines.</p>
+          </div>
+
+          <div class="va-arch-card">
+            <span class="arch-icon">🔒</span>
+            <h4>Minor Privacy & Data Sovereignty</h4>
+            <p>Encrypted audio/video channels and local-first data processing ensure complete compliance with child data privacy laws.</p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ===== CTA ===== -->
+      <section class="va-cta-block">
+        <h2>Equip Your Educational Practice with AI Supervision</h2>
+        <p>Log in to Prevention-AI — and conduct your next student counseling session with full clinical confidence.</p>
+        <a href="/terminal/" class="btn-primary">
+          Enter Terminal &rarr;
+        </a>
+        <p style="margin-top: 16px; font-size: 0.85rem; color: var(--muted);">
+          Runs directly in the browser. Zero installation required.
+        </p>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <strong>Prevention School</strong><br>Open digital infrastructure for psychological support in education.
+          <p class="footer-legal-notice" style="margin-top: 10px; font-size: 0.82rem; line-height: 1.5; color: var(--muted); max-width: 580px;">
+            The platform operates under zero-knowledge privacy standards, complying with FERPA, COPPA, and GDPR frameworks. Personal student identification data never leaves the local school environment or enters third-party AI training pipelines.
+          </p>
+          <p class="footer-contact">
+            <a href="mailto:admin@prevention.school">admin@prevention.school</a><span class="footer-contact-sep" aria-hidden="true">·</span><a href="https://t.me/RomanDubrovsky" target="_blank" rel="noopener noreferrer">Telegram (@RomanDubrovsky)</a><span class="footer-contact-sep" aria-hidden="true">·</span><a href="/founder/">Author Profile</a>
+          </p>
+          <p class="footer-community" style="margin-top: 8px; font-size: 0.85rem; color: var(--muted);">
+            International Research & Deployment:<br>
+            GitHub: <a href="https://github.com/teenology/prevention-school" target="_blank" rel="noopener">github.com/teenology</a><br>
+            Community Channel: <a href="https://t.me/anthropology_health" target="_blank" rel="noopener">t.me/anthropology_health</a>
+          </p>
+        </div>
+        <nav class="footer-links" aria-label="Footer Navigation">
+          <a href="/science/">Science & Methodology</a>
+          <a href="/articles/">Publications & Papers</a>
+          <a href="/founder/">Founder Profile</a>
+          <a href="https://corporate-health.ida-psy.pro/" target="_blank" rel="noopener">Corporate Health ↗</a>
+          <a href="https://ida-psy.pro/" target="_blank" rel="noopener">Private Practice Kit ↗</a>
+          <a href="/privacy/">Privacy Policy</a>
+          <a href="/terms/">Terms of Service</a>
+        </nav>
+      </div>
+    </footer>
+  </div>
+  <style>
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+    @keyframes pulse-ring { 0% { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.4); } 70% { box-shadow: 0 0 0 6px rgba(13, 148, 136, 0); } 100% { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0); } }
+    @keyframes blink { 50% { opacity: 0; } }
+    .live-indicator { animation: pulse-ring 2s infinite; }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const sosBtn = document.getElementById('demo-sos-btn');
+      if (sosBtn) {
+        sosBtn.addEventListener('click', () => {
+          sosBtn.innerHTML = `<span style="animation: spin 1s linear infinite; display: inline-block;">⏳</span> Analyzing context...`;
+          sosBtn.style.opacity = '0.8';
+          sosBtn.style.cursor = 'wait';
+          sosBtn.disabled = true;
+          setTimeout(() => {
+            document.getElementById('demo-sos-container').style.display = 'none';
+            document.getElementById('demo-sos-result').style.display = 'block';
+          }, 1200);
+        });
+      }
+
+      const btn = document.getElementById('demo-analyze-btn');
+      const sidebar = document.getElementById('demo-sidebar-scroll');
+      
+      if (btn && sidebar) {
+        btn.addEventListener('click', () => {
+          // Change button state to Loading
+          btn.innerHTML = `<span style="animation: spin 1s linear infinite; display: inline-block;">⏳</span> Generating report...`;
+          btn.style.opacity = '0.8';
+          btn.style.cursor = 'wait';
+          btn.disabled = true;
+          
+          // Change indicator to processing state
+          const ind = document.querySelector('.live-indicator');
+          if (ind) { ind.style.background = '#eab308'; ind.style.animation = 'none'; }
+          document.querySelectorAll('.live-typing').forEach(el => el.style.display = 'none');
+
+          // Simulate API delay
+          setTimeout(() => {
+            // Render Post-Session Analysis
+            sidebar.innerHTML = `
+              <div style="margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--line); animation: fadeIn 0.4s;">
+                <div style="font-size: 0.8rem; color: var(--muted); margin-bottom: 8px; text-transform: uppercase; font-weight: 800;">📑 Student Record Entry</div>
+                <div style="font-size: 0.85rem; color: var(--text-color); line-height: 1.6;">
+                  <strong>Presenting Issue:</strong> Conflict with physics teacher, declining grades, acute irritability.<br>
+                  <strong>Hypothesis:</strong> Fear of domestic punishment, displaced anger onto educator.<br>
+                  <strong>Intervention:</strong> Consequence clarification (Socratic dialogue).<br>
+                  <strong>Action Plan:</strong> Coordinate with class homeroom teacher.
+                </div>
+              </div>
+              
+              <div style="margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--line); animation: fadeIn 0.6s;">
+                <div style="font-size: 0.8rem; color: var(--muted); margin-bottom: 8px; text-transform: uppercase; font-weight: 800; color: #0d9488;">🧠 Supervision Insight</div>
+                <div style="font-size: 0.85rem; color: var(--text-color); line-height: 1.6;">
+                  <span style="display:inline-block; margin-bottom:6px; font-weight:bold; color:#10b981; background: rgba(16,185,129,0.1); padding: 2px 8px; border-radius: 4px;">Protocol Adherence: 90%</span><br>
+                  <strong>Strengths:</strong> Successfully shifted focus from teacher antagonism to student's personal feelings.<br>
+                  <strong style="color: #ef4444;">Growth Areas:</strong> Avoid offering unsolicited direct solutions at the end; prompt the student to formulate next steps.
+                </div>
+              </div>
+
+              <div style="animation: fadeIn 0.8s;">
+                <div style="font-size: 0.8rem; color: var(--muted); margin-bottom: 8px; text-transform: uppercase; font-weight: 800; color: #0ea5e9;">💌 Parent Follow-Up Memo</div>
+                <div style="background: #f0f9ff; padding: 12px; border-radius: 8px; font-size: 0.85rem; color: #0f172a; font-style: italic; border-left: 4px solid #0ea5e9; line-height: 1.5;">
+                  "Dear parents, today Max and I discussed his recent difficulties in physics. Right now it is crucial to support his effort rather than focusing solely on grades. Over the coming week, please try to..."
+                </div>
+              </div>
+
+              <div style="margin-top: 16px; animation: fadeIn 1s;">
+                <button style="width:100%; padding: 10px; background: #fff; border: 1px solid var(--line); border-radius: 8px; font-size: 0.85rem; font-weight: 600; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; color: var(--text-color); box-shadow: 0 2px 4px rgba(0,0,0,0.02); transition: all 0.2s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background='#fff'">
+                  <span>📥</span> Download Full Report (.docx)
+                </button>
+                <div style="text-align: center; font-size: 0.7rem; color: var(--muted); margin-top: 6px;">
+                  Comprehensive 2–3 page consultation protocol
+                </div>
+              </div>
+            `;
+            
+            btn.innerHTML = `<span>✅</span> Auto-saved to Student Record`;
+            btn.style.background = '#10b981';
+            btn.style.color = 'white';
+            btn.style.borderColor = '#10b981';
+            btn.style.cursor = 'default';
+          }, 1500);
+        });
+      }
+    });
+  </script>
+</body>
+</html>

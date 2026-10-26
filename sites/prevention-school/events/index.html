@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link class="favicon" rel="icon" href="../favicon.ico" sizes="any">
+  <link class="favicon" rel="icon" href="../favicon.png" type="image/png">
+  <link class="apple-touch-icon" href="../favicon.png">
+  <title>Prevention Live — Secure School Meetings & Live Broadcasts | Prevention-AI</title>
+  <meta name="description" content="Secure WebRTC platform for parent meetings, school assemblies, and live broadcasts. Zero software downloads, end-to-end encryption, automated AI meeting minutes.">
+  <link rel="canonical" href="https://prevention.school/events/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Prevention-AI">
+  <meta property="og:title" content="Prevention Live — Secure Parent Meetings & School Webinars">
+  <meta property="og:description" content="Secure live streaming for schools: 1-click parent meetings, automated AI meeting protocols, real-time parent polls, and full privacy compliance.">
+  <meta property="og:url" content="https://prevention.school/events/">
+  <meta property="og:locale" content="en_US">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;550;650;760;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/site.css">
+  <style>
+    .ev-hero { padding: 80px 0 50px; text-align: center; }
+    .ev-hero h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 900; line-height: 1.1; margin: 0 0 20px; max-width: 900px; margin-inline: auto; letter-spacing: -0.02em; }
+    .ev-hero .accent-text { color: #0d9488; }
+    .ev-hero .lead { font-size: clamp(1.05rem, 1.6vw, 1.25rem); color: var(--muted); line-height: 1.6; max-width: 760px; margin: 0 auto 36px; }
+
+    .security-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(13,148,136,0.1); color: #0d9488; border: 1px solid rgba(13,148,136,0.25); padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 24px; }
+
+    .ev-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin: 40px 0; }
+    .ev-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius, 16px); padding: 32px; display: flex; flex-direction: column; justify-content: space-between; }
+    .ev-card h3 { font-size: 1.25rem; font-weight: 800; margin: 0 0 12px; color: var(--text); }
+    .ev-card p { font-size: 0.95rem; color: var(--muted); line-height: 1.6; margin: 0 0 16px; }
+    .ev-card .tag { display: inline-block; background: rgba(13,148,136,0.08); color: #0d9488; font-size: 0.8rem; font-weight: 700; padding: 4px 10px; border-radius: 6px; width: fit-content; }
+
+    .ev-mockup { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.08); margin: 40px 0; }
+    .ev-mockup-header { background: rgba(13,148,136,0.05); padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); font-size: 0.88rem; font-weight: 700; color: var(--text); }
+
+    .ev-cta { text-align: center; background: linear-gradient(135deg, rgba(13,148,136,0.08) 0%, rgba(14,165,233,0.08) 100%); border: 1px solid rgba(13,148,136,0.2); border-radius: 24px; padding: 60px 24px; margin: 60px 0; }
+    .ev-cta h2 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 900; margin: 0 0 16px; }
+    .ev-cta p { font-size: 1.1rem; color: var(--muted); max-width: 620px; margin: 0 auto 32px; line-height: 1.6; }
+
+    @media (max-width: 768px) {
+      .ev-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+  <!-- Yandex.Metrika counter & Auto-Goal Tracker -->
+<script type="text/javascript">
+(function(m,e,t,r,i,k,a){
+    m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();
+    for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+})(window, document,'script','https://mc.yandex.ru/metrika/tag.js', 'ym');
+
+(function(){
+    try {
+        if (window.location.search.indexOf('no_track=1') !== -1 || window.location.search.indexOf('admin=1') !== -1) {
+            localStorage.setItem('ym_disable_tracking', '1');
+        }
+        if (localStorage.getItem('ym_disable_tracking') === '1') {
+            console.log('[Yandex.Metrika] Tracking disabled for owner/admin session.');
+            window.ymGoal = window.reachGoal = function(g, p){ console.log('[Goal skipped (admin)]', g, p || ''); };
+            return;
+        }
+    } catch(e) {}
+
+    var host = (window.location.hostname || '').toLowerCase();
+    var id = null;
+    if (host.indexOf('ida-psy.ru') !== -1) id = 113108416;
+    else if (host.indexOf('ida-psy.pro') !== -1) id = 113706104;
+    else if (host.indexOf('prevention-ai.ru') !== -1) id = 113108883;
+    else if (host.indexOf('prevention.school') !== -1) id = 113706126;
+    else if (host.indexOf('teenology-ai.ru') !== -1) id = 113108854;
+    else if (host.indexOf('teenology.care') !== -1) id = 109437867;
+    else if (host.indexOf('ru.decima.business') !== -1) id = 93591954;
+    else if (host.indexOf('decima.business') !== -1) id = 93591880;
+    else {
+        id = 113706126;
+    }
+
+    window._ymCounterId = id;
+
+    // Universal Goal Dispatcher
+    window.ymGoal = window.reachGoal = function(goalName, params) {
+        if (!id || typeof ym !== 'function') return;
+        try {
+            if (params) {
+                ym(id, 'reachGoal', goalName, params);
+            } else {
+                ym(id, 'reachGoal', goalName);
+            }
+            console.log('[YM Goal]', goalName, params || '');
+        } catch(e) {
+            console.warn('[YM Goal Error]', e);
+        }
+    };
+
+    if (id) {
+        ym(id, 'init', {
+            ssr: true,
+            webvisor: true,
+            clickmap: true,
+            ecommerce: "dataLayer",
+            referrer: document.referrer,
+            url: location.href,
+            accurateTrackBounce: true,
+            trackLinks: true
+        });
+    }
+
+    // Auto-Goal Click & Form Interceptors
+    document.addEventListener('DOMContentLoaded', function(){
+        // 1. Click tracker for buttons, links, actions
+        document.addEventListener('click', function(e){
+            var target = e.target;
+            if (!target) return;
+            var el = target.closest('a, button, [data-goal], input[type="submit"]');
+            if (!el) return;
+
+            // Explicit data-goal attribute
+            var explicitGoal = el.getAttribute('data-goal');
+            if (explicitGoal) {
+                window.ymGoal(explicitGoal);
+                return;
+            }
+
+            var href = (el.getAttribute('href') || '').toLowerCase();
+            var text = (el.innerText || el.textContent || el.value || '').trim().toLowerCase();
+            var idStr = (el.id || '').toLowerCase();
+            var cls = (el.className || '').toLowerCase();
+
+            // Messengers & Social
+            if (href.indexOf('t.me/') !== -1 || href.indexOf('telegram.me') !== -1) {
+                window.ymGoal('telegram_click', {url: href});
+            } else if (href.indexOf('vk.com/') !== -1) {
+                window.ymGoal('vk_click', {url: href});
+            } else if (href.indexOf('wa.me/') !== -1 || href.indexOf('whatsapp.com') !== -1) {
+                window.ymGoal('whatsapp_click', {url: href});
+            } else if (href.indexOf('tel:') === 0) {
+                window.ymGoal('phone_click', {phone: href});
+            } else if (href.indexOf('mailto:') === 0) {
+                window.ymGoal('email_click', {email: href});
+            } 
+            // File downloads
+            else if (/\.(pdf|docx?|xlsx?|zip|rar|pptx?)$/i.test(href)) {
+                window.ymGoal('file_download', {file: href});
+            }
+            // Registration & Auth
+            else if (href.indexOf('/join') !== -1 || href.indexOf('/staff-register') !== -1 || href.indexOf('/auth') !== -1 || href.indexOf('/register') !== -1 || idStr.indexOf('register') !== -1 || idStr.indexOf('login') !== -1 || text.indexOf('регистрац') !== -1 || text.indexOf('войти') !== -1 || text.indexOf('личный кабинет') !== -1) {
+                window.ymGoal('auth_click', {text: text});
+            }
+            // Demo & Interactive Room
+            else if (href.indexOf('#room=') !== -1 || href.indexOf('/demo') !== -1 || href.indexOf('/app') !== -1 || href.indexOf('/workspace') !== -1 || idStr.indexOf('demo') !== -1 || text.indexOf('демо') !== -1 || text.indexOf('попробовать') !== -1 || text.indexOf('запустить') !== -1) {
+                window.ymGoal('demo_open', {text: text});
+            }
+            // Test & Screening
+            else if (href.indexOf('/test') !== -1 || href.indexOf('screening') !== -1 || text.indexOf('тест') !== -1 || text.indexOf('диагностик') !== -1 || text.indexOf('опрос') !== -1) {
+                window.ymGoal('test_start', {text: text});
+            }
+            // Pricing / Tariffs
+            else if (href.indexOf('pricing') !== -1 || href.indexOf('tariff') !== -1 || text.indexOf('тариф') !== -1 || text.indexOf('купить') !== -1 || text.indexOf('подключить') !== -1) {
+                window.ymGoal('pricing_click', {text: text});
+            }
+            // Feedback / Call to action
+            else if (text.indexOf('оставить заявку') !== -1 || text.indexOf('записаться') !== -1 || text.indexOf('консультац') !== -1 || text.indexOf('связаться') !== -1) {
+                window.ymGoal('lead_button_click', {text: text});
+            }
+        }, true);
+
+        // 2. Form submission tracker
+        document.addEventListener('submit', function(e){
+            var form = e.target;
+            if (!form) return;
+            var formId = form.id || form.getAttribute('name') || form.getAttribute('action') || 'lead_form';
+            window.ymGoal('form_submit', {form_id: formId});
+        }, true);
+
+        // 3. Scroll depth tracking (50% and 90%)
+        var scroll50Fired = false;
+        var scroll90Fired = false;
+        window.addEventListener('scroll', function(){
+            var h = document.documentElement, 
+                b = document.body,
+                st = 'scrollTop',
+                sh = 'scrollHeight';
+            var percent = ((h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight)) * 100;
+            if (!scroll50Fired && percent >= 50) {
+                scroll50Fired = true;
+                window.ymGoal('scroll_50');
+            }
+            if (!scroll90Fired && percent >= 90) {
+                scroll90Fired = true;
+                window.ymGoal('scroll_90');
+            }
+        }, {passive: true});
+    });
+})();
+</script>
+<!-- /Yandex.Metrika counter -->
+</head>
+<body>
+  <div class="wrap">
+        <header class="site-header">
+      <a class="brand" href="/"><span class="brand-mark">P</span><span>Prevention School <small style="font-size: 10px; font-weight: 800; text-transform: uppercase; color: var(--accent); margin-left: 4px; vertical-align: super;">Beta</small></span></a>
+      <nav class="nav" aria-label="Navigation">
+        <a href="/about/">About</a>
+        <a href="/academy/">Academy 🎓</a>
+        <a href="https://corporate-health.ida-psy.pro/" target="_blank" rel="noopener">Corporate Health ↗</a>
+        <a href="https://web.prevention.school/?entry=educator" target="_blank" rel="noopener">For Educators</a>
+        <a href="/teenology/">Parents &amp; Teens</a>
+      </nav>
+      <div class="nav-controls">
+        <a href="https://web.prevention.school/" class="nav-cta" target="_blank" rel="noopener">Web Terminal</a>
+        <button type="button" class="theme-toggle" id="theme-toggle">Dark</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="ev-hero">
+        <div class="security-badge">🛡️ WebRTC Encrypted · Zero App Installs · AI Protocol</div>
+        <h1>Secure Parent Meetings <br>and <span class="accent-text">School Live Streams</span></h1>
+        <p class="lead">
+          Open digital infrastructure for educational institutions. Parents join in 1 click from any smartphone without downloading software. AI automatically generates official meeting minutes and decision records.
+        </p>
+        <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+          <a href="https://web.prevention.school/" class="btn-primary" style="display: inline-flex; align-items: center; gap: 8px; background: #0d9488; color: #fff; padding: 16px 36px; border-radius: 14px; text-decoration: none; font-weight: 800; font-size: 1.1rem;">
+            Schedule Meeting &rarr;
+          </a>
+          <a href="https://live.prevention.school/" target="_blank" rel="noopener" class="btn-secondary" style="display: inline-flex; align-items: center; gap: 8px; background: var(--surface); color: var(--text); border: 1px solid var(--line); padding: 16px 28px; border-radius: 14px; text-decoration: none; font-weight: 700; font-size: 1.05rem;">
+            🔴 Open Live Stream
+          </a>
+        </div>
+      </section>
+
+      <!-- Mockup Section -->
+      <div class="ev-mockup">
+        <div class="ev-mockup-header">
+          <div>🏫 All-School Parent Assembly: "Exam Stress Prevention for 9th Graders"</div>
+          <span style="background: #0d9488; color: #fff; padding: 3px 10px; border-radius: 12px; font-size: 0.78rem;">86 parents online</span>
+        </div>
+        <div style="padding: 40px; text-align: center; background: radial-gradient(circle at center, rgba(13,148,136,0.05) 0%, transparent 70%);">
+          <div style="font-size: 3.5rem; margin-bottom: 12px;">🏫 🎙️ 👨‍👩‍👧‍👦</div>
+          <p style="font-size: 1.05rem; color: var(--text); font-weight: 600; max-width: 600px; margin: 0 auto 20px;">
+            Parents connect instantly from smartphones via a single link shared by class teachers or school counselors.
+          </p>
+          <div style="display: inline-flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+            <span style="background: var(--surface); border: 1px solid var(--line); padding: 8px 16px; border-radius: 8px; font-size: 0.88rem; color: var(--muted);">🔐 End-to-End Encryption</span>
+            <span style="background: var(--surface); border: 1px solid var(--line); padding: 8px 16px; border-radius: 8px; font-size: 0.88rem; color: var(--muted);">📄 Automated AI Minutes</span>
+            <span style="background: var(--surface); border: 1px solid var(--line); padding: 8px 16px; border-radius: 8px; font-size: 0.88rem; color: var(--muted);">📊 Instant Parent Polls</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Features Grid -->
+      <section class="ev-grid">
+        <div class="ev-card">
+          <div>
+            <h3>📝 Automated AI Meeting Protocol</h3>
+            <p>Educators no longer need manual note-taking. The AI assistant transcribes the live stream and generates an official protocol with key decisions and timelines in seconds.</p>
+          </div>
+          <span class="tag">Save Educator Time</span>
+        </div>
+
+        <div class="ev-card">
+          <div>
+            <h3>📊 Instant Parent Screening & Polls</h3>
+            <p>Counselors can launch quick anonymous polls directly over video during streams (e.g., student anxiety levels before exams). Parents view class-wide statistics in real time.</p>
+          </div>
+          <span class="tag">Interactive Insights</span>
+        </div>
+
+        <div class="ev-card">
+          <div>
+            <h3>🔒 Privacy & Data Protection</h3>
+            <p>Video and audio streams are encrypted end-to-end using WebRTC standards. Zero PII storage guarantees student and family privacy compliance.</p>
+          </div>
+          <span class="tag">High Compliance</span>
+        </div>
+
+        <div class="ev-card">
+          <div>
+            <h3>📲 No Software Installs Needed</h3>
+            <p>Parents don't need to create accounts or download desktop software. A single click from a mobile browser or school portal joins the stream.</p>
+          </div>
+          <span class="tag">Any Mobile Device</span>
+        </div>
+
+        <div class="ev-card">
+          <div>
+            <h3>💬 Smart Chat Moderation</h3>
+            <p>AI automatically filters inappropriate language and groups similar parent questions by topic, helping presenters focus on key inquiries.</p>
+          </div>
+          <span class="tag">Orderly Streams</span>
+        </div>
+
+        <div class="ev-card">
+          <div>
+            <h3>∞ Unrestricted Stream Duration</h3>
+            <p>Unlike basic commercial meeting software, Prevention Live broadcasts won't cut off after 40 minutes. Assemblies can run continuously up to 4 hours.</p>
+          </div>
+          <span class="tag">Uninterrupted Quality</span>
+        </div>
+      </section>
+
+      <section class="ev-cta">
+        <h2>Schedule Your School's First Meeting</h2>
+        <p>Create a session in Prevention Web Terminal, copy the link, and invite parents or staff in seconds.</p>
+        <a href="https://web.prevention.school/" class="btn-primary" style="display: inline-flex; align-items: center; gap: 8px; background: #0d9488; color: #fff; padding: 16px 36px; border-radius: 14px; text-decoration: none; font-weight: 800; font-size: 1.1rem;">
+          Open Web Terminal &rarr;
+        </a>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <strong>Prevention School</strong><br>Open digital infrastructure for psychological support in education.
+          <p class="footer-legal-notice" style="margin-top: 10px; font-size: 0.82rem; line-height: 1.5; color: var(--muted); max-width: 580px;">
+            The platform operates under zero-knowledge privacy standards, complying with FERPA, COPPA, and GDPR frameworks. Personal student identification data never leaves the local school environment or enters third-party AI training pipelines.
+          </p>
+          <p class="footer-contact">
+            <a href="mailto:admin@prevention.school">admin@prevention.school</a><span class="footer-contact-sep" aria-hidden="true">·</span><a href="https://t.me/RomanDubrovsky" target="_blank" rel="noopener noreferrer">Telegram (@RomanDubrovsky)</a><span class="footer-contact-sep" aria-hidden="true">·</span><a href="/founder/">Author Profile</a>
+          </p>
+          <p class="footer-community" style="margin-top: 8px; font-size: 0.85rem; color: var(--muted);">
+            International Research & Deployment:<br>
+            GitHub: <a href="https://github.com/teenology/prevention-school" target="_blank" rel="noopener">github.com/teenology</a><br>
+            Community Channel: <a href="https://t.me/anthropology_health" target="_blank" rel="noopener">t.me/anthropology_health</a>
+          </p>
+        </div>
+        <nav class="footer-links" aria-label="Footer Navigation">
+          <a href="/science/">Science & Methodology</a>
+          <a href="/articles/">Publications & Papers</a>
+          <a href="/founder/">Founder Profile</a>
+          <a href="https://corporate-health.ida-psy.pro/" target="_blank" rel="noopener">Corporate Health ↗</a>
+          <a href="https://ida-psy.pro/" target="_blank" rel="noopener">Private Practice Kit ↗</a>
+          <a href="/privacy/">Privacy Policy</a>
+          <a href="/terms/">Terms of Service</a>
+        </nav>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

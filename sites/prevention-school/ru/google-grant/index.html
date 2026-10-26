@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="ru" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/favicon.png">
+  <title>Заявка в Google for Startups Cloud Program (AI Track) — Перевод на русский</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <style>
+    :root {
+      --bg-page: #f8fafc;
+      --surface: #ffffff;
+      --text: #0f172a;
+      --text-muted: #475569;
+      --border: #e2e8f0;
+      --accent: #0f766e;
+      --accent-soft: rgba(15, 118, 110, 0.08);
+      --google-blue: #1a73e8;
+      --radius: 12px;
+    }
+    [data-theme="dark"] {
+      --bg-page: #0b0f19;
+      --surface: #111827;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #1f2937;
+      --accent: #14b8a6;
+      --accent-soft: rgba(20, 184, 166, 0.12);
+      --google-blue: #8ab4f8;
+    }
+    body {
+      background: var(--bg-page);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.65;
+      margin: 0;
+      padding: 0;
+    }
+    .draft-container {
+      max-width: 860px;
+      margin: 40px auto 80px;
+      padding: 40px 32px;
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+      border: 1px solid var(--border);
+    }
+    .badge-confidential {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: #fef3c7;
+      color: #92400e;
+      margin-bottom: 20px;
+    }
+    [data-theme="dark"] .badge-confidential {
+      background: rgba(245, 158, 11, 0.15);
+      color: #fbbf24;
+    }
+    h1 {
+      font-size: 1.85rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin: 0 0 12px;
+      color: var(--text);
+    }
+    .subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-block {
+      margin-bottom: 36px;
+      padding: 24px;
+      background: var(--bg-page);
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-top: 0;
+      margin-bottom: 12px;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .subsection-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+    .prompt-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 8px;
+    }
+    .original-prompt {
+      font-size: 0.9rem;
+      font-style: italic;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      padding: 8px 12px;
+      background: var(--surface);
+      border-left: 3px solid var(--google-blue);
+      border-radius: 4px;
+    }
+    p {
+      margin: 0 0 14px;
+      font-size: 0.96rem;
+    }
+    ul, ol {
+      margin: 0 0 16px;
+      padding-left: 20px;
+    }
+    li {
+      margin-bottom: 8px;
+      font-size: 0.96rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 0.92rem;
+    }
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    th {
+      background: var(--surface);
+      font-weight: 600;
+      color: var(--text);
+    }
+    .code-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.85rem;
+      background: var(--surface);
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .lang-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 6px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      transition: all 0.2s ease;
+    }
+    .lang-toggle:hover {
+      background: var(--accent);
+      color: #ffffff;
+    }
+    .highlight-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      padding: 16px;
+      border-radius: 8px;
+      margin: 16px 0;
+    }
+    .footer-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 32px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+  <div class="draft-container">
+    <div class="top-nav">
+      <a href="/" style="text-decoration:none; color:var(--accent); font-weight:600; font-size:0.9rem;">← На главную</a>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <a href="https://prevention.school/google-grant/" class="lang-toggle">🇬🇧 English Original</a>
+        <span class="badge-confidential">🔒 Служебная страница / Рабочий черновик</span>
+      </div>
+    </div>
+
+    <h1>Заявка Google for Startups Cloud Program (AI Track)</h1>
+    <div class="subtitle">
+      <strong>Проект:</strong> Территориальная инфраструктура психологического здоровья и превенции (Prevention AI / Teenology / IDA-Psy)<br>
+      <strong>Язык оригинала:</strong> Английский (текст ниже переведен на русский язык для согласования и проверки)
+    </div>
+
+    <!-- Раздел 1 -->
+    <div class="section-block">
+      <h2 class="section-title">1. Основная информация и профиль стартапа</h2>
+      <ul>
+        <li><strong>Название стартапа:</strong> Prevention AI (Экосистема: Prevention School, Teenology, IDA-Psy).</li>
+        <li><strong>Основной сайт:</strong> <a href="https://prevention.school/" target="_blank" rel="noopener">https://prevention.school/</a></li>
+        <li><strong>Работающая продуктовая линейка:</strong>
+          <ul>
+            <li><strong>Школьный хаб и общественное здоровье:</strong> <a href="https://prevention.school/" target="_blank">prevention.school/</a></li>
+            <li><strong>Академия доказательной практики:</strong> <a href="https://academy.ida-psy.pro/" target="_blank">academy.ida-psy.pro/</a></li>
+            <li><strong>AI-помощник для семей и подростков:</strong> <a href="https://teenology.care/" target="_blank">teenology.care/</a></li>
+            <li><strong>Рабочий кабинет клинического специалиста:</strong> <a href="https://ida-psy.pro/" target="_blank">ida-psy.pro/</a></li>
+            <li><strong>Корпоративное здоровье и панель для бизнеса:</strong> <a href="https://corporate-health.ida-psy.pro/" target="_blank">corporate-health.ida-psy.pro/</a></li>
+            <li><strong>Репозиторий и защищенное ядро:</strong>
+              <ul>
+                <li>Открытая CRM и терминал специалиста (DPG): <a href="https://github.com/RomanDubrovsky/prevention-terminal-dpg" target="_blank">prevention-terminal-dpg</a> (стандарт UNICEF / Digital Public Goods)</li>
+                <li>Когнитивное ядро и протоколы интервенций: Проприетарное ядро (коммерческая тайна / Closed Proprietary IP)</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><strong>Дата основания:</strong> Январь 2026 г. (Активный продакшн / Live Beta).</li>
+        <li><strong>Стадия развития:</strong> Готовый работающий продукт / Seed / Self-funded (100% владение основателем, отсутствие венчурных обязательств, соответствие критериям Digital Public Goods Alliance).</li>
+        <li><strong>Основатель и контактное лицо:</strong> Роман Дубровский, кандидат психологических наук (PhD).
+          <ul>
+            <li><strong>Роль:</strong> Основатель и главный архитектор AI / Public Health.</li>
+            <li><strong>Email:</strong> Roman.Dubrovsky@gmail.com</li>
+            <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/romandubrovsky/" target="_blank">linkedin.com/in/romandubrovsky</a></li>
+            <li><strong>ORCID:</strong> <a href="https://orcid.org/0000-0001-9876-9798" target="_blank">0000-0001-9876-9798</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Раздел 2 -->
+    <div class="section-block">
+      <h2 class="section-title">2. Экспертиза и бэкграунд основателя</h2>
+      <div class="prompt-label">Оригинальный вопрос Google:</div>
+      <div class="original-prompt">Tell us about the founder(s) and why you are uniquely positioned to solve this problem.</div>
+
+      <p><strong>Роман Дубровский, PhD</strong> — эксперт в области MHPSS (психическое здоровье и психосоциальная поддержка), клинический психолог и исследователь общественного здравоохранения с <strong>более чем 25-летним опытом руководства</strong> в сфере подростковой профилактики, социальной эпидемиологии и национальной психологической инфраструктуры:</p>
+      <ol>
+        <li><strong>Экспертиза в госполитике и общественном здоровье:</strong> Экс-руководитель Федерального ресурсного центра психологической службы в системе образования (руководство всероссийской сетью психологической помощи, разработка стандартов и мониторинг).</li>
+        <li><strong>Международные исследования и партнерство с ООН:</strong> Сооснователь исследовательской организации «Стеллит», проведение исследований девиантного поведения подростков и защиты детства в тесном партнерстве с <strong>ЮНИСЕФ (UNICEF), ВОЗ (WHO) и ЮНЭЙДС (UNAIDS)</strong>. Ведущий аналитик проекта ESPAD по мониторингу психоактивных веществ среди молодежи при поддержке УНП ООН (UNODC) и правительств Швеции и Финляндии.</li>
+        <li><strong>Методологический фундамент и прикладная наука:</strong> Автор <strong>более 40 практических руководств, методических пособий, национальных рекомендаций для психологической службы и аналитических докладов</strong> по психологии здоровья, доказательной превенции и прикладным когнитивно-поведенческим интервенциям.</li>
+        <li><strong>AI-архитектор полного цикла:</strong> Самостоятельно спроектировал и развернул всю экосистему в продакшене (Web PWA, Cloudflare Edge, бэкенд на FastAPI/Uvicorn, PostgreSQL, настольные терминалы Tauri и оркестрация моделей Google Gemini).</li>
+      </ol>
+    </div>
+
+    <!-- Раздел 3 -->
+    <div class="section-block">
+      <h2 class="section-title">3. Формулировка проблемы и рыночная возможность</h2>
+      <div class="prompt-label">Оригинальный вопрос Google:</div>
+      <div class="original-prompt">What problem is your startup solving, and what is the market opportunity?</div>
+
+      <p>Сфера охраны ментального здоровья и подростковой профилактики сталкивается с тремя критическими узкими горлышками:</p>
+      <ol>
+        <li><strong>Бюрократический тупик школьных специалистов:</strong> Школьные психологи тратят <strong>более 80% рабочего времени на заполнение отчетов и рутинную бумажную работу</strong>, оставляя менее 20% на непосредственную помощь детям. Перегруженные специалисты не имеют инструментов для раннего автоматизированного выявления рисков.</li>
+        <li><strong>Кризис доверия между родителями и подростками:</strong> Существующие семейные приложения делятся на две крайности: навязчивые «шпионские трекеры» (разрушающие контакт и доверие) либо неконтролируемые потребительские чат-боты без клинических фильтров безопасности и распознавания кризисных состояний.</li>
+        <li><strong>Эпидемиологический вакуум:</strong> Образовательные органы, школы и работодатели действуют вслепую, не имея в реальном времени обезличенной телеметрии для упреждающего распределения ресурсов до того, как проблемы перерастут в госпитализацию, отчисление или тяжелое профессиональное выгорание.</li>
+      </ol>
+      <p><strong>Рыночная возможность:</strong> Мировой рынок цифрового ментального здоровья и корпоративного благополучия превышает <strong>$26 млрд</strong>. В то же время международные организации (WHO Health-Promoting Schools, UNESCO, UNICEF) остро нуждаются в масштабируемых открытых цифровых благах (Digital Public Goods). Объединяя бесплатное общественное ядро и коммерческий сектор (B2B SaaS), Prevention AI создает устойчивую многостороннюю экосистему.</p>
+    </div>
+
+    <!-- Раздел 4 -->
+    <div class="section-block">
+      <h2 class="section-title">4. Продукт, линейка решений и Когнитивное ядро</h2>
+      <div class="prompt-label">Оригинальный вопрос Google:</div>
+      <div class="original-prompt">Describe your product, key features, and value proposition.</div>
+
+      <p>Prevention AI — это <strong>территориальная инфраструктура психологической устойчивости</strong>, соединяющая Школы, Семьи и Корпорации на базе единого когнитивного ядра доказательных протоколов (КПТ, МНРSS):</p>
+      <ul>
+        <li><strong>1. Prevention School и Терминал специалиста (<a href="https://prevention.school/" target="_blank">prevention.school/</a>):</strong> Электронное рабочее место школьного психолога и педагога. Автоматизирует до 80% рутинной документации, ассистирует во время консультаций и формирует обезличенную аналитику факторов риска для руководства.</li>
+        <li><strong>2. Teenology (<a href="https://teenology.care/" target="_blank">teenology.care/</a>):</strong> Семейное PWA-приложение без слежки. Включает раздельных AI-ассистентов для родителей и подростков, 30-секундный чек-ап отношений, индикаторы «Пульс отношений» и «Батарейка ресурса», а также инструмент «Семейный мост» (нейтральный медиатор, переводящий взаимные претензии в конструктивные потребности без показа личной переписки другой стороне).</li>
+        <li><strong>3. IDA-Psy (<a href="https://ida-psy.pro/" target="_blank">ida-psy.pro/</a>):</strong> Операционная система и среда супервизии для частных психотерапевтов и психологических центров (клиентская CRM, структурирование сессий, аудио-конспекты).</li>
+        <li><strong>4. Corporate Health (<a href="https://corporate-health.ida-psy.pro/" target="_blank">corporate-health.ida-psy.pro/</a>):</strong> B2B-панель для бизнеса: мониторинг командного выгорания, телеметрия стресса и корпоративная поддержка семей сотрудников.</li>
+        <li><strong>5. Академия знаний (<a href="https://academy.ida-psy.pro/" target="_blank">academy.ida-psy.pro/</a>):</strong> Интерактивные микрокурсы и голосовые AI-тренажеры доказательной психологии здоровья.</li>
+      </ul>
+
+      <div class="highlight-card">
+        <h3 class="subsection-title" style="margin-top:0;">🧠 Мозг системы: Когнитивное ядро доказательной превенции (<a href="https://prevention.school/science/" target="_blank">prevention.school/science/</a>)</h3>
+        <p>В центре всей платформы находится <strong>Когнитивное ядро (Prevention Intelligence Engine — PIE)</strong> — многоуровневая детерминированная архитектура клинического ИИ, созданная в русле передовых инициатив <strong>Google Health по ответственному и безопасному ИИ (Responsible AI, Med-Gemini paradigms & Clinical Decision Support)</strong>:</p>
+        <ol>
+          <li><strong>Трехмерная матрица превенции (координатное пространство X × Y × M):</strong>
+            <ul>
+              <li><strong>Ось процессов (X):</strong> X1 (Встреча и контакт / Intake) → X2 (В чём дело / Functional Assessment) → X3 (Архитектура цели / Goal Architecture) → X4 (Поиск решения / Evidence Protocol) → X5 (Итог и план / Outcome Evaluation).</li>
+              <li><strong>Ось уровней тяжести (Y):</strong> Y1 (Норма / Universal Norm) → Y2 (Группа риска / Emerging Risk) → Y3 (Проблема в динамике / Active Problem) → Y4 (Острый кризис / Acute Crisis).</li>
+              <li><strong>Ось системных модальностей (M):</strong> M1 (Биология и тело / Biological) → M2 (Мысли и эмоции / Cognitive-Emotional) → M3 (Поведение / Behavioral) → M4 (Семья и окружение / Family-Interpersonal) → M5 (Институциональная среда / Environmental).</li>
+            </ul>
+            Каждая ситуация, протокол и микро-интервенция занимают строго детерминированные координаты в матрице 5 × 4 × 5, исключая произвольный дрейф модели.
+          </li>
+          <li><strong>Многоуровневая иерархия системных промптов:</strong>
+            <ul>
+              <li><strong>Фронтенд-промпты терминала специалиста:</strong> Архитектор документов (мгновенные официальные заключения и справки), Методолог / FBA (функциональный анализ поведения), Клинический копилот консультации и DAP SmartFill (автозаполнение протоколов по стандарту Data-Assessment-Plan).</li>
+              <li><strong>Бэкенд-промпты когнитивного рантайма:</strong> Перехватчики первичных запросов (Intake Intercepts), Диагностические аксиомы здравого смысла, Навигатор родителя, Челнок-медиатор «Семейного моста», Планировщик многопроблемных спринтов и Движок динамического сопровождения.</li>
+            </ul>
+          </li>
+          <li><strong>Топологический граф знаний (3D Semantic Space):</strong>
+            <ul>
+              <li><strong>3D-граф клинических связей:</strong> 438 верифицированных узлов и свыше 1800 направленных ребер доказательных взаимосвязей (КПТ, АСТ, ЭФТ, Мотивационное интервью) на <a href="https://academy.ida-psy.pro/graph/" target="_blank">academy.ida-psy.pro/graph/</a>.</li>
+            </ul>
+          </li>
+          <li><strong>Замкнутый цикл доказательности и фабрика протоколов (Closed-Loop Evidence Runtime Factory):</strong>
+            <ul>
+              <li><strong>Шаг 1: Первичная телеметрия и входное состояние (Baseline Intake):</strong> Фиксация поведенческих маркеров и эмоционального напряжения без навешивания стигматизирующих диагнозов.</li>
+              <li><strong>Шаг 2: Детерминированная маршрутизация и микро-спринты (Micro-Action Sprints):</strong> Подбор доказательного протокола (КПТ, АСТ, ЭФТ, Мотивационное интервью) и его декомпозиция на последовательность понятных микро-действий для специалиста, подростка или родителя.</li>
+              <li><strong>Шаг 3: Контроль приверженности и динамики в реальном времени (Adherence & Interaction Tracking):</strong> Фиксация выполнения шагов, отклика и изменения эмоционального тонуса на каждом этапе.</li>
+              <li><strong>Шаг 4: Стандартизированная карта эффекта и доказанной дельты (Outcome Scorecard & Effect Size):</strong> Автоматический расчет эмпирической дельты изменений и устойчивости (Cohen's d) по завершении спринта.</li>
+              <li><strong>Шаг 5: Непрерывная супервизорская калибровка и обратная связь (Calibration & Supervisory Reinforcement):</strong> Протоколы с подтвержденным клиническим эффектом получают наивысший приоритет в рекомендациях, а отклонения запускают супервизорскую ревизию и калибровку промптов.</li>
+            </ul>
+          </li>
+          <li><strong>Контроллеры клинической безопасности, этики и приватности:</strong>
+            <ul>
+              <li><strong>Принцип «Человек в контуре» (Copilot):</strong> ИИ ускоряет рутину и формулирует гипотезы, но финальное клиническое решение всегда остается за человеком (специалистом или родителем).</li>
+              <li><strong>Жесткие коридоры «Говорить / Избегать» (Negative Constraints):</strong> Исключение псевдодиагностических ярлыков, медицинского газлайтинга и недоказанных методов.</li>
+              <li><strong>Не-LLM триаж суицидального и острого риска:</strong> Аппаратный прерыватель при маркерах кризиса с немедленной переадресацией на национальные горячие линии (988, 112) и протоколы телесного заземления.</li>
+              <li><strong>Аппаратно изолированный шлюз Zero-PII:</strong> Полная деидентификация и удаление персональных данных на клиенте до отправки в облачные нейросети (полное соответствие HIPAA, GDPR, FERPA и законам о защите детей).</li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- Раздел 5 -->
+    <div class="section-block">
+      <h2 class="section-title">5. Почему Google Cloud и Google Gemini AI</h2>
+      <div class="prompt-label">Оригинальный вопрос Google:</div>
+      <div class="original-prompt">How does your startup leverage AI, and why is Google Cloud / Gemini critical for your roadmap?</div>
+
+      <p>Платформа спроектирована под передовые возможности моделей <strong>Google Gemini</strong> и напрямую развивает исследовательский вектор <strong>Google Health по трансформации медицины и превенции с помощью ответственного ИИ (Responsible AI, Med-Gemini paradigms & longitudinal health telemetry)</strong>:</p>
+      <ol>
+        <li><strong>Большие эпидемиологические данные из практики специалистов (The Ground-Truth Differentiator):</strong>
+          <ul>
+            <li>Традиционное общественное здравоохранение и фундаментальные модели опираются на запаздывающие, поверхностные анкетные опросы или разрозненные медицинские выписки.</li>
+            <li>Фундаментальный прорыв Prevention AI: <strong>Большие данные (Big Data) общественного здоровья и психологической устойчивости формируются в реальном времени непосредственно из ежедневных цифровых рабочих инструментов специалистов</strong> (школьных психологов, педагогов, психотерапевтов, родителей, HR-директоров).</li>
+            <li>Каждая консультационная заметка, структурированный протокол DAP, шаг семейной медиации или микро-спринт генерируют защищенную от деанонимизации поведенческую телеметрию. Это создает непрерывный эмпирический датасет реальной практики (Ground Truth) для обучения, калибровки и оценки специализированных превентивных моделей ИИ в русле инициатив Google Health.</li>
+          </ul>
+        </li>
+        <li><strong>Архитектура моделей Gemini 1.5 & 2.0 Flash и Pro:</strong>
+          <ul>
+            <li><strong>Субсекундный отклик (Gemini Flash):</strong> Интерактивные эмпатичные микро-интервенции, мгновенное деликатное переформулирование агрессии в инструменте «Семейный мост», быстрый триаж запросов и кризисных состояний в терминалах.</li>
+            <li><strong>Сверхдлинный контекст до 1M–2M токенов (Gemini Pro):</strong> Целостный анализ многолетней динамики случая ученика или семьи, полная загрузка комплексных доказательных протоколов (КПТ, АСТ, ЭФТ) и агрегированная межинституциональная аналитика без потерь и искажений RAG-векторизации.</li>
+            <li><strong>Мультимодальность и живой голос (Gemini 2.0 Live):</strong> Интерактивные голосовые симуляции сложных диалогов для обучения педагогов в Академии и живая фоновая расшифровка сессий специалистов с автоматическим формированием дайджеста.</li>
+          </ul>
+        </li>
+        <li><strong>Среда агентной разработки Google Antigravity & Vertex AI:</strong>
+          <ul>
+            <li><strong>Google Antigravity:</strong> Основная среда агентной разработки, архитектурного проектирования системных промптов и непрерывного деплоя.</li>
+            <li><strong>Vertex AI & Structured Outputs:</strong> Строгая валидация JSON-схем для детерминированного клинического вывода, батчевое тестирование безопасности и дистилляция специализированных промптов.</li>
+            <li><strong>Облачная инфраструктура GCP:</strong> Бессерверные микросервисы в <strong>Google Cloud Run</strong>, территориальное хранилище BigData в <strong>BigQuery</strong>, кэширование в <strong>Memorystore</strong> и защита контура через <strong>Cloud Armor</strong>.</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+
+    <!-- Раздел 6 -->
+    <div class="section-block">
+      <h2 class="section-title">6. Бизнес-модель, статьи монетизации и окупаемость</h2>
+      <div class="prompt-label">Оригинальный вопрос Google:</div>
+      <div class="original-prompt">What is your business model, and how will your company sustain cloud consumption after grant credits expire?</div>
+
+      <p>Prevention AI использует <strong>двухконтурную модель устойчивости</strong> с высокомаржинальными статьями монетизации на базе сервисов Google Gemini:</p>
+      <ol>
+        <li><strong>Открытый социальный контур (DPG Core, Бесплатно для государственных школ):</strong> Базовый терминал и школьная отчетность предоставляются бесплатно как Digital Public Good. Это обеспечивает мгновенное доверие, административную поддержку и виральный охват семей.</li>
+        <li><strong>Платные B2B/B2G/B2C подписки на базе возможностей Gemini:</strong>
+          <ul>
+            <li>🩺 <strong>AI-копилот психолога и психотерапевта (<a href="https://ida-psy.pro/" target="_blank">ida-psy.pro/</a> и спец-тариф):</strong> <em>$29–$79 / мес.</em> Живая транскрибация сессий, автоматический драфт протокола консультации, структурирование анамнеза методом КПТ, подсказка интервенций и супервизия сессий через Gemini Pro.</li>
+            <li>🏫 <strong>SaaS-кабинет директора школы и руководителя учреждения:</strong> <em>$199–$499 / год за школу.</em> Агрегированная телеметрия рисков, выявление очагов буллинга и эмоционального выгорания педагогов, балансировка нагрузки и формирование отчетности для проверок в один клик.</li>
+            <li>🏛️ <strong>Территориальная аналитическая панель для органов управления общественным здоровьем (Министерства и Департаменты):</strong> <em>$5,000–$25,000 / год за регион/округ.</em> Тепловые карты факторов риска, расчет территориального индекса психологической устойчивости, предиктивное распределение ресурсов и межинституциональная аналитика на сверхдлинном контексте Gemini.</li>
+            <li>🎓 <strong>Академия и AI-симуляторы кейсов (<a href="https://academy.ida-psy.pro/" target="_blank">academy.ida-psy.pro/</a>):</strong> <em>$49–$199 за курс/лицензию.</em> Интерактивные голосовые тренировки практических навыков для педагогов и начинающих психологов на базе Gemini Live.</li>
+            <li>🏢 <strong>Корпоративный контур Corporate Health (<a href="https://corporate-health.ida-psy.pro/" target="_blank">corporate-health.ida-psy.pro/</a>):</strong> <em>$3–$8 / сотр. в мес.</em> B2B-подписка компаний за мониторинг стресса команд и корпоративную поддержку семей сотрудников.</li>
+            <li>👨‍👩‍👧 <strong>Премиум для семей (<a href="https://teenology.care/" target="_blank">teenology.care/</a>):</strong> <em>$7.99 / мес.</em> Глубокие тематические AI-спринты и расширенные сессии инструмента «Семейный мост».</li>
+          </ul>
+        </li>
+      </ol>
+      <p><strong>Оплата облака после гранта:</strong> Диверсифицированная выручка от B2B/B2G подписок и высокая валовая маржинальность софта (82–88%) гарантируют долгосрочное покрытие расходов на токены Gemini API и инфраструктуру Google Cloud при росте пользовательской базы.</p>
+    </div>
+
+    <!-- Раздел 7 -->
+    <div class="section-block">
+      <h2 class="section-title">7. Текущий трекшн и дорожная карта на 12 месяцев</h2>
+      <ul>
+        <li><strong>Текущее состояние:</strong> Все веб-сервисы, мобильные PWA и терминалы работают в штатном режиме и готовы к пилотным внедрениям.</li>
+        <li><strong>Открытые репозитории:</strong> Исходный код открытого терминала (<a href="https://github.com/RomanDubrovsky/prevention-terminal-dpg" target="_blank">prevention-terminal-dpg</a>) подан на сертификацию в Digital Public Goods Alliance (Application ID: <strong>GID0093834</strong>) и соответствует стандартам UNICEF DPG.</li>
+        <li><strong>План на 12 месяцев:</strong>
+          <ul>
+            <li><strong>Q1–Q2 2026:</strong> Подключение 50+ пилотных школ и 5 000+ семей; прохождение аудита безопасности Common Sense Privacy & EdTech.</li>
+            <li><strong>Q3 2026:</strong> Внедрение мультимодального голосового взаимодействия Gemini 2.0 Live в Академии и модулях супервизии.</li>
+            <li><strong>Q4 2026:</strong> Масштабирование B2B-контрактов Corporate Health и территориальных панелей для достижения полной операционной самоокупаемости всех расходов на Google Cloud.</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Раздел 8 -->
+    <div class="section-block">
+      <h2 class="section-title">8. План использования запрашиваемых ресурсов Google Cloud</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Категория ресурсов</th>
+            <th>Сервисы Google Cloud</th>
+            <th>Назначение и рабочая нагрузка</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Генеративный AI и инференс</strong></td>
+            <td><strong>Vertex AI / Gemini 1.5 & 2.0 (Flash & Pro)</strong></td>
+            <td>AI-компаньоны реального времени, триаж рисков, конспекты сессий, семейная медиация и клиническая супервизия</td>
+          </tr>
+          <tr>
+            <td><strong>Вычислительные мощности</strong></td>
+            <td><strong>Cloud Run, GKE, Cloud Build</strong></td>
+            <td>Отказоустойчивый бэкенд, очереди задач, микросервисы и API</td>
+          </tr>
+          <tr>
+            <td><strong>Данные и аналитика</strong></td>
+            <td><strong>BigQuery, Cloud Storage, Memorystore</strong></td>
+            <td>Обезличенная территориальная статистика, кэш сессий и валидационные датасеты</td>
+          </tr>
+          <tr>
+            <td><strong>Инструменты разработки</strong></td>
+            <td><strong>Google Antigravity & GenAI Developer Seats</strong></td>
+            <td>Непрерывная агентная разработка, настройка промптов и тестирование протоколов</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="footer-nav">
+      <a href="/" style="text-decoration:none; color:var(--accent); font-weight:600; font-size:0.9rem;">← На главную платформы</a>
+      <a href="https://prevention.school/google-grant/" class="lang-toggle">🇬🇧 Перейти к оригиналу на английском</a>
+    </div>
+
+  </div>
+</body>
+</html>

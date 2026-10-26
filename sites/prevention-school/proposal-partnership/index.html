@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/favicon.png">
+  <title>Partnership Proposal — UNESCO & WHO MHPSS Infrastructure — Prevention AI Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;550;650;760;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/site.css">
+  <style>
+    .draft-container {
+      max-width: 800px;
+      margin: 60px auto;
+      padding: 40px;
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+    }
+    .draft-container h1 {
+      font-size: 24px;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--line);
+    }
+    .draft-container p {
+      margin-bottom: 16px;
+    }
+    .draft-container .meta {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 32px;
+    }
+  </style>
+  <!-- Yandex.Metrika counter & Auto-Goal Tracker -->
+<script type="text/javascript">
+(function(m,e,t,r,i,k,a){
+    m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();
+    for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+})(window, document,'script','https://mc.yandex.ru/metrika/tag.js', 'ym');
+
+(function(){
+    try {
+        if (window.location.search.indexOf('no_track=1') !== -1 || window.location.search.indexOf('admin=1') !== -1) {
+            localStorage.setItem('ym_disable_tracking', '1');
+        }
+        if (localStorage.getItem('ym_disable_tracking') === '1') {
+            console.log('[Yandex.Metrika] Tracking disabled for owner/admin session.');
+            window.ymGoal = window.reachGoal = function(g, p){ console.log('[Goal skipped (admin)]', g, p || ''); };
+            return;
+        }
+    } catch(e) {}
+
+    var host = (window.location.hostname || '').toLowerCase();
+    var id = null;
+    if (host.indexOf('ida-psy.ru') !== -1) id = 113108416;
+    else if (host.indexOf('ida-psy.pro') !== -1) id = 113706104;
+    else if (host.indexOf('prevention-ai.ru') !== -1) id = 113108883;
+    else if (host.indexOf('prevention.school') !== -1) id = 113706126;
+    else if (host.indexOf('teenology-ai.ru') !== -1) id = 113108854;
+    else if (host.indexOf('teenology.care') !== -1) id = 109437867;
+    else if (host.indexOf('ru.decima.business') !== -1) id = 93591954;
+    else if (host.indexOf('decima.business') !== -1) id = 93591880;
+    else {
+        id = 113706126;
+    }
+
+    window._ymCounterId = id;
+
+    // Universal Goal Dispatcher
+    window.ymGoal = window.reachGoal = function(goalName, params) {
+        if (!id || typeof ym !== 'function') return;
+        try {
+            if (params) {
+                ym(id, 'reachGoal', goalName, params);
+            } else {
+                ym(id, 'reachGoal', goalName);
+            }
+            console.log('[YM Goal]', goalName, params || '');
+        } catch(e) {
+            console.warn('[YM Goal Error]', e);
+        }
+    };
+
+    if (id) {
+        ym(id, 'init', {
+            ssr: true,
+            webvisor: true,
+            clickmap: true,
+            ecommerce: "dataLayer",
+            referrer: document.referrer,
+            url: location.href,
+            accurateTrackBounce: true,
+            trackLinks: true
+        });
+    }
+
+    // Auto-Goal Click & Form Interceptors
+    document.addEventListener('DOMContentLoaded', function(){
+        // 1. Click tracker for buttons, links, actions
+        document.addEventListener('click', function(e){
+            var target = e.target;
+            if (!target) return;
+            var el = target.closest('a, button, [data-goal], input[type="submit"]');
+            if (!el) return;
+
+            // Explicit data-goal attribute
+            var explicitGoal = el.getAttribute('data-goal');
+            if (explicitGoal) {
+                window.ymGoal(explicitGoal);
+                return;
+            }
+
+            var href = (el.getAttribute('href') || '').toLowerCase();
+            var text = (el.innerText || el.textContent || el.value || '').trim().toLowerCase();
+            var idStr = (el.id || '').toLowerCase();
+            var cls = (el.className || '').toLowerCase();
+
+            // Messengers & Social
+            if (href.indexOf('t.me/') !== -1 || href.indexOf('telegram.me') !== -1) {
+                window.ymGoal('telegram_click', {url: href});
+            } else if (href.indexOf('vk.com/') !== -1) {
+                window.ymGoal('vk_click', {url: href});
+            } else if (href.indexOf('wa.me/') !== -1 || href.indexOf('whatsapp.com') !== -1) {
+                window.ymGoal('whatsapp_click', {url: href});
+            } else if (href.indexOf('tel:') === 0) {
+                window.ymGoal('phone_click', {phone: href});
+            } else if (href.indexOf('mailto:') === 0) {
+                window.ymGoal('email_click', {email: href});
+            } 
+            // File downloads
+            else if (/\.(pdf|docx?|xlsx?|zip|rar|pptx?)$/i.test(href)) {
+                window.ymGoal('file_download', {file: href});
+            }
+            // Registration & Auth
+            else if (href.indexOf('/join') !== -1 || href.indexOf('/staff-register') !== -1 || href.indexOf('/auth') !== -1 || href.indexOf('/register') !== -1 || idStr.indexOf('register') !== -1 || idStr.indexOf('login') !== -1 || text.indexOf('регистрац') !== -1 || text.indexOf('войти') !== -1 || text.indexOf('личный кабинет') !== -1) {
+                window.ymGoal('auth_click', {text: text});
+            }
+            // Demo & Interactive Room
+            else if (href.indexOf('#room=') !== -1 || href.indexOf('/demo') !== -1 || href.indexOf('/app') !== -1 || href.indexOf('/workspace') !== -1 || idStr.indexOf('demo') !== -1 || text.indexOf('демо') !== -1 || text.indexOf('попробовать') !== -1 || text.indexOf('запустить') !== -1) {
+                window.ymGoal('demo_open', {text: text});
+            }
+            // Test & Screening
+            else if (href.indexOf('/test') !== -1 || href.indexOf('screening') !== -1 || text.indexOf('тест') !== -1 || text.indexOf('диагностик') !== -1 || text.indexOf('опрос') !== -1) {
+                window.ymGoal('test_start', {text: text});
+            }
+            // Pricing / Tariffs
+            else if (href.indexOf('pricing') !== -1 || href.indexOf('tariff') !== -1 || text.indexOf('тариф') !== -1 || text.indexOf('купить') !== -1 || text.indexOf('подключить') !== -1) {
+                window.ymGoal('pricing_click', {text: text});
+            }
+            // Feedback / Call to action
+            else if (text.indexOf('оставить заявку') !== -1 || text.indexOf('записаться') !== -1 || text.indexOf('консультац') !== -1 || text.indexOf('связаться') !== -1) {
+                window.ymGoal('lead_button_click', {text: text});
+            }
+        }, true);
+
+        // 2. Form submission tracker
+        document.addEventListener('submit', function(e){
+            var form = e.target;
+            if (!form) return;
+            var formId = form.id || form.getAttribute('name') || form.getAttribute('action') || 'lead_form';
+            window.ymGoal('form_submit', {form_id: formId});
+        }, true);
+
+        // 3. Scroll depth tracking (50% and 90%)
+        var scroll50Fired = false;
+        var scroll90Fired = false;
+        window.addEventListener('scroll', function(){
+            var h = document.documentElement, 
+                b = document.body,
+                st = 'scrollTop',
+                sh = 'scrollHeight';
+            var percent = ((h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight)) * 100;
+            if (!scroll50Fired && percent >= 50) {
+                scroll50Fired = true;
+                window.ymGoal('scroll_50');
+            }
+            if (!scroll90Fired && percent >= 90) {
+                scroll90Fired = true;
+                window.ymGoal('scroll_90');
+            }
+        }, {passive: true});
+    });
+})();
+</script>
+<!-- /Yandex.Metrika counter -->
+</head>
+<body>
+  <div class="wrap">
+    <main>
+      <div class="draft-container">
+        <div class="meta">Status: Draft / Confidential (Not linked from main site)</div>
+        <h1>Subject: Partnership Proposal: Open MHPSS Infrastructure for UNESCO/WHO (Digital Public Good)</h1>
+        
+        <p>Dear Colleagues,</p>
+        
+        <p>I am writing to you as a fellow professional in the MHPSS and health education fields. My career in youth prevention spans over 25 years and includes field research on adolescent deviance for UNESCO, WHO, and UNICEF, as well as serving as a manager and analyst for the UNODC-supported ESPAD youth surveys.</p>
+
+        <p>Culminating this professional journey, I have engineered the architecture of Prevention-AI (prevention.school)—an AI-native public health ecosystem for government and educational organizations working with minors. Specifically, the platform was engineered to serve as the direct digital operationalization of the WHO/UNESCO Health-Promoting Schools (HPS) framework and the FRESH (Focusing Resources on Effective School Health) initiative. It provides the exact digital CRM, telemetry, and clinical co-pilot infrastructure needed to scale these global standards across national educational systems. It resolves a set of critical systemic bottlenecks:</p>
+
+        <ul>
+          <li>Provides a ready-to-use, scalable CRM system that unites the electronic workspaces of all participants within the youth deviance prevention system;</li>
+          <li>Eliminates the epidemiological data gap by integrating dedicated applications for parents, teenagers, educational institutions, and public authorities. Furthermore, the platform bridges the public and private sectors through an application suite tailored for commercial psychological centers;</li>
+          <li>Overcomes the well-known limitations of classical psychodiagnostic methods (such as low engagement or response distortion) through "Shadow Scoring" technology. The AI analyzes the user's natural free-flowing speech during empathetic dialogue and programmatically maps it onto strict clinical metrics, preserving the scientific validity of the assessment;</li>
+          <li>Builds capacity across all the aforementioned specialist categories through an integrated educational course on health psychology and youth prevention program design;</li>
+          <li>Automatically generates comprehensive statistical pools detailing the activities of school psychologists using the Prevention-AI platform (analytics that standard departmental reporting is fundamentally unable to provide);</li>
+          <li>Creates an "Evidence Factory" for AI-mediated psychological support through continuous aggregation, structuring, and analysis of big data, as well as ongoing evaluation of the AI assistance protocols;</li>
+          <li>Establishes a territorial system for youth deviance prevention at any scale via a hierarchy of dashboards and cross-cutting metrics—from an individual school psychologist up to the national or UN level.</li>
+        </ul>
+
+        <p>It is crucial to emphasize that the entire core infrastructure for public schools and state organizations is designed to be distributed absolutely free of charge (as a Digital Public Good). Paid options are entirely voluntary and apply exclusively to advanced AI subscriptions for the commercial sector or private users. This ensures the project's financial sustainability without placing any burden on public education budgets.</p>
+
+        <p>The core architecture of the platform—including the family application and specialist terminals—is fully developed and operational. I am writing to propose a conceptual partnership: <strong>deploying and validating the first MHPSS digital engine built to operationalize UNESCO and WHO global health standards at scale, combining open infrastructure with a strictly moderated Cognitive Core.</strong></p>
+
+        <p>My goal is to launch the interfaces and CRM (Terminals) as a completely free <strong>Digital Public Good (DPG)</strong>. To demonstrate absolute transparency, I have already made this source code publicly available for your technical team's review: <a href="https://github.com/RomanDubrovsky/prevention-terminal-dpg" target="_blank" rel="noopener">https://github.com/RomanDubrovsky/prevention-terminal-dpg</a>. Any school in the world will be able to deploy the system and manage electronic records at no cost.</p>
+
+        <p>However, the highest quality of specialist support is driven by the platform's <strong>Cognitive Core (AI Brain)</strong>—a complex hierarchy of clinical prompts, protocols, and RAG architecture that acts as an expert co-pilot. Unlike the UI, this Brain cannot be released into unregulated Open Source. It requires strict clinical and ethical validation that aligns with UNESCO/WHO guidelines, continuous oversight, and evidence-based development to mitigate safety risks.</p>
+
+        <p>The global architecture of the Cognitive Core and its scientific foundation are detailed publicly at <a href="https://prevention.school/science/">https://prevention.school/science/</a>. The closed repository itself, containing the algorithmic hierarchy and clinical prompt library (the AI Brain), remains protected. I would be delighted to provide your technical, scientific, and health governance teams with full access to the closed repository for a deep audit of the platform and to discuss piloting this Digital Public Good globally across educational systems.</p>
+
+        <p>I am a researcher and full-stack architect. I am proposing that UNESCO / WHO act as the institutional validator and strategic partner to pilot and oversee this Cognitive Core. Your guidance and resources would enable the localization of the protocol base for diverse cultural contexts, the alignment with UNESCO's Education for Health and Well-being standards, and, most importantly, the enforcement of rigorous ethical control over the AI's operational logic.</p>
+
+        <p>To ensure total compliance with DPG principles, I deliberately self-funded the platform's development. My intellectual property is free from venture capital obligations, allowing for a clean collaborative partnership or transfer of operational control over the project without legal complications.</p>
+
+        <p>The platform and its applications are available in a fully functional state on my website: <a href="https://prevention.school/">https://prevention.school/</a></p>
+
+        <p>I also invite you to review:</p>
+        <ul>
+          <li>The robust technological and scientific foundation of the entire platform: <a href="https://prevention.school/science/">https://prevention.school/science/</a></li>
+          <li>The software suite for schools and state organizations: <a href="https://prevention.school/prevention-ai/">https://prevention.school/prevention-ai/</a></li>
+          <li>The family counseling app for teenagers and parents: <a href="https://teenology.care/">https://teenology.care/</a> (which integrates with the school psychologist's workspace when necessary). To access a subscription in the app, please use the promo code <strong>TEENBETA100</strong>.</li>
+        </ul>
+
+        <p>If this proposal aligns with UNESCO and WHO's current strategic objectives in school health and MHPSS, I would be very glad to discuss potential avenues for a pilot and collaboration.</p>
+
+        <p>Thank you for your time and for your leadership in global health education.</p>
+
+        <p>Sincerely,<br>
+        Roman Dubrovsky, PhD<br>
+        MHPSS Expert and Lead Architect of Prevention-AI Platform<br>
+        Email: <a href="mailto:Roman.Dubrovsky@gmail.com">Roman.Dubrovsky@gmail.com</a><br>
+        Telegram: <a href="https://t.me/RomanDubrovsky" target="_blank" rel="noopener">@RomanDubrovsky</a><br>
+        LinkedIn: <a href="https://www.linkedin.com/in/romandubrovsky/" target="_blank" rel="noopener">linkedin.com/in/romandubrovsky</a><br>
+        ORCID: <a href="https://orcid.org/0000-0001-9876-9798" target="_blank" rel="noopener">orcid.org/0000-0001-9876-9798</a></p>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

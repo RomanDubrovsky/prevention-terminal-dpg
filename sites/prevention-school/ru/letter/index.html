@@ -1,0 +1,747 @@
+<!doctype html>
+<html lang="ru" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link class="favicon" rel="icon" href="/favicon.ico" sizes="any">
+  <link class="favicon" rel="icon" href="/favicon.png" type="image/png">
+  <link class="apple-touch-icon" href="/favicon.png">
+  <title>Уважаемые коллеги! Приглашение на платформу «Профилактика»</title>
+  <meta name="description" content="Платформа «Профилактика» — сделанная психологом для психологов, педагогов и всех специалистов, осуществляющих профилактическую работу с подростками и молодежью.">
+  <link rel="canonical" href="https://prevention.school/ru/letter/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;550;650;760;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <style>
+    :root {
+      --letter-serif: "IBM Plex Serif", Georgia, "Times New Roman", serif;
+      --letter-mono: "IBM Plex Mono", ui-monospace, monospace;
+      --letter-sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --tag-green-bg: rgba(16, 185, 129, 0.1);
+      --tag-green-border: rgba(16, 185, 129, 0.35);
+      --tag-green-text: #047857;
+      --tag-violet-bg: rgba(109, 91, 208, 0.1);
+      --tag-violet-border: rgba(109, 91, 208, 0.35);
+      --tag-violet-text: #6d5bd0;
+    }
+
+    [data-theme="dark"] {
+      --tag-green-bg: rgba(45, 212, 191, 0.12);
+      --tag-green-border: rgba(45, 212, 191, 0.35);
+      --tag-green-text: #2dd4bf;
+      --tag-violet-bg: rgba(167, 139, 250, 0.15);
+      --tag-violet-border: rgba(167, 139, 250, 0.35);
+      --tag-violet-text: #c4b5fd;
+    }
+
+    .letter-page {
+      padding: 40px 0 80px;
+    }
+    .letter-container {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .letter-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 44px 40px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+      line-height: 1.75;
+      font-size: 1.05rem;
+      color: var(--text);
+    }
+    @media (max-width: 640px) {
+      .letter-card {
+        padding: 24px 18px;
+        font-size: 0.98rem;
+      }
+    }
+
+    .article-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-family: var(--letter-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #0f766e;
+      background: rgba(15, 118, 110, 0.08);
+      border: 1px solid rgba(15, 118, 110, 0.25);
+      margin-bottom: 20px;
+    }
+
+    .letter-title {
+      font-family: var(--letter-serif);
+      font-size: clamp(1.85rem, 4vw, 2.35rem);
+      font-weight: 600;
+      line-height: 1.22;
+      margin: 0 0 18px;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .article-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px 14px;
+      font-family: var(--letter-mono);
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .letter-lead {
+      font-family: var(--letter-serif);
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 20px;
+      line-height: 1.7;
+    }
+
+    .letter-card p {
+      margin: 0 0 14px;
+    }
+
+    .letter-section-header {
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin: 36px 0 12px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--line);
+      color: #0f766e;
+    }
+
+    /* Blocks: Free & AI Subscription */
+    .plan-box {
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin: 16px 0 20px;
+      font-size: 0.98rem;
+    }
+    .plan-box.free {
+      background: var(--tag-green-bg);
+      border: 1px solid var(--tag-green-border);
+    }
+    .plan-box.pro {
+      background: var(--tag-violet-bg);
+      border: 1px solid var(--tag-violet-border);
+    }
+
+    .plan-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--letter-mono);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 3px 10px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+    .plan-badge.free {
+      background: var(--tag-green-bg);
+      border: 1px solid var(--tag-green-border);
+      color: var(--tag-green-text);
+    }
+    .plan-badge.pro {
+      background: var(--tag-violet-bg);
+      border: 1px solid var(--tag-violet-border);
+      color: var(--tag-violet-text);
+    }
+
+    .letter-list {
+      margin: 8px 0 12px;
+      padding-left: 20px;
+    }
+    .letter-list li {
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+
+    .letter-link {
+      color: #0f766e;
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      word-break: break-word;
+    }
+    .letter-link:hover {
+      color: #115e59;
+    }
+
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 24px;
+      margin: 8px 0 20px;
+      border-radius: 8px;
+      font-family: var(--letter-sans);
+      font-size: 0.95rem;
+      font-weight: 650;
+      color: #ffffff;
+      background: #0f766e;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      box-shadow: 0 4px 12px rgba(15, 118, 110, 0.2);
+    }
+    .action-btn:hover {
+      background: #115e59;
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    /* Founder Card */
+    .founder-block {
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 2px solid var(--line);
+    }
+    .founder-block-card {
+      background: var(--surface-soft, rgba(0, 0, 0, 0.02));
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .founder-block-header {
+      font-family: var(--letter-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+    }
+    .founder-block-name {
+      font-family: var(--letter-serif);
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin: 0;
+      color: var(--text);
+    }
+    .founder-block-bio {
+      font-size: 0.95rem;
+      color: var(--text);
+      line-height: 1.65;
+      margin: 0;
+    }
+    .founder-block-quote {
+      margin: 8px 0;
+      padding: 14px 18px;
+      background: var(--surface);
+      border-left: 3px solid #0f766e;
+      border-radius: 0 10px 10px 0;
+      font-family: var(--letter-serif);
+      font-style: italic;
+      font-size: 0.98rem;
+      line-height: 1.65;
+      color: var(--text);
+    }
+    .founder-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .founder-tags span {
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-family: var(--letter-mono);
+      font-size: 11px;
+      font-weight: 600;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      color: var(--text);
+    }
+    .founder-footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      font-family: var(--letter-mono);
+      font-size: 12px;
+      margin-top: 10px;
+      padding-top: 14px;
+      border-top: 1px dashed var(--line);
+    }
+    .founder-orcid {
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .founder-more-link {
+      color: #0f766e;
+      background: rgba(15, 118, 110, 0.08);
+      border: 1px solid rgba(15, 118, 110, 0.28);
+      font-family: var(--letter-sans);
+      font-weight: 650;
+      font-size: 0.88rem;
+      padding: 7px 16px;
+      border-radius: 8px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+    .founder-more-link:hover {
+      background: #0f766e;
+      color: #ffffff;
+      border-color: #0f766e;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(15, 118, 110, 0.2);
+    }
+  </style>
+<!-- Yandex.Metrika counter & Auto-Goal Tracker -->
+<script type="text/javascript">
+(function(m,e,t,r,i,k,a){
+    m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();
+    for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+})(window, document,'script','https://mc.yandex.ru/metrika/tag.js', 'ym');
+
+(function(){
+    try {
+        if (window.location.search.indexOf('no_track=1') !== -1 || window.location.search.indexOf('admin=1') !== -1) {
+            localStorage.setItem('ym_disable_tracking', '1');
+        }
+        if (localStorage.getItem('ym_disable_tracking') === '1') {
+            console.log('[Yandex.Metrika] Tracking disabled for owner/admin session.');
+            window.ymGoal = window.reachGoal = function(g, p){ console.log('[Goal skipped (admin)]', g, p || ''); };
+            return;
+        }
+    } catch(e) {}
+
+    var host = (window.location.hostname || '').toLowerCase();
+    var id = null;
+    if (host.indexOf('ida-psy.ru') !== -1) id = 113108416;
+    else if (host.indexOf('ida-psy.pro') !== -1) id = 113706104;
+    else if (host.indexOf('prevention-ai.ru') !== -1) id = 113108883;
+    else if (host.indexOf('prevention.school') !== -1) id = 113706126;
+    else if (host.indexOf('teenology-ai.ru') !== -1) id = 113108854;
+    else if (host.indexOf('teenology.care') !== -1) id = 109437867;
+    else if (host.indexOf('ru.decima.business') !== -1) id = 93591954;
+    else if (host.indexOf('decima.business') !== -1) id = 93591880;
+    else {
+        id = 113706126;
+    }
+
+    window._ymCounterId = id;
+
+    // Universal Goal Dispatcher
+    window.ymGoal = window.reachGoal = function(goalName, params) {
+        if (!id || typeof ym !== 'function') return;
+        try {
+            if (params) {
+                ym(id, 'reachGoal', goalName, params);
+            } else {
+                ym(id, 'reachGoal', goalName);
+            }
+            console.log('[YM Goal]', goalName, params || '');
+        } catch(e) {
+            console.warn('[YM Goal Error]', e);
+        }
+    };
+
+    if (id) {
+        ym(id, 'init', {
+            ssr: true,
+            webvisor: true,
+            clickmap: true,
+            ecommerce: "dataLayer",
+            referrer: document.referrer,
+            url: location.href,
+            accurateTrackBounce: true,
+            trackLinks: true
+        });
+    }
+
+    // Auto-Goal Click & Form Interceptors
+    document.addEventListener('DOMContentLoaded', function(){
+        // 1. Click tracker for buttons, links, actions
+        document.addEventListener('click', function(e){
+            var target = e.target;
+            if (!target) return;
+            var el = target.closest('a, button, [data-goal], input[type="submit"]');
+            if (!el) return;
+
+            // Explicit data-goal attribute
+            var explicitGoal = el.getAttribute('data-goal');
+            if (explicitGoal) {
+                window.ymGoal(explicitGoal);
+                return;
+            }
+
+            var href = (el.getAttribute('href') || '').toLowerCase();
+            var text = (el.innerText || el.textContent || el.value || '').trim().toLowerCase();
+            var idStr = (el.id || '').toLowerCase();
+            var cls = (el.className || '').toLowerCase();
+
+            // Messengers & Social
+            if (href.indexOf('t.me/') !== -1 || href.indexOf('telegram.me') !== -1) {
+                window.ymGoal('telegram_click', {url: href});
+            } else if (href.indexOf('vk.com/') !== -1) {
+                window.ymGoal('vk_click', {url: href});
+            } else if (href.indexOf('wa.me/') !== -1 || href.indexOf('whatsapp.com') !== -1) {
+                window.ymGoal('whatsapp_click', {url: href});
+            } else if (href.indexOf('tel:') === 0) {
+                window.ymGoal('phone_click', {phone: href});
+            } else if (href.indexOf('mailto:') === 0) {
+                window.ymGoal('email_click', {email: href});
+            } 
+            // File downloads
+            else if (/\.(pdf|docx?|xlsx?|zip|rar|pptx?)$/i.test(href)) {
+                window.ymGoal('file_download', {file: href});
+            }
+            // Registration & Auth
+            else if (href.indexOf('/join') !== -1 || href.indexOf('/staff-register') !== -1 || href.indexOf('/auth') !== -1 || href.indexOf('/register') !== -1 || idStr.indexOf('register') !== -1 || idStr.indexOf('login') !== -1 || text.indexOf('регистрац') !== -1 || text.indexOf('войти') !== -1 || text.indexOf('личный кабинет') !== -1) {
+                window.ymGoal('auth_click', {text: text});
+            }
+            // Demo & Interactive Room
+            else if (href.indexOf('#room=') !== -1 || href.indexOf('/demo') !== -1 || href.indexOf('/app') !== -1 || href.indexOf('/workspace') !== -1 || idStr.indexOf('demo') !== -1 || text.indexOf('демо') !== -1 || text.indexOf('попробовать') !== -1 || text.indexOf('запустить') !== -1) {
+                window.ymGoal('demo_open', {text: text});
+            }
+            // Test & Screening
+            else if (href.indexOf('/test') !== -1 || href.indexOf('screening') !== -1 || text.indexOf('тест') !== -1 || text.indexOf('диагностик') !== -1 || text.indexOf('опрос') !== -1) {
+                window.ymGoal('test_start', {text: text});
+            }
+            // Pricing / Tariffs
+            else if (href.indexOf('pricing') !== -1 || href.indexOf('tariff') !== -1 || text.indexOf('тариф') !== -1 || text.indexOf('купить') !== -1 || text.indexOf('подключить') !== -1) {
+                window.ymGoal('pricing_click', {text: text});
+            }
+            // Feedback / Call to action
+            else if (text.indexOf('оставить заявку') !== -1 || text.indexOf('записаться') !== -1 || text.indexOf('консультац') !== -1 || text.indexOf('связаться') !== -1) {
+                window.ymGoal('lead_button_click', {text: text});
+            }
+        }, true);
+
+        // 2. Form submission tracker
+        document.addEventListener('submit', function(e){
+            var form = e.target;
+            if (!form) return;
+            var formId = form.id || form.getAttribute('name') || form.getAttribute('action') || 'lead_form';
+            window.ymGoal('form_submit', {form_id: formId});
+        }, true);
+
+        // 3. Scroll depth tracking (50% and 90%)
+        var scroll50Fired = false;
+        var scroll90Fired = false;
+        window.addEventListener('scroll', function(){
+            var h = document.documentElement, 
+                b = document.body,
+                st = 'scrollTop',
+                sh = 'scrollHeight';
+            var percent = ((h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight)) * 100;
+            if (!scroll50Fired && percent >= 50) {
+                scroll50Fired = true;
+                window.ymGoal('scroll_50');
+            }
+            if (!scroll90Fired && percent >= 90) {
+                scroll90Fired = true;
+                window.ymGoal('scroll_90');
+            }
+        }, {passive: true});
+    });
+})();
+</script>
+<!-- /Yandex.Metrika counter -->
+</head>
+<body>
+  <div class="wrap">
+    <header class="site-header">
+      <a class="brand" href="/ru/"><span class="brand-mark">П</span><span>Профилактика-AI <small style="font-size: 10px; font-weight: 800; text-transform: uppercase; color: #0d9488; margin-left: 4px; vertical-align: super;">Beta</small></span></a>
+                        <nav class="nav" aria-label="Навигация">
+        <a href="/ru/about/">О проекте</a>
+        <a href="https://academy.prevention-ai.ru/" target="_blank" rel="noopener">Академия</a>
+        <a href="https://web.prevention-ai.ru/?entry=educator" target="_blank" rel="noopener">Учителю</a>
+        <a href="/ru/teenology/">Родителям и подросткам</a>
+      </nav>
+      <div class="nav-controls">
+        <a href="https://web.prevention.school/" class="nav-cta" target="_blank" rel="noopener">Веб-терминал</a>
+        <button type="button" class="theme-toggle" id="theme-toggle">Темная</button>
+      </div>
+    </header>
+
+    <main>
+      <div class="letter-page">
+        <div class="letter-container">
+          <div class="letter-card">
+
+            <span class="article-tag">Общественное здоровье &amp; AI</span>
+            <h1 class="letter-title">Уважаемые коллеги!</h1>
+
+
+            <p class="letter-lead">
+              Приглашаю Вас на новую платформу «Профилактика» (<a class="letter-link" href="https://prevention-ai.ru/" target="_blank" rel="noopener">https://prevention-ai.ru</a>), сделанную психологом для психологов, педагогов и всех специалистов, осуществляющих профилактическую работу с подростками и молодежью.
+            </p>
+
+            <p>
+              Это не дополнительная нагрузка к и так непростой жизни, а помощник в избавлении от бумажного ада и возвращении к живой работе, ради которой мы приходили в профессию.
+            </p>
+
+            <!-- SECTION 1 -->
+            <h2 class="letter-section-header">1) ПЕДАГОГАМ И КЛАССНЫМ РУКОВОДИТЕЛЯМ</h2>
+            <a class="action-btn" href="https://prevention-ai.ru/help-for-teacher/" target="_blank" rel="noopener">Открыть</a>
+
+            <div class="plan-box free">
+              <span class="plan-badge free">✓ Бесплатно:</span>
+              <ul class="letter-list">
+                <li><strong>ИИ-консультант по сложным ситуациям</strong> — помогает разобраться в конфликтах в классе, отношениях с родителями учеников, случаях буллинга. Простым языком, без специальной терминологии: конкретные объяснения и рекомендованные действия.</li>
+                <li><strong>ИИ-конструктор групповых занятий</strong> — генерация готового плана занятий по ЗОЖ, профилактике зависимостей, медиации конфликтов или любой другой теме.</li>
+                <li><strong>Журнал наблюдений</strong> — фиксация ситуаций с учениками и передача обращений школьному психологу в один клик. Больше не нужно ловить психолога в коридоре, чтобы рассказать о тревожном ребёнке.</li>
+              </ul>
+            </div>
+
+            <!-- SECTION 2 -->
+            <h2 class="letter-section-header">2) ПЕДАГОГАМ-ПСИХОЛОГАМ</h2>
+            <a class="action-btn" href="https://prevention-ai.ru/terminal/staging/?demo=school&amp;role=specialist&amp;edition=ru" target="_blank" rel="noopener">Демо-кабинет без пароля</a>
+
+            <div class="plan-box free">
+              <span class="plan-badge free">✓ Бесплатно:</span>
+              <ul class="letter-list">
+                <li><strong>Защищённый реестр обучающихся</strong> — централизованный учёт контингента с локальным шифрованием. Данные детей никуда не «сливаются» — хранятся только на вашем устройстве.</li>
+                <li><strong>Электронный журнал консультаций</strong> — фиксация визитов, заметки, история обращений. Каждая запись автоматически учитывается в годовой нагрузке.</li>
+                <li><strong>Журнал групповых занятий</strong> — учёт проведённых мероприятий по категориям.</li>
+                <li><strong>Кейсы и карточки сопровождения</strong> — ведение индивидуальных дел и ИПР.</li>
+                <li><strong>Входящие обращения от педагогов</strong> — единый центр приёма сигналов из Журнала наблюдений.</li>
+                <li><strong>Дашборд специалиста</strong> — операционная сводка: сколько консультаций проведено, какая нагрузка, динамика по периодам.</li>
+              </ul>
+
+              <p style="font-weight: 700; margin: 16px 0 8px;">Отчетность - Автоматический сбор всей статистики:</p>
+              <ul class="letter-list">
+                <li>Автоматическое ведение журналов работы психолога на основе первичных записей.</li>
+                <li>Форма 5А — мгновенный подсчет всех консультаций (ученики, родители, педагоги), диагностик, групп, мероприятий.</li>
+                <li>Все ведомственные журналы учёта (Формы 4А, 4Б, 4В, 4Г, 4Д, 4Е, 4Ж)</li>
+                <li>Экспорт для ЦОС «Цифровой психолог»: автоматическая группировка записей по утвержденному рубрикатору тематик ЦОС.</li>
+              </ul>
+
+              <p style="font-weight: 700; margin: 16px 0 8px;">А также:</p>
+              <ul class="letter-list">
+                <li>Обучающий курс «Психология здоровья и разработка профилактических программ»<br><a class="action-btn" style="padding: 6px 14px; font-size: 0.85rem; margin-top: 10px; margin-bottom: 0;" href="https://prevention-ai.ru/academy" target="_blank" rel="noopener">Открыть</a></li>
+              </ul>
+            </div>
+
+            <div class="plan-box pro">
+              <span class="plan-badge pro">✦ По подписке ИИ (конструктор и экспертиза документов):</span>
+              <ul class="letter-list">
+                <li><strong>Автоматическая генерация планов и отчётов</strong> — вы своими словами фиксируете факт проведения консультации или занятия, а ИИ сам формирует заключение, характеристику, аналитическую справку или годовой отчёт по актуальным стандартам.</li>
+                <li><strong>Экспертиза случая</strong> — ИИ анализирует карточку ученика и предлагает рекомендации, гипотезы и план работы.</li>
+                <li><strong>Экспорт в Word</strong> — готовые документы в один клик.</li>
+                <li><strong>Голосовая диктовка</strong> — надиктуйте заметку после сессии за 30 секунд, ИИ сам расшифрует и оформит.</li>
+                <li><strong>Защищенные видео-консультации с ИИ-обработкой</strong> — встроенный профессиональный видео-модуль для дистанционных сессий (обязательных по новым стандартам) и консилиумов. В отличие от подключения сторонних мессенджеров, сессия проходит в едином защищенном окне терминала, а после её завершения система автоматически формирует итоговые документы по визиту и выжимку для супервизии.</li>
+                <li><strong>ИИ-Банк речевых модулей и скриптов</strong> — встроенный генератор доказательных речевых модулей и скриптов для психолога, помогающий правильно и безопасно выстроить диалог в сложных ситуациях (в том числе при дистанционном консультировании).</li>
+              </ul>
+            </div>
+
+            <!-- SECTION 3 -->
+            <h2 class="letter-section-header">3) РУКОВОДИТЕЛЯМ ОБРАЗОВАТЕЛЬНЫХ ОРГАНИЗАЦИЙ И СПЕЦИАЛИСТАМ ОРГАНОВ УПРАВЛЕНИЯ ОБРАЗОВАНИЕМ</h2>
+            <a class="action-btn" href="https://prevention-ai.ru/terminal/staging/?demo=school&amp;role=director&amp;edition=ru" target="_blank" rel="noopener">Демо-кабинет без пароля</a>
+
+            <div class="plan-box free">
+              <span class="plan-badge free">✓ Бесплатно:</span>
+              <ul class="letter-list">
+                <li><strong>Дашборд руководителя</strong> — агрегированная статистика по работе психологической службы в организации или на уровне муниципалитета: количество охваченных детей, распределение по уровням профилактики, нагрузка специалистов. Сводки формируются в реальном времени из рабочего журнала психолога.</li>
+                <li><strong>Раннее выявление рисков</strong> — система моментального приёма экспресс-сигналов (буллинг, тревожность, дезадаптация) от классных руководителей к психологам.</li>
+                <li><strong>Сетевое взаимодействие и маршрутизация</strong> — безопасная передача сложных случаев (например, системного буллинга) на уровень ППМС-центра и формирование распределенной сетевой команды специалистов для совместной работы.</li>
+              </ul>
+            </div>
+
+            <div class="plan-box pro">
+              <span class="plan-badge pro">✦ По подписке ИИ (анализ ситуации и поддержка управленческих решений):</span>
+              <ul class="letter-list">
+                <li><strong>Тепловая карта рисков</strong> — ИИ-модуль анализирует тематики обращений и выдает оперативную картину скрытой социальной напряжённости по классам и школам, которую невозможно выявить из обычных сухих отчётов.</li>
+                <li><strong>ИИ-Конструктор профилактических программ «Безопасная среда» для школ и территорий</strong> — экспертиза действующих и генерирование новых планов и программ.</li>
+                <li><strong>ИИ-поддержка принятия управленческих решений</strong> — система автоматически выявляет системные дефициты сети (например, нехватку компетенций по работе с депрессией в конкретном районе) и генерирует обоснованные рекомендации для руководителя: куда направить методический десант, где запустить целевые курсы и как оптимально распределить ресурсы.</li>
+              </ul>
+            </div>
+
+            <div style="background: rgba(15, 118, 110, 0.06); border-left: 4px solid #0f766e; padding: 18px 24px; border-radius: 4px 12px 12px 4px; margin: 40px 0 32px; font-size: 0.95rem; line-height: 1.65; color: var(--text);">
+              <strong style="color: #0f766e;">О легитимности использования:</strong> В настоящее время Платформа проходит процедуру государственной регистрации в Минцифры России (включение в Реестр отечественного программного обеспечения). Ориентировочный срок получения официального статуса для повсеместного использования в образовательных организациях — ноябрь 2026 года. До этого момента система работает в режиме открытой апробации и доступна специалистам для ознакомления и тестирования.
+            </div>
+
+            <h2 class="letter-section-header">Приглашение к сотрудничеству</h2>
+            <p>
+              Сейчас платформа нуждается в пользователях и откликах о том, как сделать ее полностью отвечающей потребностям вас и ваших коллег. Для полноценного тестирования платформы сейчас ИИ-подписка (запросы к языковым моделям) подключена бесплатно. Поэтому приглашаю вас к активному использованию и тестированию!
+            </p>
+            <p>
+              Пишите мне лично или через средства обратной связи внутри платформы, что именно вам больше всего не хватает в повседневной работе, что отнимает больше всего времени, какие отчёты и формы вызывают наибольшую боль — и я оперативно доработаю систему под ваши задачи.
+            </p>
+            <p>
+              <strong>Давайте вместе победим бумажную рутину и вернём время профессии!</strong>
+            </p>
+
+            <div style="margin-top: 28px;">
+              <p>С уважением,<br>
+              <strong>Роман Дубровский</strong>, психолог, к.с.н.<br>
+              Telegram: <a class="letter-link" href="https://t.me/anthropology_health" target="_blank" rel="noopener">https://t.me/anthropology_health</a><br>
+              Email: <a class="letter-link" href="mailto:admin@prevention-ai.ru">admin@prevention-ai.ru</a></p>
+            </div>
+
+            <!-- ABOUT FOUNDER BLOCK -->
+            <div class="founder-block">
+              <div class="founder-block-card">
+                <div class="founder-block-header">Основатель и архитектор платформы · Автор и соло-разработчик проекта</div>
+                <h3 class="founder-block-name">Роман Дубровский</h3>
+                <p class="founder-block-bio">
+                  Психолог, к. соц. н., эксперт в области психического здоровья и психосоциальной поддержки, исследователь и подростковый психолог с 25-летним опытом работы в сфере профилактики среди молодёжи, политики общественного здравоохранения и социальных исследований.
+                </p>
+                <blockquote class="founder-block-quote">
+                  «Платформа Профилактика-AI создавалась с глубоким уважением к ежедневному труду рядовых специалистов, ответственных за психологическое благополучие и здоровье несовершеннолетних, реализующих, наверное, самую сложную из всех существующих деятельность, — чтобы освободить их от рутинной бюрократии и вернуть время для живой работы с людьми».
+                </blockquote>
+
+                <div class="founder-footer-links">
+                  <span class="founder-orcid">ORCID ID: 0000-0001-9876-9798</span>
+                  <a class="founder-more-link" href="https://prevention-ai.ru/founder/" target="_blank" rel="noopener">Подробнее →</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <strong>Профилактика-AI</strong><br>Открытая цифровая инфраструктура психологической службы образования.
+          <p class="footer-legal-notice" style="margin-top: 10px; font-size: 0.82rem; line-height: 1.5; color: var(--muted); max-width: 580px;">
+            В настоящее время Платформа проходит процедуру включения в Реестр отечественного программного обеспечения Минцифры России. Система работает в режиме открытой апробации и доступна специалистам и образовательным организациям для ознакомления и использования. Размещение серверных компонентов — защищенные сертифицированные ЦОД (152-ФЗ).
+          </p>
+          <p class="footer-contact">
+            <a href="mailto:admin@prevention-ai.ru">admin@prevention-ai.ru</a><span class="footer-contact-sep" aria-hidden="true">·</span><a href="https://t.me/RomanDubrovsky" target="_blank" rel="noopener noreferrer">Telegram</a><span class="footer-contact-sep" aria-hidden="true">·</span><a href="/ru/founder/">Автор проекта</a>
+          </p>
+          <p class="footer-community" style="margin-top: 8px; font-size: 0.85rem; color: var(--muted);">
+            Сообщества проекта:<br>
+            ВКонтакте: <a href="https://vk.ru/prevention_ai" target="_blank" rel="noopener">vk.ru/prevention_ai</a><br>
+            Телеграм-канал: <a href="https://t.me/anthropology_health" target="_blank" rel="noopener">t.me/anthropology_health</a>
+          </p>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/ru/about/">О проекте</a>
+          <a href="https://academy.prevention-ai.ru/" target="_blank" rel="noopener">Академия</a>
+          <a href="https://web.prevention-ai.ru/?entry=educator" target="_blank" rel="noopener">Учителю</a>
+          <a href="/ru/teenology/">Родителям и подросткам</a>
+          <a href="/ru/founder/">Основатель</a>
+          <a href="https://ida-psy.ru/" target="_blank" rel="noopener" style="color: #8b5cf6; font-weight: 600;">Психологам коммерческого сектора</a>
+          <a href="/ru/privacy/">Конфиденциальность</a>
+          <a href="/ru/consent/">Согласие на обработку</a>
+        </nav>
+      </div>
+    </footer>
+  </div>
+
+  <script src="../../assets/theme.js"></script>
+  <script>
+    (function() {
+      var rawApi = window.PN_EDUCATOR_API_BASE || "https://api.prevention.school";
+      if (!rawApi || rawApi === "__API_BASE__") rawApi = "https://api.prevention.school";
+      var apiBase = rawApi.replace(/\/$/, "");
+      var appId = "letter_ru";
+
+      function getUid() {
+        try {
+          var id = localStorage.getItem("pn_letter_uid");
+          if (!id) {
+            id = "colleague_" + (crypto.randomUUID ? crypto.randomUUID().slice(0,8) : String(Date.now()).slice(-6));
+            localStorage.setItem("pn_letter_uid", id);
+          }
+          return id;
+        } catch (_) {
+          return "colleague_" + String(Date.now()).slice(-6);
+        }
+      }
+
+      var sessionID = "sess_" + (crypto.randomUUID ? crypto.randomUUID().slice(0,8) : String(Date.now()).slice(-6));
+
+      function sendEvent(eventType, extra) {
+        try {
+          var payload = Object.assign({
+            url: window.location.pathname,
+            referrer: document.referrer || "(direct)",
+            title: document.title
+          }, extra || {});
+
+          fetch(apiBase + "/api/analytics/event", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              event_type: eventType,
+              app_id: appId,
+              user_id: getUid(),
+              session_id: sessionID,
+              extra: payload
+            })
+          }).catch(function(){});
+        } catch(e) {}
+      }
+
+      // 1. Открытие страницы
+      setTimeout(function() {
+        sendEvent("page_view", { screen: "letter_main" });
+      }, 500);
+
+      // 2. Отслеживание кликов по кнопкам
+      document.addEventListener("click", function(e) {
+        var target = e.target.closest("a, button");
+        if (!target) return;
+        var href = target.getAttribute("href") || "";
+        var text = (target.innerText || "").trim().slice(0, 50);
+        
+        if (target.classList.contains("action-btn") || target.classList.contains("founder-more-link") || target.classList.contains("letter-link")) {
+          sendEvent("cta_click", {
+            button_text: text,
+            target_url: href
+          });
+        }
+      });
+
+      // 3. Отслеживание времени чтения и глубины скролла
+      var startTime = Date.now();
+      var maxScroll = 0;
+      window.addEventListener("scroll", function() {
+        var h = document.documentElement, b = document.body;
+        var st = 'scrollTop', sh = 'scrollHeight';
+        var percent = Math.round(((h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight)) * 100);
+        if (percent > maxScroll) maxScroll = Math.min(percent, 100);
+      }, { passive: true });
+
+      var sentReadSummary = false;
+      function sendSummary() {
+        if (sentReadSummary) return;
+        sentReadSummary = true;
+        var duration = Math.round((Date.now() - startTime) / 1000);
+        if (duration >= 2) {
+          sendEvent("page_read_summary", {
+            duration_seconds: duration,
+            scroll_depth_percent: maxScroll
+          });
+        }
+      }
+
+      window.addEventListener("visibilitychange", function() {
+        if (document.visibilityState === "hidden") sendSummary();
+      });
+      window.addEventListener("beforeunload", sendSummary);
+    })();
+  </script>
+</body>
+</html>

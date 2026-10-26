@@ -1,0 +1,1697 @@
+<!doctype html>
+<html lang="ru" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Психологическое благополучие детства — Цифровая платформа профилактики</title>
+  <meta name="description" content="Цифровая платформа профилактики подростковой девиантности: рабочий кабинет психолога, автоматические журналы и отчетность, экспорт для ЦОС.">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Профилактика-AI">
+  <meta property="og:title" content="Психологическое благополучие детства — Платформа профилактики">
+  <meta property="og:description" content="Цифровая платформа профилактики подростковой девиантности: рабочий кабинет психолога, автоматические журналы и отчетность, экспорт для ЦОС.">
+  <meta property="og:url" content="https://prevention.school/ru/">
+  <meta property="og:image" content="https://prevention-ai.ru/assets/og-cover.png">
+  <meta property="og:image:secure_url" content="https://prevention-ai.ru/assets/og-cover.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Цифровая платформа профилактики">
+  <meta property="og:locale" content="ru_RU">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Психологическое благополучие детства — Платформа профилактики">
+  <meta name="twitter:description" content="Цифровая платформа профилактики подростковой девиантности: рабочий кабинет психолога, автоматические журналы и отчетность, экспорт для ЦОС.">
+  <meta name="twitter:image" content="https://prevention-ai.ru/assets/og-cover.png">
+
+  <link class="favicon" rel="icon" href="/favicon.ico" sizes="any">
+  <link class="favicon" rel="icon" href="/favicon.png" type="image/png">
+  <link class="apple-touch-icon" href="/favicon.png">
+
+  <link rel="canonical" href="https://prevention.school/ru/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;550;650;750;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/site.css">
+
+  <style>
+    /* ===================================================
+       HERO & VALUE BANNER
+       =================================================== */
+    .hero-layer {
+      margin-top: 20px;
+      text-align: center;
+      padding-bottom: 24px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 0.86rem;
+      font-weight: 750;
+      color: var(--accent-strong);
+      background: var(--accent-soft);
+      border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+      margin-bottom: 20px;
+    }
+    .hero-title {
+      font-size: clamp(2.2rem, 4.8vw, 3.8rem);
+      font-weight: 900;
+      line-height: 1.12;
+      margin: 0 auto 20px;
+      letter-spacing: -0.025em;
+      max-width: 980px;
+      color: var(--text);
+    }
+    .hero-title span {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--violet) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-lead {
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      color: var(--muted);
+      margin: 0 auto 32px;
+      max-width: 820px;
+      line-height: 1.6;
+    }
+    .hero-buttons-row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin: 0 auto 28px;
+    }
+    .btn-main-accent {
+      background: var(--accent);
+      color: #ffffff !important;
+      padding: 15px 32px;
+      border-radius: 14px;
+      font-weight: 800;
+      font-size: 1.05rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 12px 28px rgba(15, 118, 110, 0.28);
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-main-accent:hover {
+      background: var(--accent-strong);
+      transform: translateY(-2px);
+      box-shadow: 0 16px 34px rgba(15, 118, 110, 0.35);
+      text-decoration: none;
+    }
+    .btn-secondary-surface {
+      background: var(--surface);
+      color: var(--text) !important;
+      padding: 14px 26px;
+      border-radius: 14px;
+      font-weight: 750;
+      font-size: 1rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1.5px solid var(--line);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+      transition: all 0.2s ease;
+    }
+    .btn-secondary-surface:hover {
+      background: var(--surface-soft);
+      border-color: var(--accent);
+      color: var(--accent-strong) !important;
+      text-decoration: none;
+    }
+    .hero-trust-badges {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin: 0 auto;
+      font-size: 0.88rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .trust-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .trust-pill strong {
+      color: var(--text);
+    }
+
+    /* ===================================================
+       BEFORE / AFTER COMPARISON STRIP
+       =================================================== */
+    .compare-container {
+      max-width: 980px;
+      margin: 36px auto 60px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      text-align: left;
+    }
+    .compare-box-old {
+      background: rgba(239, 68, 68, 0.05);
+      border: 1.5px solid rgba(239, 68, 68, 0.25);
+      border-radius: 18px;
+      padding: 26px;
+    }
+    .compare-box-old h3 {
+      color: #b91c1c;
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin: 0 0 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .compare-box-new {
+      background: rgba(15, 118, 110, 0.06);
+      border: 1.5px solid color-mix(in srgb, var(--accent) 40%, transparent);
+      border-radius: 18px;
+      padding: 26px;
+    }
+    .compare-box-new h3 {
+      color: var(--accent-strong);
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin: 0 0 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .compare-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 0.94rem;
+      line-height: 1.5;
+      color: var(--text);
+    }
+    .compare-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    /* ===================================================
+       INTERACTIVE ROLE WORKSPACE (TABS & MODES)
+       =================================================== */
+    .interactive-showcase-wrap {
+      background: var(--surface-soft);
+      padding: 56px 0;
+      margin: 40px 0 60px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .role-nav-bar {
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      background: var(--surface);
+      padding: 6px;
+      border-radius: 16px;
+      border: 1.5px solid color-mix(in srgb, var(--accent) 25%, transparent);
+      box-shadow: 0 10px 30px rgba(15, 118, 110, 0.08);
+      gap: 8px;
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto 36px;
+    }
+    .role-nav-tab {
+      flex: 1 1 auto;
+      white-space: nowrap;
+      background: transparent;
+      border: none;
+      border-radius: 12px;
+      padding: 14px 18px;
+      font-weight: 750;
+      font-size: 0.96rem;
+      color: var(--muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+    .role-nav-tab:hover {
+      color: var(--text);
+      background: rgba(15, 118, 110, 0.04);
+    }
+    .role-nav-tab.active {
+      background: var(--accent);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(15, 118, 110, 0.3);
+    }
+    html[data-theme="dark"] .role-nav-tab.active {
+      color: #0b1220;
+    }
+
+    .key-points-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      max-width: 1040px;
+      margin: 0 auto 28px;
+    }
+    .point-card {
+      background: var(--surface);
+      border: 1.5px solid var(--line);
+      border-radius: 14px;
+      padding: 16px;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .point-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+    }
+    .point-card.active {
+      border-color: var(--accent);
+      background: var(--surface);
+      box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 30%, transparent), 0 8px 20px rgba(0,0,0,0.05);
+    }
+    .point-card.active::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+      border-top: 7px solid var(--accent);
+    }
+    .point-card-icon {
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+    }
+    .point-card-title {
+      font-weight: 800;
+      font-size: 0.94rem;
+      color: var(--text);
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+    .point-card-hint {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+
+    /* Stage Area (Card + Live UI Mockup) */
+    .stage-container {
+      background: var(--surface);
+      border: 1.5px solid var(--line);
+      border-radius: 20px;
+      padding: 32px;
+      max-width: 1040px;
+      margin: 0 auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    }
+    .stage-content-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 32px;
+      align-items: center;
+    }
+    .stage-left h3 {
+      font-size: 1.55rem;
+      font-weight: 800;
+      margin: 0 0 12px;
+      color: var(--text);
+      line-height: 1.25;
+    }
+    .stage-left p {
+      font-size: 0.98rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0 0 20px;
+    }
+    .stage-features-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 0 0 24px;
+      padding: 0;
+    }
+    .stage-feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.92rem;
+      color: var(--text);
+    }
+    .check-mark {
+      color: var(--accent);
+      background: var(--accent-soft);
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 900;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .stage-actions-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* Stage Right: Mockup Card */
+    .stage-preview-card {
+      background: var(--surface-soft);
+      border: 1.5px solid var(--line);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+    }
+    .preview-header-bar {
+      background: var(--surface);
+      padding: 10px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.78rem;
+      font-weight: 750;
+      color: var(--muted);
+    }
+    .preview-badge-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--accent);
+    }
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 8px #10b981;
+    }
+    .stage-preview-body {
+      padding: 20px;
+      font-size: 0.88rem;
+    }
+
+    /* ===================================================
+       DRAWERS TOOLBAR & MODAL OVERLAY
+       =================================================== */
+    .drawers-toolbar-wrap {
+      max-width: 1040px;
+      margin: 28px auto 0;
+      text-align: center;
+    }
+    .drawers-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      padding-top: 16px;
+      border-top: 1px dashed var(--line);
+    }
+    .btn-drawer-trigger {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .btn-drawer-trigger:hover {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+      color: var(--accent-strong);
+      transform: translateY(-1px);
+    }
+
+    /* Modal Overlay */
+    .drawer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      display: none;
+      justify-content: flex-end;
+    }
+    .drawer-overlay.active {
+      display: flex;
+    }
+    .drawer-panel {
+      width: min(580px, 100%);
+      height: 100%;
+      background: var(--surface);
+      box-shadow: -10px 0 40px rgba(0, 0, 0, 0.25);
+      overflow-y: auto;
+      padding: 36px 30px;
+      display: flex;
+      flex-direction: column;
+      animation: slideInRight 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes slideInRight {
+      from { transform: translateX(100%); }
+      to { transform: translateX(0); }
+    }
+    .drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--line);
+    }
+    .drawer-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text);
+      margin: 0;
+    }
+    .drawer-close {
+      background: var(--surface-soft);
+      border: 1px solid var(--line);
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.1rem;
+      color: var(--muted);
+      transition: all 0.2s;
+    }
+    .drawer-close:hover {
+      background: rgba(239, 68, 68, 0.1);
+      color: #ef4444;
+      border-color: rgba(239, 68, 68, 0.3);
+    }
+    .drawer-body {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .drawer-body h4 {
+      margin: 18px 0 8px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+    .drawer-highlight-box {
+      background: var(--surface-soft);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 16px;
+      font-size: 0.9rem;
+    }
+
+    /* ===================================================
+       GET STARTED (3 CLEAR STEPS)
+       =================================================== */
+    .start-section {
+      margin: 60px 0;
+    }
+    .start-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1040px;
+      margin: 32px auto 0;
+    }
+    .start-card {
+      background: var(--surface);
+      border: 1.5px solid var(--line);
+      border-radius: 18px;
+      padding: 28px 24px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .start-card.highlight {
+      border-color: var(--accent);
+      box-shadow: 0 8px 24px rgba(15, 118, 110, 0.12);
+    }
+    .start-step-num {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 750;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      align-self: flex-start;
+    }
+    .step-demo { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+    .step-web { background: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe; }
+    .step-pc { background: var(--accent-soft); color: var(--accent-strong); border: 1px solid var(--line); }
+
+    /* ===================================================
+       ECOSYSTEM SECTION
+       =================================================== */
+    .ecosystem-section {
+      background: var(--surface-soft);
+      padding: 56px 0;
+      margin: 60px 0 40px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      text-align: center;
+    }
+    .ecosystem-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      max-width: 1040px;
+      margin: 32px auto 0;
+      text-align: left;
+    }
+    .eco-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 20px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.2s ease;
+    }
+    .eco-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+      text-decoration: none;
+    }
+    .eco-icon {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+    }
+    .eco-card h4 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      margin: 0 0 6px;
+      color: var(--text);
+    }
+    .eco-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      .compare-container { grid-template-columns: 1fr; }
+      .key-points-grid { grid-template-columns: repeat(2, 1fr); }
+      .stage-content-grid { grid-template-columns: 1fr; }
+      .start-cards-grid { grid-template-columns: 1fr; }
+      .ecosystem-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 760px) {
+      .role-nav-bar { flex-direction: column; }
+      .role-nav-tab { white-space: normal; }
+    }
+    @media (max-width: 600px) {
+      .key-points-grid { grid-template-columns: 1fr; }
+      .ecosystem-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+<!-- Yandex.Metrika counter & Auto-Goal Tracker -->
+<script type="text/javascript">
+(function(m,e,t,r,i,k,a){
+    m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();
+    for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+})(window, document,'script','https://mc.yandex.ru/metrika/tag.js', 'ym');
+
+(function(){
+    try {
+        if (window.location.search.indexOf('no_track=1') !== -1 || window.location.search.indexOf('admin=1') !== -1) {
+            localStorage.setItem('ym_disable_tracking', '1');
+        }
+        if (localStorage.getItem('ym_disable_tracking') === '1') {
+            console.log('[Yandex.Metrika] Tracking disabled for owner/admin session.');
+            window.ymGoal = window.reachGoal = function(g, p){ console.log('[Goal skipped (admin)]', g, p || ''); };
+            return;
+        }
+    } catch(e) {}
+
+    var host = (window.location.hostname || '').toLowerCase();
+    var id = null;
+    if (host.indexOf('ida-psy.ru') !== -1) id = 113108416;
+    else if (host.indexOf('ida-psy.pro') !== -1) id = 113706104;
+    else if (host.indexOf('prevention-ai.ru') !== -1) id = 113108883;
+    else if (host.indexOf('prevention.school') !== -1) id = 113706126;
+    else if (host.indexOf('teenology-ai.ru') !== -1) id = 113108854;
+    else if (host.indexOf('teenology.care') !== -1) id = 109437867;
+    else if (host.indexOf('ru.decima.business') !== -1) id = 93591954;
+    else if (host.indexOf('decima.business') !== -1) id = 93591880;
+    else {
+        id = 113706126;
+    }
+
+    window._ymCounterId = id;
+
+    // Universal Goal Dispatcher
+    window.ymGoal = window.reachGoal = function(goalName, params) {
+        if (!id || typeof ym !== 'function') return;
+        try {
+            if (params) {
+                ym(id, 'reachGoal', goalName, params);
+            } else {
+                ym(id, 'reachGoal', goalName);
+            }
+            console.log('[YM Goal]', goalName, params || '');
+        } catch(e) {
+            console.warn('[YM Goal Error]', e);
+        }
+    };
+
+    if (id) {
+        ym(id, 'init', {
+            ssr: true,
+            webvisor: true,
+            clickmap: true,
+            ecommerce: "dataLayer",
+            referrer: document.referrer,
+            url: location.href,
+            accurateTrackBounce: true,
+            trackLinks: true
+        });
+    }
+
+    // Auto-Goal Click & Form Interceptors
+    document.addEventListener('DOMContentLoaded', function(){
+        // 1. Click tracker for buttons, links, actions
+        document.addEventListener('click', function(e){
+            var target = e.target;
+            if (!target) return;
+            var el = target.closest('a, button, [data-goal], input[type="submit"]');
+            if (!el) return;
+
+            // Explicit data-goal attribute
+            var explicitGoal = el.getAttribute('data-goal');
+            if (explicitGoal) {
+                window.ymGoal(explicitGoal);
+                return;
+            }
+
+            var href = (el.getAttribute('href') || '').toLowerCase();
+            var text = (el.innerText || el.textContent || el.value || '').trim().toLowerCase();
+            var idStr = (el.id || '').toLowerCase();
+            var cls = (el.className || '').toLowerCase();
+
+            // Messengers & Social
+            if (href.indexOf('t.me/') !== -1 || href.indexOf('telegram.me') !== -1) {
+                window.ymGoal('telegram_click', {url: href});
+            } else if (href.indexOf('vk.com/') !== -1) {
+                window.ymGoal('vk_click', {url: href});
+            } else if (href.indexOf('wa.me/') !== -1 || href.indexOf('whatsapp.com') !== -1) {
+                window.ymGoal('whatsapp_click', {url: href});
+            } else if (href.indexOf('tel:') === 0) {
+                window.ymGoal('phone_click', {phone: href});
+            } else if (href.indexOf('mailto:') === 0) {
+                window.ymGoal('email_click', {email: href});
+            } 
+            // File downloads
+            else if (/\.(pdf|docx?|xlsx?|zip|rar|pptx?)$/i.test(href)) {
+                window.ymGoal('file_download', {file: href});
+            }
+            // Registration & Auth
+            else if (href.indexOf('/join') !== -1 || href.indexOf('/staff-register') !== -1 || href.indexOf('/auth') !== -1 || href.indexOf('/register') !== -1 || idStr.indexOf('register') !== -1 || idStr.indexOf('login') !== -1 || text.indexOf('регистрац') !== -1 || text.indexOf('войти') !== -1 || text.indexOf('личный кабинет') !== -1) {
+                window.ymGoal('auth_click', {text: text});
+            }
+            // Demo & Interactive Room
+            else if (href.indexOf('#room=') !== -1 || href.indexOf('/demo') !== -1 || href.indexOf('/app') !== -1 || href.indexOf('/workspace') !== -1 || idStr.indexOf('demo') !== -1 || text.indexOf('демо') !== -1 || text.indexOf('попробовать') !== -1 || text.indexOf('запустить') !== -1) {
+                window.ymGoal('demo_open', {text: text});
+            }
+            // Test & Screening
+            else if (href.indexOf('/test') !== -1 || href.indexOf('screening') !== -1 || text.indexOf('тест') !== -1 || text.indexOf('диагностик') !== -1 || text.indexOf('опрос') !== -1) {
+                window.ymGoal('test_start', {text: text});
+            }
+            // Pricing / Tariffs
+            else if (href.indexOf('pricing') !== -1 || href.indexOf('tariff') !== -1 || text.indexOf('тариф') !== -1 || text.indexOf('купить') !== -1 || text.indexOf('подключить') !== -1) {
+                window.ymGoal('pricing_click', {text: text});
+            }
+            // Feedback / Call to action
+            else if (text.indexOf('оставить заявку') !== -1 || text.indexOf('записаться') !== -1 || text.indexOf('консультац') !== -1 || text.indexOf('связаться') !== -1) {
+                window.ymGoal('lead_button_click', {text: text});
+            }
+        }, true);
+
+        // 2. Form submission tracker
+        document.addEventListener('submit', function(e){
+            var form = e.target;
+            if (!form) return;
+            var formId = form.id || form.getAttribute('name') || form.getAttribute('action') || 'lead_form';
+            window.ymGoal('form_submit', {form_id: formId});
+        }, true);
+
+        // 3. Scroll depth tracking (50% and 90%)
+        var scroll50Fired = false;
+        var scroll90Fired = false;
+        window.addEventListener('scroll', function(){
+            var h = document.documentElement, 
+                b = document.body,
+                st = 'scrollTop',
+                sh = 'scrollHeight';
+            var percent = ((h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight)) * 100;
+            if (!scroll50Fired && percent >= 50) {
+                scroll50Fired = true;
+                window.ymGoal('scroll_50');
+            }
+            if (!scroll90Fired && percent >= 90) {
+                scroll90Fired = true;
+                window.ymGoal('scroll_90');
+            }
+        }, {passive: true});
+    });
+})();
+</script>
+<!-- /Yandex.Metrika counter -->
+</head>
+<body>
+  <div class="wrap">
+    <!-- Header -->
+    <header class="site-header">
+      <a class="brand" href="/ru/"><span class="brand-mark">П</span><span>Профилактика-AI <small style="font-size: 10px; font-weight: 800; text-transform: uppercase; color: var(--accent); margin-left: 4px; vertical-align: super;">Beta</small></span></a>
+      <nav class="nav" aria-label="Навигация">
+        <a href="/ru/about/">О проекте</a>
+        <a href="https://academy.prevention-ai.ru/" target="_blank" rel="noopener">Академия 🎓</a>
+        <a href="https://corporate-health.ida-psy.pro/" target="_blank" rel="noopener">Корпоративное здоровье ↗</a>
+        <a href="https://web.prevention-ai.ru/?entry=educator" target="_blank" rel="noopener">Учителю</a>
+        <a href="/ru/teenology/">Родителям и подросткам</a>
+      </nav>
+      <div class="nav-controls">
+        <a href="https://web.prevention.school/" class="nav-cta" target="_blank" rel="noopener">Веб-терминал</a>
+        <button type="button" class="theme-toggle" id="theme-toggle">Темная</button>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero-layer">
+        <div style="max-width: 1020px; margin: 0 auto; padding: 0 16px;">
+          <div class="hero-badge">
+            <span>🛡️</span> Цифровая платформа профилактики подростковой девиантности
+          </div>
+
+          <h1 class="hero-title" style="margin-bottom: 0;">
+            Психологическое благополучие детства
+          </h1>
+        </div>
+      </section>
+
+      <!-- INTERACTIVE ROLE WORKSPACE -->
+      <section class="interactive-showcase-wrap" id="roles">
+        <div style="max-width: 1040px; margin: 0 auto; padding: 0 16px;">
+          <div style="text-align: center; margin-bottom: 24px;">
+            <h2 style="font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 800; margin: 0 0 10px; color: var(--text);">Выберите вашу роль</h2>
+            <p style="color: var(--muted); font-size: 1rem; margin: 0 auto; max-width: 620px;">Посмотрите, как система закрывает ежедневные задачи психолога, классного руководителя и защищает руководство школы</p>
+          </div>
+
+          <!-- Role Switcher Tabs -->
+          <div class="role-nav-bar">
+            <button class="role-nav-tab active" id="tabSpecialist" onclick="setRole('specialist')">
+              <span>👩‍🏫</span> Педагогу-психологу
+            </button>
+            <button class="role-nav-tab" id="tabDirector" onclick="setRole('director')">
+              <span>👔</span> Директору и завучу
+            </button>
+            <button class="role-nav-tab" id="tabEducator" onclick="setRole('educator')">
+              <span>👨‍🏫</span> Учителю и классному руководителю
+            </button>
+          </div>
+
+          <!-- 4 Key Points for Active Role -->
+          <div class="key-points-grid" id="keyPointsGrid">
+            <!-- Rendered by JS -->
+          </div>
+
+          <!-- Stage (Detailed Content + Live Preview Mockup) -->
+          <div class="stage-container">
+            <div class="stage-content-grid">
+              <!-- Left Column: Details -->
+              <div class="stage-left">
+                <h3 id="stageTitle">Загрузка...</h3>
+                <p id="stageDesc">Загрузка описания...</p>
+                <ul class="stage-features-list" id="stageBullets">
+                  <!-- Rendered by JS -->
+                </ul>
+                <div class="stage-actions-row">
+                  <a href="https://prevention.school/terminal/staging/?demo=school&role=specialist&edition=ru" target="_blank" rel="noopener" class="btn-main-accent" id="stageDemoBtn">
+                    <span>Демо-панель психолога &rarr;</span>
+                  </a>
+                  <a href="https://web.prevention-ai.ru/" target="_blank" rel="noopener" class="btn-secondary-surface" id="stageCreateBtn">
+                    <span>Создать свой кабинет</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Right Column: Live Mockup -->
+              <div class="stage-preview-card">
+                <div class="preview-header-bar">
+                  <span id="previewHeaderTitle">Терминал психолога</span>
+                  <span class="preview-badge-status">
+                    <span class="status-dot"></span> Готов к работе
+                  </span>
+                </div>
+                <div class="stage-preview-body" id="stagePreviewBody">
+                  <!-- Rendered by JS -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Drawers Toolbar (Details on Demand) -->
+          <div class="drawers-toolbar-wrap" id="security">
+            <div class="drawers-toolbar">
+              <button type="button" class="btn-drawer-trigger" onclick="openDrawer('docsDrawer')">
+                <span>📋</span> Все обязательные журналы и формы
+              </button>
+              <button type="button" class="btn-drawer-trigger" onclick="openDrawer('aiHelperDrawer')">
+                <span>🎙️</span> Как работает диктовка и подсказки
+              </button>
+              <button type="button" class="btn-drawer-trigger" onclick="openDrawer('securityDrawer')">
+                <span>🔒</span> Защита данных и 152-ФЗ простыми словами
+              </button>
+              <button type="button" class="btn-drawer-trigger" onclick="openDrawer('govDrawer')">
+                <span>🏛️</span> Сводные отчеты для управлений образования (Форма 11)
+              </button>
+              <button type="button" class="btn-drawer-trigger" onclick="openDrawer('faqDrawer')">
+                <span>❓</span> Вопросы и ответы
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- GET STARTED (3 CLEAR WAYS) -->
+      <section class="start-section" id="download">
+        <div style="text-align: center; margin-bottom: 24px;">
+          <span style="font-size: 0.82rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); background: var(--accent-soft); padding: 4px 14px; border-radius: 20px; display: inline-block; margin-bottom: 10px;">Простой запуск</span>
+          <h2 style="margin: 0 0 10px; font-size: 2.2rem; font-weight: 800; color: var(--text);">С чего начать работу</h2>
+          <p style="margin: 0 auto; max-width: 600px; font-size: 1rem; color: var(--muted); line-height: 1.6;">Выберите удобный вариант: оцените демо за 1 минуту, откройте онлайн или установите на ПК</p>
+        </div>
+
+        <div class="start-cards-grid">
+          <!-- Step 1: Demo -->
+          <div class="start-card">
+            <span class="start-step-num step-demo">1 · Ознакомиться</span>
+            <h3 style="margin: 0 0 8px; font-size: 1.2rem; font-weight: 800; color: var(--text);">Интерактивное демо</h3>
+            <p style="margin: 0 0 18px; font-size: 0.9rem; color: var(--muted); line-height: 1.5;">Без скачивания и регистрации. Оцените интерфейс на готовых реалистичных примерах.</p>
+            
+            <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px;">
+              <a href="https://prevention.school/terminal/staging/?demo=school&role=specialist&edition=ru" target="_blank" rel="noopener" style="display: block; padding: 10px 14px; border-radius: 10px; border: 1.5px solid #d1fae5; background: rgba(15, 118, 110, 0.05); text-decoration: none;">
+                <div style="font-weight: 750; font-size: 0.9rem; color: var(--text);">Кабинет психолога &rarr;</div>
+                <div style="font-size: 0.78rem; color: var(--muted); margin-top: 2px;">Журналы, карточки, подсказки</div>
+              </a>
+              <a href="https://prevention.school/terminal/staging/?demo=school&role=director&edition=ru" target="_blank" rel="noopener" style="display: block; padding: 10px 14px; border-radius: 10px; border: 1.5px solid #bfdbfe; background: rgba(30, 64, 175, 0.05); text-decoration: none;">
+                <div style="font-weight: 750; font-size: 0.9rem; color: var(--text);">Кабинет директора школы &rarr;</div>
+                <div style="font-size: 0.78rem; color: var(--muted); margin-top: 2px;">Сводная Форма 10 и риски</div>
+              </a>
+            </div>
+            
+            <a href="https://prevention.school/terminal/staging/?demo=school&role=specialist&edition=ru" target="_blank" rel="noopener" class="btn-main-accent" style="margin-top: auto; padding: 12px; text-align: center; justify-content: center; font-size: 0.92rem;">Открыть демо-стенд</a>
+          </div>
+
+          <!-- Step 2: Web version -->
+          <div class="start-card">
+            <span class="start-step-num step-web">2 · Работать в браузере</span>
+            <h3 style="margin: 0 0 8px; font-size: 1.2rem; font-weight: 800; color: var(--text);">Веб-кабинет</h3>
+            <p style="margin: 0 0 16px; font-size: 0.9rem; color: var(--muted); line-height: 1.5;">Работа прямо через браузер с любого компьютера в образовательной организации.</p>
+            
+            <ul style="margin: 0 0 20px; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 0.88rem;">
+              <li style="display: flex; gap: 8px;"><span style="color: #1d4ed8; font-weight: 800;">✓</span> Ведение всех школьных журналов 4А–4Ж</li>
+              <li style="display: flex; gap: 8px;"><span style="color: #1d4ed8; font-weight: 800;">✓</span> Быстрое формирование годового отчета</li>
+              <li style="display: flex; gap: 8px;"><span style="color: #1d4ed8; font-weight: 800;">✓</span> Командный доступ службы сопровождения</li>
+            </ul>
+
+            <a href="https://web.prevention.school/" class="btn-secondary-surface" target="_blank" rel="noopener" style="margin-top: auto; padding: 12px; text-align: center; justify-content: center; font-size: 0.92rem; border-color: #1d4ed8; color: #1d4ed8 !important;">Войти в онлайн-терминал</a>
+          </div>
+
+          <!-- Step 3: Desktop -->
+          <div class="start-card highlight">
+            <div style="position: absolute; top: -12px; left: 24px; background: var(--accent); color: #fff; padding: 3px 12px; border-radius: 20px; font-size: 11px; font-weight: 800; letter-spacing: 0.04em;">100% ОФЛАЙН И СЕЙФ</div>
+            <span class="start-step-num step-pc" style="margin-top: 6px;">3 · Локальный ПК</span>
+            <h3 style="margin: 0 0 8px; font-size: 1.2rem; font-weight: 800; color: var(--text);">Программа для Windows</h3>
+            <p style="margin: 0 0 16px; font-size: 0.9rem; color: var(--muted); line-height: 1.5;">Максимальная конфиденциальность: шифрование базы прямо на жестком диске.</p>
+            
+            <ul style="margin: 0 0 20px; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 0.88rem;">
+              <li style="display: flex; gap: 8px;"><span style="color: var(--accent); font-weight: 800;">✓</span> Работает без постоянного интернета</li>
+              <li style="display: flex; gap: 8px;"><span style="color: var(--accent); font-weight: 800;">✓</span> Зашифрованная база данных на ПК</li>
+              <li style="display: flex; gap: 8px;"><span style="color: var(--accent); font-weight: 800;">✓</span> Готовые отчеты сохраняются сразу в Word</li>
+            </ul>
+
+            <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px;">
+              <a href="/dist/Prevention_Terminal_2026.8_x64-setup.exe" class="btn-main-accent" style="padding: 11px; text-align: center; justify-content: center; font-size: 0.9rem;">⬇ Скачать установщик (.EXE)</a>
+              <a href="/dist/Prevention_Terminal_2026.8_x64_en-US.msi" style="display: block; padding: 8px; border-radius: 8px; border: 1px solid var(--line); text-align: center; font-size: 0.8rem; color: var(--muted); text-decoration: none;">Пакет развертывания .MSI</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ECOSYSTEM SECTION (COMPACT & CLEAN) -->
+      <section class="ecosystem-section" id="materials">
+        <div style="max-width: 1040px; margin: 0 auto; padding: 0 16px;">
+          <span style="font-size: 0.82rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); background: var(--accent-soft); padding: 4px 14px; border-radius: 20px; display: inline-block; margin-bottom: 10px;">База знаний и среда поддержки</span>
+          <h2 style="font-size: 2rem; font-weight: 800; margin: 0 0 10px; color: var(--text);">Методические материалы для всей команды школы</h2>
+          <p style="color: var(--muted); font-size: 0.98rem; margin: 0 auto; max-width: 680px;">Вместе с рабочим терминалом вы получаете доступ к обучающим материалам, видеокурсу и методическим памяткам</p>
+
+          <div class="ecosystem-grid">
+            <a href="/ru/course/" class="eco-card">
+              <span class="eco-icon">📚</span>
+              <h4>Курс по психологии здоровья</h4>
+              <p>21 видеолекция Романа Дубровского (160 ч), конспекты, стенограммы и встроенный поиск.</p>
+            </a>
+
+            <a href="https://academy.prevention-ai.ru/" target="_blank" rel="noopener" class="eco-card">
+              <span class="eco-icon">🎓</span>
+              <h4>Академия</h4>
+              <p>Интерактивная среда обучения, тренажеры консультаций и банк практических упражнений.</p>
+            </a>
+
+            <a href="https://corporate-health.ida-psy.pro/" target="_blank" rel="noopener" class="eco-card">
+              <span class="eco-icon">🏢</span>
+              <h4>Корпоративное здоровье</h4>
+              <p>Среда психологической поддержки команд, мониторинг выгорания, комната разгрузки и анонимная помощь.</p>
+            </a>
+
+            <a href="/ru/help-for-teacher/" class="eco-card">
+              <span class="eco-icon">👩‍🏫</span>
+              <h4>Поддержка учителей</h4>
+              <p>Как заметить неблагополучие, деэскалировать конфликт на уроке и вовремя передать случай психологу.</p>
+            </a>
+
+            <a href="/ru/teenology/" class="eco-card">
+              <span class="eco-icon">📱</span>
+              <h4>Teenology для подростков</h4>
+              <p>Мобильная среда самопомощи для школьников при трудностях в общении или эмоциональном выгорании.</p>
+            </a>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <strong>Профилактика-AI</strong><br>Открытая цифровая инфраструктура психологической службы образования.
+          <p class="footer-legal-notice" style="margin-top: 10px; font-size: 0.82rem; line-height: 1.5; color: var(--muted); max-width: 580px;">
+            В настоящее время Платформа проходит процедуру включения в Реестр отечественного программного обеспечения Минцифры России. Система работает в режиме открытой апробации и доступна специалистам и образовательным организациям для ознакомления и использования. Размещение серверных компонентов — защищенные сертифицированные ЦОД (152-ФЗ).
+          </p>
+          <p class="footer-contact">
+            <a href="mailto:admin@prevention-ai.ru">admin@prevention-ai.ru</a><span class="footer-contact-sep" aria-hidden="true">·</span><a href="https://t.me/RomanDubrovsky" target="_blank" rel="noopener noreferrer">Telegram</a><span class="footer-contact-sep" aria-hidden="true">·</span><a href="/ru/founder/">Автор проекта</a>
+          </p>
+          <p class="footer-community" style="margin-top: 8px; font-size: 0.85rem; color: var(--muted);">
+            Сообщества проекта:<br>
+            ВКонтакте: <a href="https://vk.ru/prevention_ai" target="_blank" rel="noopener">vk.ru/prevention_ai</a><br>
+            Телеграм-канал: <a href="https://t.me/anthropology_health" target="_blank" rel="noopener">t.me/anthropology_health</a>
+          </p>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/ru/about/">О проекте</a>
+          <a href="https://academy.prevention-ai.ru/" target="_blank" rel="noopener">Академия 🎓</a>
+          <a href="https://corporate-health.ida-psy.pro/" target="_blank" rel="noopener">Корпоративное здоровье ↗</a>
+          <a href="https://web.prevention-ai.ru/?entry=educator" target="_blank" rel="noopener">Учителю</a>
+          <a href="/ru/teenology/">Родителям и подросткам</a>
+          <a href="/ru/founder/">Основатель</a>
+          <a href="https://ida-psy.ru/" target="_blank" rel="noopener" style="color: #8b5cf6; font-weight: 600;">Психологам коммерческого сектора</a>
+          <a href="/ru/privacy/">Конфиденциальность</a>
+          <a href="/ru/consent/">Согласие на обработку</a>
+        </nav>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ===================================================
+       DRAWERS (MODAL PANELS)
+       =================================================== -->
+
+  <!-- Drawer 1: Docs & Journals -->
+  <div class="drawer-overlay" id="docsDrawer" onclick="handleDrawerOverlayClick(event, 'docsDrawer')">
+    <div class="drawer-panel">
+      <div class="drawer-header">
+        <h3 class="drawer-title">📋 Все документы и журналы</h3>
+        <button class="drawer-close" onclick="closeDrawer('docsDrawer')" aria-label="Закрыть">&times;</button>
+      </div>
+      <div class="drawer-body">
+        <p>Платформа избавляет от необходимости вести разрозненные бумажные тетради или вбивать одни и те же данные дважды. Первичная запись консультации сразу наполняет все нужные ведомственные формы.</p>
+        
+        <h4>Обязательные журналы учета:</h4>
+        <div class="drawer-highlight-box">
+          <p style="margin: 0 0 8px;"><strong>✓ Журнал консультаций (Форма 4А):</strong> учет индивидуальных приемов детей, родителей и учителей с фиксацией времени и рекомендаций.</p>
+          <p style="margin: 0 0 8px;"><strong>✓ Журнал групповой работы (Форма 4Б):</strong> тренинги общения, адаптационные встречи с классами, классные часы.</p>
+          <p style="margin: 0 0 8px;"><strong>✓ Журнал просветительской работы (Форма 4В):</strong> родительские собрания, педсоветы, лекции.</p>
+          <p style="margin: 0;"><strong>✓ Журнал экспертной работы (Форма 4Г):</strong> заключения для консилиумов, характеристики и участие в комиссиях.</p>
+        </div>
+
+        <h4>Отчеты, которые больше не нужно считать вручную:</h4>
+        <ul style="padding-left: 20px; margin: 0 0 16px;">
+          <li><strong>Отчеты по индивидуальным консультациям:</strong> автоматический подсчет обращений, тем, динамики и рекомендаций.</li>
+          <li><strong>Отчеты по групповой работе и тренингам:</strong> сводная статистика по классам, охвату учащихся и проведенным занятиям.</li>
+          <li><strong>Экспорт для ЦОС «Цифровой психолог»:</strong> быстрая подготовка ведомственной отчетности в цифровом формате.</li>
+          <li><strong>Аналитический отчет психолога (Форма 5) и школы (Форма 10):</strong> система сама суммирует часы и нагрузку специалистов с выгрузкой в Word.</li>
+          <li><strong>Индивидуальный маршрут (ИПР):</strong> пошаговый план сопровождения ребенка с фиксацией динамики и рекомендаций.</li>
+        </ul>
+
+        <div style="margin-top: 16px;">
+          <a href="https://prevention.school/terminal/staging/?demo=school&role=specialist&edition=ru" target="_blank" rel="noopener" class="btn-main-accent" style="width: 100%; justify-content: center;">Посмотреть журналы в демо &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Drawer 2: AI Helper & Voice -->
+  <div class="drawer-overlay" id="aiHelperDrawer" onclick="handleDrawerOverlayClick(event, 'aiHelperDrawer')">
+    <div class="drawer-panel">
+      <div class="drawer-header">
+        <h3 class="drawer-title">🎙️ Диктовка и подсказки</h3>
+        <button class="drawer-close" onclick="closeDrawer('aiHelperDrawer')" aria-label="Закрыть">&times;</button>
+      </div>
+      <div class="drawer-body">
+        <p>Искусственный интеллект в системе — это надежный ассистент, который берет на себя черновую писанину и страхует в сложных кризисных случаях.</p>
+        
+        <h4>Как работает голосовая диктовка:</h4>
+        <div class="drawer-highlight-box">
+          <p style="margin: 0 0 8px;">1. После беседы нажимаете кнопку микрофона прямо на рабочем компьютере.</p>
+          <p style="margin: 0 0 8px;">2. Говорите 30–60 секунд своими словами: что беспокоило ученика, что вы обсудили и к чему пришли.</p>
+          <p style="margin: 0;">3. Система убирает слова-паразиты и аккуратно раскладывает текст по графам протокола и журнала.</p>
+        </div>
+
+        <h4>Что делать, если в разговоре тупик:</h4>
+        <p>Во время консультации можно открыть подсказки по теме встречи. Система не ставит диагнозов, а предлагает простые и экологичные вопросы:</p>
+        <ul style="padding-left: 20px; margin: 0 0 16px;">
+          <li>Как мягко поддержать, если ребенок плачет и замыкается в себе;</li>
+          <li>Что сказать при вспышке агрессии, чтобы снизить накал без крика;</li>
+          <li>По какому алгоритму действовать при признаках травли (буллинга);</li>
+          <li>Как выстроить диалог с родителями, которые настроены конфликтно.</li>
+        </ul>
+
+        <div style="margin-top: 16px;">
+          <a href="https://prevention.school/terminal/staging/?demo=school&role=specialist&edition=ru" target="_blank" rel="noopener" class="btn-main-accent" style="width: 100%; justify-content: center;">Демо-панель психолога &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Drawer 3: Security & 152-FZ -->
+  <div class="drawer-overlay" id="securityDrawer" onclick="handleDrawerOverlayClick(event, 'securityDrawer')">
+    <div class="drawer-panel">
+      <div class="drawer-header">
+        <h3 class="drawer-title">🔒 Защита данных (152-ФЗ РФ)</h3>
+        <button class="drawer-close" onclick="closeDrawer('securityDrawer')" aria-label="Закрыть">&times;</button>
+      </div>
+      <div class="drawer-body">
+        <p>Главный страх любого специалиста и директора — утечка персональных данных или записей личных бесед. В «Профилактика-AI» защита встроена на уровне архитектуры.</p>
+        
+        <h4>1. Локальный зашифрованный сейф:</h4>
+        <div class="drawer-highlight-box">
+          <p style="margin: 0;">Фамилии детей, контакты родителей и личные заметки хранятся только на компьютере специалиста в зашифрованном виде. Даже если системный блок вскроют или унесут, без пароля файл невозможно прочитать.</p>
+        </div>
+
+        <h4>2. Искусственный интеллект не знает имен:</h4>
+        <p>Когда вы пользуетесь диктовкой или подсказками, система автоматически вырезает любые имена, фамилии, адреса и номера классов. Модель видит только обезличенную задачу (например, «мальчик 14 лет, конфликт со сверстниками»).</p>
+
+        <h4>3. Тайна бесед закрыта даже от директора:</h4>
+        <p>Руководитель школы видит только общие сводные показатели («в параллели 8 классов за месяц было 4 обращения по тревожности»), но не имеет технической возможности прочитать содержание личной беседы.</p>
+
+        <h4>4. Работа без интернета:</h4>
+        <p>Версия для Windows может работать полностью автономно. Вы можете вести все журналы на компьютере, вообще отключенном от сети.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Drawer 4: Government & Municipal (Form 11) -->
+  <div class="drawer-overlay" id="govDrawer" onclick="handleDrawerOverlayClick(event, 'govDrawer')">
+    <div class="drawer-panel">
+      <div class="drawer-header">
+        <h3 class="drawer-title">🏛️ Органам управления (Форма 11)</h3>
+        <button class="drawer-close" onclick="closeDrawer('govDrawer')" aria-label="Закрыть">&times;</button>
+      </div>
+      <div class="drawer-body">
+        <p>Для управлений образования и методических центров районов подготовка сводной ведомственной отчетности обычно превращается в ручную склейку десятков разноформатных файлов.</p>
+        
+        <h4>Как система решает эту проблему:</h4>
+        <div class="drawer-highlight-box">
+          <p style="margin: 0 0 8px;"><strong>✓ Единый стандарт сбора:</strong> все школы района ведут первичную документацию по единому ведомственному стандарту.</p>
+          <p style="margin: 0 0 8px;"><strong>✓ Сводная Форма 11 за секунды:</strong> данные суммируются автоматически без ручного пересчета методистами.</p>
+          <p style="margin: 0;"><strong>✓ Прозрачность нагрузки:</strong> сразу видно, в каких учреждениях не хватает специалистов и где перегрузка сотрудников критическая.</p>
+        </div>
+
+        <h4>Без нарушения тайны личных дел:</h4>
+        <p>В сводный отчет района поступают исключительно обезличенные статистические агрегаты. Данные детей и записи консультаций остаются запертыми в школах.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Drawer 5: FAQ -->
+  <div class="drawer-overlay" id="faqDrawer" onclick="handleDrawerOverlayClick(event, 'faqDrawer')">
+    <div class="drawer-panel">
+      <div class="drawer-header">
+        <h3 class="drawer-title">❓ Вопросы и ответы</h3>
+        <button class="drawer-close" onclick="closeDrawer('faqDrawer')" aria-label="Закрыть">&times;</button>
+      </div>
+      <div class="drawer-body">
+        <h4>Нужно ли нанимать сисадмина или покупать сервер?</h4>
+        <p>Нет. Программа для Windows ставится за 2 минуты в один клик. А веб-версия работает в любом стандартном браузере.</p>
+
+        <h4>Сколько стоит использование?</h4>
+        <p>Все базовые функции ведения журналов и формирования отчетов бесплатны раз и навсегда. ИИ-подписка для пользователей системы образования открыта на период бета-тестирования.</p>
+
+        <h4>Подойдет ли для колледжа или детского сада?</h4>
+        <p>Да. Классификатор проблем, типы приемов и формы занятий настраиваются под специфику СПО и дошкольного образования.</p>
+
+        <h4>Что делать, если в школе временно отключили интернет?</h4>
+        <p>Установленная программа для Windows работает полностью автономно. Вы спокойно ведете консультации, а журналы сохраняются на диске.</p>
+
+        <h4>Можно ли распечатать отчеты для комиссии?</h4>
+        <p>Все журналы и годовые отчеты выгружаются в стандартный файл Word (.docx) в официальном утвержденном виде со всеми печатями и графами.</p>
+
+        <h4>Что делать, если не хватает нужного функционала или хочется внести изменения?</h4>
+        <p>Платформа активно развивается и обновляется — во многом благодаря идеям и предложениям самих педагогов-психологов и руководителей. Если вам не хватает определенного журнала, отчета, классификатора или удобной кнопки, обязательно напишите нам через форму обратной связи в программе (раздел «Настройки» ➔ «Обратная связь»), на почту <a href="mailto:admin@prevention-ai.ru">admin@prevention-ai.ru</a> или напрямую в Telegram <a href="https://t.me/RomanDubrovsky" target="_blank" rel="noopener">@RomanDubrovsky</a>. Мы внимательно изучаем каждый отклик и регулярно внедряем полезные доработки в свежих релизах.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================
+       CLIENT-SIDE SCRIPTS
+       =================================================== -->
+  <script>
+    // Theme Switcher
+    const btn = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    let isDark = false;
+    btn.addEventListener('click', () => {
+      isDark = !isDark;
+      html.setAttribute('data-theme', isDark ? 'dark' : 'light');
+      btn.textContent = isDark ? 'Светлая' : 'Темная';
+    });
+
+    // ===================================================
+    // ROLE & MODES DATA
+    // ===================================================
+    const SCHOOL_DATA = {
+      specialist: {
+        roleBadge: "👩‍🏫 Педагогу-психологу и соцпедагогу",
+        cards: [
+          {
+            id: "spec-reports",
+            icon: "📊",
+            title: "Вся отчетность без паники",
+            hint: "В 1 клик и экспорт в ЦОС",
+            stageTitle: "Вся отчетность психолога сама собирается в Word",
+            stageDesc: "Больше не нужно сидеть ночами с калькулятором, высчитывая часы консультаций и категории обращений. Нажали кнопку — и отчет готов со всеми графиками и таблицами.",
+            bullets: [
+              "Автоматический подсчет фактической нагрузки по видам работ психолога",
+              "Экспорт для ЦОС «Цифровой психолог»",
+              "Готовый текст аналитической записки и выгрузка в Word (.docx)"
+            ],
+            previewHeader: "Отчетность · Форма 5 и ЦОС",
+            previewBody: `
+              <div style="font-weight: 750; margin-bottom: 8px; color: var(--text);">Сводка за учебный период</div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; font-size: 0.82rem;">
+                <div style="background: var(--surface); padding: 8px; border-radius: 8px; border: 1px solid var(--line);">
+                  <div style="color: var(--muted);">Всего консультаций</div>
+                  <div style="font-size: 1.1rem; font-weight: 800; color: var(--accent);">348 ч.</div>
+                </div>
+                <div style="background: var(--surface); padding: 8px; border-radius: 8px; border: 1px solid var(--line);">
+                  <div style="color: var(--muted);">Охват классов</div>
+                  <div style="font-size: 1.1rem; font-weight: 800; color: var(--accent);">100%</div>
+                </div>
+              </div>
+              <div style="font-size: 0.8rem; color: var(--muted); line-height: 1.4; background: var(--surface); padding: 8px; border-radius: 8px; border: 1px solid var(--line);">
+                ✓ Таблицы распределения обращений сформированы<br>
+                ✓ Экспорт для ЦОС «Цифровой психолог» подготовлен<br>
+                <span style="color: var(--accent); font-weight: 700;">Готово к выгрузке в .docx</span>
+              </div>
+            `,
+            drawer: "docsDrawer"
+          },
+          {
+            id: "spec-voice",
+            icon: "🎙️",
+            title: "Голосовая диктовка сессий",
+            hint: "30 секунд после встречи",
+            stageTitle: "Наговорите суть встречи вслух — журнал заполнится сам",
+            stageDesc: "Забудьте о рутинном наборе многостраничных текстов после рабочего дня. Надиктовали ключевые мысли голосом за 30 секунд — ИИ разложит их по полям протокола встречи.",
+            bullets: [
+              "Точное распознавание речи с учетом школьного контекста",
+              "Автоматическое заполнение официального Журнала консультаций (Форма 4А)",
+              "Генерация всех основных документов — планов и отчетов по консультациям, групповой работе, ИПР"
+            ],
+            previewHeader: "Голосовой протокол консультации",
+            previewBody: `
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+                <div style="width: 28px; height: 28px; border-radius: 50%; background: rgba(239, 68, 68, 0.15); color: #ef4444; display: grid; place-items: center; font-size: 12px;">🎙️</div>
+                <div style="font-size: 0.82rem; color: var(--muted);">Голосовая заметка (0:34 сек)</div>
+              </div>
+              <div style="background: var(--surface); padding: 10px; border-radius: 8px; border: 1px solid var(--line); font-size: 0.82rem; line-height: 1.4; margin-bottom: 8px;">
+                «Жалобы на конфликты с одноклассниками, тревожность перед контрольными. Проведена беседа, выработаны правила совладания.»
+              </div>
+              <div style="font-size: 0.78rem; color: var(--accent); font-weight: 750;">
+                ✓ Разложено в поля: Жалоба · Беседа · Рекомендации
+              </div>
+            `,
+            drawer: "aiHelperDrawer"
+          },
+          {
+            id: "spec-help",
+            icon: "💡",
+            title: "Методическая поддержка психолога",
+            hint: "Поддержка и супервизия",
+            stageTitle: "Спокойная уверенность психолога в любых ситуациях",
+            stageDesc: "В трудных случаях, когда ребенок плачет, проявляет агрессию или запрос запутан, система предложит проверенный план разговора и вопросы прямо во время работы.",
+            bullets: [
+              "Понятные шаги диалога при конфликтах, буллинге и слезах",
+              "Подсказки при тревоге, самоповреждении и кризисных состояниях",
+              "Супервизия по итогам проведенных консультаций"
+            ],
+            previewHeader: "AI-Помощник · Кризисный случай",
+            previewBody: `
+              <div style="font-size: 0.82rem; font-weight: 750; color: var(--text); margin-bottom: 6px;">Рекомендуемые действия:</div>
+              <div style="background: var(--surface); padding: 8px 10px; border-radius: 8px; border: 1px solid var(--line); font-size: 0.8rem; line-height: 1.4; margin-bottom: 6px;">
+                1. <strong>Снизить напряжение:</strong> «Я вижу, как тебе тяжело об этом говорить. Здесь ты в безопасности».
+              </div>
+              <div style="background: var(--surface); padding: 8px 10px; border-radius: 8px; border: 1px solid var(--line); font-size: 0.8rem; line-height: 1.4;">
+                2. <strong>Уточнить факты:</strong> задать открытые вопросы без давления и обвинений.
+              </div>
+            `,
+            drawer: "aiHelperDrawer"
+          },
+          {
+            id: "spec-pmpk",
+            icon: "📝",
+            title: "Характеристики и консилиум",
+            hint: "Для ПМПК и комиссий",
+            stageTitle: "Психологические характеристики и экспертизы за пару минут",
+            stageDesc: "Конструктор документов помогает быстро составить официальное заключение для педсовета, комиссии (ПМПК) или классного руководителя без канцелярита и лишней воды.",
+            bullets: [
+              "Готовые шаблоны для консилиумов и межведомственного взаимодействия",
+              "Доказательные формулировки в строгом профессиональном стиле",
+              "Понятный список рекомендаций родителям и педагогам"
+            ],
+            previewHeader: "Конструктор характеристик",
+            previewBody: `
+              <div style="font-size: 0.82rem; font-weight: 750; color: var(--text); margin-bottom: 6px;">Заключение для ПМПК:</div>
+              <div style="background: var(--surface); padding: 10px; border-radius: 8px; border: 1px solid var(--line); font-size: 0.8rem; line-height: 1.4; margin-bottom: 8px;">
+                «Особенности эмоционально-волевой сферы: повышенная утомляемость, трудности концентрации внимания. Интеллектуальное развитие соответствует возрастной норме.»
+              </div>
+              <div style="font-size: 0.78rem; color: var(--accent); font-weight: 750;">
+                ✓ Сформирован официальный бланк в Word
+              </div>
+            `,
+            drawer: "docsDrawer"
+          }
+        ]
+      },
+      director: {
+        roleBadge: "👔 Директору школы и завучу по ВР",
+        cards: [
+          {
+            id: "dir-reports",
+            icon: "📈",
+            title: "Вся отчетность школы за 1 минуту",
+            hint: "Форма 10 без авралов",
+            stageTitle: "Сводная отчетность по воспитательной работе (Форма 10) готова сразу",
+            stageDesc: "Сводная статистика работы психологической службы собирается автоматически из первичных журналов. Больше никаких нарисованных от руки цифр и споров перед проверками.",
+            bullets: [
+              "Реальные, прозрачные цифры работы службы за весь учебный год",
+              "Полная готовность к инспекциям департамента образования и прокуратуры",
+              "Мгновенный экспорт в официальные форматы Word и PDF"
+            ],
+            previewHeader: "Форма 10 · Сводка руководителя",
+            previewBody: `
+              <div style="font-weight: 750; margin-bottom: 8px; color: var(--text);">Показатели службы школы</div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; font-size: 0.82rem;">
+                <div style="background: var(--surface); padding: 8px; border-radius: 8px; border: 1px solid var(--line);">
+                  <div style="color: var(--muted);">Охват групп риска</div>
+                  <div style="font-size: 1.1rem; font-weight: 800; color: #10b981;">100%</div>
+                </div>
+                <div style="background: var(--surface); padding: 8px; border-radius: 8px; border: 1px solid var(--line);">
+                  <div style="color: var(--muted);">Своевременность ИПР</div>
+                  <div style="font-size: 1.1rem; font-weight: 800; color: #10b981;">Без задержек</div>
+                </div>
+              </div>
+              <div style="font-size: 0.78rem; color: var(--accent); font-weight: 750;">
+                ✓ Документ готов к подписанию и отправке
+              </div>
+            `,
+            drawer: "docsDrawer"
+          },
+          {
+            id: "dir-security",
+            icon: "🛡️",
+            title: "Никаких штрафов по 152-ФЗ",
+            hint: "База надежнее сейфа",
+            stageTitle: "Личные тайны детей не попадут в интернет и к посторонним",
+            stageDesc: "Данные зашифрованы прямо на компьютере специалиста и не загружаются на чужие серверы. Школа на 100% защищена от утечек, скандалов и претензий контролирующих органов.",
+            bullets: [
+              "Полное соответствие законодательству РФ о персональных данных",
+              "Исключен риск попадания конфиденциальных сведений в открытый доступ",
+              "Спокойствие руководителя перед любыми ведомственными проверками"
+            ],
+            previewHeader: "Проверка безопасности данных",
+            previewBody: `
+              <div style="display: flex; flex-direction: column; gap: 6px; font-size: 0.82rem;">
+                <div style="background: var(--surface); padding: 8px 10px; border-radius: 8px; border: 1px solid var(--line); display: flex; justify-content: space-between;">
+                  <span>Локальный сейф базы</span>
+                  <span style="color: #10b981; font-weight: 750;">Зашифровано ✓</span>
+                </div>
+                <div style="background: var(--surface); padding: 8px 10px; border-radius: 8px; border: 1px solid var(--line); display: flex; justify-content: space-between;">
+                  <span>Удаленные серверы</span>
+                  <span style="color: #10b981; font-weight: 750;">Без утечек ✓</span>
+                </div>
+                <div style="background: var(--surface); padding: 8px 10px; border-radius: 8px; border: 1px solid var(--line); display: flex; justify-content: space-between;">
+                  <span>152-ФЗ РФ</span>
+                  <span style="color: #10b981; font-weight: 750;">Соответствует ✓</span>
+                </div>
+              </div>
+            `,
+            drawer: "securityDrawer"
+          },
+          {
+            id: "dir-climate",
+            icon: "🔍",
+            title: "Картина проблем по классам до ЧП",
+            hint: "Раннее обнаружение рисков",
+            stageTitle: "Своевременная профилактика конфликтов и травли",
+            stageDesc: "Руководитель видит общую обезличенную картину по параллелям: где растет напряжение или тревожность, чтобы вовремя подключить службу, а не разбираться с ЧП постфактум.",
+            bullets: [
+              "Мониторинг психологического климата и рисков дезадаптации",
+              "Возможность принять меры до жалоб родителей или вмешательства надзора",
+              "Прозрачный учет нагрузки специалистов и эффективности программ"
+            ],
+            previewHeader: "Мониторинг климата школы",
+            previewBody: `
+              <div style="font-size: 0.82rem; font-weight: 750; color: var(--text); margin-bottom: 8px;">Аналитика параллелей:</div>
+              <div style="display: flex; flex-direction: column; gap: 6px; font-size: 0.8rem;">
+                <div style="background: var(--surface); padding: 6px 10px; border-radius: 6px; border: 1px solid var(--line); display: flex; justify-content: space-between;">
+                  <span>7-е классы (адаптация)</span>
+                  <span style="color: #10b981; font-weight: 700;">Норма</span>
+                </div>
+                <div style="background: var(--surface); padding: 6px 10px; border-radius: 6px; border: 1px solid var(--line); display: flex; justify-content: space-between;">
+                  <span>8-е классы (конфликты)</span>
+                  <span style="color: #f59e0b; font-weight: 700;">Внимание (тренинг)</span>
+                </div>
+              </div>
+            `,
+            drawer: "govDrawer"
+          },
+          {
+            id: "dir-time",
+            icon: "🤝",
+            title: "Психологи помогают детям, а не бумагам",
+            hint: "Реальная польза службы",
+            stageTitle: "Освобождение специалистов от бессмысленной рутины",
+            stageDesc: "Когда рутинные отчеты формируются в один клик, специалист возвращается к своей главной обязанности — реальной помощи ученикам, поддержке учителей и диалогу с родителями.",
+            bullets: [
+              "Снижение профессионального выгорания и текучести кадров службы",
+              "Быстрое разрешение конфликтных ситуаций внутри коллектива",
+              "Методическая поддержка молодых специалистов прямо на рабочем месте"
+            ],
+            previewHeader: "Эффективность рабочего времени",
+            previewBody: `
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.82rem;">
+                <div style="background: var(--surface); padding: 8px; border-radius: 8px; border: 1px solid var(--line);">
+                  <div style="color: var(--muted);">Работа с детьми</div>
+                  <div style="font-size: 1.1rem; font-weight: 800; color: #10b981;">+65%</div>
+                </div>
+                <div style="background: var(--surface); padding: 8px; border-radius: 8px; border: 1px solid var(--line);">
+                  <div style="color: var(--muted);">Бумажная рутина</div>
+                  <div style="font-size: 1.1rem; font-weight: 800; color: var(--accent);">-80%</div>
+                </div>
+              </div>
+            `,
+            drawer: "docsDrawer"
+          }
+        ]
+      },
+      educator: {
+        roleBadge: "👨‍🏫 Классному руководителю и учителю-предметнику",
+        cards: [
+          {
+            id: "edu-observations",
+            icon: "📝",
+            title: "Журнал наблюдений за классом",
+            hint: "Без птичьего языка",
+            stageTitle: "Простая фиксация поведенческих маркеров на простом русском языке",
+            stageDesc: "Классный руководитель в 2 клика отмечает сигналы риска: резкий спад успеваемости, отчуждение, замкнутость или конфликты со сверстниками. Система подсказывает, на что обратить внимание, и передает сигнал психологу.",
+            bullets: [
+              "Удобный чек-лист маркеров поведения на живом и понятном языке",
+              "Прямая и конфиденциальная передача данных школьному психологу",
+              "Фиксация своевременного педагогического реагирования для защиты учителя"
+            ],
+            previewHeader: "Журнал наблюдений педагога",
+            previewBody: `
+              <div style="font-weight: 750; margin-bottom: 8px; color: var(--text);">Маркеры поведения (7 «Б» класс):</div>
+              <div style="display: flex; flex-direction: column; gap: 6px; font-size: 0.82rem;">
+                <div style="background: var(--surface); padding: 7px 10px; border-radius: 8px; border: 1px solid var(--line); display: flex; justify-content: space-between;">
+                  <span>Ученик И. (пропуски уроков)</span>
+                  <span style="color: #f59e0b; font-weight: 750;">Внимание</span>
+                </div>
+                <div style="background: var(--surface); padding: 7px 10px; border-radius: 8px; border: 1px solid var(--line); display: flex; justify-content: space-between;">
+                  <span>Ученица А. (конфликты на перемене)</span>
+                  <span style="color: #ef4444; font-weight: 750;">Передано психологу</span>
+                </div>
+              </div>
+            `,
+            drawer: "docsDrawer"
+          },
+          {
+            id: "edu-ai-assistant",
+            icon: "💡",
+            title: "ИИ-разбор ситуаций с учеником",
+            hint: "Сценарии бесед",
+            stageTitle: "Педагогическая подсказка: как говорить с трудным подростком и родителем",
+            stageDesc: "ИИ-помощник помогает учителю подготовиться к сложному диалогу, сформулировать тактичные вопросы и найти выход из конфликта без крика и давления.",
+            bullets: [
+              "Пошаговый план беседы с родителями при падении успеваемости или буллинге",
+              "Приемы нормализации дисциплины на уроке с позиции здравого смысла",
+              "Снятие эмоционального напряжения и уверенность учителя в диалоге"
+            ],
+            previewHeader: "ИИ-Помощник классного руководителя",
+            previewBody: `
+              <div style="font-size: 0.82rem; line-height: 1.4; background: var(--surface); padding: 10px; border-radius: 8px; border: 1px solid var(--line);">
+                <div style="color: var(--accent); font-weight: 750; margin-bottom: 4px;">План беседы с родителем:</div>
+                <div style="color: var(--text);">1. Начать с сильных сторон ребенка.<br/>2. Спокойно описать факт: «Заметили спад внимания на 3-й неделе».<br/>3. Предложить совместный план без взаимных обвинений.</div>
+              </div>
+            `,
+            drawer: "aiHelperDrawer"
+          },
+          {
+            id: "edu-meetings",
+            icon: "👥",
+            title: "Родительские собрания онлайн",
+            hint: "Без сторонних сервисов",
+            stageTitle: "Проведение онлайн-встреч и консультаций с родителями класса",
+            stageDesc: "Встроенная защищенная видеосвязь без лимита по времени и без необходимости родителям скачивать сторонние приложения. Подключение по одной ссылке прямо с телефона.",
+            bullets: [
+              "Вход родителей в 1 клик со смартфона без паролей и регистраций",
+              "Демонстрация презентаций, опросников и чат встречи",
+              "Идеально для индивидуальных родительских консультаций вечером"
+            ],
+            previewHeader: "Кабинет родительских собраний",
+            previewBody: `
+              <div style="display: flex; flex-direction: column; gap: 6px; font-size: 0.82rem;">
+                <div style="background: var(--surface); padding: 8px 10px; border-radius: 8px; border: 1px solid var(--line); display: flex; justify-content: space-between;">
+                  <span>Родительское собрание 7 «Б»</span>
+                  <span style="color: #10b981; font-weight: 750;">Запланировано</span>
+                </div>
+                <div style="font-size: 0.78rem; color: var(--muted);">Ссылка для родителей сгенерирована и защищена</div>
+              </div>
+            `,
+            drawer: "docsDrawer"
+          },
+          {
+            id: "edu-fast-access",
+            icon: "🚀",
+            title: "Вход без паролей и установок",
+            hint: "Работает в браузере",
+            stageTitle: "Легкий кабинет учителя: открывается за 5 секунд на любом устройстве",
+            stageDesc: "Учителю не нужно разбираться в психотерапевтических терминах или долго устанавливать программы. Чистый, легкий интерфейс, сфокусированный только на классе.",
+            bullets: [
+              "Моментальный доступ с школьного компьютера или личного смартфона",
+              "Никаких лишних полей и тяжелых форм",
+              "Безопасно и в полном согласии с 152-ФЗ"
+            ],
+            previewHeader: "Быстрый старт в браузере",
+            previewBody: `
+              <div style="display: flex; gap: 8px; font-size: 0.82rem; align-items: center; background: rgba(16, 185, 129, 0.08); padding: 10px; border-radius: 8px; border: 1px solid rgba(16, 185, 129, 0.25);">
+                <span style="font-size: 1.3rem;">⚡</span>
+                <span style="color: #047857; font-weight: 700;">Кабинет педагога готов к работе прямо сейчас без ожидания</span>
+              </div>
+            `,
+            drawer: "securityDrawer"
+          }
+        ]
+      }
+    };
+
+    let currentRole = 'specialist';
+    let currentCardIndex = 0;
+
+    function setRole(role) {
+      currentRole = role;
+      currentCardIndex = 0;
+      
+      const tabSpec = document.getElementById('tabSpecialist');
+      const tabDir = document.getElementById('tabDirector');
+      const tabEdu = document.getElementById('tabEducator');
+      if (tabSpec) tabSpec.classList.toggle('active', role === 'specialist');
+      if (tabDir) tabDir.classList.toggle('active', role === 'director');
+      if (tabEdu) tabEdu.classList.toggle('active', role === 'educator');
+      
+      renderCards();
+      renderStage();
+    }
+
+    function renderCards() {
+      const container = document.getElementById('keyPointsGrid');
+      const cards = SCHOOL_DATA[currentRole].cards;
+      
+      container.innerHTML = cards.map((c, i) => `
+        <div class="point-card ${i === currentCardIndex ? 'active' : ''}" onclick="selectCard(${i})">
+          <div class="point-card-icon">${c.icon}</div>
+          <div class="point-card-title">${c.title}</div>
+          <div class="point-card-hint">${c.hint}</div>
+        </div>
+      `).join('');
+    }
+
+    function selectCard(idx) {
+      currentCardIndex = idx;
+      renderCards();
+      renderStage();
+    }
+
+    function renderStage() {
+      const card = SCHOOL_DATA[currentRole].cards[currentCardIndex];
+      document.getElementById('stageTitle').textContent = card.stageTitle;
+      document.getElementById('stageDesc').textContent = card.stageDesc;
+      
+      const bulletsEl = document.getElementById('stageBullets');
+      bulletsEl.innerHTML = card.bullets.map(b => `
+        <li class="stage-feature-item">
+          <span class="check-mark">✓</span>
+          <span>${b}</span>
+        </li>
+      `).join('');
+
+      document.getElementById('previewHeaderTitle').textContent = card.previewHeader;
+      document.getElementById('stagePreviewBody').innerHTML = card.previewBody;
+
+      const demoBtn = document.getElementById('stageDemoBtn');
+      const createBtn = document.getElementById('stageCreateBtn');
+      if (currentRole === 'educator') {
+        demoBtn.href = "https://prevention.school/terminal/staging/?entry=educator&demo=school";
+        demoBtn.innerHTML = "<span>Демо-панель учителя &rarr;</span>";
+        if (createBtn) {
+          createBtn.href = "https://web.prevention-ai.ru/?entry=educator";
+          createBtn.innerHTML = "<span>Кабинет учителя</span>";
+        }
+      } else if (currentRole === 'director') {
+        demoBtn.href = "https://prevention.school/terminal/staging/?demo=school&role=director&edition=ru";
+        demoBtn.innerHTML = "<span>Демо-панель директора &rarr;</span>";
+        if (createBtn) {
+          createBtn.href = "https://web.prevention-ai.ru/";
+          createBtn.innerHTML = "<span>Создать кабинет школы</span>";
+        }
+      } else {
+        demoBtn.href = "https://prevention.school/terminal/staging/?demo=school&role=specialist&edition=ru";
+        demoBtn.innerHTML = "<span>Демо-панель психолога &rarr;</span>";
+        if (createBtn) {
+          createBtn.href = "https://web.prevention-ai.ru/";
+          createBtn.innerHTML = "<span>Создать свой кабинет</span>";
+        }
+      }
+    }
+
+    function openActiveDrawer() {
+      const card = SCHOOL_DATA[currentRole].cards[currentCardIndex];
+      if (card && card.drawer) {
+        openDrawer(card.drawer);
+      }
+    }
+
+    // ===================================================
+    // DRAWERS LOGIC
+    // ===================================================
+    function openDrawer(drawerId) {
+      const drawer = document.getElementById(drawerId);
+      if (drawer) {
+        drawer.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeDrawer(drawerId) {
+      const drawer = document.getElementById(drawerId);
+      if (drawer) {
+        drawer.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function handleDrawerOverlayClick(e, drawerId) {
+      if (e.target.id === drawerId) {
+        closeDrawer(drawerId);
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.drawer-overlay.active').forEach(d => {
+          d.classList.remove('active');
+        });
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Initial render
+    setRole('specialist');
+  </script>
+  <script src="/assets/legal-banner.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+{
+  "name": "Терминал Специалиста — Профилактика.АИ",
+  "short_name": "Профилактика",
+  "description": "Цифровое рабочее место педагога-психолога, автоматические журналы и индивидуальные маршруты профилактики.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#090d16",
+  "theme_color": "#0f766e",
+  "categories": ["education", "productivity", "government"],
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

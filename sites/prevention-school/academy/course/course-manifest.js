@@ -1,0 +1,149 @@
+window.COURSE_MANIFEST = [
+  {
+    "id": "00",
+    "title": "Introduction. Introduction",
+    "preview": "",
+    "audio_url": "/academy/course/audio/00_en.mp3",
+    "video_url": ""
+  },
+  {
+    "id": "1",
+    "title": "Lecture 1. Health and Illness in Psychology",
+    "preview": "",
+    "audio_url": "/academy/course/audio/1_en.mp3",
+    "video_url": ""
+  },
+  {
+    "id": "2",
+    "title": "Lecture 2. Stress and Resistance",
+    "preview": "",
+    "audio_url": "/academy/course/audio/2_en.mp3",
+    "video_url": ""
+  },
+  {
+    "id": "3",
+    "title": "Lecture 3. Deviance",
+    "preview": "",
+    "audio_url": "",
+    "video_url": "https://storage.yandexcloud.net/ps-landing-main/media/course/3.mp4"
+  },
+  {
+    "id": "4",
+    "title": "Lecture 4. Models of Prevention",
+    "preview": "",
+    "audio_url": "",
+    "video_url": "https://storage.yandexcloud.net/ps-landing-main/media/course/4.mp4"
+  },
+  {
+    "id": "5",
+    "title": "Lecture 5. Trends in the development of the prevention system in the modern world",
+    "preview": "",
+    "audio_url": "",
+    "video_url": "https://storage.yandexcloud.net/ps-landing-main/media/course/5.mp4"
+  },
+  {
+    "id": "6",
+    "title": "Lecture 6. Research in the prevention system",
+    "preview": "",
+    "audio_url": "",
+    "video_url": "https://storage.yandexcloud.net/ps-landing-main/media/course/6.mp4"
+  },
+  {
+    "id": "7",
+    "title": "Lecture 7. Unstructured Interview",
+    "preview": "",
+    "audio_url": "",
+    "video_url": "https://storage.yandexcloud.net/ps-landing-main/media/course/7.mp4"
+  },
+  {
+    "id": "8",
+    "title": "Lecture 8. Semi-structured interview (individual, group, focus groups)",
+    "preview": "",
+    "audio_url": "",
+    "video_url": "https://storage.yandexcloud.net/ps-landing-main/media/course/8.mp4"
+  },
+  {
+    "id": "9",
+    "title": "Lecture 9. Observation",
+    "preview": "",
+    "audio_url": "",
+    "video_url": "https://storage.yandexcloud.net/ps-landing-main/media/course/9.mp4"
+  },
+  {
+    "id": "10",
+    "title": "Lecture 10. Experiment",
+    "preview": "",
+    "audio_url": "/academy/course/audio/10_en.mp3",
+    "video_url": ""
+  },
+  {
+    "id": "11",
+    "title": "Lecture 11. Socio-statistical research",
+    "preview": "",
+    "audio_url": "/academy/course/audio/11_en.mp3",
+    "video_url": ""
+  },
+  {
+    "id": "12",
+    "title": "Lecture 12. Sociological (population) surveys of representatives of risk groups",
+    "preview": "",
+    "audio_url": "/academy/course/audio/12_en.mp3",
+    "video_url": ""
+  },
+  {
+    "id": "13",
+    "title": "Lecture 13. Psychological testing",
+    "preview": "",
+    "audio_url": "",
+    "video_url": "https://storage.yandexcloud.net/ps-landing-main/media/course/13.mp4"
+  },
+  {
+    "id": "14",
+    "title": "Lecture 14. Diagnostic and preventive measures for deviant adolescents",
+    "preview": "",
+    "audio_url": "",
+    "video_url": "https://storage.yandexcloud.net/ps-landing-main/media/course/14.mp4"
+  },
+  {
+    "id": "15",
+    "title": "Lecture 15. Research Design and Evidence-Based Prevention",
+    "preview": "",
+    "audio_url": "",
+    "video_url": "https://storage.yandexcloud.net/ps-landing-main/media/course/15.mp4"
+  },
+  {
+    "id": "16",
+    "title": "Lecture 16. Logic and Structure of a Preventive Project",
+    "preview": "",
+    "audio_url": "",
+    "video_url": "https://storage.yandexcloud.net/ps-landing-main/media/course/16.mp4"
+  },
+  {
+    "id": "17",
+    "title": "Lecture 17. Action Plan of the Preventive Program",
+    "preview": "",
+    "audio_url": "",
+    "video_url": "https://storage.yandexcloud.net/ps-landing-main/media/course/17.mp4"
+  },
+  {
+    "id": "18",
+    "title": "Lecture 18. Evaluation of Prevention Effectiveness",
+    "preview": "",
+    "audio_url": "",
+    "video_url": "https://storage.yandexcloud.net/ps-landing-main/media/course/18.mp4"
+  },
+  {
+    "id": "19",
+    "title": "Lecture 19. Psychological Service in the Education System as an Agent of Prevention",
+    "preview": "Video lecture",
+    "audio_url": "",
+    "video_url": "https://storage.yandexcloud.net/ps-landing-main/media/course/19.mp4"
+  },
+  {
+    "id": "20",
+    "title": "Lecture 20. Concluding lesson",
+    "preview": "Video lecture",
+    "audio_url": "",
+    "video_url": "https://storage.yandexcloud.net/ps-landing-main/media/course/20.mp4"
+  }
+];

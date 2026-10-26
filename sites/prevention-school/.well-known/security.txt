@@ -1,0 +1,11 @@
+Contact: mailto:dubrovsky.roman2014@yandex.ru
+Contact: mailto:roman.dubrovsky@gmail.com
+Preferred-Languages: ru, en
+Canonical: https://prevention.school/.well-known/security.txt
+Policy: https://prevention.school/tech
+Acknowledgments: https://prevention.school/about
+
+# ==============================================================================
+# Prevention & IDA Core Architecture & Security Brief
+# Полное техническое описание стека и архитектуры: https://prevention.school/tech
+# ==============================================================================

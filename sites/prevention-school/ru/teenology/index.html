@@ -1,0 +1,697 @@
+<!doctype html>
+<html lang="ru" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link class="favicon" rel="icon" href="/favicon.ico" sizes="any">
+  <link class="favicon" rel="icon" href="/favicon.png" type="image/png">
+  <link class="apple-touch-icon" href="/favicon.png">
+  <title>Teenology — Цифровой помощник для родителей и подростков</title>
+  <meta name="description" content="Teenology: взаимопонимание и доверие в семье без слежки, крика и нотаций. Экспресс-тест отношений, оффлайн-шпаргалки и бережное ИИ-сопровождение.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;550;650;760;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/site.css">
+  
+  <style>
+    /* ===================================================
+       ROLE / AUDIENCE WORKSPACE SELECTOR
+       =================================================== */
+    .role-selector-section {
+      background: var(--surface-soft);
+      border: 1.5px solid var(--line);
+      border-radius: 24px;
+      padding: 32px 24px;
+      margin: 16px auto 36px;
+      max-width: 980px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    }
+    .role-selector-header {
+      text-align: center;
+      margin-bottom: 22px;
+    }
+    .role-selector-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      background: color-mix(in srgb, var(--accent) 12%, transparent);
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+    .role-selector-title {
+      font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+      font-weight: 800;
+      color: var(--text);
+      margin: 0 0 8px;
+      letter-spacing: -0.015em;
+    }
+    .role-selector-subtitle {
+      font-size: 0.96rem;
+      color: var(--muted);
+      margin: 0 auto;
+      max-width: 620px;
+      line-height: 1.5;
+    }
+    .role-nav-bar {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      max-width: 840px;
+      margin: 0 auto;
+    }
+    .role-nav-tab {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--surface);
+      border: 2px solid var(--line);
+      border-radius: 18px;
+      padding: 16px 20px;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      user-select: none;
+    }
+    .role-nav-tab:hover {
+      border-color: color-mix(in srgb, var(--accent) 40%, var(--line));
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(0,0,0,0.06);
+    }
+    .role-tab-icon {
+      font-size: 2.1rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .role-tab-content {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .role-tab-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .role-tab-hint {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+    
+    /* Active State Parents */
+    .role-nav-tab.tab-parents.active {
+      border-color: var(--accent);
+      background: color-mix(in srgb, var(--accent) 8%, var(--surface));
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent), 0 8px 24px rgba(15, 118, 110, 0.12);
+    }
+    .role-nav-tab.tab-parents.active .role-tab-title {
+      color: var(--accent-strong);
+    }
+
+    /* Active State Teens */
+    .role-nav-tab.tab-teens:hover {
+      border-color: color-mix(in srgb, var(--violet) 40%, var(--line));
+    }
+    .role-nav-tab.tab-teens.active {
+      border-color: var(--violet);
+      background: color-mix(in srgb, var(--violet) 8%, var(--surface));
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--violet) 25%, transparent), 0 8px 24px rgba(109, 91, 208, 0.12);
+    }
+    .role-nav-tab.tab-teens.active .role-tab-title {
+      color: var(--violet);
+    }
+
+    @media (max-width: 680px) {
+      .role-nav-bar {
+        grid-template-columns: 1fr;
+      }
+      .role-selector-section {
+        padding: 22px 16px;
+      }
+    }
+
+    /* Content Transition */
+    .audience-view {
+      display: none;
+      animation: fadeIn 0.25s ease-out forwards;
+    }
+    .audience-view.active-view {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Eyebrow dynamic */
+    .eyebrow-teen {
+      background: var(--violet) !important;
+      color: #ffffff !important;
+    }
+
+    /* Feature Grid */
+    .feature-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 24px;
+    }
+    .card-situation {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card-situation:hover {
+      transform: translateY(-3px);
+      border-color: color-mix(in srgb, var(--accent) 40%, var(--line));
+      box-shadow: 0 12px 28px rgba(0,0,0,0.06);
+    }
+    .card-situation.teen-card:hover {
+      border-color: color-mix(in srgb, var(--violet) 40%, var(--line));
+    }
+    .card-icon {
+      font-size: 1.8rem;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .card-situation h3 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin: 0;
+      color: var(--text);
+    }
+    .card-situation p {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    /* Steps Cards */
+    .steps-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin-top: 28px;
+    }
+    .step-box {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 24px;
+      position: relative;
+    }
+    .step-badge {
+      display: inline-flex;
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 12px;
+    }
+    .step-badge-free {
+      background: rgba(16, 185, 129, 0.12);
+      color: #059669;
+    }
+    .step-badge-optional {
+      background: rgba(109, 91, 208, 0.12);
+      color: var(--violet);
+    }
+    .step-box h4 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin: 0 0 8px;
+    }
+    .step-box p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* Trust Pill grid */
+    .trust-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .trust-item {
+      background: var(--surface-soft);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .trust-item-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+    .trust-item-content strong {
+      display: block;
+      font-size: 0.95rem;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .trust-item-content span {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 640px) {
+      .audience-btn {
+        padding: 8px 16px;
+        font-size: 0.88rem;
+      }
+      .card-situation {
+        padding: 20px;
+      }
+    }
+  </style>
+
+  <!-- Yandex.Metrika counter & Auto-Goal Tracker -->
+  <script type="text/javascript">
+  (function(m,e,t,r,i,k,a){
+      m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();
+      for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+      k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+  })(window, document,'script','https://mc.yandex.ru/metrika/tag.js', 'ym');
+
+  (function(){
+      try {
+          if (window.location.search.indexOf('no_track=1') !== -1 || window.location.search.indexOf('admin=1') !== -1) {
+              localStorage.setItem('ym_disable_tracking', '1');
+          }
+          if (localStorage.getItem('ym_disable_tracking') === '1') {
+              console.log('[Yandex.Metrika] Tracking disabled for owner/admin session.');
+              window.ymGoal = window.reachGoal = function(g, p){ console.log('[Goal skipped (admin)]', g, p || ''); };
+              return;
+          }
+      } catch(e) {}
+
+      var host = (window.location.hostname || '').toLowerCase();
+      var id = null;
+      if (host.indexOf('ida-psy.ru') !== -1) id = 113108416;
+      else if (host.indexOf('ida-psy.pro') !== -1) id = 113706104;
+      else if (host.indexOf('prevention-ai.ru') !== -1) id = 113108883;
+      else if (host.indexOf('prevention.school') !== -1) id = 113706126;
+      else if (host.indexOf('teenology-ai.ru') !== -1) id = 113108854;
+      else if (host.indexOf('teenology.care') !== -1) id = 109437867;
+      else {
+          id = 113706126;
+      }
+
+      window._ymCounterId = id;
+
+      window.ymGoal = window.reachGoal = function(goalName, params) {
+          if (!id || typeof ym !== 'function') return;
+          try {
+              if (params) {
+                  ym(id, 'reachGoal', goalName, params);
+              } else {
+                  ym(id, 'reachGoal', goalName);
+              }
+              console.log('[YM Goal]', goalName, params || '');
+          } catch(e) {
+              console.warn('[YM Goal Error]', e);
+          }
+      };
+
+      if (id) {
+          ym(id, 'init', {
+              ssr: true,
+              webvisor: true,
+              clickmap: true,
+              ecommerce: "dataLayer",
+              referrer: document.referrer,
+              url: location.href,
+              accurateTrackBounce: true,
+              trackLinks: true
+          });
+      }
+
+      document.addEventListener('DOMContentLoaded', function(){
+          document.addEventListener('click', function(e){
+              var target = e.target;
+              if (!target) return;
+              var el = target.closest('a, button, [data-goal], input[type="submit"]');
+              if (!el) return;
+
+              var explicitGoal = el.getAttribute('data-goal');
+              if (explicitGoal) {
+                  window.ymGoal(explicitGoal);
+                  return;
+              }
+
+              var href = (el.getAttribute('href') || '').toLowerCase();
+              var text = (el.innerText || el.textContent || el.value || '').trim().toLowerCase();
+
+              if (href.indexOf('t.me/') !== -1 || href.indexOf('vk.com/') !== -1) {
+                  window.ymGoal('messenger_click', {url: href});
+              } else if (href.indexOf('teenology-ai.ru') !== -1 || text.indexOf('тест') !== -1 || text.indexOf('teenology') !== -1) {
+                  window.ymGoal('teenology_app_click', {text: text});
+              }
+          }, true);
+      });
+  })();
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <header class="site-header">
+      <a class="brand" href="/ru/"><span class="brand-mark">П</span><span>Профилактика-AI <small style="font-size: 10px; font-weight: 800; text-transform: uppercase; color: var(--accent); margin-left: 4px; vertical-align: super;">Beta</small></span></a>
+      <nav class="nav" aria-label="Навигация">
+        <a href="/ru/about/">О проекте</a>
+        <a href="https://academy.prevention-ai.ru/" target="_blank" rel="noopener">Академия</a>
+        <a href="https://web.prevention-ai.ru/?entry=educator" target="_blank" rel="noopener">Учителю</a>
+        <a href="/ru/teenology/" class="nav-active" aria-current="page">Родителям и подросткам</a>
+      </nav>
+      <div class="nav-controls">
+        <a href="https://web.prevention.school/" class="nav-cta" target="_blank" rel="noopener">Веб-терминал</a>
+        <button type="button" class="theme-toggle" id="theme-toggle">Темная</button>
+      </div>
+    </header>
+
+    <main>
+      <!-- AUDIENCE / ROLE WORKSPACE SELECTOR -->
+      <section class="role-selector-section" aria-label="Выбор аудитории">
+        <div class="role-selector-header">
+          <div class="role-selector-eyebrow">🌱 Режим просмотра</div>
+          <h2 class="role-selector-title">Для кого вы ищете поддержку?</h2>
+          <p class="role-selector-subtitle">Переключите режим, чтобы увидеть шпаргалки к разговорам, тесты и формат помощи для вашей ситуации</p>
+        </div>
+
+        <div class="role-nav-bar" role="tablist" aria-label="Выбор режима: Родитель или Подросток">
+          <button type="button" class="role-nav-tab tab-parents active" id="btn-parents" data-target="view-parents" role="tab" aria-selected="true" aria-controls="view-parents">
+            <div class="role-tab-icon">👨‍👩‍👦</div>
+            <div class="role-tab-content">
+              <div class="role-tab-title">Я родитель</div>
+              <div class="role-tab-hint">Спокойствие, шпаргалки к сложным разговорам и тест отношений</div>
+            </div>
+          </button>
+          
+          <button type="button" class="role-nav-tab tab-teens" id="btn-teens" data-target="view-teens" role="tab" aria-selected="false" aria-controls="view-teens">
+            <div class="role-tab-icon">🎧</div>
+            <div class="role-tab-content">
+              <div class="role-tab-title">Я подросток</div>
+              <div class="role-tab-hint">Личное пространство, анонимно, без нравоучений и контроля</div>
+            </div>
+          </button>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           PARENTS VIEW
+           ========================================== -->
+      <div id="view-parents" class="audience-view active-view">
+        <!-- Hero Section -->
+        <section class="hero hero-glass">
+          <div>
+            <span class="eyebrow" style="background: var(--accent); color: white; border: none;">Взаимное доверие · не слежка</span>
+            <h1>Когда трудно с подростком — начните с понимания, а не контроля</h1>
+            <p class="lead">
+              Шпаргалки к сложным разговорам, экспресс-тест отношений и бережный ИИ-помощник без нотаций, без чтения переписок и без навязанных подписок.
+            </p>
+            <div class="actions">
+              <a class="btn btn-primary" href="https://teenology-ai.ru/" rel="noopener" target="_blank">Пройти тест отношений</a>
+              <a class="btn btn-ghost" href="https://teenology-ai.ru/parents/faq/" rel="noopener" target="_blank">50+ типовых ситуаций</a>
+            </div>
+            <p class="text-muted" style="margin-top: 16px; font-size: 0.85rem;">Бесплатно, без давления и без обязательной регистрации. При угрозе жизни — 112.</p>
+          </div>
+          <aside class="hero-card glass-panel" aria-label="Принципы работы">
+            <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; letter-spacing: 0.05em;">Главные принципы</div>
+            <div class="signal-row">
+              <div class="signal-num">🛡️</div>
+              <div><strong>100% без слежки</strong><span>Мы не шпионим за переписками и не выставляем оценки ребёнку.</span></div>
+            </div>
+            <div class="signal-row">
+              <div class="signal-num">⚡</div>
+              <div><strong>Помощь в моменте</strong><span>Что сказать прямо сейчас, когда конфликт уже начался, а специалист недоступен.</span></div>
+            </div>
+            <div class="signal-row" style="border-bottom: none;">
+              <div class="signal-num">🌉</div>
+              <div><strong>«Семейный мост»</strong><span>Безопасный медиатор, чтобы услышать друг друга без взаимных обвинений.</span></div>
+            </div>
+          </aside>
+        </section>
+
+        <!-- Situations / Pain points -->
+        <section class="section" style="margin-top: 50px;">
+          <div class="section-head">
+            <h2>Знакомые ситуации?</h2>
+            <p class="lead">Когда кажется, что любая попытка поговорить заканчивается скандалом или хлопнувшей дверью.</p>
+          </div>
+          <div class="feature-grid-3">
+            <div class="card-situation">
+              <div class="card-icon">🚪</div>
+              <h3>«Снова закрылся в комнате»</h3>
+              <p>Как начать бережный разговор без допроса и не нарваться на глухую стену отчуждения.</p>
+            </div>
+            <div class="card-situation">
+              <div class="card-icon">📱</div>
+              <h3>«Скандалы из-за телефона и учебы»</h3>
+              <p>Как снизить накал эмоций, перестать кричать и договориться о понятных правилах.</p>
+            </div>
+            <div class="card-situation">
+              <div class="card-icon">🤝</div>
+              <h3>«Боюсь потерять контакт»</h3>
+              <p>Как оставаться надежной опорой для взрослеющего человека, не превращаясь в надзирателя.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ==========================================
+           TEENS VIEW
+           ========================================== -->
+      <div id="view-teens" class="audience-view">
+        <!-- Hero Section -->
+        <section class="hero hero-glass">
+          <div>
+            <span class="eyebrow eyebrow-teen">Твоё личное пространство · без нотаций</span>
+            <h1>Место, где можно выговориться. Без нравоучений, оценок и слежки</h1>
+            <p class="lead">
+              Карманный помощник, когда всё достало, накрывает тревога, давят в школе или дома, а делиться со взрослыми страшно или не хочется.
+            </p>
+            <div class="actions">
+              <a class="btn btn-primary" style="background: var(--violet); border-color: var(--violet);" href="https://teenology-ai.ru/" rel="noopener" target="_blank">Попробовать анонимно</a>
+              <a class="btn btn-ghost" href="https://teenology-ai.ru/parents/faq/" rel="noopener" target="_blank">Как говорить со взрослыми</a>
+            </div>
+            <p class="text-muted" style="margin-top: 16px; font-size: 0.85rem;">Полная анонимность. Никаких отчетов родителям. Твои мысли остаются с тобой.</p>
+          </div>
+          <aside class="hero-card glass-panel" aria-label="Твоя безопасность">
+            <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; letter-spacing: 0.05em;">Твоя приватность</div>
+            <div class="signal-row">
+              <div class="signal-num">🔒</div>
+              <div><strong>Никаких отчетов предкам</strong><span>Бот не пересылает твои сообщения родителям и не ставит тебе диагнозов.</span></div>
+            </div>
+            <div class="signal-row">
+              <div class="signal-num">🆘</div>
+              <div><strong>Когда накрыло</strong><span>Быстрые практики, чтобы успокоиться при панике, стрессе перед экзаменами или буллинге.</span></div>
+            </div>
+            <div class="signal-row" style="border-bottom: none;">
+              <div class="signal-num">🗣️</div>
+              <div><strong>Переводчик на язык взрослых</strong><span>Как сказать то, что тебя бесит, чтобы тебя наконец услышали, а не наказали.</span></div>
+            </div>
+          </aside>
+        </section>
+
+        <!-- Situations / Pain points for Teens -->
+        <section class="section" style="margin-top: 50px;">
+          <div class="section-head">
+            <h2>С чем чаще всего приходят?</h2>
+            <p class="lead">Разбираем реальные трудности простым языком, без заумных терминов и морализаторства.</p>
+          </div>
+          <div class="feature-grid-3">
+            <div class="card-situation teen-card">
+              <div class="card-icon">⚡</div>
+              <h3>«Меня вообще не слышат»</h3>
+              <p>Как выстроить личные границы с родителями и учителями, чтобы перестали давить и обесценивать.</p>
+            </div>
+            <div class="card-situation teen-card">
+              <div class="card-icon">📚</div>
+              <h3>«Перегруз и страх экзаменов»</h3>
+              <p>Как справиться с прокрастинацией и тревогой, когда голова раскалывается от ожиданий окружающих.</p>
+            </div>
+            <div class="card-situation teen-card">
+              <div class="card-icon">👥</div>
+              <h3>«Одиночество и конфликты»</h3>
+              <p>Что делать при травле в классе, ссорах с друзьями или ощущении, что ты лишний в любой компании.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ==========================================
+           SHARED MINIMALIST SECTIONS
+           ========================================== -->
+
+      <!-- 3 Steps -->
+      <section class="section" style="margin-top: 50px;">
+        <div class="section-head">
+          <span class="eyebrow">Прозрачно и понятно</span>
+          <h2>Три простых шага</h2>
+          <p class="lead">Базовые инструменты всегда бесплатны. Поддержка доступна в любой момент прямо в браузере.</p>
+        </div>
+        <div class="steps-row">
+          <div class="step-box">
+            <span class="step-badge step-badge-free">Бесплатно · без входа</span>
+            <h4>1. Экспресс-старт</h4>
+            <p>Тест отношений или уровня стресса + библиотека шпаргалок к 50+ ситуациям. Работает сразу.</p>
+          </div>
+          <div class="step-box">
+            <span class="step-badge step-badge-free">Бесплатно · с профилем</span>
+            <h4>2. Личный дневник</h4>
+            <p>Сохранение динамики, приватные заметки на устройстве и один бесплатный глубокий разбор острой ситуации.</p>
+          </div>
+          <div class="step-box">
+            <span class="step-badge step-badge-optional">По желанию</span>
+            <h4>3. Живое ИИ-сопровождение</h4>
+            <p>Безлимитный бережный диалог 24/7 и безопасный «Семейный мост». Разовый доступ без автосписаний.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Trust Strip -->
+      <section class="section" style="margin-top: 50px;">
+        <div class="section-head">
+          <span class="eyebrow">Безопасность и здравый смысл</span>
+          <h2>Почему Teenology можно доверять</h2>
+        </div>
+        <div class="trust-strip">
+          <div class="trust-item">
+            <div class="trust-item-icon">🛡️</div>
+            <div class="trust-item-content">
+              <strong>Privacy Shield</strong>
+              <span>Бот не пересказывает секреты одной стороны другой — помогает перевести обиду в конструктивный запрос.</span>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-item-icon">📱</div>
+            <div class="trust-item-content">
+              <strong>Данные на устройстве</strong>
+              <span>Записи личного дневника и заметки хранятся в вашем браузере и не передаются третьим лицам.</span>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-item-icon">🌱</div>
+            <div class="trust-item-content">
+              <strong>Без ярлыков и диагнозов</strong>
+              <span>Опираемся на доказательные методы и здравый смысл, без сложного психотерапевтического птичьего языка.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Call to Action Banner -->
+      <section class="cta-band" style="margin-top: 50px; margin-bottom: 60px;">
+        <h2>Попробуйте Teenology прямо сейчас</h2>
+        <p>3 минуты на экспресс-тест — и у вас появятся первые понятные шаги к спокойствию.</p>
+        <div class="actions actions-center" style="margin-top: 24px;">
+          <a class="btn btn-primary" href="https://teenology-ai.ru/" rel="noopener" target="_blank">Открыть Teenology</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <strong>Профилактика-AI</strong><br>Открытая цифровая инфраструктура психологической службы образования.
+          <p class="footer-legal-notice" style="margin-top: 10px; font-size: 0.82rem; line-height: 1.5; color: var(--muted); max-width: 580px;">
+            В настоящее время Платформа проходит процедуру включения в Реестр отечественного программного обеспечения Минцифры России. Система работает в режиме открытой апробации и доступна специалистам и образовательным организациям для ознакомления и использования. Размещение серверных компонентов — защищенные сертифицированные ЦОД (152-ФЗ).
+          </p>
+          <p class="footer-contact">
+            <a href="mailto:admin@prevention-ai.ru">admin@prevention-ai.ru</a><span class="footer-contact-sep" aria-hidden="true">·</span><a href="https://t.me/RomanDubrovsky" target="_blank" rel="noopener noreferrer">Telegram</a><span class="footer-contact-sep" aria-hidden="true">·</span><a href="/ru/founder/">Автор проекта</a>
+          </p>
+          <p class="footer-community" style="margin-top: 8px; font-size: 0.85rem; color: var(--muted);">
+            Сообщества проекта:<br>
+            ВКонтакте: <a href="https://vk.ru/prevention_ai" target="_blank" rel="noopener">vk.ru/prevention_ai</a><br>
+            Телеграм-канал: <a href="https://t.me/anthropology_health" target="_blank" rel="noopener">t.me/anthropology_health</a>
+          </p>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/ru/about/">О проекте</a>
+          <a href="https://academy.prevention-ai.ru/" target="_blank" rel="noopener">Академия</a>
+          <a href="https://web.prevention-ai.ru/?entry=educator" target="_blank" rel="noopener">Учителю</a>
+          <a href="/ru/teenology/">Родителям и подросткам</a>
+          <a href="/ru/founder/">Основатель</a>
+          <a href="https://ida-psy.ru/" target="_blank" rel="noopener" style="color: #8b5cf6; font-weight: 600;">Психологам коммерческого сектора</a>
+          <a href="/ru/privacy/">Конфиденциальность</a>
+          <a href="/ru/consent/">Согласие на обработку</a>
+        </nav>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Theme toggle
+    const themeBtn = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    let isDark = false;
+    if (themeBtn) {
+      themeBtn.addEventListener('click', () => {
+        isDark = !isDark;
+        html.setAttribute('data-theme', isDark ? 'dark' : 'light');
+        themeBtn.textContent = isDark ? 'Светлая' : 'Темная';
+      });
+    }
+
+    // Audience switcher
+    const btnParents = document.getElementById('btn-parents');
+    const btnTeens = document.getElementById('btn-teens');
+    const viewParents = document.getElementById('view-parents');
+    const viewTeens = document.getElementById('view-teens');
+
+    function switchAudience(target) {
+      if (target === 'teens') {
+        btnTeens.classList.add('active');
+        btnTeens.setAttribute('aria-selected', 'true');
+        btnParents.classList.remove('active');
+        btnParents.setAttribute('aria-selected', 'false');
+        viewParents.classList.remove('active-view');
+        viewTeens.classList.add('active-view');
+      } else {
+        btnParents.classList.add('active');
+        btnParents.setAttribute('aria-selected', 'true');
+        btnTeens.classList.remove('active');
+        btnTeens.setAttribute('aria-selected', 'false');
+        viewTeens.classList.remove('active-view');
+        viewParents.classList.add('active-view');
+      }
+    }
+
+    if (btnParents && btnTeens) {
+      btnParents.addEventListener('click', () => switchAudience('parents'));
+      btnTeens.addEventListener('click', () => switchAudience('teens'));
+    }
+
+    // Support URL hash #teen or #teens
+    if (window.location.hash === '#teen' || window.location.hash === '#teens') {
+      switchAudience('teens');
+    }
+  </script>
+</body>
+</html>

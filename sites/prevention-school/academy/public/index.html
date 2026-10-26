@@ -1,0 +1,830 @@
+<!doctype html>
+<html lang="ru" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link class="favicon" rel="icon" href="/favicon.ico" sizes="any">
+  <link class="favicon" rel="icon" href="/favicon.png" type="image/png">
+  <link class="apple-touch-icon" href="/favicon.png">
+  
+  <title>Афиша и витрина программ — Академия Превенции | Prevention-AI</title>
+  <meta name="description" content="Открытый каталог учебных программ, авторских видеокурсов и практических вебинаров платформы Prevention School & IDA Academy. Доступ для специалистов, педагогов-психологов и родителей.">
+  <link rel="canonical" href="https://prevention-ai.ru/academy/public/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Академия Превенции">
+  <meta property="og:title" content="Общая витрина курсов и вебинаров — Академия Превенции">
+  <meta property="og:description" content="Открытый каталог учебных программ, авторских видеокурсов и практических вебинаров со всей платформы.">
+  <meta property="og:url" content="https://prevention-ai.ru/academy/public/">
+  <meta property="og:locale" content="ru_RU">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/site.css">
+
+  <style>
+    :root {
+      --showcase-brand: #4f46e5;
+      --showcase-brand-hover: #4338ca;
+      --showcase-accent: #0f766e;
+      --card-bg: var(--surface, #ffffff);
+      --card-border: var(--line, #e2e8f0);
+    }
+
+    .showcase-hero {
+      position: relative;
+      padding: 56px 0 36px;
+      text-align: center;
+      background: radial-gradient(circle at 50% 0%, rgba(79, 70, 229, 0.12) 0%, transparent 70%);
+    }
+
+    .showcase-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 999px;
+      background: rgba(79, 70, 229, 0.1);
+      border: 1px solid rgba(79, 70, 229, 0.25);
+      color: #4f46e5;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      margin-bottom: 20px;
+    }
+
+    .showcase-title {
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin: 0 auto 16px;
+      letter-spacing: -0.02em;
+      max-width: 900px;
+      color: var(--text);
+    }
+
+    .showcase-title span {
+      background: linear-gradient(135deg, #4f46e5 0%, #0f766e 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .showcase-lead {
+      font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+      color: var(--muted);
+      max-width: 760px;
+      margin: 0 auto 36px;
+      line-height: 1.6;
+    }
+
+    /* Filter & Search Bar */
+    .filter-panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+      margin-bottom: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .search-input-wrap {
+      position: relative;
+      width: 100%;
+    }
+
+    .search-input-wrap input {
+      width: 100%;
+      padding: 12px 16px 12px 42px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: var(--surface-soft, #f8fafc);
+      font-size: 0.95rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .search-input-wrap input:focus {
+      border-color: var(--showcase-brand);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+      background: var(--surface);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.1rem;
+      pointer-events: none;
+      opacity: 0.6;
+    }
+
+    .filters-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .filter-group {
+      display: inline-flex;
+      background: var(--surface-soft, #f1f5f9);
+      border-radius: 10px;
+      padding: 3px;
+      gap: 2px;
+    }
+
+    .filter-btn {
+      border: none;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .filter-btn.active {
+      background: var(--surface, #ffffff);
+      color: var(--showcase-brand);
+      font-weight: 700;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+
+    .sort-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sort-group select {
+      padding: 7px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+      font-size: 0.85rem;
+      outline: none;
+      cursor: pointer;
+    }
+
+    /* Cards Grid */
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 24px;
+      margin-bottom: 64px;
+    }
+
+    .showcase-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      position: relative;
+    }
+
+    .showcase-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .showcase-card.featured {
+      border: 2px solid #6366f1;
+      box-shadow: 0 8px 26px rgba(99, 102, 241, 0.12);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .badge-kind {
+      font-size: 0.76rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .badge-course {
+      background: #eef2ff;
+      color: #4338ca;
+    }
+
+    .badge-webinar {
+      background: #fdf2f8;
+      color: #be185d;
+    }
+
+    .badge-featured {
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: #fef3c7;
+      color: #b45309;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .badge-access {
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .badge-free {
+      background: #ecfdf5;
+      color: #059669;
+    }
+
+    .badge-paid {
+      background: #eff6ff;
+      color: #1d4ed8;
+    }
+
+    .card-title {
+      font-size: 1.24rem;
+      font-weight: 800;
+      line-height: 1.35;
+      margin: 0 0 12px 0;
+      color: var(--text);
+    }
+
+    .card-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-bottom: 14px;
+    }
+
+    .card-author {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--showcase-brand);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .card-school {
+      font-size: 0.8rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .card-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.55;
+      margin: 0 0 20px 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-footer {
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .card-duration {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 18px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-free {
+      background: var(--showcase-brand);
+      color: #ffffff;
+      box-shadow: 0 3px 10px rgba(79, 70, 229, 0.25);
+    }
+
+    .btn-free:hover {
+      background: var(--showcase-brand-hover);
+      color: #ffffff;
+      text-decoration: none;
+      box-shadow: 0 5px 15px rgba(79, 70, 229, 0.35);
+    }
+
+    .btn-paid {
+      background: #2563eb;
+      color: #ffffff;
+      box-shadow: 0 3px 10px rgba(37, 99, 235, 0.25);
+    }
+
+    .btn-paid:hover {
+      background: #1d4ed8;
+      color: #ffffff;
+      text-decoration: none;
+      box-shadow: 0 5px 15px rgba(37, 99, 235, 0.35);
+    }
+
+    .empty-state {
+      padding: 60px 24px;
+      text-align: center;
+      background: var(--surface);
+      border: 1px dashed var(--line);
+      border-radius: 20px;
+      color: var(--muted);
+      grid-column: 1 / -1;
+    }
+
+    .empty-state .icon {
+      font-size: 2.8rem;
+      margin-bottom: 12px;
+    }
+
+    @media (max-width: 640px) {
+      .showcase-grid {
+        grid-template-columns: 1fr;
+      }
+      .filters-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .filter-group {
+        width: 100%;
+        display: flex;
+      }
+      .filter-btn {
+        flex: 1;
+        justify-content: center;
+      }
+      .sort-group {
+        justify-content: space-between;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="site-header">
+      <a class="brand" href="/ru/" aria-label="На главную">
+        <span class="brand-badge">П</span>
+        <span class="brand-text">
+          <span class="brand-title">Профилактика-AI</span>
+          <span class="brand-sub">Академия Превенции</span>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Основная навигация">
+        <a href="/ru/">Главная</a>
+        <a href="/ru/academy/public/" class="active" style="font-weight: 700; color: var(--showcase-brand);">Афиша и курсы</a>
+        <a href="/ru/events/">Вебинары</a>
+        <a href="/ru/about/">О платформе</a>
+      </nav>
+
+      <div class="header-controls">
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Переключить тему">Тема</button>
+        <a href="https://web.prevention-ai.ru/" class="header-btn" target="_blank" rel="noopener">Вход в Терминал</a>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="showcase-hero">
+        <div class="showcase-badge">
+          <span>🌐</span>
+          <span>Открытая образовательная среда</span>
+        </div>
+        <h1 class="showcase-title">Общая витрина <span>курсов и вебинаров</span></h1>
+        <p class="showcase-lead">
+          Открытый каталог учебных программ, авторских видеокурсов и практических вебинаров со всей платформы. Все материалы с пометкой доступа и указанием авторов.
+        </p>
+      </section>
+
+      <!-- Filter Panel -->
+      <section class="filter-panel">
+        <div class="search-input-wrap">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="showcase-search" placeholder="Поиск по названию, автору или теме..." autocomplete="off">
+        </div>
+
+        <div class="filters-row">
+          <!-- Kind Filter -->
+          <div class="filter-group" id="kind-filters">
+            <button type="button" class="filter-btn active" data-kind="all">Все типы</button>
+            <button type="button" class="filter-btn" data-kind="course">📚 Курсы</button>
+            <button type="button" class="filter-btn" data-kind="webinar">🎥 Вебинары</button>
+          </div>
+
+          <!-- Access Filter -->
+          <div class="filter-group" id="access-filters">
+            <button type="button" class="filter-btn active" data-access="all">Любой доступ</button>
+            <button type="button" class="filter-btn" data-access="free">✨ Бесплатные</button>
+            <button type="button" class="filter-btn" data-access="paid">💳 Платные</button>
+          </div>
+
+          <!-- Sort Select -->
+          <div class="sort-group">
+            <span style="font-size: 0.85rem; color: var(--muted);">Сортировка:</span>
+            <select id="showcase-sort">
+              <option value="free_first">Сначала открытые / бесплатные</option>
+              <option value="newest">Сначала новые</option>
+              <option value="title">По названию (А–Я)</option>
+              <option value="price_asc">По цене (от недорогих)</option>
+              <option value="price_desc">По цене (премиум)</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <!-- Showcase Cards Grid -->
+      <section class="showcase-grid" id="showcase-grid">
+        <!-- Rendered dynamically via JavaScript -->
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <strong>Prevention School</strong><br>Open digital infrastructure for psychological support in education.
+          <p class="footer-legal-notice" style="margin-top: 10px; font-size: 0.82rem; line-height: 1.5; color: var(--muted); max-width: 580px;">
+            The platform operates under zero-knowledge privacy standards, complying with FERPA, COPPA, and GDPR frameworks. Personal student identification data never leaves the local school environment or enters third-party AI training pipelines.
+          </p>
+          <p class="footer-contact">
+            <a href="mailto:admin@prevention.school">admin@prevention.school</a><span class="footer-contact-sep" aria-hidden="true">·</span><a href="https://t.me/RomanDubrovsky" target="_blank" rel="noopener noreferrer">Telegram (@RomanDubrovsky)</a><span class="footer-contact-sep" aria-hidden="true">·</span><a href="/founder/">Author Profile</a>
+          </p>
+          <p class="footer-community" style="margin-top: 8px; font-size: 0.85rem; color: var(--muted);">
+            International Research & Deployment:<br>
+            GitHub: <a href="https://github.com/teenology/prevention-school" target="_blank" rel="noopener">github.com/teenology</a><br>
+            Community Channel: <a href="https://t.me/anthropology_health" target="_blank" rel="noopener">t.me/anthropology_health</a>
+          </p>
+        </div>
+        <nav class="footer-links" aria-label="Footer Navigation">
+          <a href="/science/">Science & Methodology</a>
+          <a href="/articles/">Publications & Papers</a>
+          <a href="/founder/">Founder Profile</a>
+          <a href="https://corporate-health.ida-psy.pro/" target="_blank" rel="noopener">Corporate Health ↗</a>
+          <a href="https://ida-psy.pro/" target="_blank" rel="noopener">Private Practice Kit ↗</a>
+          <a href="/privacy/">Privacy Policy</a>
+          <a href="/terms/">Terms of Service</a>
+        </nav>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Initial Showcase Catalog Database
+    const SHOWCASE_ITEMS = [
+      {
+        id: "dubrovsky-prevention-course-2026",
+        kind: "course",
+        title: "Психология здоровья и разработка профилактических программ",
+        description: "Фундаментальный авторский видеокурс Романа Дубровского. От биомедицинской и холистической моделей здоровья до методологии проектирования доказательных профилактических программ для подростков и молодежи.",
+        authorName: "Роман Дубровский",
+        schoolName: "Академия IDA / Prevention School",
+        topicTag: "Психология здоровья и профилактика",
+        priceRub: 0,
+        isFree: true,
+        durationLabel: "21 видеолекция • 160 ч.",
+        actionUrl: "/ru/academy/course/player.html#00",
+        targetBlank: false,
+        isFeatured: true,
+        createdAt: "2026-01-01"
+      },
+      {
+        id: "webinar-crisis-intervention-teen",
+        kind: "webinar",
+        title: "Кризисная помощь подросткам в острой стрессовой ситуации",
+        description: "Практический онлайн-разбор реальных кейсов: алгоритмы маршрутизации, деэскалация аффекта, формулирование терапевтической мишени и заполнение безопасного протокола в веб-терминале.",
+        authorName: "Роман Дубровский",
+        schoolName: "Prevention School",
+        topicTag: "Кризисная психология",
+        priceRub: 0,
+        isFree: true,
+        durationLabel: "90 мин.",
+        actionUrl: "/ru/events/",
+        targetBlank: false,
+        isFeatured: true,
+        createdAt: "2026-02-15"
+      },
+      {
+        id: "course-behavioral-diagnostics",
+        kind: "course",
+        title: "Доказательная психодиагностика в образовательной среде",
+        description: "Стандартизированные опросники, экспресс-скрининги и мониторинг психоэмоционального климата в классах. Автоматическая обработка и защита персональных данных по 152-ФЗ.",
+        authorName: "Методический совет Prevention",
+        schoolName: "Академия Превенции",
+        topicTag: "Психодиагностика",
+        priceRub: 0,
+        isFree: true,
+        durationLabel: "8 лекций • 36 ч.",
+        actionUrl: "/ru/academy/course/player.html#01",
+        targetBlank: false,
+        isFeatured: false,
+        createdAt: "2026-03-01"
+      },
+      {
+        id: "webinar-school-counseling-ai",
+        kind: "webinar",
+        title: "ИИ-ассистент педагога-психолога: практическая интеграция",
+        description: "Как безопасно использовать нейросетевых помощников для транскрибации встреч, составления карт вмешательства и подготовки отчётов без риска утечки клиентских данных.",
+        authorName: "Команда Prevention AI",
+        schoolName: "Prevention School",
+        topicTag: "Цифровые технологии",
+        priceRub: 0,
+        isFree: true,
+        durationLabel: "75 мин.",
+        actionUrl: "/ru/events/",
+        targetBlank: false,
+        isFeatured: false,
+        createdAt: "2026-03-20"
+      }
+    ];
+
+    // Load any locally stored creator courses or custom additions
+    function getStoredItems() {
+      try {
+        const localCourses = localStorage.getItem("ida_creator_courses");
+        if (localCourses) {
+          const parsed = JSON.parse(localCourses);
+          if (Array.isArray(parsed)) {
+            parsed.forEach(c => {
+              if (c.isPublished && !SHOWCASE_ITEMS.some(item => item.id === c.id)) {
+                SHOWCASE_ITEMS.push({
+                  id: c.id,
+                  kind: "course",
+                  title: c.title,
+                  description: c.description || "",
+                  authorName: c.authorName || "Преподаватель Академии",
+                  schoolName: c.schoolName || "Академия IDA",
+                  topicTag: c.topicTag || "Авторский курс",
+                  priceRub: Number(c.priceRub || 0),
+                  isFree: Number(c.priceRub || 0) === 0,
+                  durationLabel: c.lessons?.length ? `${c.lessons.length} уроков` : undefined,
+                  actionUrl: `https://academy.ida-psy.ru/?course=${encodeURIComponent(c.id)}`,
+                  targetBlank: true,
+                  isFeatured: Boolean(c.isFeatured),
+                  createdAt: c.createdAt || "2026-01-01"
+                });
+              }
+            });
+          }
+        }
+      } catch (e) {}
+      return SHOWCASE_ITEMS;
+    }
+
+    let currentKind = "all";
+    let currentAccess = "all";
+    let searchQuery = "";
+    let currentSort = "free_first";
+
+    const allItems = getStoredItems();
+
+    function renderShowcase() {
+      const grid = document.getElementById("showcase-grid");
+      if (!grid) return;
+
+      let list = [...allItems];
+
+      // Filter Kind
+      if (currentKind !== "all") {
+        list = list.filter(item => item.kind === currentKind);
+      }
+
+      // Filter Access
+      if (currentAccess === "free") {
+        list = list.filter(item => item.isFree);
+      } else if (currentAccess === "paid") {
+        list = list.filter(item => !item.isFree);
+      }
+
+      // Search Query
+      if (searchQuery.trim()) {
+        const q = searchQuery.toLowerCase().trim();
+        list = list.filter(item =>
+          item.title.toLowerCase().includes(q) ||
+          item.description.toLowerCase().includes(q) ||
+          item.authorName.toLowerCase().includes(q) ||
+          (item.schoolName && item.schoolName.toLowerCase().includes(q)) ||
+          (item.topicTag && item.topicTag.toLowerCase().includes(q))
+        );
+      }
+
+      // Sort
+      list.sort((a, b) => {
+        if (currentSort === "free_first") {
+          if (a.isFree && !b.isFree) return -1;
+          if (!a.isFree && b.isFree) return 1;
+          return (b.isFeatured ? 1 : 0) - (a.isFeatured ? 1 : 0);
+        }
+        if (currentSort === "price_asc") {
+          return (a.priceRub || 0) - (b.priceRub || 0);
+        }
+        if (currentSort === "price_desc") {
+          return (b.priceRub || 0) - (a.priceRub || 0);
+        }
+        if (currentSort === "title") {
+          return a.title.localeCompare(b.title, "ru");
+        }
+        if (currentSort === "newest") {
+          return (b.createdAt || "").localeCompare(a.createdAt || "");
+        }
+        return 0;
+      });
+
+      if (list.length === 0) {
+        grid.innerHTML = `
+          <div class="empty-state">
+            <div class="icon">🔍</div>
+            <h3 style="font-size: 1.2rem; font-weight: 700; color: var(--text); margin-bottom: 8px;">Ничего не найдено</h3>
+            <p>Попробуйте изменить параметры поиска или сбросить фильтры.</p>
+            <button type="button" class="btn-action btn-free" id="reset-filters-btn" style="margin-top: 16px;">Сбросить фильтры</button>
+          </div>
+        `;
+        const resetBtn = document.getElementById("reset-filters-btn");
+        if (resetBtn) {
+          resetBtn.addEventListener("click", () => {
+            currentKind = "all";
+            currentAccess = "all";
+            searchQuery = "";
+            currentSort = "free_first";
+            document.getElementById("showcase-search").value = "";
+            document.getElementById("showcase-sort").value = "free_first";
+            updateButtonStates();
+            renderShowcase();
+          });
+        }
+        return;
+      }
+
+      const fragment = document.createDocumentFragment();
+      list.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "showcase-card" + (item.isFeatured ? " featured" : "");
+
+        const kindBadge = item.kind === "course"
+          ? `<span class="badge-kind badge-course">📚 Видеокурс</span>`
+          : `<span class="badge-kind badge-webinar">🎥 Вебинар</span>`;
+
+        const featuredBadge = item.isFeatured
+          ? `<span class="badge-featured">🔥 Рекомендуем</span>`
+          : "";
+
+        const accessBadge = item.isFree
+          ? `<span class="badge-access badge-free">✓ Открытый доступ</span>`
+          : `<span class="badge-access badge-paid">💳 ${item.priceRub} ₽</span>`;
+
+        const actionText = item.isFree
+          ? (item.kind === "course" ? "Смотреть курс →" : "Подробнее →")
+          : "Подробнее и запись →";
+
+        const btnClass = item.isFree ? "btn-free" : "btn-paid";
+        const targetAttr = item.targetBlank ? 'target="_blank" rel="noopener noreferrer"' : "";
+
+        card.innerHTML = `
+          <div>
+            <div class="card-top">
+              <div style="display: flex; align-items: center; gap: 6px;">
+                ${kindBadge}
+                ${featuredBadge}
+              </div>
+              ${accessBadge}
+            </div>
+
+            <h3 class="card-title">${item.title}</h3>
+
+            <div class="card-meta">
+              <div class="card-author">
+                <span>👤</span>
+                <span>Автор: ${item.authorName}</span>
+              </div>
+              ${item.schoolName ? `
+                <div class="card-school">
+                  <span>🏛️</span>
+                  <span>${item.schoolName}</span>
+                </div>
+              ` : ""}
+            </div>
+
+            <p class="card-desc">${item.description}</p>
+          </div>
+
+          <div class="card-footer">
+            <div class="card-duration">
+              ${item.durationLabel ? `⏱️ ${item.durationLabel}` : ""}
+            </div>
+            <a href="${item.actionUrl}" class="btn-action ${btnClass}" ${targetAttr}>
+              ${actionText}
+            </a>
+          </div>
+        `;
+        fragment.appendChild(card);
+      });
+
+      grid.innerHTML = "";
+      grid.appendChild(fragment);
+    }
+
+    function updateButtonStates() {
+      document.querySelectorAll("#kind-filters .filter-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.kind === currentKind);
+      });
+      document.querySelectorAll("#access-filters .filter-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.access === currentAccess);
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // Event Listeners
+      const searchInput = document.getElementById("showcase-search");
+      if (searchInput) {
+        searchInput.addEventListener("input", (e) => {
+          searchQuery = e.target.value;
+          renderShowcase();
+        });
+      }
+
+      document.querySelectorAll("#kind-filters .filter-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          currentKind = btn.dataset.kind;
+          updateButtonStates();
+          renderShowcase();
+        });
+      });
+
+      document.querySelectorAll("#access-filters .filter-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          currentAccess = btn.dataset.access;
+          updateButtonStates();
+          renderShowcase();
+        });
+      });
+
+      const sortSelect = document.getElementById("showcase-sort");
+      if (sortSelect) {
+        sortSelect.addEventListener("change", (e) => {
+          currentSort = e.target.value;
+          renderShowcase();
+        });
+      }
+
+      // Theme toggle
+      const themeBtn = document.getElementById("theme-toggle");
+      if (themeBtn) {
+        const saved = localStorage.getItem("theme");
+        if (saved === "dark") {
+          document.documentElement.setAttribute("data-theme", "dark");
+          themeBtn.textContent = "Светлая";
+        }
+        themeBtn.addEventListener("click", () => {
+          const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+          document.documentElement.setAttribute("data-theme", isDark ? "light" : "dark");
+          localStorage.setItem("theme", isDark ? "light" : "dark");
+          themeBtn.textContent = isDark ? "Темная" : "Светлая";
+        });
+      }
+
+      renderShowcase();
+    });
+  </script>
+</body>
+</html>
